@@ -1,0 +1,20 @@
+<div class="commentcontainer">
+
+  <div class="profilepicture" [ngStyle]="{'background-image': uid === 'Anonymous'
+         ? 'url(../assets/profile_pictures/alien' + image_number + '.png)'
+         : 'url(https://dev-project-upskill2-grupo3.pantheonsite.io/'  + user_picture + ')'} "
+  ></div>
+
+  <div class="text">
+        <span class="username">
+            {{username}}
+        </span>
+    <span class="time">
+            {{date}}
+          </span>
+    <div class="commenttext">
+      {{comment}}
+    </div>
+  </div>
+</div>
+

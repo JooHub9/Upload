@@ -7,12 +7,14 @@ import { CommentsComponent } from './pages/comments/comments.component';
 import {HttpClientModule} from "@angular/common/http";
 import {RouterLink} from "@angular/router";
 import { CommentComponent } from './components/comment/comment.component';
+import { NavbarComponent } from './components/navbar/navbar.component';
 
 @NgModule({
   declarations: [
     AppComponent,
     CommentsComponent,
-    CommentComponent
+    CommentComponent,
+    NavbarComponent
   ],
   imports: [
     BrowserModule,

@@ -1,0 +1,26 @@
+<div class="video">
+  <div class="images">
+    <img class=thumbnail [src]="'https://dev-project-upskill2-grupo3.pantheonsite.io/' + thumbnail__target_id">
+    <div class="main_duration">
+      <p class="duration">{{field_duration}}</p>
+    </div>
+    <div class="user_pic">
+      <img class="picture" [src]="'https://dev-project-upskill2-grupo3.pantheonsite.io/' + user_picture">
+    </div>
+  </div>
+  <div class="video_info">
+    <div class="info">
+      <p class="author">{{name_1}}</p>
+      <h3 class="video_name">{{field_video_title}}</h3>
+      <p class="created">{{created}}</p>
+    </div>
+    <div class="icons">
+      <div class="bookmark_icon">
+        <fa-icon [icon]="bookmark"></fa-icon>
+      </div>
+      <div class="sharenodes_icon">
+        <fa-icon [icon]="sharenodes"></fa-icon>
+      </div>
+    </div>
+  </div>
+</div>

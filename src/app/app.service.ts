@@ -1,6 +1,6 @@
 import { Injectable } from '@angular/core';
 import { HttpClient } from "@angular/common/http";
-import {ContentComment, VideoComment} from "../interfaces";
+
 
 const BASE_URL = "https://dev-project-upskill2-grupo3.pantheonsite.io/api/"
 
@@ -20,5 +20,7 @@ export class AppService {
   {
     return this.http.get<VideoComment[]>(BASE_URL + "videocomments");
   }
-
+  getVideos() {
+    return this.http.get(BASE_URL + "videos");
+  }
 }

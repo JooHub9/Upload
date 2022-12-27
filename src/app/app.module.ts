@@ -8,19 +8,25 @@ import {HttpClientModule} from "@angular/common/http";
 import {RouterLink} from "@angular/router";
 import { CommentComponent } from './components/comment/comment.component';
 import { NavbarComponent } from './components/navbar/navbar.component';
+import {VideoComponent} from "./components/video/video.component";
+import {HomepageComponent} from "./pages/homepage/homepage.component";
+import { FontAwesomeModule } from '@fortawesome/angular-fontawesome';
 
 @NgModule({
   declarations: [
     AppComponent,
     CommentsComponent,
     CommentComponent,
-    NavbarComponent
+    NavbarComponent,
+    VideoComponent,
+    HomepageComponent,
   ],
   imports: [
     BrowserModule,
     AppRoutingModule,
     HttpClientModule,
-    RouterLink
+    RouterLink,
+    FontAwesomeModule
   ],
   providers: [],
   bootstrap: [AppComponent]

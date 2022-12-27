@@ -1,0 +1,42 @@
+.main_div {
+  display: flex;
+  flex-flow: column;
+  height: 100%;
+  flex-wrap: wrap;
+  align-content: space-between;
+
+  //pus width fixa no menu e side-bar, para ter noção do espaço
+  .menu {
+    background-color: #1C1C24;
+    height: auto;
+    width: 250px;
+    margin: 0;
+    flex: auto;
+  }
+
+  .recent_videos {
+    display: flex;
+    flex-direction: column;
+    align-content: center;
+    justify-content: center;
+    flex-wrap: wrap;
+
+    .videos_container {
+      max-width: 650px;
+      display: flex;
+      flex-wrap: wrap;
+      justify-content: space-between;
+      align-content: center;
+    }
+  }
+
+  .sidebar {
+    background-color: #1C1C24;
+    height: auto;
+    width: 300px;
+    margin: 0;
+    flex: auto;
+  }
+
+}
+

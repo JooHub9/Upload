@@ -1,0 +1,83 @@
+.video {
+  max-width: 310px;
+  background-color: #1C1C24;
+  border-radius: 20px;
+  margin-bottom: 20px;
+
+  .images {
+    position: relative;
+
+    .thumbnail {
+      border-top-right-radius: 20px;
+      border-top-left-radius: 20px;
+    }
+
+    .main_duration {
+      position: absolute;
+      left: 20px;
+      bottom: 5px;
+
+      .duration {
+        color: white;
+        background-color: #1C1C24;
+        padding: 2px 15px;
+        border-radius: 5px;
+
+      }
+
+    }
+
+    .user_pic {
+      position: absolute;
+      right: 20px;
+      bottom: -30px;
+
+      .picture {
+        height: 70px;
+        width: 70px;
+        border-radius: 100%;
+        border: 2px solid white;
+      }
+    }
+  }
+
+  .video_info {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    height: 126px;
+    padding: 0 20px 0 20px;
+
+    .author {
+      color: #1E75FF;
+      margin: 0;
+      padding-top: 5px;
+    }
+
+    h3 {
+      margin: 5px 0;
+    }
+
+    .created {
+      color: #92929D;
+      margin-top: 0;
+    }
+
+
+    .icons {
+      display: flex;
+      flex-direction: row;
+      position: relative;
+      top: 23px;
+
+      fa-icon {
+        font-size: 20px;
+        color: #92929D;
+      }
+
+      .bookmark_icon {
+        padding-right: 15px;
+      }
+    }
+  }
+}

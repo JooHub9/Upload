@@ -5,6 +5,10 @@
     "outDir": "./out-tsc/spec",
     "types": [
       "jasmine"
+    ],
+    "files": [
+      "src/main.ts",
+      "interfaces.ts"
     ]
   },
   "include": [

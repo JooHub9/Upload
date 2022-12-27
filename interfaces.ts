@@ -26,7 +26,8 @@ interface VideoComment
 
 }
 
-/*____________ Video ____________*/
+
+/*____________ Video____________*/
 
 interface Video {
   mid: number;

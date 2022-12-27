@@ -1,6 +1,6 @@
 import { Component, OnInit } from '@angular/core';
 import {AppService} from "../../app.service";
-import {ContentComment, VideoComment} from "../../../interfaces";
+
 
 
 @Component({

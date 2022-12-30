@@ -20,5 +20,6 @@ export class CommentsComponent {
     this.appService.getContentComments().subscribe(cc => this.contentCom =cc)
 
     this.appService.getVideoComments().subscribe(cc => this.videoCom =cc)
+
   }
 }

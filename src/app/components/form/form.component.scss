@@ -1,0 +1,86 @@
+.container {
+  display: inline-flex;
+  align-items: flex-start;
+  width: 100%;
+  gap: 15px;
+  margin: 10px 0 30px 0;
+
+  form {
+    width: 100%;
+
+    .personalinfo {
+      display: flex;
+      justify-content: space-between;
+      gap: 20px;
+
+      * .fields {
+        background-color: transparent;
+        border: 0;
+        border-bottom: 1px solid #FFFFFF;
+        width: 100%;
+        margin: 10px 0;
+        color: #FAFAFB;
+
+
+        &:focus {
+          outline: 0;
+          color: #FAFAFB;
+        }
+
+
+      }
+
+      .divname {
+        width: 50%;
+
+      }
+
+      .divemail {
+        width: 50%;
+
+
+      }
+    }
+
+    .divcomment {
+      .fields {
+        background-color: transparent;
+        border: 0;
+        border-bottom: 1px solid #FFFFFF;
+        width: 100%;
+        margin: 10px 0;
+        color: #FAFAFB;
+
+        &:focus {
+          outline: 0;
+          color: #FAFAFB;
+        }
+      }
+
+
+    }
+
+    .divbutton {
+      display: flex;
+      width: 100%;
+      justify-content: flex-end;
+
+      .button {
+        background-color: transparent;
+        border-radius: 15px;
+        border: 1px solid #FFFFFF;
+        color: #FAFAFB;
+        font-size: 10pt;
+        padding: 5px 30px;
+        margin-top: 10px;
+        cursor: pointer;
+      }
+
+    }
+  }
+
+
+}
+
+
+

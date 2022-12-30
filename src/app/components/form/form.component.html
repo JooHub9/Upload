@@ -1,0 +1,30 @@
+<div class="container">
+
+  <app-randompicture
+    uid="Anonymous"></app-randompicture>
+
+<form [formGroup]="commentForm" (ngSubmit)="onSubmit()">
+  <div class="personalinfo">
+
+    <div class="divname">
+      <input class="fields" id="name" placeholder="Name" type="text" formControlName="name">
+    </div>
+
+    <div class="divemail">
+      <input class="fields" id="email" placeholder="Email" type="text" formControlName="email">
+    </div>
+
+
+  </div>
+
+
+  <div class="divcomment">
+    <input class="fields" id="comment" placeholder="Message" type="text" formControlName="comment">
+  </div>
+
+  <div class="divbutton">
+    <button class="button" type="submit">Send Message</button>
+
+  </div>
+</form>
+</div>

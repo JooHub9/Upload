@@ -20,10 +20,29 @@ export class AppService {
   {
     return this.http.get<VideoComment[]>(BASE_URL + "videocomments");
   }
+
+
+
+  getOneVideoComments (id:string)
+  {
+    return this.http.get<VideoComment[]>(BASE_URL + "videocomments/"+ id);
+  }
+
+
   getVideos() {
     return this.http.get<Video[]>(BASE_URL + "videos");
   }
+
   getTags() {
     return this.http.get<Tags[]>(BASE_URL + "tags");
   }
+
+  getVideo(id:string) {
+    return this.http.get<Video[]>(BASE_URL + "videos/"+id);
+  }
+
+  postLikeDislike(id:string, dislike:string, like:string) {
+    return this.http.post<Video[]>(BASE_URL + "videos/"+id,{field_dislike: dislike, field_like: like} );
+  }
 }
+

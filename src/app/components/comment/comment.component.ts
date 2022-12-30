@@ -1,4 +1,5 @@
 import {Component, Input} from '@angular/core';
+import {AppService} from "../../app.service";
 
 @Component({
   selector: 'app-comment',
@@ -7,6 +8,8 @@ import {Component, Input} from '@angular/core';
 })
 export class CommentComponent {
 
+  constructor(private appService: AppService) { }
+
   @Input() type: string = "";
   @Input() uid : string = "";
   @Input() user_picture : string = "";
@@ -14,12 +17,5 @@ export class CommentComponent {
   @Input() date : string = "";
   @Input() comment : string = "";
 
-  count_images: number = 7;
-
-  image_number = this.randomNumber(this.count_images)
-
-  randomNumber(count_images:number) {
-    return Math.floor(Math.random() * count_images);
-  }
 
 }

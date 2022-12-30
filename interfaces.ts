@@ -42,7 +42,10 @@ interface Video {
   field_tags: string;
   field_media_oembed_video:string;
   field_channel: string;
+  field_like:string;
+  field_dislike:string;
 }
+
 /*____________ Tags ____________*/
 interface Tags{
   name:string;

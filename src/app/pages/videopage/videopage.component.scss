@@ -1,0 +1,194 @@
+.container
+{
+  width: 100%;
+  display: flex;
+  flex-direction: row;
+  justify-content: space-between;
+  gap: 50px;
+
+  .main_div {
+    display: flex;
+    flex-direction: column;
+    margin-top: 0;
+    margin-bottom: 20px;
+    gap: 10px;
+
+    .videoblock {
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      justify-content: space-around;
+
+      .text_flag {
+        display: flex;
+        align-items: center;
+        justify-content: space-between;
+        width: 100%;
+
+
+        .text {
+
+          .title {
+            font-size: 24px;
+            font-weight: 600;
+            margin-bottom: 0;
+          }
+
+          .tags {
+            color: #1E75FF;
+            font-size: 10px;
+          }
+
+        }
+
+        .flags {
+          .iconFlag {
+            color: #92929D;
+            font-size: 25px;
+            cursor: pointer;
+          }
+        }
+      }
+
+
+      .video {
+        width: 750px;
+        height: 450px;
+        border-radius: 10px;
+        cursor: pointer;
+        border: 0;
+
+      }
+    }
+
+    .divundervideo {
+      padding-top: 20px;
+      display: flex;
+      flex-direction: row;
+
+      /*____ left side of the DIV ____*/
+
+      .left {
+        display: flex;
+        align-items: center;
+        justify-content: left;
+        width: 50%;
+        gap: 10px;
+
+
+        .profilepicture {
+          width: 58px;
+          height: 58px;
+          border-radius: 50%;
+          background-size: cover;
+          border: solid 2px #FFFFFF;
+        }
+
+        .textinfo {
+          margin: 0;
+          display: flex;
+          flex-direction: column;
+          align-items: flex-start;
+
+          p {
+            margin: 0;
+            justify-content: left;
+          }
+
+          .channel {
+
+          }
+
+          .date {
+            font-size: 9pt;
+            color: #92929D;
+          }
+        }
+      }
+
+      /*____ right side of the DIV ____*/
+
+      .right {
+        width: 50%;
+        display: flex;
+        flex-direction: row;
+        align-items: center;
+        justify-content: right;
+        gap: 10px;
+        margin: 0;
+
+
+        /*____ LIKES____*/
+        .likes {
+          display: flex;
+          align-items: center;
+          width: 20%;
+          justify-content: center;
+          gap: 10px;
+          padding-right: 10px;
+          margin: 0;
+
+          .iconThumbsUp {
+            margin: 0;
+            font-size: 17pt;
+            cursor: pointer;
+          }
+
+          .likesnumber {
+            margin: 0;
+          }
+        }
+
+        /*____ DISLIKES____*/
+
+
+        .dislikes {
+          color: #92929D;
+          display: flex;
+          align-items: center;
+          gap: 10px;
+          border-left: solid 2px #FAFAFB;
+          width: 20%;
+          justify-content: flex-end;
+          margin: 0;
+
+
+          .iconThumbsDown {
+            font-size: 16pt;
+            color: #92929D;
+            margin: 0;
+            cursor: pointer;
+          }
+
+
+          .dislikesnumber {
+            margin: 0;
+          }
+        }
+      }
+    }
+
+    .description
+    {
+      color: white;
+      border-radius: 5px;
+      background-color: #1C1C24;
+      text-align: justify;
+      text-justify: inter-word;
+      padding: 5px;
+      margin: 10px 0;
+
+    }
+
+  }
+
+  .sidebar
+  {
+margin-top: 95px;
+  }
+
+}
+
+
+
+

@@ -1,0 +1,40 @@
+<div class="main_container">
+  <img src="/assets/upload.svg" alt="logo" class="logo">
+  <div class="menu">
+    <div class="buttons">
+      <div class="home" id="home_button" routerLink="homepage">
+        <div class="active_div" routerLinkActive="active">
+          <fa-icon [icon]="faHome"></fa-icon>
+          <p>Home</p>
+        </div>
+      </div>
+      <div class="channels" id="channels_button">
+        <div class="active_div">
+          <fa-icon [icon]="faBarsStaggered"></fa-icon>
+          <p>Channels</p>
+        </div>
+      </div>
+      <div class="thematics" id="thematics_button">
+        <div class="active_div">
+          <fa-icon [icon]="faClapperboard"></fa-icon>
+          <p>Thematics</p>
+        </div>
+      </div>
+      <div class="playlists" id="playlists_button">
+        <div class="active_div">
+          <fa-icon [icon]="faPlay"></fa-icon>
+          <p>Playlists</p>
+        </div>
+      </div>
+    </div>
+    <div class="tags">
+    <h3>TAGS</h3>
+      <div class="tags_flex">
+          <div class="tag" *ngFor="let tag of tags">
+               {{tag.name}}
+          </div>
+        </div>
+      </div>
+  </div>
+  </div>
+

@@ -21,6 +21,9 @@ export class AppService {
     return this.http.get<VideoComment[]>(BASE_URL + "videocomments");
   }
   getVideos() {
-    return this.http.get(BASE_URL + "videos");
+    return this.http.get<Video[]>(BASE_URL + "videos");
+  }
+  getTags() {
+    return this.http.get<Tags[]>(BASE_URL + "tags");
   }
 }

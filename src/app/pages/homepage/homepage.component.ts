@@ -1,4 +1,4 @@
-import {Component} from '@angular/core';
+import {Component, OnInit } from '@angular/core';
 import {AppService} from "../../app.service";
 
 @Component({
@@ -13,7 +13,7 @@ export class HomepageComponent {
   }
 
   ngOnInit(): void {
-    this.appService.getVideos().subscribe((video: any) => {
+    this.appService.getVideos().subscribe((video) => {
       this.videos = video;
     })
   }

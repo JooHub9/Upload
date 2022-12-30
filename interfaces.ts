@@ -23,6 +23,7 @@ interface VideoComment
   langcode: string;
   field_comment_email: string;
   user_picture: string;
+  mid:string;
 
 }
 
@@ -30,7 +31,7 @@ interface VideoComment
 /*____________ Video____________*/
 
 interface Video {
-  mid: number;
+  mid: string;
   field_video_title: string;
   created: string;
   field_video_description: string;
@@ -38,4 +39,11 @@ interface Video {
   thumbnail__target_id: string;
   user_picture: string;
   name_1: string;
+  field_tags: string;
+  field_media_oembed_video:string;
+  field_channel: string;
+}
+/*____________ Tags ____________*/
+interface Tags{
+  name:string;
 }

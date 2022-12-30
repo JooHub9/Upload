@@ -9,7 +9,7 @@ import {faShareNodes} from "@fortawesome/free-solid-svg-icons";
   styleUrls: ['./video.component.scss']
 })
 export class VideoComponent implements OnInit {
-  @Input() mid!: number;
+  @Input() mid!: string;
   @Input() field_video_title!: string;
   @Input() created!: string;
   @Input() field_video_description?: string;

@@ -11,6 +11,7 @@ import { NavbarComponent } from './components/navbar/navbar.component';
 import {VideoComponent} from "./components/video/video.component";
 import {HomepageComponent} from "./pages/homepage/homepage.component";
 import { FontAwesomeModule } from '@fortawesome/angular-fontawesome';
+import { MenuComponent } from './components/menu/menu.component';
 
 @NgModule({
   declarations: [
@@ -20,6 +21,7 @@ import { FontAwesomeModule } from '@fortawesome/angular-fontawesome';
     NavbarComponent,
     VideoComponent,
     HomepageComponent,
+    MenuComponent,
   ],
   imports: [
     BrowserModule,

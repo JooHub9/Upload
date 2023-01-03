@@ -1,0 +1,92 @@
+.main_container {
+  background-color: #232323;
+  width: auto;
+  height: auto;
+
+  .main_title {
+    color: white;
+    text-align: center;
+    padding-top: 50px;
+    padding-bottom: 50px;
+  }
+
+  .out_container {
+    display: grid;
+    grid-template-columns: auto auto;
+    justify-content: center;
+
+    .playlists_container {
+      padding: 20px;
+
+      .images_playlist {
+        position: relative;
+        flex-direction: column;
+        align-items: flex-end;
+
+        .bookmark_play {
+
+          .bookmark {
+            color: white;
+            font-size: 50px;
+            top: 100px;
+            left: 55px;
+            position: absolute;
+          }
+
+          .play {
+            color: white;
+            font-size: 20px;
+            top: 113px;
+            left: 67px;
+            position: absolute;
+          }
+        }
+
+        .cover_image {
+          padding-left: 15px;
+
+          .cover_photo {
+            width: 475px;
+            height: 250px;
+            border-radius: 15px;
+          }
+        }
+
+        .profile_photo {
+          padding-left: 375px;
+
+          .user_picture {
+            width: 75px;
+            height: 75px;
+            border-radius: 50px;
+            border: 3.5px solid white;
+            right: 35px;
+            top: 212px;
+            position: absolute;
+          }
+        }
+      }
+
+      .text_box {
+        padding-bottom: 50px;
+        padding-top: 25px;
+        padding-left: 30px;
+
+        .username {
+          color: blue;
+          font-size: 20px;
+        }
+
+        .playlists_title {
+          color: white;
+          margin-top: 5px;
+          margin-bottom: 5px;
+        }
+
+        .authored_on {
+          color: gray;
+        }
+      }
+    }
+  }
+}

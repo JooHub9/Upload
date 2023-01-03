@@ -1,0 +1,9 @@
+<div class="main_container">
+  <div class="playlist_container"
+       *ngFor="let p of playlist">
+    <h2 class="playlists_title">{{p.title}}</h2>
+    <div class="playlists_category">{{p.field_category_playlist}}</div>
+    <div class="playlists_body">{{p.body}}</div>
+  </div>
+</div>
+

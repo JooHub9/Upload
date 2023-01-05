@@ -29,8 +29,12 @@ export class AppService {
   }
 
 
-  getVideos() {
-    return this.http.get<Video[]>(BASE_URL + "videos");
+  getVideos(page?:number) {
+    let url = BASE_URL + "videos"
+    if(page){
+    url = url + "?page=" + page
+    }
+    return this.http.get<Video[]>(url);
   }
 
   getTags() {
@@ -44,5 +48,6 @@ export class AppService {
   postLikeDislike(id:string, dislike:string, like:string) {
     return this.http.post<Video[]>(BASE_URL + "videos/"+id,{field_dislike: dislike, field_like: like} );
   }
+
 }
 

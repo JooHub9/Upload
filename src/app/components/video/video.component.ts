@@ -16,7 +16,8 @@ export class VideoComponent implements OnInit {
   @Input() field_duration!: string;
   @Input() thumbnail__target_id!: string;
   @Input() user_picture!: string;
-  @Input() name_1!: string;
+  @Input() field_channel?: string;
+
 
   bookmark = faBookmark
   sharenodes = faShareNodes

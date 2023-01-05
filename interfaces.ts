@@ -38,7 +38,6 @@ interface Video {
   field_duration: string;
   thumbnail__target_id: string;
   user_picture: string;
-  name_1: string;
   field_tags: string;
   field_media_oembed_video:string;
   field_channel: string;
@@ -47,6 +46,9 @@ interface Video {
 }
 
 /*____________ Tags ____________*/
-interface Tags{
+interface Tags {
   name:string;
 }
+
+
+

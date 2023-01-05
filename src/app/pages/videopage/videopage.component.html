@@ -61,13 +61,13 @@
 
     <app-form></app-form>
 
-    <app-comment
+    <app-comment *ngFor="let v of listvideoCom"
       type="video"
-      [uid]="objvideoCom.uid"
-      [user_picture]="objvideoCom.user_picture"
-      [username]="objvideoCom.field_username_video"
-      [date]="objvideoCom.created"
-      [comment]="objvideoCom.comment_body"
+      [uid]="v.uid"
+      [user_picture]="v.user_picture"
+      [username]="v.field_username_video"
+      [date]="v.created"
+      [comment]="v.comment_body"
     ></app-comment>
 
   </div>
@@ -80,7 +80,7 @@
         *ngIf="v.field_channel=== objvideo.field_channel"
 
         [mid]="v.mid"
-        [name_1]="v.name_1"
+        [field_channel]="v.field_channel"
         [field_video_title]="v.field_video_title"
         [created]="v.created"
         [thumbnail__target_id]="v.thumbnail__target_id"

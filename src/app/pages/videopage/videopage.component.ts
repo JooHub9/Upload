@@ -45,16 +45,15 @@ export class VideopageComponent {
     this.appService.getVideo(this.id).subscribe(v => {
       this.objvideo = v[0];
 
-      if(this.objvideo.field_like != "")
+      if (this.objvideo.field_like != "")
         this.like = this.objvideo.field_like;
 
-      if(this.objvideo.field_dislike != "")
-      this.dislike = this.objvideo.field_dislike;
+      if (this.objvideo.field_dislike != "")
+        this.dislike = this.objvideo.field_dislike;
 
-    //---- Get the Tags ----//
+      //---- Get the Tags ----//
 
-      if (this.objvideo.field_tags != "")
-      {
+      if (this.objvideo.field_tags != "") {
         this.tags = this.objvideo.field_tags
           .split(", ")
           .map(x => {
@@ -62,30 +61,30 @@ export class VideopageComponent {
           })
           .toString()
           .replaceAll(",", " ")
-      }
-      else this.tags = "#tag #anothertag #onemoretag";
+      } else this.tags = "#tag #anothertag #onemoretag";
 
-        //---- Change the Video ----//
+      //---- Change the Video ----//
 
       this.video_string = this.objvideo.field_media_oembed_video
         .replace('/watch?v=', '/embed/')
         .split("&")
 
       this.video = this.video_string[0];
-      this.videoclean = this.sanitizer.bypassSecurityTrustResourceUrl(this.video)
+      this.videoclean = this.sanitizer.bypassSecurityTrustResourceUrl(this.video);
+
+      //---- Get the Comments ----//
+
+      this.appService.getOneVideoComments(this.id).subscribe(cc => {
+        this.listvideoCom.push(...cc);
+        this.objvideoCom = this.listvideoCom[0];
+      });
+
+      //---- Get the Videos for sidebar ----//
+
+      this.appService.getVideos().subscribe(vd =>
+        this.listvideos = vd);
+
     });
-
-    //---- Get the Comments ----//
-
-    this.appService.getOneVideoComments(this.id).subscribe(cc => {
-      this.listvideoCom.push(...cc);
-      this.objvideoCom = this.listvideoCom[0];
-    });
-
-    //---- Get the Videos for sidebar ----//
-
-    this.appService.getVideos().subscribe(vd =>
-      this.listvideos = vd);
   }
 
 //---- Updating Likes / Dislikes ----//
@@ -97,6 +96,5 @@ export class VideopageComponent {
     );
 
   }*/
-
-
 }
+

@@ -5,7 +5,7 @@
       <app-video
         *ngFor="let video of videos"
         [mid]="video.mid"
-        [name_1]="video.name_1"
+        [field_channel]="video.field_channel"
         [field_video_title]="video.field_video_title"
         [created]="video.created"
         [thumbnail__target_id]="video.thumbnail__target_id"
@@ -13,9 +13,25 @@
         [field_duration]="video.field_duration">
       </app-video>
     </div>
+    <p (click)="moreResults()" class="more_videos">Click for more videos</p>
   </div>
-
   <div class="sidebar">
-    <h1>Other stuff</h1>
+    <div class="suggested_channels">
+      <div class="container">
+      <h4>Suggested Channels</h4>
+      </div>
+      <!--Para alterar por API Channel-->
+      <div class="channels_container">
+        <div class="logo"></div>
+        <div class="channel_name"> This is a name</div>
+      </div>
+      <div class="channels_container">
+        <div class="logo"></div>
+        <div class="channel_name"> This is a name</div>
+      </div>
+    </div>
+    <div class="more">
+    <h5>SEE MORE</h5>
+  </div>
   </div>
 </div>

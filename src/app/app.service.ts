@@ -41,8 +41,12 @@ export class AppService {
 
   /*_______ Videos _______*/
 
-  getVideos() {
-    return this.http.get<Video[]>(BASE_URL + "videos");
+  getVideos(page?:number) {
+    let url = BASE_URL + "videos"
+    if(page){
+    url = url + "?page=" + page
+    }
+    return this.http.get<Video[]>(url);
   }
 
   getVideo(id:string) {
@@ -80,5 +84,6 @@ export class AppService {
   getChannelsVideos(id:string) {
     return this.http.get<ChannelVideos[]>(BASE_URL + "channelvideos/"+id);
   }
+
 }
 

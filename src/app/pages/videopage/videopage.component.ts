@@ -77,7 +77,6 @@ export class VideopageComponent {
       this.video = this.video_string[0];
       this.videoclean = this.sanitizer.bypassSecurityTrustResourceUrl(this.video);
 
-
       //---- Get the Comments ----//
 
       this.appService.getOneVideoComments(this.id).subscribe(cc => {
@@ -112,5 +111,5 @@ export class VideopageComponent {
     this.red = !this.red;
   }
 
-
 }
+

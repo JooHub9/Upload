@@ -47,10 +47,9 @@ interface Video {
 }
 
 /*____________ Tags ____________*/
-interface Tags{
+interface Tags {
   name:string;
 }
-
 
 /*____________ Channel ____________*/
 
@@ -76,6 +75,6 @@ interface ChannelVideos {
   field_duration: string;
   thumbnail__target_id: string;
   user_picture: string;
-  name_1: string;
+  name: string;
   field_media_oembed_video:string;
 }

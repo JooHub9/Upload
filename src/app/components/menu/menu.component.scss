@@ -73,6 +73,12 @@
           margin-bottom: 10px;
           cursor: pointer;
         }
+        .tag:hover {
+          background-color: #B5B5BE;
+          color: #292932;
+          border: 1px solid white;
+        }
+
       }
     }
   }

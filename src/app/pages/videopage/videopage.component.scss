@@ -190,8 +190,9 @@
   }
 
   .sidebar {
-    margin: 95px 20px 20px 20px;
+    margin: 15px 20px 20px 20px;
     display: flex;
+    flex-direction: column;
     flex-wrap: wrap;
     gap: 20px;
   }

@@ -1,0 +1,14 @@
+<div class="main_container">
+  <div class="channeltext">Channels</div>
+  <div class=channel_container>
+    <app-compact-box
+      *ngFor="let c of channels"
+      [nid]="c.nid"
+      [name]="c.name"
+      [title]="c.title"
+      [user_picture]="c.user_picture"
+      [field_channel_cover]="c.field_channel_cover">
+    </app-compact-box>
+  </div>
+</div>
+

@@ -24,7 +24,6 @@ export class MenuComponent {
   ngOnInit(): void {
     this.appService.getTags().subscribe((tag) => {
       this.tags = tag;
-      console.log(this.tags);
     })
   }
 }

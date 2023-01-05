@@ -12,7 +12,9 @@
           <p class="tags">{{tags}}</p>
         </div>
         <div class="flags">
-          <fa-icon class="iconFlag" [icon]="faFlagFull"></fa-icon>
+          <fa-icon class="iconFlag" [icon]="faFlagFull"
+                                    [style.color]="red ? 'red' : 'grey'"
+                                    (click)="toggleFlag()"></fa-icon>
         </div>
       </div>
 
@@ -39,13 +41,13 @@
       <div class="right">
 
         <div class="likes">
-          <fa-icon class="iconThumbsUp" [icon]="faThumbsUp"></fa-icon>
-          <p class="likenumber">{{like}}</p>
+          <fa-icon class="iconThumbsUp" [icon]="faThumbsUp" (click)="updateLikesDislikes('like')"></fa-icon>
+          <p class="likenumber">{{likes}}</p>
         </div>
 
         <div class="dislikes">
-          <fa-icon class="iconThumbsDown" [icon]="faThumbsDown"></fa-icon>
-          <p class="dislikesnumber">{{like}}</p>
+          <fa-icon class="iconThumbsDown" [icon]="faThumbsDown" (click)="updateLikesDislikes('dislike')"></fa-icon>
+          <p class="dislikesnumber">{{dislikes}}</p>
         </div>
       </div>
 
@@ -61,13 +63,13 @@
 
     <app-form></app-form>
 
-    <app-comment
+    <app-comment *ngFor="let v of listvideoCom"
       type="video"
-      [uid]="objvideoCom.uid"
-      [user_picture]="objvideoCom.user_picture"
-      [username]="objvideoCom.field_username_video"
-      [date]="objvideoCom.created"
-      [comment]="objvideoCom.comment_body"
+      [uid]="v.uid"
+      [user_picture]="v.user_picture"
+      [username]="v.field_username_video"
+      [date]="v.created"
+      [comment]="v.comment_body"
     ></app-comment>
 
   </div>

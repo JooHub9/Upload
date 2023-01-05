@@ -28,7 +28,7 @@ interface VideoComment
 }
 
 
-/*____________ Video____________*/
+/*____________ Video ____________*/
 
 interface Video {
   mid: string;
@@ -49,4 +49,33 @@ interface Video {
 /*____________ Tags ____________*/
 interface Tags{
   name:string;
+}
+
+
+/*____________ Channel ____________*/
+
+interface Channel {
+
+  nid: string;
+  title: string;
+  field_biography: string;
+  field_channel_cover: string;
+  name: string;
+  user_picture: string;
+  field_logo: string;
+  field_description: string;
+}
+
+/*____________All videos from one Channel ____________*/
+
+interface ChannelVideos {
+
+  mid: string;
+  field_video_title: string;
+  created: string;
+  field_duration: string;
+  thumbnail__target_id: string;
+  user_picture: string;
+  name_1: string;
+  field_media_oembed_video:string;
 }

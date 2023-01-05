@@ -1,0 +1,23 @@
+:host {
+  flex: 1;
+}
+
+.main_container
+{
+  margin: 20px;
+
+
+  .channeltext {
+    font-size: 20px;
+    font-weight: 600;
+    margin: 20px 0;
+  }
+
+  .channel_container
+  {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 20px;
+    flex-basis: 33%;
+  }
+}

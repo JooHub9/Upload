@@ -1,26 +1,33 @@
-<div class="video" [routerLink]="['/videopage',mid]">
-
-  <div class="images">
-    <img class=thumbnail [src]="'https://dev-project-upskill2-grupo3.pantheonsite.io/' + thumbnail__target_id">
+<div class="video" (mouseover)="player=true" (mouseout)="player=false">
+  <div class="images" >
+    <img class=thumbnail [src]="'https://dev-project-upskill2-grupo3.pantheonsite.io/' + thumbnail__target_id"
+         [routerLink]="['/videopage',mid]" alt="video thumbnail">
+    <div class="play" *ngIf="player">
+    <fa-icon [icon]="faCirclePlay"></fa-icon></div>
     <div class="main_duration">
       <p class="duration">{{field_duration}}</p>
     </div>
-    <div class="user_pic">
-      <img class="picture" [src]="'https://dev-project-upskill2-grupo3.pantheonsite.io/' + user_picture">
+    <div *ngIf="field_channel" class="user_pic" [routerLink]="['/channelpage/',field_channel_1]">
+      <img class="picture" [src]="'https://dev-project-upskill2-grupo3.pantheonsite.io/' + user_picture" alt="user picture">
     </div>
   </div>
   <div class="video_info">
     <div class="info">
-      <p class="channel">{{field_channel}}</p>
-      <h3 class="video_name">{{field_video_title}}</h3>
+      <p *ngIf="field_channel" class="channel" [routerLink]="['/channelpage/',field_channel_1]">{{field_channel}}</p>
+      <h3 class="video_name" [routerLink]="['/videopage',mid]" >{{field_video_title}}</h3>
       <p class="created">{{created}}</p>
     </div>
-    <div class="icons">
-      <div class="bookmark_icon">
-        <fa-icon [icon]="bookmark"></fa-icon>
+    <div *ngIf="share_type" class="icons">
+      <div class="bookmark_icon" (click)="appService.toggleFavorite(mid)">
+        <fa-icon [icon]="appService.isFavorite(mid)? faBookmarksolid : faBookmark" ></fa-icon>
       </div>
       <div class="sharenodes_icon">
-        <fa-icon [icon]="sharenodes"></fa-icon>
+        <a href="https://www.facebook.com/sharer.php?u={{field_media_oembed_video}}"
+         onclick="window.open(this.href, 'Share on Facebook', 'menubar=no,toolbar=no,resizable=yes,scrollbars=no,height=300,width=600, title=Share on Facebook!');return false;"
+         target="_blank">
+       <!--<a href="https://www.facebook.com/sharer.php?u={{field_media_oembed_video}}" target="_blank">-->
+        <fa-icon [icon]="faSharenodes"></fa-icon>
+        </a>
       </div>
     </div>
   </div>

@@ -19,6 +19,7 @@ import {RandompictureComponent} from './components/randompicture/randompicture.c
 import {CompactBoxComponent} from './components/compact-box/compact-box.component';
 import { ChannelpageComponent } from './pages/channelpage/channelpage.component';
 import { ChannelsComponent } from './pages/channels/channels.component';
+import { FavoritesComponent } from './pages/favorites/favorites.component';
 
 
 @NgModule({
@@ -36,7 +37,8 @@ import { ChannelsComponent } from './pages/channels/channels.component';
     RandompictureComponent,
     CompactBoxComponent,
     ChannelpageComponent,
-    ChannelsComponent
+    ChannelsComponent,
+    FavoritesComponent
   ],
   imports: [
     BrowserModule,

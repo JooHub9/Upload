@@ -1,0 +1,20 @@
+:host {
+  flex: 1;
+}
+
+.main_div {
+  margin: 20px;
+
+
+  h2{
+      font-size: 20px;
+      font-weight: 600;
+      margin: 20px 0;
+
+  }
+  .favorites_container {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 20px;
+  }
+}

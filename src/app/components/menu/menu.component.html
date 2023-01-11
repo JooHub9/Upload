@@ -1,5 +1,5 @@
 <div class="main_container">
-  <img src="/assets/upload.svg" alt="logo" class="logo">
+  <img src="/assets/upload.svg" alt="logo" class="logo" routerLink="homepage">
   <div class="menu">
     <div class="buttons">
       <div class="home" id="home_button" routerLink="homepage">
@@ -9,22 +9,28 @@
         </div>
       </div>
       <div class="channels" id="channels_button" routerLink="channels">
-        <div class="active_div">
+        <div class="active_div" routerLinkActive="active">
           <fa-icon [icon]="faBarsStaggered"></fa-icon>
           <p>Channels</p>
         </div>
       </div>
       <div class="thematics" id="thematics_button">
-        <div class="active_div">
+        <div class="active_div" routerLinkActive="active">
           <fa-icon [icon]="faClapperboard"></fa-icon>
           <p>Thematics</p>
         </div>
       </div>
       <div class="playlists" id="playlists_button">
-        <div class="active_div">
+        <div class="active_div" routerLinkActive="active">
           <fa-icon [icon]="faPlay"></fa-icon>
           <p>Playlists</p>
         </div>
+      </div>
+    </div>
+    <div class="favourites" id="favourites_button" routerLink="favorites">
+      <div class="active_div" routerLinkActive="active">
+        <fa-icon [icon]="faBookmark"></fa-icon>
+        <p>Favorites</p>
       </div>
     </div>
     <div class="tags">

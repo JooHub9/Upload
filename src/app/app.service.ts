@@ -2,7 +2,8 @@ import { Injectable } from '@angular/core';
 import { HttpClient } from "@angular/common/http";
 
 
-const BASE_URL = "https://dev-project-upskill2-grupo3.pantheonsite.io/api/"
+const BASE_URL = "https://dev-project-upskill2-grupo3-ii.pantheonsite.io/api/"
+//"https://dev-project-upskill2-grupo3.pantheonsite.io/api/"
 
 
 @Injectable({ providedIn: 'root' })
@@ -41,7 +42,7 @@ export class AppService {
 
   /*_______ Videos _______*/
 
-  getVideos(page?:number) {
+  getVideos(page?:number, filter?: number) {
     let url = BASE_URL + "videos"
     if(page){
     url = url + "?page=" + page
@@ -84,6 +85,33 @@ export class AppService {
   getChannelsVideos(id:string) {
     return this.http.get<ChannelVideos[]>(BASE_URL + "channelvideos/"+id);
   }
+
+  /*------Favorites------*/
+
+  getFavorites() {
+    return this.http.get<Video[]>(BASE_URL + "videos/" + this.favorites.join(","));
+  }
+
+
+  favorites: number[] = JSON.parse(localStorage.getItem("favorites") || "[]");
+
+
+  isFavorite(mid: string) {
+    let id = parseInt(mid)
+    return this.favorites.includes(id);
+  }
+
+  toggleFavorite(mid: string) {
+    let id = parseInt(mid)
+    if (this.isFavorite(mid)) {
+      this.favorites.splice(this.favorites.indexOf(id), 1)
+    } else {
+      this.favorites.push(id);
+    }
+
+    localStorage.setItem("favorites", JSON.stringify(this.favorites))
+  }
+
 
 }
 

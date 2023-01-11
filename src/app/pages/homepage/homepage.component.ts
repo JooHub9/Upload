@@ -10,20 +10,22 @@ import {ActivatedRoute} from "@angular/router";
 export class HomepageComponent {
 
   videos: Video[] = []
-  page = 1
-
+  page = 0
+  channels: Channel[]=[]
 
   constructor(public appService: AppService, public route: ActivatedRoute) {
   }
 
   ngOnInit(): void {
     this.videosList()
+    this.appService.getChannels().subscribe(channel => {
+      this.channels = channel
+  })
   }
 
   videosList(): void {
-    this.appService.getVideos(this.page).subscribe(video => {
-      //this.videos = video;
-      this.videos = [...video]
+    this.appService.getVideos(this.page).subscribe((video) => {
+      this.videos = [...this.videos,...video]
     })
   }
 

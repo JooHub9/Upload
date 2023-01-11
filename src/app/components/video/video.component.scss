@@ -2,7 +2,8 @@
   max-width: 310px;
   background-color: #1C1C24;
   border-radius: 20px;
-  cursor:pointer;
+  cursor: pointer;
+  overflow: hidden;
 
   .images {
     position: relative;
@@ -10,6 +11,14 @@
     .thumbnail {
       border-top-right-radius: 20px;
       border-top-left-radius: 20px;
+    }
+
+    .play {
+      position: absolute;
+      bottom: 40px;
+      left: 130px;
+      font-size: 46px;
+      color: #92929D;
     }
 
     .main_duration {
@@ -22,9 +31,7 @@
         background-color: #1C1C24;
         padding: 2px 15px;
         border-radius: 5px;
-
       }
-
     }
 
     .user_pic {
@@ -63,7 +70,6 @@
       margin-top: 0;
     }
 
-
     .icons {
       display: flex;
       flex-direction: row;
@@ -80,4 +86,9 @@
       }
     }
   }
+}
+
+.video:hover {
+  transform: scale(1.1);
+  background: rgba(146, 146, 157, 0.4);
 }

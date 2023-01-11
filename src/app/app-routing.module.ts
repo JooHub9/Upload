@@ -5,6 +5,7 @@ import {HomepageComponent} from "./pages/homepage/homepage.component";
 import {VideopageComponent} from "./pages/videopage/videopage.component";
 import {ChannelpageComponent} from "./pages/channelpage/channelpage.component";
 import {ChannelsComponent} from "./pages/channels/channels.component";
+import {FavoritesComponent} from "./pages/favorites/favorites.component";
 
 const routes: Routes = [
   {path: '', redirectTo: 'homepage', pathMatch: 'full'},
@@ -13,6 +14,7 @@ const routes: Routes = [
   {path: 'videopage/:id_video', component: VideopageComponent},
   {path: 'channelpage/:id_channel', component: ChannelpageComponent},
   {path: 'channels', component: ChannelsComponent},
+  {path: 'favorites', component: FavoritesComponent},
 
 ];
 

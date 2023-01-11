@@ -42,6 +42,7 @@ interface Video {
   field_tags: string;
   field_media_oembed_video:string;
   field_channel: string;
+  field_channel_1: string;
   field_like:string;
   field_dislike:string;
 }

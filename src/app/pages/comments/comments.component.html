@@ -1,0 +1,29 @@
+<p style="color: #FAFAFB">Channel Comments</p>
+
+<div *ngFor="let c of contentCom">
+
+  <div class="commentcontainer">
+
+    <app-comment type="channel"
+                 [uid]="c.uid"
+                 [user_picture]="c.user_picture"
+                 [username]="c.field_username"
+                 [date]="c.field_date"
+                 [comment]="c.field_comment"
+    ></app-comment>
+  </div>
+</div>
+
+<p style="color: #FAFAFB">Video Comments</p>
+
+<div *ngFor="let v of videoCom">
+  <div class="commentcontainer">
+    <app-comment type="video"
+                 [uid]="v.uid"
+                 [user_picture]="v.user_picture"
+                 [username]="v.field_username_video"
+                 [date]="v.created"
+                 [comment]="v.comment_body"
+    ></app-comment>
+  </div>
+</div>

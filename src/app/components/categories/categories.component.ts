@@ -1,6 +1,6 @@
 import { Component, OnInit } from '@angular/core';
 import {ActivatedRoute} from "@angular/router";
-import {UploadService} from "src/app/upload.service";
+import {AppService} from "src/app/app.service";
 
 @Component({
   selector: 'app-categories',
@@ -8,13 +8,13 @@ import {UploadService} from "src/app/upload.service";
   styleUrls: ['./categories.component.scss']
 })
 export class CategoriesComponent implements OnInit {
-  constructor(public route: ActivatedRoute, public UploadService: UploadService) { }
+  constructor(public route: ActivatedRoute, public AppService: AppService) { }
 
   categories! : any;
 
   ngOnInit(): void {
 
-    this.UploadService.getCategories().subscribe((categories : any) => {
+    this.AppService.getCategories().subscribe((categories : any) => {
       this.categories = categories;
     })
   }

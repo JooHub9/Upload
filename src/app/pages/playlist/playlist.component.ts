@@ -1,7 +1,8 @@
 import { Component, OnInit } from '@angular/core';
 import {ActivatedRoute} from "@angular/router";
-import {UploadService} from "src/app/upload.service";
-/*import {Playlist} from "src/app/interfaces"*/
+import {AppService} from "../../app.service";
+// @ts-ignore
+import {Playlist, Video} from "src/app/interfaces";
 
 @Component({
   selector: 'app-playlist',
@@ -10,18 +11,22 @@ import {UploadService} from "src/app/upload.service";
 })
 export class PlaylistComponent implements OnInit {
   nid: number;
+  playlist? : any;
+  playlist_videos? : any = [];
 
-  constructor(public route: ActivatedRoute, public UploadService: UploadService) {
+  constructor(public route: ActivatedRoute, public AppService: AppService) {
     this.nid = route.snapshot.params["nid"];
   }
 
-  playlist! : any;
-
   ngOnInit(): void {
 
-    this.UploadService.getPlaylist(this.nid).subscribe((playlist : any) => {
+    this.AppService.getPlaylist(this.nid).subscribe((playlist : any) => {
       this.playlist = playlist;
-    })
+    });
+
+    this.AppService.getPlaylistVideos(this.nid).subscribe((playlist_videos : any ) => {
+      this.playlist_videos = playlist_videos;
+    });
   }
   }
 

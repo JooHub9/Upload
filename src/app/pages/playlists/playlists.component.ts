@@ -1,10 +1,10 @@
 import { Component, OnInit } from '@angular/core';
 import {ActivatedRoute} from "@angular/router";
-import {UploadService} from "src/app/upload.service";
+import {AppService} from "src/app/app.service";
 import {faBookmark} from "@fortawesome/free-regular-svg-icons";
 import {faPlay} from "@fortawesome/free-solid-svg-icons";
-
-/*import {Playlist} from "src/app/interfaces"*/
+// @ts-ignore
+import {Playlists} from "src/app/interfaces";
 
 @Component({
   selector: 'app-playlists',
@@ -12,21 +12,18 @@ import {faPlay} from "@fortawesome/free-solid-svg-icons";
   styleUrls: ['./playlists.component.scss']
 })
 export class PlaylistsComponent implements OnInit {
-  /*nid: number;*/
 
-  constructor(public route: ActivatedRoute, public UploadService: UploadService) {
-    /* this.nid = route.snapshot.params["nid"];*/
+  constructor(public route: ActivatedRoute, public AppService: AppService) {
   }
 
-  playlists! : any;
+  playlists? : any;
   faBookmark = faBookmark;
   faPlay = faPlay;
 
   ngOnInit(): void {
 
-    this.UploadService.getPlaylists(/*this.nid*/).subscribe((playlists : any) => {
+    this.AppService.getPlaylists().subscribe((playlists : any ) => {
       this.playlists = playlists;
     })
   }
-
 }

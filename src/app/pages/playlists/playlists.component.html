@@ -4,7 +4,7 @@
 <div class="playlists_container"
   *ngFor="let p of playlists">
   <div class="images_playlist">
-    <div class="bookmark_play">
+    <div class="bookmark_play" [routerLink]="['/playlists/', p.nid]">
       <fa-icon [icon]="faBookmark" class="bookmark"></fa-icon>
       <fa-icon [icon]="faPlay" class="play"></fa-icon>
     </div>

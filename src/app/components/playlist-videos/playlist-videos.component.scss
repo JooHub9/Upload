@@ -1,0 +1,31 @@
+:host {
+  flex: 1;
+}
+
+.videos_playlist {
+  padding-bottom: 30px;
+
+  .images_playlist_videos {
+
+    .image_video {
+
+      .thumbnail_video_playlist {
+        border-top-right-radius: 20px;
+        border-top-left-radius: 20px;
+        width: 300px;
+      }
+    }
+
+    .duration_video_playlist {
+
+      .video_duration {}
+    }
+  }
+
+  .video_playlist_info {
+
+    .video_title {
+      font-size: 11px;
+    }
+  }
+}

@@ -1,0 +1,14 @@
+<div class="main_container_thematics">
+  <h1>Thematics</h1>
+  <div class="thematics_container"
+  *ngFor="let t of thematics">
+    <div>{{t.title}}</div>
+    <div>
+      <img class="image_header" [src]="'https://dev-project-upskill2-grupo3.pantheonsite.io/' + t.field_image_header">
+    </div>
+    <div>{{t.field_tag}}</div>
+  </div>
+</div>
+
+
+

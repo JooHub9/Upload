@@ -1,22 +1,22 @@
 <div class="main_container_playlist">
-  <div class="playlist_container"
-       *ngFor="let p of playlist">
-    <h1 class="playlist_title">{{p.title}}</h1>
+  <div class="playlist_container">
+    <h1 class="playlist_title">{{playlist.title}}</h1>
     <div class="playlist_cover_image">
-      <img class="cover_photo_playlist" [src]="'https://dev-project-upskill2-grupo3.pantheonsite.io/' + p.field_cover_image_playlist">
+      <img class="cover_photo_playlist"
+           [src]="'https://dev-project-upskill2-grupo3.pantheonsite.io/' + playlist.field_cover_image_playlist">
     </div>
-    <div class="playlist_category">{{p.field_category_playlist}}</div>
-    <div class="playlist_body">{{p.body}}</div>
+    <div class="playlist_category">{{playlist.field_category_playlist}}</div>
+    <div class="playlist_body">{{playlist.body}}</div>
     <div class="videos_playlist">
       <h2 class="videos">Videos</h2>
       <div class="playlist_videos"
            *ngIf="playlist">
         <app-playlist-videos
-          *ngFor="let video of playlist_videos"
-          [mid]="video.mid"
-          [thumbnail__target_id]="video.thumbnail__target_id"
-          [field_duration]="video.field_duration"
-          [field_video_title]="video.field_video_title">
+          *ngFor="let pv of playlist_videos"
+          [mid]="pv.mid"
+          [thumbnail__target_id]="pv.thumbnail__target_id"
+          [field_duration]="pv.field_duration"
+          [field_video_title]="pv.field_video_title">
         </app-playlist-videos>
       </div>
     </div>

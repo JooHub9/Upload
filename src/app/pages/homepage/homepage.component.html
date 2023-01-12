@@ -5,17 +5,50 @@
       <app-video
         *ngFor="let video of videos"
         [mid]="video.mid"
-        [name_1]="video.name_1"
+        [field_channel]="video.field_channel"
         [field_video_title]="video.field_video_title"
         [created]="video.created"
         [thumbnail__target_id]="video.thumbnail__target_id"
         [user_picture]="video.user_picture"
-        [field_duration]="video.field_duration">
+        [field_duration]="video.field_duration"
+        [field_channel_1]="video.field_channel_1"
+      share_type="icons">
       </app-video>
     </div>
+    <div class="container_more_videos">
+      <div class="more_videos_border" (click)="moreResults()">
+        <p class="more_videos_text">Click for more videos</p>
+      </div>
+    </div>
   </div>
-
   <div class="sidebar">
-    <h1>Other stuff</h1>
+    <div class="suggested_content" id="channel_content">
+      <div class="container">
+        <h4>Suggested Channels</h4>
+      </div>
+      <div class="text_container" *ngFor="let channel of channels" [routerLink]="['/channelpage',channel.nid]">
+        <div routerLink="channels">
+          <img class="logo" [src]="'https://dev-project-upskill2-grupo3.pantheonsite.io/' + channel.field_logo">
+        </div>
+        <div class="title"> {{channel.title}}</div>
+      </div>
+    </div>
+    <div class="more">
+      <h5>SEE MORE</h5>
+    </div>
+  <div class="suggested_content" id="thematic_content">
+    <div class="container">
+      <h4>Suggested Thematics</h4>
+      <h4 class="see_all"> SEE ALL</h4>
+    </div>
+    <div class="text_container">
+      <div>
+        <img class="logo">
+      </div>
+      <div class="title">
+        <p>Thematic Title</p>
+      <p class="subtitle">User Name</p></div>
+    </div>
   </div>
+</div>
 </div>

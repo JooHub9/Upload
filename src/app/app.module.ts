@@ -10,15 +10,15 @@ import { PlaylistsComponent } from './pages/playlists/playlists.component';
 import { CommentsComponent } from './pages/comments/comments.component';
 import {HttpClientModule} from "@angular/common/http";
 import {RouterLink} from "@angular/router";
-import { CommentComponent } from './components/comment/comment.component';
-import { NavbarComponent } from './components/navbar/navbar.component';
+import {CommentComponent} from './components/comment/comment.component';
+import {NavbarComponent} from './components/navbar/navbar.component';
 import {VideoComponent} from "./components/video/video.component";
 import {HomepageComponent} from "./pages/homepage/homepage.component";
-import { FontAwesomeModule } from '@fortawesome/angular-fontawesome';
-import { MenuComponent } from './components/menu/menu.component';
-import { HeadlineVideoComponent } from './components/headline-video/headline-video.component';
-import { VideopageComponent } from './pages/videopage/videopage.component';
-import { FormComponent } from './components/form/form.component';
+import {FontAwesomeModule} from '@fortawesome/angular-fontawesome';
+import {MenuComponent} from './components/menu/menu.component';
+import {HeadlineVideoComponent} from './components/headline-video/headline-video.component';
+import {VideopageComponent} from './pages/videopage/videopage.component';
+import {FormComponent} from './components/form/form.component';
 import {ReactiveFormsModule} from "@angular/forms";
 import { RandompictureComponent } from './components/randompicture/randompicture.component';
 import { CompactBoxComponent } from './components/compact-box/compact-box.component';
@@ -26,7 +26,9 @@ import { PlaylistVideosComponent } from './components/playlist-videos/playlist-v
 import { ThematicsComponent } from './pages/thematics/thematics.component';
 import { ThematicArticleComponent } from './pages/thematic-article/thematic-article.component';
 import { ThematicVideosComponent } from './components/thematic-videos/thematic-videos.component';
-
+import { ChannelpageComponent } from './pages/channelpage/channelpage.component';
+import { ChannelsComponent } from './pages/channels/channels.component';
+import { FavoritesComponent } from './pages/favorites/favorites.component';
 
 @NgModule({
   declarations: [
@@ -48,7 +50,10 @@ import { ThematicVideosComponent } from './components/thematic-videos/thematic-v
     PlaylistVideosComponent,
     ThematicsComponent,
     ThematicArticleComponent,
-    ThematicVideosComponent
+    ThematicVideosComponent,
+    ChannelpageComponent,
+    ChannelsComponent,
+    FavoritesComponent
   ],
 
   imports: [
@@ -59,10 +64,11 @@ import { ThematicVideosComponent } from './components/thematic-videos/thematic-v
     CommonModule,
     FormsModule,
     FontAwesomeModule,
-    ReactiveFormsModule
+    ReactiveFormsModule,
   ],
 
   providers: [],
   bootstrap: [AppComponent]
 })
-export class AppModule { }
+export class AppModule {
+}

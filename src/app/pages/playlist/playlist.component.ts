@@ -1,8 +1,6 @@
 import { Component, OnInit } from '@angular/core';
 import {ActivatedRoute} from "@angular/router";
 import {AppService} from "../../app.service";
-// @ts-ignore
-import {Playlist, Video} from "src/app/interfaces";
 
 @Component({
   selector: 'app-playlist',
@@ -10,9 +8,9 @@ import {Playlist, Video} from "src/app/interfaces";
   styleUrls: ['./playlist.component.scss']
 })
 export class PlaylistComponent implements OnInit {
-  nid: number;
-  playlist? : any;
-  playlist_videos? : any = [];
+  nid: string;
+  playlist = {} as Playlist ;
+  playlist_videos: Playlist_Video [] = [];
 
   constructor(public route: ActivatedRoute, public AppService: AppService) {
     this.nid = route.snapshot.params["nid"];
@@ -20,13 +18,15 @@ export class PlaylistComponent implements OnInit {
 
   ngOnInit(): void {
 
-    this.AppService.getPlaylist(this.nid).subscribe((playlist : any) => {
-      this.playlist = playlist;
+    this.AppService.getPlaylist(this.nid).subscribe((playlist) => {
+      this.playlist = playlist [0];
     });
 
-    this.AppService.getPlaylistVideos(this.nid).subscribe((playlist_videos : any ) => {
+    this.AppService.getPlaylistVideos(this.nid).subscribe((playlist_videos ) => {
       this.playlist_videos = playlist_videos;
     });
+
+
   }
   }
 

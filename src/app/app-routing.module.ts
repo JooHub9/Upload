@@ -7,6 +7,9 @@ import {CommentsComponent} from "./pages/comments/comments.component";
 import {HomepageComponent} from "./pages/homepage/homepage.component";
 import {VideopageComponent} from "./pages/videopage/videopage.component";
 import {ThematicsComponent} from "./pages/thematics/thematics.component";
+import {ChannelpageComponent} from "./pages/channelpage/channelpage.component";
+import {ChannelsComponent} from "./pages/channels/channels.component";
+import {FavoritesComponent} from "./pages/favorites/favorites.component";
 
 const routes: Routes = [
   {path: '', redirectTo: 'homepage',pathMatch: 'full'},
@@ -16,11 +19,15 @@ const routes: Routes = [
   {path: 'playlists/:nid', component: PlaylistComponent},
   {path: 'playlists', component: PlaylistsComponent},
   {path: 'thematics', component: ThematicsComponent},
-  {path: 'categorias', component: CategoriesComponent}
+  {path: 'channelpage/:id_channel', component: ChannelpageComponent},
+  {path: 'channels', component: ChannelsComponent},
+  {path: 'favorites', component: FavoritesComponent},
+  {path: 'categorias', component: CategoriesComponent},
 ];
 
 @NgModule({
   imports: [RouterModule.forRoot(routes)],
   exports: [RouterModule]
 })
-export class AppRoutingModule { }
+export class AppRoutingModule {
+}

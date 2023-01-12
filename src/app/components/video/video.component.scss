@@ -2,8 +2,8 @@
   max-width: 310px;
   background-color: #1C1C24;
   border-radius: 20px;
-  margin-bottom: 20px;
-  cursor:pointer;
+  cursor: pointer;
+  overflow: hidden;
 
   .images {
     position: relative;
@@ -11,6 +11,14 @@
     .thumbnail {
       border-top-right-radius: 20px;
       border-top-left-radius: 20px;
+    }
+
+    .play {
+      position: absolute;
+      bottom: 40px;
+      left: 130px;
+      font-size: 46px;
+      color: #92929D;
     }
 
     .main_duration {
@@ -23,9 +31,7 @@
         background-color: #1C1C24;
         padding: 2px 15px;
         border-radius: 5px;
-
       }
-
     }
 
     .user_pic {
@@ -36,7 +42,7 @@
       .picture {
         height: 70px;
         width: 70px;
-        border-radius: 100%;
+        border-radius: 50%;
         border: 2px solid white;
       }
     }
@@ -49,7 +55,7 @@
     height: 105px;
     padding: 0 20px 0 20px;
 
-    .author {
+    .channel {
       color: #1E75FF;
       margin: 0;
       padding-top: 5px;
@@ -63,7 +69,6 @@
       color: #92929D;
       margin-top: 0;
     }
-
 
     .icons {
       display: flex;
@@ -81,4 +86,9 @@
       }
     }
   }
+}
+
+.video:hover {
+  transform: scale(1.1);
+  background: rgba(146, 146, 157, 0.4);
 }

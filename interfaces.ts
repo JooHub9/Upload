@@ -10,7 +10,6 @@ interface ContentComment
   langcode: string;
   field_email: string;
   user_picture: string;
-
 }
 
 
@@ -24,11 +23,10 @@ interface VideoComment
   field_comment_email: string;
   user_picture: string;
   mid:string;
-
 }
 
 
-/*____________ Video____________*/
+/*____________ Video ____________*/
 
 interface Video {
   mid: string;
@@ -42,31 +40,78 @@ interface Video {
   field_tags: string;
   field_media_oembed_video:string;
   field_channel: string;
+  field_channel_1: string;
   field_like:string;
   field_dislike:string;
 }
 
 /*____________ Tags ____________*/
-interface Tags{
+
+interface Tags {
   name:string;
 }
 
+
 /*__________ Playlists __________*/
+
 interface Playlists {
-  field_cover_image_playlist: string;
+  title: string;
+  field_category_playlist: string;
+  body: string;
   user_picture: string;
   name: string;
-  title: string;
-  created: any;
+  created: string;
+  field_cover_image_playlist: string;
+  nid: number;
+  field_video_playlist: string [];
 }
 
-/*__________ Playlist __________*/
 interface Playlist {
-  nid: number;
+  nid: string;
   field_cover_image_playlist: string;
   title: string;
   field_category_playlist: string;
   body: string;
   user_picture: string;
-  field_video_playlist: [];
+  name: string;
+  created: string;
+  field_video_playlist: string [];
+}
+
+interface Playlist_Video {
+  mid: string;
+  field_video_title: string;
+  thumbnail__target_id: string;
+  field_duration: string;
+  field_media_oembed_video: string;
+  type: string;
+}
+
+
+/*____________ Channel ____________*/
+
+interface Channel {
+
+  nid: string;
+  title: string;
+  field_biography: string;
+  field_channel_cover: string;
+  name: string;
+  user_picture: string;
+  field_logo: string;
+  field_description: string;
+}
+
+/*____________All videos from one Channel ____________*/
+
+interface ChannelVideos {
+
+  mid: string;
+  field_video_title: string;
+  created: string;
+  field_duration: string;
+  thumbnail__target_id: string;
+  user_picture: string;
+  name: string;
+  field_media_oembed_video:string;
 }

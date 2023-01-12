@@ -78,3 +78,14 @@ interface ChannelVideos {
   name: string;
   field_media_oembed_video:string;
 }
+
+/*____________ Likes / Dislikes ____________*/
+
+interface Likes {
+  entity_id:string;
+  id:string;
+  entity_type:string;
+  count:string;
+}
+
+

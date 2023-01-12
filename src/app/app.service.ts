@@ -2,7 +2,9 @@ import { Injectable } from '@angular/core';
 import { HttpClient } from "@angular/common/http";
 
 
-const BASE_URL = "https://dev-project-upskill2-grupo3.pantheonsite.io/api/"
+const BASE_URL = "https://dev-project-upskill2-grupo3.pantheonsite.io/api/";
+
+
 
 
 @Injectable({ providedIn: 'root' })
@@ -12,9 +14,10 @@ export class AppService {
   constructor(private http: HttpClient) { }
 
 
+
   /*_______ Comments _______*/
 
-  /*------ GET ------*/
+         /*------ GET ------*/
 
   getContentComments (id?:string)
   {
@@ -31,12 +34,13 @@ export class AppService {
     return this.http.get<VideoComment[]>(BASE_URL + "videocomments/"+ id);
   }
 
-  /*------ POST ------*/
+           /*------ POST ------*/
 
   postContentComments (id?:string, data?: ContentComment )
   {
     return this.http.post(BASE_URL + "contentcomments/:POST"+ id, data );
   }
+
 
 
   /*_______ Videos _______*/
@@ -53,22 +57,42 @@ export class AppService {
     return this.http.get<Video[]>(BASE_URL + "videos/"+id);
   }
 
+
   /*_______ Tags _______*/
 
   getTags() {
     return this.http.get<Tags[]>(BASE_URL + "tags");
   }
 
+
+
   /*_______ Likes _______*/
 
+      /*------ GET ------*/
 
-  postLike(id:string, like:string) {
-    return this.http.post<Video[]>(BASE_URL + "videos/"+id,{field_dislike: like} );
+  getLikes(entity_id:string) {
+    return this.http.get<Likes[]>(BASE_URL + "likesvideo/"+ entity_id);
   }
 
-  postDislike(id:string, dislike:string, like:string) {
-    return this.http.post<Video[]>(BASE_URL + "videos/"+id,{field_dislike: dislike} );
+  getDislikes(entity_id:string) {
+    return this.http.get<Likes[]>(BASE_URL + "dislikesvideo/"+ entity_id);
   }
+      /*------ POST ------*/
+  postlike(entity_id:string, likecount:string, like:string) {
+    return this.http.post<Likes[]>(BASE_URL + "likesvideo/"+entity_id,
+      [{count: likecount,
+              entity_id: entity_id}],
+      {}
+
+
+    );
+  }
+
+  postDislike(entity_id:string, dislike:string, like:string) {
+    return this.http.post<Likes[]>(BASE_URL + "dislikesvideo/"+entity_id,{field_dislike: dislike} );
+  }
+
+
 
   /*_______ Channels _______*/
 
@@ -84,6 +108,8 @@ export class AppService {
   getChannelsVideos(id:string) {
     return this.http.get<ChannelVideos[]>(BASE_URL + "channelvideos/"+id);
   }
+
+
 
 }
 

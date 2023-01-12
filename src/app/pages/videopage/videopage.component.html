@@ -11,10 +11,9 @@
           <p class="title">{{objvideo.field_video_title}}</p>
           <p class="tags">{{tags}}</p>
         </div>
-        <div class="flags">
-          <fa-icon class="iconFlag" [icon]="faFlagFull"
-                                    [style.color]="red ? 'red' : 'grey'"
-                                    (click)="toggleFlag()"></fa-icon>
+        <div class="iconcontainer">
+          <fa-icon class="iconfav" [icon]="favorite? faBookmarkFull : faBookmark"
+                                    (click)="toggleIcon()"></fa-icon>
         </div>
       </div>
 
@@ -42,12 +41,12 @@
 
         <div class="likes">
           <fa-icon class="iconThumbsUp" [icon]="faThumbsUp" (click)="updateLikesDislikes('like')"></fa-icon>
-          <p class="likenumber">{{likes}}</p>
+<!--          <p class="likenumber">{{objlikes.count}}</p>-->
         </div>
 
         <div class="dislikes">
           <fa-icon class="iconThumbsDown" [icon]="faThumbsDown" (click)="updateLikesDislikes('dislike')"></fa-icon>
-          <p class="dislikesnumber">{{dislikes}}</p>
+<!--          <p class="dislikesnumber">{{objdislikes.count}}</p>-->
         </div>
       </div>
 

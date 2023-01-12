@@ -1,5 +1,5 @@
 import { Component } from '@angular/core';
-import { FormBuilder } from '@angular/forms';
+import {FormBuilder, FormGroup, Validators} from '@angular/forms';
 import {AppService} from "../../app.service";
 
 @Component({
@@ -9,18 +9,32 @@ import {AppService} from "../../app.service";
 })
 export class FormComponent {
 
-  constructor(private appService: AppService,private formBuilder: FormBuilder) { }
+  commentForm: FormGroup;
+  userEmail?: FormData;
 
-  commentForm = this.formBuilder.group({
-    name: '',
-    email: '',
-    comment:""
+  constructor(private appService: AppService,private formBuilder: FormBuilder) {
+
+  this.commentForm = this.formBuilder.group({
+    name: ['', [Validators.required, Validators.minLength(3)]],
+    email: ['', [Validators.required, Validators.email]],
+    comment:['', [Validators.required, Validators.minLength(15)]],
   });
 
-  onSubmit(): void {
-   /* this.items = this.cartService.clearCart();
-    console.warn('Your order has been submitted', this.checkoutForm.value);
-    this.checkoutForm.reset();*/
+  }
+
+/*
+  get email() {
+    return this.commentForm.get('email');
+  }
+*/
+
+  //this.userEmail = this.commentForm.get('email');
+
+
+
+    onSubmit(): void {
+    console.log(this.commentForm.value)
+    this.commentForm.reset();
   }
 
 

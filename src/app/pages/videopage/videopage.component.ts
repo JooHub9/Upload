@@ -1,8 +1,8 @@
 import {Component} from '@angular/core';
 import {AppService} from "../../app.service";
 import {ActivatedRoute} from "@angular/router";
-import {faFlag as faFlagFull, faThumbsUp} from '@fortawesome/free-solid-svg-icons';
-import {faFlag, faThumbsDown} from '@fortawesome/free-regular-svg-icons';
+import {faBookmark as faBookmarkFull, faThumbsUp} from '@fortawesome/free-solid-svg-icons';
+import {faBookmark, faThumbsDown} from '@fortawesome/free-regular-svg-icons';
 import {DomSanitizer, SafeResourceUrl, SafeUrl} from "@angular/platform-browser";
 
 @Component({
@@ -10,22 +10,20 @@ import {DomSanitizer, SafeResourceUrl, SafeUrl} from "@angular/platform-browser"
   templateUrl: './videopage.component.html',
   styleUrls: ['./videopage.component.scss']
 })
+
 export class VideopageComponent {
 
-  faFlag = faFlag;
-  faFlagFull = faFlagFull;
+  faBookmark = faBookmark;
+  faBookmarkFull = faBookmarkFull;
   faThumbsUp = faThumbsUp;
   faThumbsDown = faThumbsDown;
   objvideo = {} as Video;
   id: string = "";
   tags: string = "";
+  favorite: boolean = false;
 
-
-  likes: number = 0;
-  dislikes: number = 0;
-  like: string = "";
-  dislike: string = "";
-  user: [] = [];
+  objlikes = {} as Likes;
+  objdislikes = {} as Likes;
 
 
   video_string: string [] = [];
@@ -36,7 +34,6 @@ export class VideopageComponent {
   objvideoCom = {} as VideoComment;
   listvideos: Video[] = [];
 
-  red: boolean = false;
 
   constructor(private route: ActivatedRoute, private appService: AppService, private sanitizer: DomSanitizer) {
     this.id = route.snapshot.params['id_video'];
@@ -50,12 +47,6 @@ export class VideopageComponent {
     this.appService.getVideo(this.id).subscribe(v => {
       this.objvideo = v[0];
 
-      if (this.objvideo.field_like != "")
-        this.likes = Number(this.objvideo.field_like);
-
-      if (this.objvideo.field_dislike != "")
-        this.dislikes = Number(this.objvideo.field_dislike);
-
       //---- Get the Tags ----//
 
       if (this.objvideo.field_tags != "") {
@@ -68,6 +59,16 @@ export class VideopageComponent {
           .replaceAll(",", " ")
       } else this.tags = "#tag #anothertag #onemoretag";
 
+      //---- Get Likes / Dislikes ----//
+
+      /*this.appService.getLikes(this.id).subscribe(l => {
+        this.objlikes = l[0]
+      });
+
+      this.appService.getDislikes(this.id).subscribe(dl => {
+        this.objdislikes = dl[0]
+      });*/
+
       //---- Change the Video ----//
 
       this.video_string = this.objvideo.field_media_oembed_video
@@ -77,19 +78,35 @@ export class VideopageComponent {
       this.video = this.video_string[0];
       this.videoclean = this.sanitizer.bypassSecurityTrustResourceUrl(this.video);
 
+
       //---- Get the Comments ----//
 
       this.appService.getOneVideoComments(this.id).subscribe(cc => {
-        this.listvideoCom.push(...cc);
+        this.listvideoCom = cc;
         this.objvideoCom = this.listvideoCom[0];
       });
+
+
+      this.appService.notifyVideoObservable$.subscribe(res => {
+        if (res.refreshVideo) {
+
+          this.appService.getOneVideoComments(this.id).subscribe(cc => {
+            this.listvideoCom = cc;
+            this.objvideoCom = this.listvideoCom[0];
+          });
+        }
+      })
+
 
       //---- Get the Videos for sidebar ----//
 
       this.appService.getVideos().subscribe(vd =>
         this.listvideos = vd);
+    })
+  }
 
-    });
+  toggleIcon() {
+    this.favorite = !this.favorite;
   }
 
 
@@ -98,18 +115,16 @@ export class VideopageComponent {
 
   updateLikesDislikes(type: string) {
     /*return () => {*/
-    if (type === "like") {
-      this.likes++;
-      console.log(this.likes);
-    } else {
-      this.dislikes++;
-      console.log(this.dislikes);
-    }
-  }
-
-  toggleFlag() {
-    this.red = !this.red;
+    /* if (type === "like") {
+       this.likes++;
+       console.log(this.likes);
+     } else {
+       this.dislikes++;
+       console.log(this.dislikes);
+     }*/
   }
 
 }
+
+
 

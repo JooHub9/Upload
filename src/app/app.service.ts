@@ -1,15 +1,26 @@
 import { Injectable } from '@angular/core';
 import { HttpClient } from "@angular/common/http";
-
+import {BehaviorSubject} from "rxjs";
 
 const BASE_URL = "https://dev-project-upskill2-grupo3-ii.pantheonsite.io/api/"
+
 
 
 @Injectable({ providedIn: 'root' })
 
 export class AppService {
 
+
+
+
+
   constructor(private http: HttpClient) { }
+
+
+
+
+  /*_______ Playlists _______*/
+
 
   getPlaylists() {
     return this.http.get<Playlists[]>(BASE_URL + "playlists");
@@ -22,6 +33,8 @@ export class AppService {
   getPlaylistVideos(nid : string) {
     return this.http.get<Playlist_Video[]>(BASE_URL + "playlist/videos/" + nid);
   }
+
+  /*_______ Thematics _______*/
 
   getThematics() {
     return this.http.get<Thematics[]>(BASE_URL + "thematics/");
@@ -38,7 +51,7 @@ export class AppService {
 
   /*_______ Comments _______*/
 
-  /*------ GET ------*/
+         /*------ GET ------*/
 
   getContentComments (id?:string)
   {
@@ -55,12 +68,25 @@ export class AppService {
     return this.http.get<VideoComment[]>(BASE_URL + "videocomments/"+ id);
   }
 
-  /*------ POST ------*/
+           /*------ POST ------*/
 
-  postContentComments (id?:string, data?: ContentComment )
+  getToken()
   {
-    return this.http.post(BASE_URL + "contentcomments/:POST"+ id, data );
+    return this.http.get("https://dev-project-upskill2-grupo3-ii.pantheonsite.io/session/token");
   }
+
+  token = this.getToken();
+
+  headers = { 'Accept': 'application/vnd.api+json', 'X-CSRF-Token': String(this.token)};
+
+
+  postComment (body:{} )
+  {
+    return this.http.post("https://dev-project-upskill2-grupo3-ii.pantheonsite.io/comment/",
+                               body,
+                        {'headers': this.headers});
+  }
+
 
 
   /*_______ Videos _______*/
@@ -77,22 +103,43 @@ export class AppService {
     return this.http.get<Video[]>(BASE_URL + "videos/"+id);
   }
 
+
   /*_______ Tags _______*/
 
   getTags() {
     return this.http.get<Tags[]>(BASE_URL + "tags");
   }
 
+
+
   /*_______ Likes _______*/
 
+      /*------ GET ------*/
 
-  postLike(id:string, like:string) {
-    return this.http.post<Video[]>(BASE_URL + "videos/"+id,{field_dislike: like} );
+  getLikes(entity_id:string) {
+    return this.http.get<Likes[]>(BASE_URL + "likesvideo/"+ entity_id);
   }
 
-  postDislike(id:string, dislike:string, like:string) {
-    return this.http.post<Video[]>(BASE_URL + "videos/"+id,{field_dislike: dislike} );
+  getDislikes(entity_id:string) {
+    return this.http.get<Likes[]>(BASE_URL + "dislikesvideo/"+ entity_id);
   }
+      /*------ POST ------*/
+
+  postlike(entity_id:string, likecount:string, like:string) {
+    return this.http.post<Likes[]>(BASE_URL + "likesvideo/"+entity_id,
+      [{count: likecount,
+              entity_id: entity_id}],
+      {}
+
+
+    );
+  }
+
+  postDislike(entity_id:string, dislike:string, like:string) {
+    return this.http.post<Likes[]>(BASE_URL + "dislikesvideo/"+entity_id,{field_dislike: dislike} );
+  }
+
+
 
   /*_______ Channels _______*/
 
@@ -108,6 +155,7 @@ export class AppService {
   getChannelsVideos(id:string) {
     return this.http.get<ChannelVideos[]>(BASE_URL + "channelvideos/"+id);
   }
+
 
   /*------Favorites------*/
 
@@ -133,6 +181,31 @@ export class AppService {
     }
 
     localStorage.setItem("favorites", JSON.stringify(this.favorites))
+  }
+
+
+  /*---------------- testando refresh -----------------*/
+
+
+  public notifyVideo = new BehaviorSubject<any>('');
+
+  public notifyChannel = new BehaviorSubject<any>('');
+
+  notifyVideoObservable$ = this.notifyVideo.asObservable();
+
+  public notifyVideos(data: any) {
+    if (data) {
+      this.notifyVideo.next(data);
+    }
+  }
+
+
+  notifyChannelObservable$ = this.notifyChannel.asObservable();
+
+  public notifyChannels(data: any) {
+    if (data) {
+      this.notifyChannel.next(data);
+    }
   }
 
 

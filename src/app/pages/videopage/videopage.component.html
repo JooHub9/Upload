@@ -11,17 +11,15 @@
           <p class="title">{{objvideo.field_video_title}}</p>
           <p class="tags">{{tags}}</p>
         </div>
-        <div class="flags">
-          <fa-icon class="iconFlag" [icon]="faFlagFull"
-                                    [style.color]="red ? 'red' : 'grey'"
-                                    (click)="toggleFlag()"></fa-icon>
+        <div class="iconcontainer">
+          <fa-icon class="iconfav" [icon]="favorite? faBookmarkFull : faBookmark"
+                   (click)="toggleIcon()"></fa-icon>
         </div>
       </div>
 
       <iframe class="video" title="video" [src]="videoclean" allowfullscreen></iframe>
 
     </div>
-
 
 
     <div class="divundervideo">
@@ -41,13 +39,13 @@
       <div class="right">
 
         <div class="likes">
-          <fa-icon class="iconThumbsUp" [icon]="faThumbsUp" (click)="updateLikesDislikes('like')"></fa-icon>
-          <p class="likenumber">{{likes}}</p>
+          <fa-icon class="iconThumbsUp" [icon]="faThumbsUp"></fa-icon>
+          <!--          <p class="likenumber">{{objlikes.count}}</p>-->
         </div>
 
         <div class="dislikes">
-          <fa-icon class="iconThumbsDown" [icon]="faThumbsDown" (click)="updateLikesDislikes('dislike')"></fa-icon>
-          <p class="dislikesnumber">{{dislikes}}</p>
+          <fa-icon class="iconThumbsDown" [icon]="faThumbsDown" ></fa-icon>
+          <!--          <p class="dislikesnumber">{{objdislikes.count}}</p>-->
         </div>
       </div>
 
@@ -61,15 +59,19 @@
 
     </div>
 
-    <app-form></app-form>
+    <app-form
+      [id]="id"
+      page="video"
+    ></app-form>
 
     <app-comment *ngFor="let v of listvideoCom"
-      type="video"
-      [uid]="v.uid"
-      [user_picture]="v.user_picture"
-      [username]="v.field_username_video"
-      [date]="v.created"
-      [comment]="v.comment_body"
+                 type="video"
+                 [uid]="v.uid"
+                 [user_picture]="v.user_picture"
+                 [username]="v.field_username_video"
+                 [date]="v.created"
+                 [comment]="v.comment_body"
+                 [email]="v.field_comment_email"
     ></app-comment>
 
   </div>

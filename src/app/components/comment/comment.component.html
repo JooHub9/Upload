@@ -1,21 +1,48 @@
 <div class="commentcontainer">
 
-  <app-randompicture
-    [uid]="uid"
-    [user_picture]="user_picture"
-  ></app-randompicture>
 
+  <div class="pictextcontainer">
+    <app-randompicture
+      [uid]="uid"
+      [user_picture]="user_picture"
+      [email]="email"
+      type="comment"
+    ></app-randompicture>
 
-  <div class="text">
-        <span class="username">
+    <div class="text">
+      <span class="username">
             {{username}}
-        </span>
-    <span class="time">
+      </span>
+      <span class="time">
             {{date}}
-          </span>
-    <div class="commenttext">
-      {{comment}}
+      </span>
+      <div class="commenttext">
+        {{comment}}
+      </div>
     </div>
   </div>
+
+  <div class="commenticon">
+
+    <div class="iconcontainer" (click)="toggleReportText()">
+      <fa-icon [icon]="faEllipsisVertical"></fa-icon>
+    </div>
+
+    <div (mouseleave)="toggleReportText()">
+      <div class="reporttextcontainer" *ngIf="visible" (click)="toggleReport()">
+        <fa-icon [icon]="faFlag" [ngStyle]="{'color': reported? '#B2191B' : ''}"></fa-icon>
+        <div *ngIf="!reported">
+          <p class="reporttext">Report Comment</p>
+        </div>
+        <div *ngIf="reported">
+          <p class="reporttext" style="color: #B2191B">Unreport Comment</p>
+        </div>
+        <!--<fa-icon [icon]="faFlag"></fa-icon>-->
+      </div>
+    </div>
+
+  </div>
+
+
 </div>
 

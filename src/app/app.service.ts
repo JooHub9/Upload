@@ -37,7 +37,11 @@ export class AppService {
   /*_______ Thematics _______*/
 
   getThematics() {
-    return this.http.get(BASE_URL + "thematics");
+    return this.http.get<Thematics[]>(BASE_URL + "thematics/");
+  }
+
+  getThematicsNid(nid:string){
+    return this.http.get<Thematics[]>(BASE_URL + "thematics/" + nid);
   }
 
   getCategories() {
@@ -121,7 +125,7 @@ export class AppService {
 
   /*_______ Videos _______*/
 
-  getVideos(page?:number, filter?: number) {
+  getVideos(page?:number) {
     let url = BASE_URL + "videos"
     if(page){
     url = url + "?page=" + page

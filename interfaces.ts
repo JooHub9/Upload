@@ -117,6 +117,20 @@ interface ChannelVideos {
   nid: string;
 }
 
+/*____________ Thematics ____________*/
+
+interface Thematics {
+  nid: string;
+  title: string;
+  field_image_header: string;
+  field_tag: string;
+  created: string;
+  field_teaser: string;
+  field_thumbnail_article: string;
+  body: string;
+  field_external_links: string;
+  name: string;
+}
 /*____________ Likes / Dislikes ____________*/
 
 interface Likes {
@@ -124,6 +138,7 @@ interface Likes {
   id:string;
   entity_type:string;
   count:string;
+
 }
 
 

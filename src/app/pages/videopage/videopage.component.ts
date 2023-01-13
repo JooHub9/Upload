@@ -100,9 +100,15 @@ export class VideopageComponent {
 
       //---- Get the Videos for sidebar ----//
 
-      this.appService.getVideos().subscribe(vd =>
-        this.listvideos = vd);
+      this.appService.getAllVideosChannel(this.objvideo.field_channel_1).subscribe(vd => {
+          this.listvideos = vd;
+
+          console.log("listvideos - ", this.listvideos)
+          console.log("listvideos - ", this.objvideo)
+        }
+      );
     })
+
   }
 
   toggleIcon() {

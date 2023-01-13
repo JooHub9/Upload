@@ -83,6 +83,40 @@ export class AppService {
                         {'headers': this.headers});
   }
 
+            /*------- Refresh Comments ------*/
+
+
+  public notifyVideo = new BehaviorSubject<any>('');
+
+  public notifyChannel = new BehaviorSubject<any>('');
+
+  notifyVideoObservable$ = this.notifyVideo.asObservable();
+
+  public notifyVideos(data: any) {
+    if (data) {
+      this.notifyVideo.next(data);
+    }
+  }
+
+
+  notifyChannelObservable$ = this.notifyChannel.asObservable();
+
+  public notifyChannels(data: any) {
+    if (data) {
+      this.notifyChannel.next(data);
+    }
+  }
+            /*------- Report Comment ------*/
+
+  postCommentReport (body:{} )
+  {
+    return this.http.post("https://dev-project-upskill2-grupo3-ii.pantheonsite.io/comment/",
+      body,
+      {'headers': this.headers});
+  }
+
+
+
 
 
   /*_______ Videos _______*/
@@ -99,6 +133,10 @@ export class AppService {
     return this.http.get<Video[]>(BASE_URL + "videos/"+id);
   }
 
+  getAllVideosChannel(id:string)
+  {
+    return this.http.get<Video[]>(BASE_URL + "allvideos/"+id);
+  }
 
   /*_______ Tags _______*/
 
@@ -177,31 +215,6 @@ export class AppService {
     }
 
     localStorage.setItem("favorites", JSON.stringify(this.favorites))
-  }
-
-
-  /*---------------- testando refresh -----------------*/
-
-
-  public notifyVideo = new BehaviorSubject<any>('');
-
-  public notifyChannel = new BehaviorSubject<any>('');
-
-  notifyVideoObservable$ = this.notifyVideo.asObservable();
-
-  public notifyVideos(data: any) {
-    if (data) {
-      this.notifyVideo.next(data);
-    }
-  }
-
-
-  notifyChannelObservable$ = this.notifyChannel.asObservable();
-
-  public notifyChannels(data: any) {
-    if (data) {
-      this.notifyChannel.next(data);
-    }
   }
 
 

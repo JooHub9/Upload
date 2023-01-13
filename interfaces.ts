@@ -114,6 +114,7 @@ interface ChannelVideos {
   user_picture: string;
   name: string;
   field_media_oembed_video:string;
+  nid: string;
 }
 
 /*____________ Likes / Dislikes ____________*/

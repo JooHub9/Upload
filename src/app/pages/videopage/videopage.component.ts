@@ -35,7 +35,6 @@ export class VideopageComponent {
   listvideos: Video[] = [];
 
 
-
   constructor(private route: ActivatedRoute, private appService: AppService, private sanitizer: DomSanitizer) {
     this.id = route.snapshot.params['id_video'];
   }
@@ -62,13 +61,13 @@ export class VideopageComponent {
 
       //---- Get Likes / Dislikes ----//
 
-      this.appService.getLikes(this.id).subscribe(l => {
+      /*this.appService.getLikes(this.id).subscribe(l => {
         this.objlikes = l[0]
       });
 
       this.appService.getDislikes(this.id).subscribe(dl => {
         this.objdislikes = dl[0]
-      });
+      });*/
 
       //---- Change the Video ----//
 
@@ -80,15 +79,24 @@ export class VideopageComponent {
       this.videoclean = this.sanitizer.bypassSecurityTrustResourceUrl(this.video);
 
 
-
-
-
       //---- Get the Comments ----//
 
       this.appService.getOneVideoComments(this.id).subscribe(cc => {
-        this.listvideoCom.push(...cc);
+        this.listvideoCom = cc;
         this.objvideoCom = this.listvideoCom[0];
       });
+
+
+      this.appService.notifyVideoObservable$.subscribe(res => {
+        if (res.refreshVideo) {
+
+          this.appService.getOneVideoComments(this.id).subscribe(cc => {
+            this.listvideoCom = cc;
+            this.objvideoCom = this.listvideoCom[0];
+          });
+        }
+      })
+
 
       //---- Get the Videos for sidebar ----//
 

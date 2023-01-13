@@ -17,12 +17,12 @@ export class CommentComponent {
 
   constructor(private appService: AppService) { }
 
-  @Input() type: string = "";
   @Input() uid : string = "";
   @Input() user_picture : string = "";
   @Input() username : string = "";
   @Input() date : string = "";
   @Input() comment : string = "";
+  @Input() email : string = "";
 
   toggleReportText()
   {

@@ -35,9 +35,12 @@
 
   <div class="commentscontainer">
 
-    <app-form></app-form>
+    <app-form
+      [id]="id"
+      page="channel"
+    ></app-form>
 
-    <div class="commentcontainer" >
+    <div class="commentcontainer">
 
       <app-comment
         *ngFor="let cc of listchannelCom"
@@ -46,6 +49,7 @@
         [username]="cc.field_username"
         [date]="cc.field_date"
         [comment]="cc.field_comment"
+        [email]="cc.field_email"
       >
         <fa-icon class="commenticon" [icon]="faEllipsisVertical"></fa-icon>
 

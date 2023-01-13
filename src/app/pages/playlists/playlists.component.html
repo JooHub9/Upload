@@ -1,0 +1,25 @@
+<div class="main_container">
+<h1 class="main_title">Playlists</h1>
+  <div class="out_container">
+<div class="playlists_container"
+  *ngFor="let p of playlists">
+  <div class="images_playlist">
+    <div class="bookmark_play" [routerLink]="['/playlists/', p.nid]">
+      <fa-icon [icon]="faBookmark" class="bookmark"></fa-icon>
+      <fa-icon [icon]="faPlay" class="play"></fa-icon>
+    </div>
+  <div class="cover_image">
+    <img class="cover_photo" [src]="'https://dev-project-upskill2-grupo3-ii.pantheonsite.io/' + p.field_cover_image_playlist">
+  </div>
+  <div class="profile_photo">
+    <img class="user_picture" [src]="'https://dev-project-upskill2-grupo3-ii.pantheonsite.io/' + p.user_picture">
+  </div>
+  </div>
+  <div class="text_box">
+    <div class="username">{{p.name}}</div>
+    <h2 class="playlists_title">{{p.title}}</h2>
+    <div class="authored_on">{{p.created}}</div>
+  </div>
+</div>
+  </div>
+</div>

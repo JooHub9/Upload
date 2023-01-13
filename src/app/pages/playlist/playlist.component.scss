@@ -1,0 +1,46 @@
+:host {
+  flex: 1;
+}
+
+.main_container_playlist {
+  padding-left: 15px;
+
+  .playlist_container {
+
+    .playlist_title {
+      padding-top: 50px;
+    }
+
+    .playlist_cover_image {
+      justify-content: center;
+
+      .cover_photo_playlist {
+        width: 575px;
+        height: 200px;
+        border-radius: 50px;
+        padding-top: 25px;
+        padding-bottom: 25px;
+      }
+    }
+
+    .playlist_category {
+      font-size: 15px;
+      padding-bottom: 15px;
+    }
+
+    .playlist_body {}
+
+    .videos_playlist {
+      justify-content: space-between;
+
+      .videos {
+        padding-top: 25px;
+      }
+
+      .playlist_videos {
+        display: grid;
+        grid-template-columns: auto auto auto;
+      }
+    }
+  }
+}

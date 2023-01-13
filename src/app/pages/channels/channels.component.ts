@@ -19,7 +19,5 @@ export class ChannelsComponent {
     {
       this.channels = c;
     });
-
-
   }
 }

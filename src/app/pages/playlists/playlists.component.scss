@@ -1,0 +1,97 @@
+:host
+{
+  flex: 1;
+}
+
+.main_container {
+  /*width: auto;
+  height: auto;*/
+
+  .main_title {
+    color: white;
+    padding-top: 50px;
+    padding-bottom: 50px;
+    padding-left: 30px;
+  }
+
+  .out_container {
+    display: grid;
+    grid-template-columns: auto auto;
+    justify-content: left;
+
+    .playlists_container {
+      padding: 20px;
+
+      .images_playlist {
+        flex-direction: column;
+        align-items: flex-end;
+        position: relative;
+
+        .bookmark_play {
+
+          .bookmark {
+            color: white;
+            font-size: 50px;
+            top: 75px;
+            left: 40px;
+            position: absolute;
+          }
+
+          .play {
+            color: white;
+            font-size: 20px;
+            top: 95px;
+            left: 52px;
+            position: absolute;
+          }
+        }
+
+        .cover_image {
+          padding-left: 15px;
+
+          .cover_photo {
+            width: 375px;
+            height: 200px;
+            border-top-right-radius: 20px;
+            border-top-left-radius: 20px;
+          }
+        }
+
+        .profile_photo {
+          padding-left: 200px;
+
+          .user_picture {
+            width: 75px;
+            height: 75px;
+            border-radius: 50px;
+            border: 2px solid white;
+            right: 35px;
+            top: 160px;
+            position: absolute;
+          }
+        }
+      }
+
+      .text_box {
+        padding-bottom: 50px;
+        padding-top: 25px;
+        padding-left: 30px;
+
+        .username {
+          color: blue;
+          font-size: 15px;
+        }
+
+        .playlists_title {
+          color: white;
+          margin-top: 5px;
+          margin-bottom: 5px;
+        }
+
+        .authored_on {
+          color: gray;
+        }
+      }
+    }
+  }
+}

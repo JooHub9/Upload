@@ -1,22 +1,17 @@
-import { Injectable } from '@angular/core';
-import { HttpClient } from "@angular/common/http";
+import {Injectable} from '@angular/core';
+import {HttpClient} from "@angular/common/http";
 import {BehaviorSubject} from "rxjs";
 
 const BASE_URL = "https://dev-project-upskill2-grupo3-ii.pantheonsite.io/api/"
 
 
-
-@Injectable({ providedIn: 'root' })
+@Injectable({providedIn: 'root'})
 
 export class AppService {
 
 
-
-
-
-  constructor(private http: HttpClient) { }
-
-
+  constructor(private http: HttpClient) {
+  }
 
 
   /*_______ Playlists _______*/
@@ -26,11 +21,11 @@ export class AppService {
     return this.http.get<Playlists[]>(BASE_URL + "playlists");
   }
 
-  getPlaylist(nid : string) {
+  getPlaylist(nid: string) {
     return this.http.get<Playlist[]>(BASE_URL + "playlists/" + nid);
   }
 
-  getPlaylistVideos(nid : string) {
+  getPlaylistVideos(nid: string) {
     return this.http.get<Playlist_Video[]>(BASE_URL + "playlist/videos/" + nid);
   }
 
@@ -40,8 +35,9 @@ export class AppService {
     return this.http.get<Thematics[]>(BASE_URL + "thematics/");
   }
 
-  getThematicsNid(nid:string){
-    return this.http.get<Thematics[]>(BASE_URL + "thematics/" + nid);
+  getSuggestedThematic() {
+    return this.http.get<Thematics[]>(BASE_URL + "thematicsrandom?r=" + Date.now());
+
   }
 
   getCategories() {
@@ -51,43 +47,38 @@ export class AppService {
 
   /*_______ Comments _______*/
 
-         /*------ GET ------*/
+  /*------ GET ------*/
 
-  getContentComments (id?:string)
-  {
-    return this.http.get<ContentComment[]>(BASE_URL + "contentcomments/"+ id);
+  getContentComments(id?: string) {
+    return this.http.get<ContentComment[]>(BASE_URL + "contentcomments/" + id);
   }
 
-  getVideoComments ()
-  {
+  getVideoComments() {
     return this.http.get<VideoComment[]>(BASE_URL + "videocomments");
   }
 
-  getOneVideoComments (id:string)
-  {
-    return this.http.get<VideoComment[]>(BASE_URL + "videocomments/"+ id);
+  getOneVideoComments(id: string) {
+    return this.http.get<VideoComment[]>(BASE_URL + "videocomments/" + id);
   }
 
-           /*------ POST ------*/
+  /*------ POST ------*/
 
-  getToken()
-  {
+  getToken() {
     return this.http.get("https://dev-project-upskill2-grupo3-ii.pantheonsite.io/session/token");
   }
 
   token = this.getToken();
 
-  headers = { 'Accept': 'application/vnd.api+json', 'X-CSRF-Token': String(this.token)};
+  headers = {'Accept': 'application/vnd.api+json', 'X-CSRF-Token': String(this.token)};
 
 
-  postComment (body:{} )
-  {
+  postComment(body: {}) {
     return this.http.post("https://dev-project-upskill2-grupo3-ii.pantheonsite.io/comment/",
-                               body,
-                        {'headers': this.headers});
+      body,
+      {'headers': this.headers});
   }
 
-            /*------- Refresh Comments ------*/
+  /*------- Refresh Comments ------*/
 
 
   public notifyVideo = new BehaviorSubject<any>('');
@@ -110,73 +101,71 @@ export class AppService {
       this.notifyChannel.next(data);
     }
   }
-            /*------- Report Comment ------*/
 
-  postCommentReport (body:{} )
-  {
+  /*------- Report Comment ------*/
+
+  postCommentReport(body: {}) {
     return this.http.post("https://dev-project-upskill2-grupo3-ii.pantheonsite.io/comment/",
       body,
       {'headers': this.headers});
   }
 
 
-
-
-
   /*_______ Videos _______*/
 
-  getVideos(page?:number) {
+  getVideos(page?: number, tag?: number) {
     let url = BASE_URL + "videos"
-    if(page){
-    url = url + "?page=" + page
+    if (page) {
+      url = url + "?page=" + page
+    }
+    if (tag) {
+      url = url + "/tag/" + tag
     }
     return this.http.get<Video[]>(url);
   }
 
-  getVideo(id:string) {
-    return this.http.get<Video[]>(BASE_URL + "videos/"+id);
+  getVideo(id: string) {
+    return this.http.get<Video[]>(BASE_URL + "videos/" + id);
   }
 
-  getAllVideosChannel(id:string)
-  {
-    return this.http.get<Video[]>(BASE_URL + "allvideos/"+id);
+  getAllVideosChannel(id: string) {
+    return this.http.get<Video[]>(BASE_URL + "allvideos/" + id);
   }
 
   /*_______ Tags _______*/
 
   getTags() {
-    return this.http.get<Tags[]>(BASE_URL + "tags");
+    return this.http.get<Tags[]>(BASE_URL + "tags?r=" + Date.now());
   }
-
 
 
   /*_______ Likes _______*/
 
-      /*------ GET ------*/
+  /*------ GET ------*/
 
-  getLikes(entity_id:string) {
-    return this.http.get<Likes[]>(BASE_URL + "likesvideo/"+ entity_id);
+  getLikes(entity_id: string) {
+    return this.http.get<Likes[]>(BASE_URL + "likesvideo/" + entity_id);
   }
 
-  getDislikes(entity_id:string) {
-    return this.http.get<Likes[]>(BASE_URL + "dislikesvideo/"+ entity_id);
+  getDislikes(entity_id: string) {
+    return this.http.get<Likes[]>(BASE_URL + "dislikesvideo/" + entity_id);
   }
-      /*------ POST ------*/
 
-  postlike(entity_id:string, likecount:string, like:string) {
-    return this.http.post<Likes[]>(BASE_URL + "likesvideo/"+entity_id,
-      [{count: likecount,
-              entity_id: entity_id}],
+  /*------ POST ------*/
+
+  postlike(entity_id: string, likecount: string, like: string) {
+    return this.http.post<Likes[]>(BASE_URL + "likesvideo/" + entity_id,
+      [{
+        count: likecount,
+        entity_id: entity_id
+      }],
       {}
-
-
     );
   }
 
-  postDislike(entity_id:string, dislike:string, like:string) {
-    return this.http.post<Likes[]>(BASE_URL + "dislikesvideo/"+entity_id,{field_dislike: dislike} );
+  postDislike(entity_id: string, dislike: string, like: string) {
+    return this.http.post<Likes[]>(BASE_URL + "dislikesvideo/" + entity_id, {field_dislike: dislike});
   }
-
 
 
   /*_______ Channels _______*/
@@ -186,24 +175,27 @@ export class AppService {
     return this.http.get<Channel[]>(BASE_URL + "channels/");
   }
 
-  getoneChannel(id:string) {
-    return this.http.get<Channel[]>(BASE_URL + "channels/"+id);
+  getoneChannel(id: string) {
+    return this.http.get<Channel[]>(BASE_URL + "channels/" + id);
   }
 
-  getChannelsVideos(id:string) {
-    return this.http.get<ChannelVideos[]>(BASE_URL + "channelvideos/"+id);
+  getChannelsVideos(id: string) {
+    return this.http.get<ChannelVideos[]>(BASE_URL + "channelvideos/" + id);
+  }
+
+  getSuggestedChannels() {
+    return this.http.get<Channel[]>(BASE_URL + "channelsrandom?r=" + Date.now());
   }
 
 
   /*------Favorites------*/
 
-  getFavorites() {
-    return this.http.get<Video[]>(BASE_URL + "videos/" + this.favorites.join(","));
-  }
-
-
   favorites: number[] = JSON.parse(localStorage.getItem("favorites") || "[]");
 
+
+  getFavorites() {
+      return this.http.get<Video[]>(BASE_URL + "videos/favs/" + this.favorites.join(",") || "none");
+  }
 
   isFavorite(mid: string) {
     let id = parseInt(mid)

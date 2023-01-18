@@ -1,11 +1,9 @@
-
 /*____________ Comments ____________*/
 
-interface ContentComment
-{
-  uid : string;
+interface ContentComment {
+  uid: string;
   field_username: string;
-  field_date : string;
+  field_date: string;
   field_comment: string;
   langcode: string;
   field_email: string;
@@ -13,16 +11,15 @@ interface ContentComment
 }
 
 
-interface VideoComment
-{
-  uid : string;
+interface VideoComment {
+  uid: string;
   field_username_video: string;
-  created : string;
+  created: string;
   comment_body: string;
   langcode: string;
   field_comment_email: string;
   user_picture: string;
-  mid:string;
+  mid: string;
 }
 
 
@@ -38,17 +35,19 @@ interface Video {
   user_picture: string;
   name_1: string;
   field_tags: string;
-  field_media_oembed_video:string;
+  field_media_oembed_video: string;
   field_channel: string;
   field_channel_1: string;
-  field_like:string;
-  field_dislike:string;
+  nid: string;
+  field_like: string;
+  field_dislike: string;
 }
 
 /*____________ Tags ____________*/
 
 interface Tags {
-  name:string;
+  name: string;
+  tid: number;
 }
 
 
@@ -113,7 +112,7 @@ interface ChannelVideos {
   thumbnail__target_id: string;
   user_picture: string;
   name: string;
-  field_media_oembed_video:string;
+  field_media_oembed_video: string;
   nid: string;
 }
 
@@ -131,13 +130,14 @@ interface Thematics {
   field_external_links: string;
   name: string;
 }
+
 /*____________ Likes / Dislikes ____________*/
 
 interface Likes {
-  entity_id:string;
-  id:string;
-  entity_type:string;
-  count:string;
+  entity_id: string;
+  id: string;
+  entity_type: string;
+  count: string;
 
 }
 

@@ -1,6 +1,14 @@
 import { Component, OnInit } from '@angular/core';
-import {faHome, faBarsStaggered, faClapperboard, faPlay, faBookmark} from "@fortawesome/free-solid-svg-icons"
+import {
+  faHome,
+  faBarsStaggered,
+  faClapperboard,
+  faPlay,
+  faBookmark,
+  faMagnifyingGlass
+} from "@fortawesome/free-solid-svg-icons"
 import {AppService} from "../../app.service";
+
 
 @Component({
   selector: 'app-menu',
@@ -14,8 +22,10 @@ export class MenuComponent {
   faClapperboard = faClapperboard;
   faPlay = faPlay;
   faBookmark = faBookmark;
+  faMagnifyinGlass = faMagnifyingGlass
 
-  tags: Tags[] = []
+  tags: Tags[] = [];
+
 
   constructor(public appService: AppService) {
   }
@@ -23,6 +33,9 @@ export class MenuComponent {
   ngOnInit(): void {
     this.appService.getTags().subscribe((tag) => {
       this.tags = tag;
+
     })
+
   }
+
 }

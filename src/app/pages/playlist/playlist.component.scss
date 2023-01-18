@@ -15,31 +15,47 @@
       justify-content: center;
 
       .cover_photo_playlist {
-        width: 575px;
+        width: 500px;
         height: 200px;
+        object-fit: cover;
         border-radius: 50px;
         padding-top: 25px;
         padding-bottom: 25px;
       }
     }
 
-    .playlist_category {
-      font-size: 15px;
+    .text_playlist {
+      display: flex;
       padding-bottom: 15px;
-    }
 
-    .playlist_body {}
-
-    .videos_playlist {
-      justify-content: space-between;
-
-      .videos {
-        padding-top: 25px;
+      .playlist_category {
+        font-size: 15px;
+        padding-right: 3px;
       }
 
+      .playlist_body {
+        padding-left: 3px;
+      }
+    }
+
+    .videos {
+      padding-top: 35px;
+    }
+
+    .videos_playlist {
+      display: flex;
+      flex-flow: row;
+      height: 100%;
+      margin: 20px;
+      /*justify-content: space-between;*/
+
       .playlist_videos {
-        display: grid;
-        grid-template-columns: auto auto auto;
+        display: flex;
+        flex-wrap: wrap;
+        align-content: center;
+        gap: 20px;
+        /*display: grid;
+        grid-template-columns: auto auto auto;*/
       }
     }
   }

@@ -1,0 +1,70 @@
+:host {
+  flex: 1;
+}
+
+.videos_thematic_article {
+  padding-bottom: 30px;
+
+  .images_thematic_videos {
+    flex-direction: column;
+    align-items: flex-end;
+    position: relative;
+
+    .image_video_thematic {
+
+      .thumbnail_video_thematic {
+        border-top-right-radius: 20px;
+        border-top-left-radius: 20px;
+        width: 300px;
+      }
+    }
+
+    .duration_video_thematic {
+      position: absolute;
+      left: 17px;
+      bottom: 25px;
+
+      .thematic_video_duration {
+        color: white;
+        background-color: #1C1C24;
+        padding: 2px 15px;
+        border-radius: 5px;
+      }
+    }
+
+    .user {
+
+      .user_picture_thematic_videos {
+
+        .user_videos {
+          width: 70px;
+          height: 70px;
+          border-radius: 50px;
+          border: 2px solid white;
+          right: 140px;
+          top: 175px;
+          position: absolute;
+        }
+      }
+    }
+  }
+
+  .video_thematic_info {
+
+    .tags_thematic_videos {
+      padding-top: 12px;
+      font-size: 10px;
+      color: #1E75FF;
+    }
+
+    .video_title_thematic {
+      font-size: 11px;
+    }
+
+    .created_thematic_videos {
+      padding-bottom: 35px;
+      font-size: 10px;
+      color: gray;
+    }
+  }
+}

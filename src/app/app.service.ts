@@ -11,8 +11,10 @@ export class AppService {
 
   constructor(private http: HttpClient) { }
 
+  /*_______ Playlists _______*/
+
   getPlaylists() {
-    return this.http.get<Playlists[]>(BASE_URL + "playlists");
+    return this.http.get<Playlist[]>(BASE_URL + "playlists");
   }
 
   getPlaylist(nid : string) {
@@ -20,12 +22,26 @@ export class AppService {
   }
 
   getPlaylistVideos(nid : string) {
-    return this.http.get<Playlist_Video[]>(BASE_URL + "playlist/videos/" + nid);
+    return this.http.get<Video[]>(BASE_URL + "playlist/videos/" + nid);
   }
 
+
+  /*_______ Thematics _______*/
+
   getThematics() {
-    return this.http.get(BASE_URL + "thematics");
+    return this.http.get<Thematic[]>(BASE_URL + "thematics");
   }
+
+  getThematic(nid : string) {
+    return this.http.get<Thematic[]>(BASE_URL + "thematics/" + nid);
+  }
+
+  getThematicVideos(nid : string) {
+    return this.http.get<Video[]>(BASE_URL + "thematic_article/videos/" + nid);
+  }
+
+
+  /*_______ Categories _______*/
 
   getCategories() {
     return this.http.get(BASE_URL + "categorias")

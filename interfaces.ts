@@ -54,7 +54,7 @@ interface Tags {
 
 /*__________ Playlists __________*/
 
-interface Playlists {
+interface Playlist {
   title: string;
   field_category_playlist: string;
   body: string;
@@ -66,26 +66,48 @@ interface Playlists {
   field_video_playlist: string [];
 }
 
-interface Playlist {
-  nid: string;
-  field_cover_image_playlist: string;
-  title: string;
-  field_category_playlist: string;
-  body: string;
-  user_picture: string;
-  name: string;
-  created: string;
-  field_video_playlist: string [];
-}
-
-interface Playlist_Video {
+/*interface Playlist_Videos {
   mid: string;
   field_video_title: string;
   thumbnail__target_id: string;
   field_duration: string;
   field_media_oembed_video: string;
+  created: string;
+  user_picture: string;
+  name: string;
   type: string;
+}*/
+
+
+/*___________ Thematics ___________*/
+
+interface Thematic {
+  nid: string;
+  title: string;
+  field_image_header: string;
+  field_tag: string;
+  created: string;
+  field_teaser: string;
+  field_thumbnail_article: string;
+  body: string;
+  field_external_links: string [];
+  user_picture: string;
+  name: string
 }
+
+/*interface Thematic_Videos {
+  mid: string;
+  field_video_title: string;
+  field_duration: string;
+  created: string;
+  thumbnail__target_id: string;
+  field_video_description: string;
+  field_media_oembed_video: string;
+  field_tags: string;
+  user_picture: string;
+  name_1: string;
+  type: string
+}*/
 
 
 /*____________ Channel ____________*/

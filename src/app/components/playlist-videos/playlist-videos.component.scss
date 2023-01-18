@@ -6,6 +6,7 @@
   padding-bottom: 30px;
 
   .images_playlist_videos {
+    position: relative;
 
     .image_video {
 
@@ -17,8 +18,38 @@
     }
 
     .duration_video_playlist {
+      position: absolute;
+      left: 17px;
+      bottom: 40px;
 
-      .video_duration {}
+      .video_duration {
+        color: white;
+        background-color: #1C1C24;
+        padding: 2px 15px;
+        border-radius: 5px;
+      }
+    }
+
+    .user_playlist_videos {
+
+      .user_picture_playlist_videos {
+
+        .user_playlist_videos {
+          width: 75px;
+          height: 75px;
+          border-radius: 50px;
+          border: 2px solid white;
+          right: 140px;
+          top: 175px;
+          position: absolute;
+        }
+      }
+
+      .username_playlist_videos {
+        font-size: 10px;
+        color: #1E75FF;
+        padding-top: 20px;
+      }
     }
   }
 
@@ -26,6 +57,12 @@
 
     .video_title {
       font-size: 11px;
+    }
+
+    .created_playlist_videos {
+      padding-bottom: 35px;
+      font-size: 10px;
+      color: gray;
     }
   }
 }

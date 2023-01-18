@@ -16,7 +16,7 @@
 
   .out_container {
     display: grid;
-    grid-template-columns: auto auto;
+    grid-template-columns: auto auto auto;
     justify-content: left;
 
     .playlists_container {
@@ -50,8 +50,9 @@
           padding-left: 15px;
 
           .cover_photo {
-            width: 375px;
-            height: 200px;
+            width: 350px;
+            height: 225px;
+            object-fit: cover;
             border-top-right-radius: 20px;
             border-top-left-radius: 20px;
           }
@@ -66,7 +67,7 @@
             border-radius: 50px;
             border: 2px solid white;
             right: 35px;
-            top: 160px;
+            top: 180px;
             position: absolute;
           }
         }

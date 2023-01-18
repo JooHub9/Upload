@@ -1,1 +1,20 @@
-<p>thematic-videos works!</p>
+<div class="videos_thematic_article">
+<div class="images_thematic_videos">
+  <div class="image_video_thematic" [routerLink]="['/videopage/', mid]">
+    <img class="thumbnail_video_thematic" [src]="'https://dev-project-upskill2-grupo3-ii.pantheonsite.io/' + thumbnail__target_id">
+  </div>
+  <div class="duration_video_thematic">
+    <div class="thematic_video_duration">{{field_duration}}</div>
+  </div>
+  <div class="user">
+    <div class="user_picture_thematic_videos">
+      <img class="user_videos" [src]="'https://dev-project-upskill2-grupo3-ii.pantheonsite.io/' + user_picture">
+      </div>
+  </div>
+</div>
+<div class="video_thematic_info">
+  <div class="tags_thematic_videos">{{field_tags | tags}}</div>
+  <h3 class="video_title_thematic">{{field_video_title}}</h3>
+  <div class="created_thematic_videos">{{created}}</div>
+</div>
+</div>

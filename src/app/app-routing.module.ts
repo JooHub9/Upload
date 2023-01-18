@@ -10,6 +10,7 @@ import {ThematicsComponent} from "./pages/thematics/thematics.component";
 import {ChannelpageComponent} from "./pages/channelpage/channelpage.component";
 import {ChannelsComponent} from "./pages/channels/channels.component";
 import {FavoritesComponent} from "./pages/favorites/favorites.component";
+import {ThematicArticleComponent} from "./pages/thematic-article/thematic-article.component";
 
 const routes: Routes = [
   {path: '', redirectTo: 'homepage',pathMatch: 'full'},
@@ -19,6 +20,7 @@ const routes: Routes = [
   {path: 'playlists/:nid', component: PlaylistComponent},
   {path: 'playlists', component: PlaylistsComponent},
   {path: 'thematics', component: ThematicsComponent},
+  {path: 'thematics/:nid', component: ThematicArticleComponent},
   {path: 'channelpage/:id_channel', component: ChannelpageComponent},
   {path: 'channels', component: ChannelsComponent},
   {path: 'favorites', component: FavoritesComponent},

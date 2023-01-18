@@ -11,9 +11,6 @@ const BASE_URL = "https://dev-project-upskill2-grupo3-ii.pantheonsite.io/api/"
 export class AppService {
 
 
-
-
-
   constructor(private http: HttpClient) { }
 
 
@@ -49,6 +46,9 @@ export class AppService {
   }
 
 
+
+
+
   /*_______ Comments _______*/
 
          /*------ GET ------*/
@@ -77,6 +77,8 @@ export class AppService {
 
   token = this.getToken();
 
+
+
   headers = { 'Accept': 'application/vnd.api+json', 'X-CSRF-Token': String(this.token)};
 
 
@@ -91,10 +93,9 @@ export class AppService {
 
 
   public notifyVideo = new BehaviorSubject<any>('');
-
   public notifyChannel = new BehaviorSubject<any>('');
 
-  notifyVideoObservable$ = this.notifyVideo.asObservable();
+  notifyVideoObservable = this.notifyVideo.asObservable();
 
   public notifyVideos(data: any) {
     if (data) {
@@ -102,25 +103,37 @@ export class AppService {
     }
   }
 
-
-  notifyChannelObservable$ = this.notifyChannel.asObservable();
+  notifyChannelObservable = this.notifyChannel.asObservable();
 
   public notifyChannels(data: any) {
     if (data) {
       this.notifyChannel.next(data);
     }
   }
-            /*------- Report Comment ------*/
 
-  postCommentReport (body:{} )
-  {
-    return this.http.post("https://dev-project-upskill2-grupo3-ii.pantheonsite.io/comment/",
-      body,
-      {'headers': this.headers});
+  /*------- Report Comment ------*/
+
+
+  Report (id:string,channel:boolean) {
+    let body
+    if(channel)
+    {
+      body ={
+        "field_reported_cc": [{"value": 1}],
+        "comment_type": [{"target_id": "comment"}],
+        "uid": [0]
+      }}
+    else {
+      body = {
+        "field_reported_vc": [{"value": 1}],
+        "comment_type": [{"target_id": "video_comment"}],
+        "uid": [0]
+      }
+    }
+    return this.http.patch("https://dev-project-upskill2-grupo3-ii.pantheonsite.io/comment/" + id, body,
+
+      {'headers': this.headers}).subscribe()
   }
-
-
-
 
 
   /*_______ Videos _______*/
@@ -163,20 +176,37 @@ export class AppService {
   }
       /*------ POST ------*/
 
-  postlike(entity_id:string, likecount:string, like:string) {
-    return this.http.post<Likes[]>(BASE_URL + "likesvideo/"+entity_id,
-      [{count: likecount,
-              entity_id: entity_id}],
-      {}
-
-
-    );
+  postLike (body:{} )
+  {
+    return this.http.post("https://dev-project-upskill2-grupo3-ii.pantheonsite.io/entity/flagging",
+      body,{'headers': this.headers});
   }
 
-  postDislike(entity_id:string, dislike:string, like:string) {
-    return this.http.post<Likes[]>(BASE_URL + "dislikesvideo/"+entity_id,{field_dislike: dislike} );
+  postDislike (body:{} )
+  {
+    return this.http.post("https://dev-project-upskill2-grupo3-ii.pantheonsite.io/entity/flagging",
+      body,{'headers': this.headers});
   }
 
+      /*------ Refresh Likes / Dislikes ------*/
+
+  public notifyLike = new BehaviorSubject<any>('');
+  notifyLikesObservable = this.notifyLike.asObservable();
+
+  public notifyLikes(data: any) {
+    if (data) {
+      this.notifyLike.next(data);
+    }
+  }
+
+  public notifyDislike = new BehaviorSubject<any>('');
+  notifyDislikesObservable = this.notifyDislike.asObservable();
+
+  public notifyDislikes(data: any) {
+    if (data) {
+      this.notifyDislike.next(data);
+    }
+  }
 
 
   /*_______ Channels _______*/
@@ -197,12 +227,13 @@ export class AppService {
 
   /*------Favorites------*/
 
+  favorites: number[] = JSON.parse(localStorage.getItem("favorites") || "[]");
+
   getFavorites() {
     return this.http.get<Video[]>(BASE_URL + "videos/" + this.favorites.join(","));
   }
 
 
-  favorites: number[] = JSON.parse(localStorage.getItem("favorites") || "[]");
 
 
   isFavorite(mid: string) {
@@ -220,6 +251,21 @@ export class AppService {
 
     localStorage.setItem("favorites", JSON.stringify(this.favorites))
   }
+
+
+  /*------- Refresh VideoPage ------*/
+
+
+  public changePage = new BehaviorSubject<any>('');
+
+  notifyVideoPage = this.changePage.asObservable();
+
+  public notifyPage(data: any) {
+    if (data) {
+      this.changePage.next(data);
+    }
+  }
+
 
 
 }

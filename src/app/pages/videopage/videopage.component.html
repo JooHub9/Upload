@@ -12,12 +12,14 @@
           <p class="tags">{{tags}}</p>
         </div>
         <div class="iconcontainer">
-          <fa-icon class="iconfav" [icon]="favorite? faBookmarkFull : faBookmark"
-                   (click)="toggleIcon()"></fa-icon>
+          <fa-icon class="iconfav" [icon]="appService.isFavorite(objvideo.mid)? faBookmarkFull : faBookmark"
+                   (click)="appService.toggleFavorite(objvideo.mid)"></fa-icon>
         </div>
       </div>
 
-      <iframe class="video" title="video" [src]="videoclean" allowfullscreen></iframe>
+      <iframe class="video" title="video" [src]="videoclean"
+              allow="autoplay; fullscreen; picture-in-picture"
+      ></iframe>
 
     </div>
 
@@ -27,11 +29,11 @@
       <div class="left">
 
         <div class="profilepicture" [ngStyle]="{'background-image':
-  'url(https://dev-project-upskill2-grupo3.pantheonsite.io/'  + objvideo.user_picture + ')'} "></div>
+  'url(https://dev-project-upskill2-grupo3-ii.pantheonsite.io/'  + objvideo.user_picture + ')'} "></div>
 
         <div class="textinfo">
 
-          <p class="channel"> {{objvideo.field_channel}} </p>
+          <p class="channel"> {{objvideo.name_1}} </p>
           <p class="date"> {{objvideo.created}} </p>
         </div>
       </div>
@@ -39,13 +41,13 @@
       <div class="right">
 
         <div class="likes">
-          <fa-icon class="iconThumbsUp" [icon]="faThumbsUp"></fa-icon>
-          <!--          <p class="likenumber">{{objlikes.count}}</p>-->
+          <fa-icon class="iconThumbsUp" [icon]="faThumbsUp" (click)="updateLikes()"></fa-icon>
+          <p class="likenumber">{{objlikes.count}}</p>
         </div>
 
         <div class="dislikes">
-          <fa-icon class="iconThumbsDown" [icon]="faThumbsDown" ></fa-icon>
-          <!--          <p class="dislikesnumber">{{objdislikes.count}}</p>-->
+          <fa-icon class="iconThumbsDown" [icon]="faThumbsDown" (click)="updateDislikes()"></fa-icon>
+          <p class="dislikesnumber">{{objdislikes.count}}</p>
         </div>
       </div>
 
@@ -72,6 +74,8 @@
                  [date]="v.created"
                  [comment]="v.comment_body"
                  [email]="v.field_comment_email"
+                 [idComment]="v.cid"
+                 [channel]=false
     ></app-comment>
 
   </div>
@@ -80,8 +84,7 @@
 
     <div *ngFor="let v of listvideos">
       <app-video
-        *ngIf="v.field_channel=== objvideo.field_channel"
-
+        *ngIf="v.field_channel=== objvideo.field_channel && v.mid != objvideo.mid"
         [mid]="v.mid"
         [field_channel]="v.field_channel"
         [field_video_title]="v.field_video_title"
@@ -89,9 +92,8 @@
         [thumbnail__target_id]="v.thumbnail__target_id"
         [user_picture]="v.user_picture"
         [field_duration]="v.field_duration"
-        [field_channel_1]="v.field_channel_1">
+        [field_channel_1]="v.nid">
       </app-video>
-
     </div>
 
   </div>

@@ -29,7 +29,8 @@
     </div>
 
     <div (mouseleave)="toggleReportText()">
-      <div class="reporttextcontainer" *ngIf="visible" (click)="toggleReport()">
+      <div class="reporttextcontainer" *ngIf="visible" (click)="appService.Report(idComment, channel); reported=true ">
+
         <fa-icon [icon]="faFlag" [ngStyle]="{'color': reported? '#B2191B' : ''}"></fa-icon>
         <div *ngIf="!reported">
           <p class="reporttext">Report Comment</p>

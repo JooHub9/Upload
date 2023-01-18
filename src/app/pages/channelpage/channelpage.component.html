@@ -2,10 +2,10 @@
 
   <div class="cover" [ngStyle]="{'background-image':
   'linear-gradient(transparent,transparent,transparent,transparent, #13131a 100%),' +
-  'url(https://dev-project-upskill2-grupo3.pantheonsite.io/'
+  'url(https://dev-project-upskill2-grupo3-ii.pantheonsite.io/'
                                       + objchannels.field_channel_cover + ')'}">
 
-    <img class="userpicture" [src]="'https://dev-project-upskill2-grupo3.pantheonsite.io/' + objchannels.field_logo"
+    <img class="userpicture" [src]="'https://dev-project-upskill2-grupo3-ii.pantheonsite.io/' + objchannels.field_logo"
          alt="Logo">
   </div>
 
@@ -28,7 +28,7 @@
       [user_picture]="v.user_picture"
       [field_duration]="v.field_duration"
       [field_channel_1]="v.nid">
-      >
+
     </app-video>
   </div>
 
@@ -51,6 +51,8 @@
         [date]="cc.field_date"
         [comment]="cc.field_comment"
         [email]="cc.field_email"
+        [idComment]="cc.cid"
+        [channel]=true
       >
         <fa-icon class="commenticon" [icon]="faEllipsisVertical"></fa-icon>
 

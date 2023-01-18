@@ -9,28 +9,27 @@ import {faEllipsisVertical, faFlag} from "@fortawesome/free-solid-svg-icons";
 })
 export class CommentComponent {
 
-  faEllipsisVertical=faEllipsisVertical;
-  faFlag=faFlag;
+  faEllipsisVertical = faEllipsisVertical;
+  faFlag = faFlag;
 
-  visible : boolean = false;
-  reported : boolean = false;
+  visible: boolean = false;
+  reported: boolean = false;
 
-  constructor(private appService: AppService) { }
 
-  @Input() uid : string = "";
-  @Input() user_picture : string = "";
-  @Input() username : string = "";
-  @Input() date : string = "";
-  @Input() comment : string = "";
-  @Input() email : string = "";
+  constructor(public appService: AppService) {}
 
-  toggleReportText()
-  {
+  @Input() uid: string = "";
+  @Input() user_picture: string = "";
+  @Input() username: string = "";
+  @Input() date: string = "";
+  @Input() comment: string = "";
+  @Input() email: string = "";
+  @Input() idComment: string = "";
+  @Input() channel!: boolean;
+
+  toggleReportText() {
     this.visible = !this.visible;
   }
 
-  toggleReport()
-  {
-    this.reported = !this.reported;
-  }
+
 }

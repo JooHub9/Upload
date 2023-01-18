@@ -1,7 +1,7 @@
 <div class="video" (mouseover)="player=true" (mouseout)="player=false">
   <div class="images" >
     <img class=thumbnail [src]="'https://dev-project-upskill2-grupo3-ii.pantheonsite.io/' + thumbnail__target_id"
-         [routerLink]="['/videopage/',mid]" alt="video thumbnail">
+         [routerLink]="['/video/',mid]" alt="video thumbnail">
     <div class="play" *ngIf="player">
     <fa-icon [icon]="faCirclePlay"></fa-icon></div>
     <div class="main_duration">
@@ -14,7 +14,7 @@
   <div class="video_info">
     <div class="info">
       <p *ngIf="field_channel" class="channel" [routerLink]="['/channelpage/',field_channel_1]">{{field_channel}}</p>
-      <h3 class="video_name" [routerLink]="['/videopage/',mid]" >{{field_video_title}}</h3>
+      <h3 class="video_name" [routerLink]="['/video/',mid]" >{{field_video_title}}</h3>
       <p class="created">{{created}}</p>
     </div>
     <div *ngIf="share_type" class="icons">

@@ -7,17 +7,26 @@ import {Component, Input} from '@angular/core';
 })
 export class RandompictureComponent {
 
-  @Input() uid? : string = "Anonymous";
-  @Input() user_picture? : string = "";
 
-  count_images: number = 7;
+  @Input() uid?: string = "Anonymous";
+  @Input() user_picture?: string = "";
+  @Input() type?: string = "";
+  @Input() email!: string;
 
-  image_number = this.randomNumber(this.count_images)
+  url!: string;
+
+  count_anonymous: number = 500;
+  image_number = this.randomNumber(this.count_anonymous)
 
   randomNumber(count_images:number) {
     return Math.floor(Math.random() * count_images);
-
   }
 
+  urlForm = "https://robohash.org/Anonymous" + this.image_number + "?set=any&bgset=any"
 
+
+
+  ngOnInit(): void {
+    this.url = "https://robohash.org/" + this.email + "?set=any&bgset=any"
+  }
 }

@@ -9,6 +9,7 @@
     flex-wrap: wrap;
     align-content: center;
     gap: 20px;
+
   }
 
   .container_more_videos {
@@ -44,6 +45,8 @@
   //width: 350px;
   width: auto;
   margin: 0;
+  padding-left: 10px;
+
 
   .suggested_content {
     width: 290px;
@@ -67,13 +70,20 @@
       .see_all:hover {
         color: #1E75FF;
       }
+
+    }
+
+    .image_header {
+      width: 280px;
+      margin-bottom: 10px;
+      border-radius: 15px;
+
     }
 
     .text_container {
       display: flex;
       align-items: center;
       padding: 5px 0;
-      cursor: pointer;
 
       .logo {
         height: 40px;
@@ -93,13 +103,16 @@
     }
   }
 
-  //ver com consultor tecnológico
   #channel_content {
     border-radius: 15px 15px 0 0;
   }
 
   #thematic_content {
     border-radius: 15px 15px
+  }
+
+  .container_t {
+    cursor: pointer;
   }
 
   .more {

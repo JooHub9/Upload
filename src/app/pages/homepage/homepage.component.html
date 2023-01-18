@@ -12,7 +12,7 @@
         [user_picture]="video.user_picture"
         [field_duration]="video.field_duration"
         [field_channel_1]="video.field_channel_1"
-      share_type="icons">
+        share_type="icons">
       </app-video>
     </div>
     <div class="container_more_videos">
@@ -28,27 +28,32 @@
       </div>
       <div class="text_container" *ngFor="let channel of channels" [routerLink]="['/channelpage',channel.nid]">
         <div routerLink="channels">
-          <img class="logo" [src]="'https://dev-project-upskill2-grupo3-ii.pantheonsite.io/' + channel.field_logo">
+          <img class="logo" [src]="'https://dev-project-upskill2-grupo3-ii.pantheonsite.io/' + channel.field_logo" alt="channel logo">
         </div>
         <div class="title"> {{channel.title}}</div>
       </div>
     </div>
-    <div class="more">
+    <div class="more" [routerLink]="['/channels']">
       <h5>SEE MORE</h5>
     </div>
-  <div class="suggested_content" id="thematic_content">
-    <div class="container">
-      <h4>Suggested Thematics</h4>
-      <h4 class="see_all"> SEE ALL</h4>
-    </div>
-    <div class="text_container">
-      <div>
-        <img class="logo">
+    <div class="suggested_content" id="thematic_content">
+      <div class="container">
+        <h4>Suggested Thematics</h4>
+        <h4 class="see_all" [routerLink]="['/thematics']"> SEE ALL</h4>
       </div>
-      <div class="title">
-        <p>Thematic Title</p>
-      <p class="subtitle">User Name</p></div>
+      <div class="container_t">
+        <div class="text_container">
+          <div>
+            <img class="logo" [src]="'https://dev-project-upskill2-grupo3-ii.pantheonsite.io/' + suggested_thematic.field_thumbnail_article" alt="thematic thumbnail">
+          </div>
+          <div class="title">
+            <p>{{suggested_thematic.title}}</p>
+            <p class="subtitle">{{suggested_thematic.name}}</p></div>
+        </div>
+        <div>
+          <img class="image_header" [src]="'https://dev-project-upskill2-grupo3-ii.pantheonsite.io/' + suggested_thematic.field_image_header" alt="thematic image">
+        </div>
+      </div>
     </div>
   </div>
-</div>
 </div>

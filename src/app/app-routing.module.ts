@@ -16,7 +16,7 @@ const routes: Routes = [
   {path: '', redirectTo: 'homepage',pathMatch: 'full'},
   {path: 'homepage', component: HomepageComponent },
   {path: 'comments', component: CommentsComponent },
-  {path: 'videopage/:id_video', component: VideopageComponent },
+  {path: 'video/:id_video',  component: VideopageComponent,  },
   {path: 'playlists/:nid', component: PlaylistComponent},
   {path: 'playlists', component: PlaylistsComponent},
   {path: 'thematics', component: ThematicsComponent},

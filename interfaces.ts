@@ -1,28 +1,27 @@
-
 /*____________ Comments ____________*/
 
-interface ContentComment
-{
-  uid : string;
+interface ContentComment {
+  uid: string;
   field_username: string;
-  field_date : string;
+  field_date: string;
   field_comment: string;
   langcode: string;
   field_email: string;
   user_picture: string;
+  cid: string;
 }
 
 
-interface VideoComment
-{
-  uid : string;
+interface VideoComment {
+  uid: string;
   field_username_video: string;
-  created : string;
+  created: string;
   comment_body: string;
   langcode: string;
   field_comment_email: string;
   user_picture: string;
-  mid:string;
+  mid: string;
+  cid: string;
 }
 
 
@@ -38,17 +37,20 @@ interface Video {
   user_picture: string;
   name_1: string;
   field_tags: string;
-  field_media_oembed_video:string;
+  field_media_oembed_video: string;
   field_channel: string;
   field_channel_1: string;
-  field_like:string;
-  field_dislike:string;
+  nid: string;
+  field_like: string;
+  field_dislike: string;
+
 }
+
 
 /*____________ Tags ____________*/
 
 interface Tags {
-  name:string;
+  name: string;
 }
 
 
@@ -90,7 +92,7 @@ interface Thematic {
   field_teaser: string;
   field_thumbnail_article: string;
   body: string;
-  field_external_links: string [];
+  field_external_links: string;
   user_picture: string;
   name: string
 }
@@ -116,7 +118,6 @@ interface Channel {
 
   nid: string;
   title: string;
-  field_biography: string;
   field_channel_cover: string;
   name: string;
   user_picture: string;
@@ -135,5 +136,33 @@ interface ChannelVideos {
   thumbnail__target_id: string;
   user_picture: string;
   name: string;
-  field_media_oembed_video:string;
+  field_media_oembed_video: string;
+  nid: string;
 }
+
+/*____________ Thematics ____________*/
+
+interface Thematics {
+  nid: string;
+  title: string;
+  field_image_header: string;
+  field_tag: string;
+  created: string;
+  field_teaser: string;
+  field_thumbnail_article: string;
+  body: string;
+  field_external_links: string;
+  name: string;
+}
+
+/*____________ Likes / Dislikes ____________*/
+
+interface Likes {
+  entity_id: string;
+  id: string;
+  entity_type: string;
+  count: string;
+
+}
+
+

@@ -1,99 +1,74 @@
 <div class="container">
-
   <div class="main_div">
-
     <div class="videoblock">
-
       <div class="text_flag">
-
         <div class="text">
-
           <p class="title">{{objvideo.field_video_title}}</p>
           <p class="tags">{{tags}}</p>
         </div>
-        <div class="flags">
-          <fa-icon class="iconFlag" [icon]="faFlagFull"
-                                    [style.color]="red ? 'red' : 'grey'"
-                                    (click)="toggleFlag()"></fa-icon>
+        <div class="iconcontainer">
+          <fa-icon class="iconfav" [icon]="appService.isFavorite(objvideo.mid)? faBookmarkFull : faBookmark"
+                   (click)="appService.toggleFavorite(objvideo.mid)"></fa-icon>
         </div>
       </div>
-
-      <iframe class="video" title="video" [src]="videoclean" allowfullscreen></iframe>
-
+      <iframe class="video" title="video" [src]="videoclean"
+              allow="autoplay; fullscreen; picture-in-picture"
+      ></iframe>
     </div>
-
-
-
     <div class="divundervideo">
-
       <div class="left">
-
         <div class="profilepicture" [ngStyle]="{'background-image':
   'url(https://dev-project-upskill2-grupo3-ii.pantheonsite.io/'  + objvideo.user_picture + ')'} "></div>
-
         <div class="textinfo">
-
-          <p class="channel"> {{objvideo.field_channel}} </p>
+          <p class="channel"> {{objvideo.name_1}} </p>
           <p class="date"> {{objvideo.created}} </p>
         </div>
       </div>
-
       <div class="right">
-
         <div class="likes">
-          <fa-icon class="iconThumbsUp" [icon]="faThumbsUp" (click)="updateLikesDislikes('like')"></fa-icon>
-          <p class="likenumber">{{likes}}</p>
+          <fa-icon class="iconThumbsUp" [icon]="faThumbsUp" (click)="updateLikes()"></fa-icon>
+          <p class="likenumber">{{objlikes.count}}</p>
         </div>
-
         <div class="dislikes">
-          <fa-icon class="iconThumbsDown" [icon]="faThumbsDown" (click)="updateLikesDislikes('dislike')"></fa-icon>
-          <p class="dislikesnumber">{{dislikes}}</p>
+          <fa-icon class="iconThumbsDown" [icon]="faThumbsDown" (click)="updateDislikes()"></fa-icon>
+          <p class="dislikesnumber">{{objdislikes.count}}</p>
         </div>
       </div>
-
     </div>
-
     <div class="description">
-
-      <p class="descriptiontext">
-        {{objvideo.field_video_description}}
-      </p>
-
+      <p class="descriptiontext">{{objvideo.field_video_description}}</p>
     </div>
-
-    <app-form></app-form>
-
+    <app-form
+      [id]="id"
+      page="video"
+    ></app-form>
     <app-comment *ngFor="let v of listvideoCom"
-      type="video"
-      [uid]="v.uid"
-      [user_picture]="v.user_picture"
-      [username]="v.field_username_video"
-      [date]="v.created"
-      [comment]="v.comment_body"
+                 type="video"
+                 [uid]="v.uid"
+                 [user_picture]="v.user_picture"
+                 [username]="v.field_username_video"
+                 [date]="v.created"
+                 [comment]="v.comment_body"
+                 [email]="v.field_comment_email"
+                 [idComment]="v.cid"
+                 [channel]=false
     ></app-comment>
-
   </div>
-
   <div class="sidebar">
-
     <div *ngFor="let v of listvideos">
-
       <app-video
-        *ngIf="v.field_channel=== objvideo.field_channel"
-
+        *ngIf="v.field_channel=== objvideo.field_channel && v.mid != objvideo.mid"
         [mid]="v.mid"
         [field_channel]="v.field_channel"
         [field_video_title]="v.field_video_title"
         [created]="v.created"
         [thumbnail__target_id]="v.thumbnail__target_id"
         [user_picture]="v.user_picture"
-        [field_duration]="v.field_duration">
+        [field_duration]="v.field_duration"
+        [field_channel_1]="v.nid">
       </app-video>
-
     </div>
-
   </div>
-
 </div>
 
 

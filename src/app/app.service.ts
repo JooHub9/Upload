@@ -229,11 +229,11 @@ export class AppService {
 
   favorites: number[] = JSON.parse(localStorage.getItem("favorites") || "[]");
 
+
   getFavorites() {
-    return this.http.get<Video[]>(BASE_URL + "videos/" + this.favorites.join(","));
+
+  return this.http.get<Video[]>(BASE_URL + "videos/" + this.favorites.join(","));
   }
-
-
 
 
   isFavorite(mid: string) {
@@ -253,7 +253,7 @@ export class AppService {
   }
 
 
-  /*------- Refresh VideoPage ------*/
+ /* /!*------- Refresh VideoPage ------*!/
 
 
   public changePage = new BehaviorSubject<any>('');
@@ -264,9 +264,7 @@ export class AppService {
     if (data) {
       this.changePage.next(data);
     }
-  }
-
-
+  }*/
 
 }
 

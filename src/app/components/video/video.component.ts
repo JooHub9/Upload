@@ -39,8 +39,6 @@ export class VideoComponent implements OnInit {
 
   }
 
-  ngOnInit(): void {
-
-  }
+  ngOnInit(): void {}
 
 }

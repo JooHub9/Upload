@@ -42,7 +42,7 @@ export class ChannelpageComponent {
     });
 
 
-    this.appService.notifyChannelObservable$.subscribe(res => {
+    this.appService.notifyChannelObservable.subscribe(res => {
       if (res.refreshChannel) {
 
         console.log("Isto aconteceu no channel!!")
@@ -52,8 +52,6 @@ export class ChannelpageComponent {
         });
       }
     })
-
-
   }
 }
 

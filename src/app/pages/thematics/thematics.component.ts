@@ -8,15 +8,14 @@ import {AppService} from "src/app/app.service";
   styleUrls: ['./thematics.component.scss']
 })
 export class ThematicsComponent implements OnInit{
-  thematics? : any;
+  thematics : Thematic[] = [];
 
   constructor(public route: ActivatedRoute, public AppService: AppService) {
-    /*this.tid = route.snapshot.params["tid"];*/
   }
 
   ngOnInit(): void {
 
-    this.AppService.getThematics().subscribe((thematics : any) => {
+    this.AppService.getThematics().subscribe((thematics ) => {
       this.thematics = thematics;
     });
   }

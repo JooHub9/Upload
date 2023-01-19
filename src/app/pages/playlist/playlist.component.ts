@@ -9,8 +9,8 @@ import {AppService} from "../../app.service";
 })
 export class PlaylistComponent implements OnInit {
   nid: string;
-  playlist = {} as Playlist ;
-  playlist_videos: Playlist_Video [] = [];
+  playlist = {} as Playlist;
+  playlist_videos: Video [] = [];
 
   constructor(public route: ActivatedRoute, public AppService: AppService) {
     this.nid = route.snapshot.params["nid"];

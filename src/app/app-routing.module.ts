@@ -10,15 +10,17 @@ import {ThematicsComponent} from "./pages/thematics/thematics.component";
 import {ChannelpageComponent} from "./pages/channelpage/channelpage.component";
 import {ChannelsComponent} from "./pages/channels/channels.component";
 import {FavoritesComponent} from "./pages/favorites/favorites.component";
+import {ThematicArticleComponent} from "./pages/thematic-article/thematic-article.component";
 
 const routes: Routes = [
   {path: '', redirectTo: 'homepage',pathMatch: 'full'},
   {path: 'homepage', component: HomepageComponent },
   {path: 'comments', component: CommentsComponent },
-  {path: 'videopage/:id_video', component: VideopageComponent },
+  {path: 'video/:id_video',  component: VideopageComponent,  },
   {path: 'playlists/:nid', component: PlaylistComponent},
   {path: 'playlists', component: PlaylistsComponent},
   {path: 'thematics', component: ThematicsComponent},
+  {path: 'thematics/:nid', component: ThematicArticleComponent},
   {path: 'channelpage/:id_channel', component: ChannelpageComponent},
   {path: 'channels', component: ChannelsComponent},
   {path: 'favorites', component: FavoritesComponent},

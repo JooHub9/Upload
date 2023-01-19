@@ -1,16 +1,6 @@
-<!--
-<div class="profilepicture" [ngStyle]="{'background-image': uid === 'Anonymous'
-         ? 'url(../assets/profile_pictures/image' + image_number + '.png)'
-         : 'url(https://dev-project-upskill2-grupo3.pantheonsite.io/'  + user_picture + ')'} "
-></div>
--->
-<div class="profilepicture" *ngIf="type==='form'"   [ngStyle]="{'background-image': uid === 'Anonymous'
-         ? 'url(' + urlForm + ')'
-         : 'url(https://dev-project-upskill2-grupo3.pantheonsite.io/'  + user_picture + ')'} "
-></div>
-
+<div class="profilepicture" *ngIf="type==='form'" [ngStyle]="{'background-image': 'url(' + urlForm + ')'}"></div>
 
 <div class="profilepicture" *ngIf="type==='comment'" [ngStyle]="{'background-image': uid === 'Anonymous'
          ? 'url(' + url + ')'
-         : 'url(https://dev-project-upskill2-grupo3.pantheonsite.io/'  + user_picture + ')'} "
+         : 'url(https://dev-project-upskill2-grupo3-ii.pantheonsite.io/'  + user_picture + ')'} "
 ></div>

@@ -58,14 +58,11 @@ export class HomepageComponent {
     })
     this.appService.getTags().subscribe((st=> {
       this.t = st
-      console.log("este é o nosso t - ", this.t)
       this.list = this.t.filter(v => {return  v.tid === this.tag})
-      console.log("este é o nosso list - ", this.list)
       this.obj = this.list[0]
-      console.log("este é o nosso obj - ", this.obj)
       this.str = this.obj.name
     }))
-//this.str=this.obj
+
 
   }
 

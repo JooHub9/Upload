@@ -2,3 +2,78 @@
   flex: 1;
 }
 
+.main_container_thematics {
+
+  .main_title_thematics {
+    color: white;
+    padding-top: 50px;
+    padding-bottom: 50px;
+    padding-left: 30px;
+  }
+
+  .out_container_thematics {
+    display: grid;
+    grid-template-columns: auto auto auto;
+    justify-content: left;
+
+    .thematics_container {
+      padding: 20px;
+
+      .images_thematics {
+        flex-direction: column;
+        align-items: flex-end;
+        position: relative;
+
+
+        .image_header {
+          margin-left: 15px;
+          width: 350px;
+          height: 200px;
+          border-top-right-radius: 20px;
+          border-top-left-radius: 20px;
+        }
+
+        .profile_photo_thematic {
+          padding-left: 200px;
+
+          .user_picture_thematic {
+            width: 75px;
+            height: 75px;
+            object-fit: cover;
+            border-radius: 50px;
+            border: 2px solid white;
+            right: 35px;
+            top: 160px;
+            position: absolute;
+          }
+        }
+      }
+
+      .text_box_thematic {
+        padding-bottom: 50px;
+        padding-top: 25px;
+        padding-left: 30px;
+
+        .username_thematic {
+          color: blue;
+          font-size: 15px;
+        }
+
+        .title_thematic {
+          color: white;
+          margin: 2px;
+        }
+
+        .tag_thematic {
+          color: white;
+          margin-bottom: 5px;
+          margin-top: 7px;
+        }
+
+        .created_thematic {
+          color: gray;
+        }
+      }
+    }
+  }
+}

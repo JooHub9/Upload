@@ -1,1 +1,35 @@
-<p>thematic-article works!</p>
+<div class="main_container_thematic">
+  <div class="thematic_container">
+    <h1 class="thematic_title">{{thematic.title}}</h1>
+    <div class="images_thematic">
+    <div class="thematic_image_header">
+      <img class="image_header_thematic"
+           [src]="'https://dev-project-upskill2-grupo3-ii.pantheonsite.io/' + thematic.field_image_header">
+    </div>
+      <div class="thumbnail_thematic">
+        <img class="thematic_thumbnail"
+             [src]="'https://dev-project-upskill2-grupo3-ii.pantheonsite.io/' + thematic.field_thumbnail_article">
+      </div>
+    </div>
+    <div class="thematic_tag">#{{thematic.field_tag}}</div>
+    <div class="thematic_teaser">{{thematic.field_teaser}}</div>
+    <div class="thematic_body">{{thematic.body}}</div>
+    <div class="thematic_external_links">{{thematic.field_external_links}}</div>
+    <h2 class="thematic_videos">Videos</h2>
+    <div class="videos_thematic">
+      <div class="thematic_article_videos"
+           *ngIf="thematic">
+        <app-video
+          *ngFor="let tv of thematic_videos"
+          [mid]="tv.mid"
+          [thumbnail__target_id]="tv.thumbnail__target_id"
+          [user_picture]="tv.user_picture"
+          [field_duration]="tv.field_duration"
+          [field_tags]="tv.field_tags"
+          [field_video_title]="tv.field_video_title"
+          [created]="tv.created">
+        </app-video>
+      </div>
+    </div>
+  </div>
+</div>

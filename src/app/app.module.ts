@@ -29,6 +29,7 @@ import { ThematicVideosComponent } from './components/thematic-videos/thematic-v
 import { ChannelpageComponent } from './pages/channelpage/channelpage.component';
 import { ChannelsComponent } from './pages/channels/channels.component';
 import { FavoritesComponent } from './pages/favorites/favorites.component';
+import { TagsPipe } from './tags.pipe';
 
 @NgModule({
   declarations: [
@@ -53,7 +54,8 @@ import { FavoritesComponent } from './pages/favorites/favorites.component';
     ThematicVideosComponent,
     ChannelpageComponent,
     ChannelsComponent,
-    FavoritesComponent
+    FavoritesComponent,
+    TagsPipe
   ],
 
   imports: [

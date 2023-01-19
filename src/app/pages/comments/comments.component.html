@@ -1,9 +1,6 @@
 <p style="color: #FAFAFB">Channel Comments</p>
-
 <div *ngFor="let c of contentCom">
-
   <div class="commentcontainer">
-
     <app-comment type="channel"
                  [uid]="c.uid"
                  [user_picture]="c.user_picture"
@@ -12,10 +9,7 @@
                  [comment]="c.field_comment"
     ></app-comment>
   </div>
-</div>
-
-<p style="color: #FAFAFB">Video Comments</p>
-
+</div><p style="color: #FAFAFB">Video Comments</p>
 <div *ngFor="let v of videoCom">
   <div class="commentcontainer">
     <app-comment type="video"

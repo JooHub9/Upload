@@ -1,13 +1,20 @@
 <div class="videos_playlist">
   <div class="images_playlist_videos">
     <div class="image_video" [routerLink]="['/videopage/', mid]">
-    <img class="thumbnail_video_playlist" [src]="'https://dev-project-upskill2-grupo3.pantheonsite.io/' + thumbnail__target_id">
+    <img class="thumbnail_video_playlist" [src]="'https://dev-project-upskill2-grupo3-ii.pantheonsite.io/' + thumbnail__target_id">
     </div>
     <div class="duration_video_playlist">
       <p class="video_duration">{{field_duration}}</p>
     </div>
+    <div class="user_playlist_videos">
+      <div class="user_picture_playlist_videos">
+        <img class="user_playlist_videos" [src]="'https://dev-project-upskill2-grupo3-ii.pantheonsite.io/' + user_picture">
+      </div>
+      <div class="username_playlist_videos">{{name}}</div>
+    </div>
   </div>
   <div class="video_playlist_info">
       <h3 class="video_title">{{field_video_title}}</h3>
+    <div class="created_playlist_videos">{{created}}</div>
   </div>
 </div>

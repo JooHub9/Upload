@@ -1,6 +1,4 @@
 <div class="commentcontainer">
-
-
   <div class="pictextcontainer">
     <app-randompicture
       [uid]="uid"
@@ -8,28 +6,19 @@
       [email]="email"
       type="comment"
     ></app-randompicture>
-
     <div class="text">
-      <span class="username">
-            {{username}}
-      </span>
-      <span class="time">
-            {{date}}
-      </span>
-      <div class="commenttext">
-        {{comment}}
-      </div>
+      <span class="username">{{username}}</span>
+      <span class="time">{{date}}</span>
+      <div class="commenttext">{{comment}}</div>
     </div>
   </div>
-
   <div class="commenticon">
-
     <div class="iconcontainer" (click)="toggleReportText()">
       <fa-icon [icon]="faEllipsisVertical"></fa-icon>
     </div>
-
     <div (mouseleave)="toggleReportText()">
-      <div class="reporttextcontainer" *ngIf="visible" (click)="toggleReport()">
+      <div class="reporttextcontainer" *ngIf="visible" (click)="appService.Report(idComment, channel); reported=true ">
+
         <fa-icon [icon]="faFlag" [ngStyle]="{'color': reported? '#B2191B' : ''}"></fa-icon>
         <div *ngIf="!reported">
           <p class="reporttext">Report Comment</p>
@@ -40,9 +29,6 @@
         <!--<fa-icon [icon]="faFlag"></fa-icon>-->
       </div>
     </div>
-
   </div>
-
-
 </div>
 

@@ -1,22 +1,18 @@
 <div class="pagecontainer">
-
   <div class="cover" [ngStyle]="{'background-image':
   'linear-gradient(transparent,transparent,transparent,transparent, #13131a 100%),' +
+
   'url(https://dev-project-upskill2-grupo3-ii.pantheonsite.io/'
                                       + objchannels.field_channel_cover + ')'}">
 
     <img class="userpicture" [src]="'https://dev-project-upskill2-grupo3-ii.pantheonsite.io/' + objchannels.field_logo"
          alt="Logo">
   </div>
-
-
   <div class="textcontainer">
     <div class="title">{{objchannels.title}}</div>
     <div class="description">{{objchannels.field_description}}</div>
   </div>
-
   <div class="textovideos">Vídeos</div>
-
   <div class="listvideos">
     <app-video
       *ngFor="let v of listvideos"
@@ -28,21 +24,15 @@
       [user_picture]="v.user_picture"
       [field_duration]="v.field_duration"
       [field_channel_1]="v.nid">
-      >
     </app-video>
   </div>
-
   <div class="textocomentarios">Comentários</div>
-
   <div class="commentscontainer">
-
     <app-form
       [id]="id"
       page="channel"
     ></app-form>
-
     <div class="commentcontainer">
-
       <app-comment
         *ngFor="let cc of listchannelCom"
         [uid]="cc.uid"
@@ -51,14 +41,12 @@
         [date]="cc.field_date"
         [comment]="cc.field_comment"
         [email]="cc.field_email"
-      >
+        [idComment]="cc.cid"
+        [channel]=true>
         <fa-icon class="commenticon" [icon]="faEllipsisVertical"></fa-icon>
-
       </app-comment>
     </div>
   </div>
-
-
 </div>
 
 

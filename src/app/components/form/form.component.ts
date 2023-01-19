@@ -54,7 +54,7 @@ export class FormComponent {
 
       setTimeout(()=>{
         this.appService.notifyChannels({refreshChannel: true});
-      }, 200);
+      }, 300);
 
 
     } else {
@@ -72,12 +72,17 @@ export class FormComponent {
 
       setTimeout(()=>{
         this.appService.notifyVideos({refreshVideo: true});
-      }, 200);
+      }, 300);
     }
 
     this.commentForm.reset();
 
   }
+
+
+
+
+
 
 
 }

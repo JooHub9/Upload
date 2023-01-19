@@ -10,6 +10,7 @@ const BASE_URL = "https://dev-project-upskill2-grupo3-ii.pantheonsite.io/api/"
 export class AppService {
 
 
+
   constructor(private http: HttpClient) {
   }
 
@@ -18,31 +19,46 @@ export class AppService {
 
 
   getPlaylists() {
-    return this.http.get<Playlists[]>(BASE_URL + "playlists");
+    return this.http.get<Playlist[]>(BASE_URL + "playlists");
   }
 
   getPlaylist(nid: string) {
     return this.http.get<Playlist[]>(BASE_URL + "playlists/" + nid);
   }
 
-  getPlaylistVideos(nid: string) {
-    return this.http.get<Playlist_Video[]>(BASE_URL + "playlist/videos/" + nid);
+
+  getPlaylistVideos(nid : string) {
+    return this.http.get<Video[]>(BASE_URL + "playlist/videos/" + nid);
   }
+
+
 
   /*_______ Thematics _______*/
 
   getThematics() {
-    return this.http.get<Thematics[]>(BASE_URL + "thematics/");
+    return this.http.get<Thematic[]>(BASE_URL + "thematics");
   }
 
   getSuggestedThematic() {
     return this.http.get<Thematics[]>(BASE_URL + "thematicsrandom?r=" + Date.now());
-
   }
+
+  getThematic(nid : string) {
+    return this.http.get<Thematic[]>(BASE_URL + "thematics/" + nid);
+  }
+
+  getThematicVideos(nid : string) {
+    return this.http.get<Video[]>(BASE_URL + "thematic_article/videos/" + nid);
+  }
+
+
+
+  /*_______ Categories _______*/
 
   getCategories() {
     return this.http.get(BASE_URL + "categorias")
   }
+
 
 
   /*_______ Comments _______*/
@@ -69,6 +85,7 @@ export class AppService {
 
   token = this.getToken();
 
+
   headers = {'Accept': 'application/vnd.api+json', 'X-CSRF-Token': String(this.token)};
 
 
@@ -82,10 +99,9 @@ export class AppService {
 
 
   public notifyVideo = new BehaviorSubject<any>('');
-
   public notifyChannel = new BehaviorSubject<any>('');
 
-  notifyVideoObservable$ = this.notifyVideo.asObservable();
+  notifyVideoObservable = this.notifyVideo.asObservable();
 
   public notifyVideos(data: any) {
     if (data) {
@@ -93,8 +109,7 @@ export class AppService {
     }
   }
 
-
-  notifyChannelObservable$ = this.notifyChannel.asObservable();
+  notifyChannelObservable = this.notifyChannel.asObservable();
 
   public notifyChannels(data: any) {
     if (data) {
@@ -104,10 +119,27 @@ export class AppService {
 
   /*------- Report Comment ------*/
 
-  postCommentReport(body: {}) {
-    return this.http.post("https://dev-project-upskill2-grupo3-ii.pantheonsite.io/comment/",
-      body,
-      {'headers': this.headers});
+
+  Report (id:string,channel:boolean) {
+    let body
+    if(channel)
+    {
+      body ={
+        "field_reported_cc": [{"value": 1}],
+        "comment_type": [{"target_id": "comment"}],
+        "uid": [0]
+      }}
+    else {
+      body = {
+        "field_reported_vc": [{"value": 1}],
+        "comment_type": [{"target_id": "video_comment"}],
+        "uid": [0]
+      }
+    }
+    return this.http.patch("https://dev-project-upskill2-grupo3-ii.pantheonsite.io/comment/" + id, body,
+
+      {'headers': this.headers}).subscribe()
+
   }
 
 
@@ -132,6 +164,7 @@ export class AppService {
     return this.http.get<Video[]>(BASE_URL + "allvideos/" + id);
   }
 
+
   /*_______ Tags _______*/
 
   getTags() {
@@ -151,22 +184,41 @@ export class AppService {
     return this.http.get<Likes[]>(BASE_URL + "dislikesvideo/" + entity_id);
   }
 
+
   /*------ POST ------*/
 
-  postlike(entity_id: string, likecount: string, like: string) {
-    return this.http.post<Likes[]>(BASE_URL + "likesvideo/" + entity_id,
-      [{
-        count: likecount,
-        entity_id: entity_id
-      }],
-      {}
-    );
+  postLike (body:{} )
+  {
+    return this.http.post("https://dev-project-upskill2-grupo3-ii.pantheonsite.io/entity/flagging",
+      body,{'headers': this.headers});
   }
 
-  postDislike(entity_id: string, dislike: string, like: string) {
-    return this.http.post<Likes[]>(BASE_URL + "dislikesvideo/" + entity_id, {field_dislike: dislike});
+  postDislike (body:{} )
+  {
+    return this.http.post("https://dev-project-upskill2-grupo3-ii.pantheonsite.io/entity/flagging",
+      body,{'headers': this.headers});
+
   }
 
+      /*------ Refresh Likes / Dislikes ------*/
+
+  public notifyLike = new BehaviorSubject<any>('');
+  notifyLikesObservable = this.notifyLike.asObservable();
+
+  public notifyLikes(data: any) {
+    if (data) {
+      this.notifyLike.next(data);
+    }
+  }
+
+  public notifyDislike = new BehaviorSubject<any>('');
+  notifyDislikesObservable = this.notifyDislike.asObservable();
+
+  public notifyDislikes(data: any) {
+    if (data) {
+      this.notifyDislike.next(data);
+    }
+  }
 
   /*_______ Channels _______*/
 
@@ -192,9 +244,8 @@ export class AppService {
 
   favorites: number[] = JSON.parse(localStorage.getItem("favorites") || "[]");
 
-
   getFavorites() {
-      return this.http.get<Video[]>(BASE_URL + "videos/favs/" + this.favorites.join(",") || "none");
+      return this.http.get<Video[]>(BASE_URL + "videos/favs/" + this.favorites.join(","));
   }
 
   isFavorite(mid: string) {
@@ -214,5 +265,18 @@ export class AppService {
   }
 
 
+  /*------- Refresh VideoPage ------*/
+
+/*
+  public changePage = new BehaviorSubject<any>('');
+
+  notifyVideoPage = this.changePage.asObservable();
+
+  public notifyPage(data: any) {
+    if (data) {
+      this.changePage.next(data);
+    }
+  }
+*/
 }
 

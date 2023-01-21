@@ -2,6 +2,10 @@
   <div class="title">
   <h2>Favorites</h2>
 </div>
+  <div class="no_favs" *ngIf="favorites_list.length===0">
+    <fa-icon [icon]="faPoo" ></fa-icon>
+  <h1> Ooops! It seems like you don't have any favorites yeeet...</h1>
+</div>
   <div class="favorites_container">
   <app-video *ngFor="let favorite of favorites_list"
              [mid]="favorite.mid"

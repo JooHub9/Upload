@@ -11,6 +11,9 @@ export class PlaylistVideosComponent implements OnInit {
   @Input() field_video_title!: string;
   @Input() thumbnail__target_id!: string;
   @Input() field_duration!: string;
+  @Input() created!: string;
+  @Input() user_picture!: string;
+  @Input() name!: string;
   @Input() type!: string;
 
   constructor(public appService: AppService) {

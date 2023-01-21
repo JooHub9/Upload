@@ -1,6 +1,7 @@
-import {Component, OnInit} from '@angular/core';
+import {Component, Input, OnInit} from '@angular/core';
 import {AppService} from "../../app.service";
 import {ActivatedRoute} from "@angular/router";
+
 
 @Component({
   selector: 'app-homepage',
@@ -12,52 +13,58 @@ export class HomepageComponent {
   videos: Video[] = []
   page = 0
   channels: Channel[] = []
-  suggested_thematic = {} as Thematics
-  thematic_id!: string;
-  thematics: Thematics[] = []
-  list_ids: string [] = []
+  suggested_thematic = {} as Thematics;
+  t : Tags[] = []
+  tag?: number = 0;
+
+  obj!: Tags
+  str: string = ""
+  list: Tags[] = []
 
 
-  //id!: number;
 
-
-  /*----------Random ID---------*/
-  //randomNumber(id: number) {
-  //return Math.floor(Math.random() * id);
-  //}
 
   constructor(public appService: AppService, public route: ActivatedRoute) {
 
   }
 
   ngOnInit(): void {
-    this.videosList()
-    this.appService.getChannels().subscribe(channel => {
+
+    this.appService.getSuggestedChannels().subscribe(channel => {
       this.channels = channel
 
-      this.appService.getThematics().subscribe(thematic => {
-        this.thematics = thematic;
+      this.appService.getSuggestedThematic().subscribe(thematic => {
+        this.suggested_thematic = thematic[0];
 
-        this.thematics.forEach(t => {
-          this.list_ids.push(t.nid)
-        });
-
-        this.thematic_id = String(Math.floor(Math.random() * this.list_ids.length));
-
-        this.appService.getThematicsNid(this.list_ids[Number(this.thematic_id)]).subscribe(t => {
-          this.suggested_thematic = t[0]
-          console.log(this.suggested_thematic.field_thumbnail_article)
-        })
       })
+    })
+
+    this.route.queryParams.subscribe(q => {
+      console.log(q)
+      this.tag = q['tag'];
+      this.videos = [];
+
+      setTimeout(() =>{
+        this.videosList(), 500;
+      })
+
     })
   }
 
-      videosList():void {
-        this.appService.getVideos(this.page).subscribe((video) => {
-          this.videos = [...this.videos, ...video]
-        })
-      }
+  videosList(): void {
+    this.appService.getVideos(this.page, this.tag).subscribe((video) => {
+      this.videos = [...this.videos, ...video]
+      console.log(this.videos)
+    })
+    this.appService.getTags().subscribe((st=> {
+      this.t = st
+      this.list = this.t.filter(v => {return  v.tid === this.tag})
+      this.obj = this.list[0]
+      this.str = this.obj.name
+    }))
 
+
+  }
 
   moreResults(): void {
     this.page++

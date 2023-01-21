@@ -1,6 +1,7 @@
 <div class="main_div">
   <div class="recent_videos">
-    <div class="title"><h2>Recent Videos</h2></div>
+    <div *ngIf="!tag" class="title"><h2>Recent Videos</h2></div>
+    <div *ngIf="tag" class="title"><h2>{{str}}</h2></div>
     <div class=videos_container>
       <app-video
         *ngFor="let video of videos"
@@ -15,7 +16,7 @@
         share_type="icons">
       </app-video>
     </div>
-    <div class="container_more_videos">
+    <div *ngIf="!tag" class="container_more_videos">
       <div class="more_videos_border" (click)="moreResults()">
         <p class="more_videos_text">Click for more videos</p>
       </div>

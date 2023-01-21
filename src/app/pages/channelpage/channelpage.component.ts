@@ -52,8 +52,11 @@ export class ChannelpageComponent {
         });
       }
     })
+  }
 
-
+  parseNum(str: string)
+  {
+    return Number(str)
   }
 }
 

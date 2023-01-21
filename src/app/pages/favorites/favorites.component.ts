@@ -1,5 +1,7 @@
 import {Component, OnInit} from '@angular/core';
 import {AppService} from "../../app.service";
+import {faPoo} from "@fortawesome/free-solid-svg-icons"
+
 
 @Component({
   selector: 'app-favorites',
@@ -9,6 +11,7 @@ import {AppService} from "../../app.service";
 
 export class FavoritesComponent implements OnInit {
   favorites_list: Video[] = []
+  faPoo = faPoo
 
   constructor(public appService: AppService) {
   }
@@ -16,7 +19,7 @@ export class FavoritesComponent implements OnInit {
   ngOnInit(): void {
     this.appService.getFavorites().subscribe((favorites) => {
       this.favorites_list = favorites;
-      console.log(this.favorites_list)
+
     })
   }
 }

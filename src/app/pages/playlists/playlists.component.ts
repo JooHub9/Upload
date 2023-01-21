@@ -14,7 +14,7 @@ export class PlaylistsComponent implements OnInit {
   constructor(public route: ActivatedRoute, public AppService: AppService) {
   }
 
-  playlists : Playlists[] = [];
+  playlists : Playlist[] = [];
   faBookmark = faBookmark;
   faPlay = faPlay;
 

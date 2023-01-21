@@ -21,8 +21,8 @@ export class VideopageComponent {
   id: string = "";
   tags: string = "";
 
-  likes: string = "1";
-  dislikes: string = "0";
+  likes: string = "";
+  dislikes: string = "";
   objlikes = {} as Likes;
   objdislikes = {} as Likes;
 
@@ -40,7 +40,14 @@ export class VideopageComponent {
   constructor(private route: ActivatedRoute, public appService: AppService, private sanitizer: DomSanitizer) {
     this.route.params.subscribe(params => {
       this.id = params['id_video'];
-      this.refreshInfo();
+      this.likes="0";
+      this.dislikes="0";
+
+      setTimeout(()=>{
+        this.refreshInfo(), 300
+      })
+
+
     });
   }
 
@@ -116,7 +123,7 @@ export class VideopageComponent {
     });
 
     if (this.objlikes.count === "") {
-      this.objlikes.count = "8";
+      this.objlikes.count = "0";
     this.likes = this.objlikes.count;}
 
     this.appService.getDislikes(this.id).subscribe(dl => {
@@ -190,6 +197,9 @@ export class VideopageComponent {
     }, 200);
   }
 
-
+  parseNum(str: string)
+  {
+    return Number(str)
+  }
 }
 

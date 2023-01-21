@@ -33,14 +33,21 @@
         <p>Favorites</p>
       </div>
     </div>
-    <div class="tags">
-    <h3>TAGS</h3>
+    <div class="titles">
+      <h3>TAGS</h3>
       <div class="tags_flex">
-          <div class="tag" *ngFor="let tag of tags">
-               {{tag.name}}
-          </div>
+        <div class="tag" *ngFor="let tag of tags" [queryParams]="{tag: tag.tid}" routerLink="/homepage">
+          {{tag.name}}
         </div>
       </div>
+    </div>
+    <div class="titles">
+      <h3>SEARCH</h3>
+      <div class="search" >
+        <input class="search_bar" placeholder="Type here!">
+        <fa-icon class="find" [icon]="faMagnifyinGlass"></fa-icon>
+      </div>
+    </div>
   </div>
-  </div>
+</div>
 

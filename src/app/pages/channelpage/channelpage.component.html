@@ -5,8 +5,9 @@
   'url(https://dev-project-upskill2-grupo3-ii.pantheonsite.io/'
                                       + objchannels.field_channel_cover + ')'}">
 
-    <img class="userpicture" [src]="'https://dev-project-upskill2-grupo3-ii.pantheonsite.io/' + objchannels.field_logo"
-         alt="Logo">
+    <!--<img class="userpicture" [src]="'https://dev-project-upskill2-grupo3-ii.pantheonsite.io/' + objchannels.field_logo"
+         alt="Logo">-->
+    -<img class="userpicture" [ngStyle]="{'background-image':'url(https://dev-project-upskill2-grupo3-ii.pantheonsite.io/' + objchannels.field_logo + ')'}">
   </div>
   <div class="textcontainer">
     <div class="title">{{objchannels.title}}</div>

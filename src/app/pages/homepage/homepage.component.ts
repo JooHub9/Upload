@@ -40,7 +40,6 @@ export class HomepageComponent {
     })
 
     this.route.queryParams.subscribe(q => {
-      console.log(q)
       this.tag = q['tag'];
       this.videos = [];
 
@@ -54,7 +53,6 @@ export class HomepageComponent {
   videosList(): void {
     this.appService.getVideos(this.page, this.tag).subscribe((video) => {
       this.videos = [...this.videos, ...video]
-      console.log(this.videos)
     })
     this.appService.getTags().subscribe((st=> {
       this.t = st

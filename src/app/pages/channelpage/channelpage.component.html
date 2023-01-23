@@ -5,8 +5,9 @@
   'url(https://dev-project-upskill2-grupo3-ii.pantheonsite.io/'
                                       + objchannels.field_channel_cover + ')'}">
 
-    <img class="userpicture" [src]="'https://dev-project-upskill2-grupo3-ii.pantheonsite.io/' + objchannels.field_logo"
-         alt="Logo">
+    <!--<img class="userpicture" [src]="'https://dev-project-upskill2-grupo3-ii.pantheonsite.io/' + objchannels.field_logo"
+         alt="Logo">-->
+    -<img class="userpicture" [ngStyle]="{'background-image':'url(https://dev-project-upskill2-grupo3-ii.pantheonsite.io/' + objchannels.field_logo + ')'}">
   </div>
   <div class="textcontainer">
     <div class="title">{{objchannels.title}}</div>
@@ -32,17 +33,19 @@
       [id]="id"
       page="channel"
     ></app-form>
-    <div class="commentcontainer">
-      <app-comment
-        *ngFor="let cc of listchannelCom"
-        [uid]="cc.uid"
-        [user_picture]="cc.user_picture"
-        [username]="cc.field_username"
-        [date]="cc.field_date"
-        [comment]="cc.field_comment"
-        [email]="cc.field_email"
-        [idComment]="cc.cid"
-        [channel]=true>
+    <div class="commentcontainer" *ngFor="let cc of listchannelCom">
+      <app-comment *ngIf="parseNum(cc.field_count_reports_cc) < 3"
+
+                   [uid]="cc.uid"
+                   [user_picture]="cc.user_picture"
+                   [username]="cc.field_username"
+                   [date]="cc.field_date"
+                   [comment]="cc.field_comment"
+                   [email]="cc.field_email"
+                   [idComment]="cc.cid"
+                   [reasons]="cc.field_report_reasons_cc"
+                   [count]="cc.field_count_reports_cc"
+                   [channel]=true>
         <fa-icon class="commenticon" [icon]="faEllipsisVertical"></fa-icon>
       </app-comment>
     </div>

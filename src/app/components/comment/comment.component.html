@@ -7,28 +7,102 @@
       type="comment"
     ></app-randompicture>
     <div class="text">
-      <span class="username">{{username}}</span>
+      <span class="username">{{username}} </span>
       <span class="time">{{date}}</span>
       <div class="commenttext">{{comment}}</div>
     </div>
   </div>
-  <div class="commenticon">
-    <div class="iconcontainer" (click)="toggleReportText()">
-      <fa-icon [icon]="faEllipsisVertical"></fa-icon>
-    </div>
-    <div (mouseleave)="toggleReportText()">
-      <div class="reporttextcontainer" *ngIf="visible" (click)="appService.Report(idComment, channel); reported=true ">
 
-        <fa-icon [icon]="faFlag" [ngStyle]="{'color': reported? '#B2191B' : ''}"></fa-icon>
-        <div *ngIf="!reported">
-          <p class="reporttext">Report Comment</p>
+
+  <div class="commenticon">
+    <div class="iconcontainer" (click)="toggleReportText();">
+
+
+
+      <div *ngIf="visible" [className]="optionsInvisible? '':'displayNone'"
+           (click)="toggleReportText();toggleShowOptions()">
+        <div class="reporttext"
+             (mouseleave)="toggleReportText()">
+          <fa-icon class="iconFlag" [icon]="faFlag"></fa-icon>
+          Report
         </div>
-        <div *ngIf="reported">
-          <p class="reporttext" style="color: #B2191B">Unreport Comment</p>
-        </div>
-        <!--<fa-icon [icon]="faFlag"></fa-icon>-->
       </div>
+
+
+      <fa-icon [icon]="faEllipsisVertical"></fa-icon>
+
+      <div class="thanks" *ngIf="reportThanks" ><i>Thank you for reporting</i></div>
+
+      <div [className]="optionsInvisible? 'displayNone':'reporttextcontainer'"
+           (mouseleave)="toggleShowOptions()">
+
+        <div class="optionsContainer">
+
+          <form [formGroup]="reasonsForm" type="button" class="formContainer" (ngSubmit)="getReason()">
+
+            <input class="reason" type="button" *ngFor="let reasondefault of reasonsList"
+                   [value]=reasondefault.name
+                   (click)="setdefaultreason(reasondefault.name);
+                   selected=true">
+
+            <input class="inputreason"
+                   type=textarea
+                   placeholder="Other reason"
+                   formControlName="userReason"
+                   onblur="this.value=''"
+                   (click)="selected=false;">
+
+            <button class="iconFlagContainer" type="submit">
+              <fa-icon class="iconFlag" [icon]="faFlag" [ngStyle]="{'color': reported? '#B2191B' : ''}"></fa-icon>
+
+              <div class="warning" *ngIf="warning"><i>Please choose a reason </i></div>
+            </button>
+
+
+          </form>
+
+
+        </div>
+      </div>
+
+
+
+
+
+
+
     </div>
+
+    <!--<div class="reporttextcontainer">
+
+      <div class="optionsContainer">
+
+        <form [formGroup]="reasonsForm" type="button" class="formContainer" (ngSubmit)="getReason()">
+
+          <input class="reason" type="button" *ngFor="let reasondefault of reasonsList"
+                 [value]=reasondefault.name
+                 (click)="setdefaultreason(reasondefault.name);
+                   selected=true">
+
+          <input class="inputreason"
+                 type=textarea
+                 placeholder="Other reason"
+                 formControlName="userReason"
+                 onblur="this.value=''"
+                 (click)="selected=false;">
+
+          <button class="iconFlagContainer" type="submit">
+            <fa-icon class="iconFlag" [icon]="faFlag" [ngStyle]="{'color': reported? '#B2191B' : ''}"></fa-icon>
+
+            <div class="warning" *ngIf="warning"><i>Please choose a reason </i></div>
+          </button>
+
+        </form>
+
+
+      </div>
+    </div>-->
+
   </div>
 </div>
 

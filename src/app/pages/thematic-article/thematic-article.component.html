@@ -20,7 +20,7 @@
       <div class="thematic_article_videos"
            *ngIf="thematic">
         <app-video
-          *ngFor="let tv of thematic_videos"
+          *ngFor="let tv of thematic_videos; let i = index"
           [mid]="tv.mid"
           [thumbnail__target_id]="tv.thumbnail__target_id"
           [user_picture]="tv.user_picture"

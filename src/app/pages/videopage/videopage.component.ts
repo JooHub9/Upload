@@ -3,7 +3,6 @@ import {AppService} from "../../app.service";
 import {ActivatedRoute} from "@angular/router";
 import {faBookmark as faBookmarkFull, faThumbsUp} from '@fortawesome/free-solid-svg-icons';
 import {faBookmark, faThumbsDown} from '@fortawesome/free-regular-svg-icons';
-import {DomSanitizer, SafeResourceUrl, SafeUrl} from "@angular/platform-browser";
 
 @Component({
   selector: 'app-videopage',
@@ -21,14 +20,13 @@ export class VideopageComponent {
   id: string = "";
   tags: string = "";
 
-  likes: string = "1";
+  likes: string = "0";
   dislikes: string = "0";
   objlikes = {} as Likes;
   objdislikes = {} as Likes;
 
   video_string: string [] = [];
   video: string = "";
-  videoclean!: SafeResourceUrl;
 
   listvideoCom: VideoComment[] = [];
   objvideoCom = {} as VideoComment;
@@ -37,18 +35,38 @@ export class VideopageComponent {
   body: {} = {};
 
 
-  constructor(private route: ActivatedRoute, public appService: AppService, private sanitizer: DomSanitizer) {
-    this.route.params.subscribe(params => {
-      this.id = params['id_video'];
-      this.refreshInfo();
-    });
+  constructor(private route: ActivatedRoute, public appService: AppService) {
+    this.id = route.snapshot.params['id_video'];
+
+    //---- Get Likes / Dislikes ----//
+    setTimeout(()=>{
+
+
+    this.appService.getLikes(this.id).subscribe(l => {
+      this.objlikes = l[0]
+      this.likes = l[0].count
+    })
+
+    this.appService.getDislikes(this.id).subscribe(dl => {
+      this.objdislikes = dl[0]
+      this.dislikes = dl[0].count
+    })
+
+    ,500})
+
   }
 
 
   ngOnInit() {
-    this.refreshInfo();
-  }
 
+    this.route.params.subscribe(params => {
+      this.id = params['id_video'];
+
+    setTimeout(()=>{
+      this.refreshInfo(), 500
+    })
+    });
+  }
 
 //______ Main Function _________
 
@@ -77,8 +95,6 @@ export class VideopageComponent {
         .split("&")
 
       this.video = this.video_string[0] + '?autoplay=1&cc_load_policy=1&cc_lang_pref=pt';
-      this.videoclean = this.sanitizer.bypassSecurityTrustResourceUrl(this.video);
-
 
       //---- Get the Videos for sidebar ----//
 
@@ -87,47 +103,38 @@ export class VideopageComponent {
 
       });
 
-    //---- Get the Comments ----//
+      //---- Get the Comments ----//
 
-    this.appService.getOneVideoComments(this.id).subscribe(cc => {
-      this.listvideoCom = cc;
-      this.objvideoCom = this.listvideoCom[0];
-    });
+      this.appService.getOneVideoComments(this.id).subscribe(cc => {
+        this.listvideoCom = cc;
+        this.objvideoCom = this.listvideoCom[0];
+      });
 
-    // -- refresh Comments
+      // -- refresh Comments
 
-    this.appService.notifyVideoObservable.subscribe(res => {
-      if (res.refreshVideo) {
+      this.appService.notifyVideoObservable.subscribe(res => {
+        if (res.refreshVideo) {
 
-        this.appService.getOneVideoComments(this.id).subscribe(cc => {
-          this.listvideoCom = cc;
-          this.objvideoCom = this.listvideoCom[0];
-        });
-      }
-    })
-
-
-
-    //---- Get Likes / Dislikes ----//
-
-
-    this.appService.getLikes(this.id).subscribe(l => {
-      this.objlikes = l[0];
-    });
-
-    if (this.objlikes.count === "") {
-      this.objlikes.count = "8";
-    this.likes = this.objlikes.count;}
-
-    this.appService.getDislikes(this.id).subscribe(dl => {
-      this.objdislikes = dl[0]
-    });
-
-    if (this.objdislikes.count === "") {
-      this.objdislikes.count = "0";
-    this.dislikes = this.objdislikes.count;}
-
+          this.appService.getOneVideoComments(this.id).subscribe(cc => {
+            this.listvideoCom = cc;
+            this.objvideoCom = this.listvideoCom[0];
+          });
+        }
+      })
     }); //fim do get video
+
+      /*//---- Get Likes / Dislikes ----//
+
+
+      this.appService.getLikes(this.id).subscribe(l => {
+        this.objlikes = l[0]
+        this.likes = l[0].count
+      });
+
+      this.appService.getDislikes(this.id).subscribe(dl => {
+        this.objdislikes = dl[0]
+        this.dislikes = dl[0].count
+      });*/
 
 
 
@@ -137,7 +144,8 @@ export class VideopageComponent {
     this.appService.notifyLikesObservable.subscribe(res => {
       if (res.refreshLikes) {
         this.appService.getLikes(this.id).subscribe(l => {
-          this.objlikes = l[0]
+          this.objlikes = l[0];
+          this.likes = l[0].count;
         });
       }
     });
@@ -148,13 +156,13 @@ export class VideopageComponent {
       if (res.refreshDislikes) {
         this.appService.getDislikes(this.id).subscribe(dl => {
           this.objdislikes = dl[0]
+          this.dislikes = dl[0].count
         });
       }
     });
 
 
-} // fim do refreshInfo / Main Function
-
+  } // fim do refreshInfo / Main Function
 
 
 //---- Updating Likes / Dislikes ----//
@@ -190,6 +198,8 @@ export class VideopageComponent {
     }, 200);
   }
 
-
+  parseNum(str: string) {
+    return Number(str)
+  }
 }
 

@@ -52,13 +52,11 @@ export class AppService {
   }
 
 
-
   /*_______ Categories _______*/
 
   getCategories() {
     return this.http.get(BASE_URL + "categorias")
   }
-
 
 
   /*_______ Comments _______*/
@@ -119,20 +117,28 @@ export class AppService {
 
   /*------- Report Comment ------*/
 
+  getReasons() {
+    return this.http.get<Reason[]>(BASE_URL + "reasonsreport");
+  }
 
-  Report (id:string,channel:boolean) {
+
+  Report (id:string,channel:boolean,reasons:{}[],count:number) {
     let body
     if(channel)
     {
       body ={
         "field_reported_cc": [{"value": 1}],
         "comment_type": [{"target_id": "comment"}],
+        "field_report_reasons_cc":reasons,
+        "field_count_reports_cc": [{"value": count}],
         "uid": [0]
       }}
     else {
       body = {
         "field_reported_vc": [{"value": 1}],
         "comment_type": [{"target_id": "video_comment"}],
+        "field_report_reasons_vc":reasons,
+        "field_count_reports_vc": [{"value": count}],
         "uid": [0]
       }
     }
@@ -248,6 +254,7 @@ export class AppService {
 
   favorites: number[] = JSON.parse(localStorage.getItem("favorites") || "[]");
 
+
   getFavorites() {
       return this.http.get<Video[]>(BASE_URL + "videos/favs/" + this.favorites.join(","));
   }
@@ -269,7 +276,7 @@ export class AppService {
   }
 
 
-  /*------- Refresh VideoPage ------*/
+ /* /!*------- Refresh VideoPage ------*!/
 
 /*
   public changePage = new BehaviorSubject<any>('');
@@ -280,7 +287,7 @@ export class AppService {
     if (data) {
       this.changePage.next(data);
     }
-  }
-*/
+
+  }*/
 }
 

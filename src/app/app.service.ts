@@ -2,7 +2,6 @@ import {Injectable} from '@angular/core';
 import {HttpClient} from "@angular/common/http";
 import {BehaviorSubject} from "rxjs";
 
-/*let BASE_URL = "https://dev-project-upskill2-grupo3-ii.pantheonsite.io/en/api/"*/
 
 
 @Injectable({providedIn: 'root'})
@@ -180,7 +179,8 @@ export class AppService {
 
   /*_______ Videos _______*/
 
-  getVideos(page?: number, tag?: number) {
+
+  getVideos(page?: number, tag?: number, filter?:string) {
     let url = this.BASE_URL + "api/videos"
     if (page) {
       url = url + "?page=" + page
@@ -199,6 +199,12 @@ export class AppService {
     return this.http.get<Video[]>(this.BASE_URL + "api/allvideos/" + id);
   }
 
+  public notifySearch = new BehaviorSubject<any>('');
+  notifySearchObservable = this.notifySearch.asObservable();
+
+  getSearch(filter?:string){
+    return this.http.get<Video[]>(this.BASE_URL + "api/videos/search/?name=" + filter);
+  }
 
   /*_______ Tags _______*/
 

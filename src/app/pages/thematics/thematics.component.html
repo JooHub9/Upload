@@ -2,9 +2,9 @@
   <h1 class="main_title_thematics">Thematics</h1>
   <div class="out_container_thematics">
   <div class="thematics_container"
-  *ngFor="let t of thematics">
+  *ngFor="let t of thematics"[routerLink]="['/thematics/', t.nid]">
     <div class="images_thematics">
-    <div class="image_thematic" [routerLink]="['/thematics/', t.nid]">
+    <div class="image_thematic">
       <img class="image_header" [src]="'https://dev-project-upskill2-grupo3-ii.pantheonsite.io/' + t.field_image_header">
     </div>
     <div class="profile_photo_thematic">

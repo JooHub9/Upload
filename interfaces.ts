@@ -99,8 +99,9 @@ interface Thematic {
   field_thumbnail_article: string;
   body: string;
   field_external_links: string;
+  field_external_links_1: string;
   user_picture: string;
-  name: string
+  name: string;
 }
 
 /*____________ Channel ____________*/

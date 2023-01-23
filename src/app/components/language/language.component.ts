@@ -27,7 +27,7 @@ export class LanguageComponent {
 
     this.appService.modifyLanguage(this.language)
 
-    this.language = this.appService.getLanguage();
+    //this.language = this.appService.getLanguage();
 /*
     this.language === "en" ? this.otherlanguage = "en" : this.otherlanguage = "pt";*/
 

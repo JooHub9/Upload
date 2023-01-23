@@ -20,24 +20,21 @@ import {HeadlineVideoComponent} from './components/headline-video/headline-video
 import {VideopageComponent} from './pages/videopage/videopage.component';
 import {FormComponent} from './components/form/form.component';
 import {ReactiveFormsModule} from "@angular/forms";
-import {RandompictureComponent} from './components/randompicture/randompicture.component';
-import {CompactBoxComponent} from './components/compact-box/compact-box.component';
-import {PlaylistVideosComponent} from './components/playlist-videos/playlist-videos.component';
-import {ThematicsComponent} from './pages/thematics/thematics.component';
-import {ThematicArticleComponent} from './pages/thematic-article/thematic-article.component';
-import {ThematicVideosComponent} from './components/thematic-videos/thematic-videos.component';
-import {ChannelpageComponent} from './pages/channelpage/channelpage.component';
-import {ChannelsComponent} from './pages/channels/channels.component';
-import {FavoritesComponent} from './pages/favorites/favorites.component';
-import {TagsPipe} from './tags.pipe';
-import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
-import {MatRadioModule} from "@angular/material/radio";
-import {MatFormFieldModule} from "@angular/material/form-field";
-import {MatSelectModule} from "@angular/material/select";
-import {MatIconModule} from "@angular/material/icon";
-import {MatInputModule} from "@angular/material/input";
+import { RandompictureComponent } from './components/randompicture/randompicture.component';
+import { CompactBoxComponent } from './components/compact-box/compact-box.component';
+import { PlaylistVideosComponent } from './components/playlist-videos/playlist-videos.component';
+import { ThematicsComponent } from './pages/thematics/thematics.component';
+import { ThematicArticleComponent } from './pages/thematic-article/thematic-article.component';
+import { ThematicVideosComponent } from './components/thematic-videos/thematic-videos.component';
+import { ChannelpageComponent } from './pages/channelpage/channelpage.component';
+import { ChannelsComponent } from './pages/channels/channels.component';
+import { FavoritesComponent } from './pages/favorites/favorites.component';
+import { TagsPipe } from './tags.pipe';
+import { AutocompleteLibModule} from "angular-ng-autocomplete";
+import { SearchBarComponent } from './components/search-bar/search-bar.component';
 import { SanitizePipe } from './sanitize.pipe';
 import { LanguageComponent } from './components/language/language.component';
+
 
 @NgModule({
   declarations: [
@@ -65,7 +62,8 @@ import { LanguageComponent } from './components/language/language.component';
     FavoritesComponent,
     TagsPipe,
     SanitizePipe,
-    LanguageComponent
+    LanguageComponent,
+    SearchBarComponent
   ],
 
   imports: [
@@ -77,13 +75,8 @@ import { LanguageComponent } from './components/language/language.component';
     FormsModule,
     FontAwesomeModule,
     ReactiveFormsModule,
-    BrowserAnimationsModule,
-    MatRadioModule,
-    MatFormFieldModule,
-    MatSelectModule,
-    MatIconModule,
-    MatInputModule,
-  ],
+    AutocompleteLibModule,
+   ],
 
   providers: [],
   bootstrap: [AppComponent]

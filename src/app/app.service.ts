@@ -170,10 +170,13 @@ export class AppService {
     return this.http.get<Video[]>(BASE_URL + "allvideos/" + id);
   }
 
+  public notifySearch = new BehaviorSubject<any>('');
+  notifySearchObservable = this.notifySearch.asObservable();
+
   getSearch(filter?:string){
     return this.http.get<Video[]>(BASE_URL + "videos/search/?name=" + filter);
-
   }
+
 
   /*_______ Tags _______*/
 

@@ -23,10 +23,15 @@ export class SearchBarComponent {
       this.data = v
     })
 
+    this.appService.notifySearchObservable.subscribe((filter:string) => {
+     this.searchVideo(filter)
+    })
+
   }
 
-  searchVideo(filter: any) {
+ searchVideo(filter: any) {
     this.str = filter;
+    console.log(this.str)
     //this.appService.getSearch(this.str).subscribe(v => {
       //this.data = v
     //})

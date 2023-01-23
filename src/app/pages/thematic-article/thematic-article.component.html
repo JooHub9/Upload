@@ -14,9 +14,16 @@
     <div class="thematic_tag">#{{thematic.field_tag}}</div>
     <div class="thematic_teaser">{{thematic.field_teaser}}</div>
     <div class="thematic_body">{{thematic.body}}</div>
-    <div class="thematic_external_links">{{thematic.field_external_links}}</div>
+    <div class="thematic_external_links">
+      <div class="external_links_title" *ngFor="let title of external_list; let t = index">
+        <div class="external_links_url" *ngFor="let url of links_list; let l = index">
+          <div class="matching_external_links" *ngIf= "t === l">
+            <a href="{{url}}">{{title}}</a>
+          </div>
+        </div>
+      </div>
+    </div>
     <h2 class="thematic_videos">Videos</h2>
-    <div class="videos_thematic">
       <div class="thematic_article_videos"
            *ngIf="thematic">
         <app-video
@@ -30,6 +37,5 @@
           [created]="tv.created">
         </app-video>
       </div>
-    </div>
   </div>
 </div>

@@ -12,12 +12,12 @@
     }
 
     .playlist_cover_image {
-      justify-content: center;
 
       .cover_photo_playlist {
-        width: 500px;
-        height: 200px;
-        object-fit: cover;
+
+        /*width: 800px;
+        height: 275px;
+        object-fit: cover;*/
         border-radius: 50px;
         padding-top: 25px;
         padding-bottom: 25px;
@@ -26,6 +26,7 @@
 
     .text_playlist {
       display: flex;
+      align-items: center;
       padding-bottom: 15px;
 
       .playlist_category {

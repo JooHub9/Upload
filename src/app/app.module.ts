@@ -37,6 +37,7 @@ import {MatSelectModule} from "@angular/material/select";
 import {MatIconModule} from "@angular/material/icon";
 import {MatInputModule} from "@angular/material/input";
 import { SanitizePipe } from './sanitize.pipe';
+import { LanguageComponent } from './components/language/language.component';
 
 @NgModule({
   declarations: [
@@ -63,7 +64,8 @@ import { SanitizePipe } from './sanitize.pipe';
     ChannelsComponent,
     FavoritesComponent,
     TagsPipe,
-    SanitizePipe
+    SanitizePipe,
+    LanguageComponent
   ],
 
   imports: [

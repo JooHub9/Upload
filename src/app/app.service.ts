@@ -31,6 +31,7 @@ export class AppService {
       this.BASE_URL = "https://dev-project-upskill2-grupo3-ii.pantheonsite.io/pt/";
       this.userlanguage[0] = lang;
       localStorage.setItem("userlanguage", JSON.stringify(this.userlanguage));
+
       console.log("language1 - ", lang);
       console.log("this.userlanguage1 - ", this.userlanguage);
     }
@@ -38,6 +39,7 @@ export class AppService {
       this.BASE_URL = "https://dev-project-upskill2-grupo3-ii.pantheonsite.io/en/";
       this.userlanguage[0] = lang;
       localStorage.setItem("userlanguage", JSON.stringify(this.userlanguage));
+
       console.log("language2 - ", lang);
       console.log("this.userlanguage2 - ", this.userlanguage);
     }

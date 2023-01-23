@@ -1,4 +1,4 @@
-import { Component, OnInit } from '@angular/core';
+import {Component, OnInit, Input} from '@angular/core';
 import {
   faHome,
   faBarsStaggered,
@@ -33,9 +33,6 @@ export class MenuComponent {
   ngOnInit(): void {
     this.appService.getTags().subscribe((tag) => {
       this.tags = tag;
-
     })
-
   }
-
 }

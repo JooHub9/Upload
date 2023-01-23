@@ -145,7 +145,7 @@ export class AppService {
 
   /*_______ Videos _______*/
 
-  getVideos(page?: number, tag?: number) {
+  getVideos(page?: number, tag?: number, filter?:string) {
     let url = BASE_URL + "videos"
     if (page) {
       url = url + "?page=" + page
@@ -164,6 +164,10 @@ export class AppService {
     return this.http.get<Video[]>(BASE_URL + "allvideos/" + id);
   }
 
+  getSearch(filter?:string){
+    return this.http.get<Video[]>(BASE_URL + "videos/search/?name=" + filter);
+
+  }
 
   /*_______ Tags _______*/
 

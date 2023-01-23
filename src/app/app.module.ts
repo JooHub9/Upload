@@ -30,6 +30,8 @@ import { ChannelpageComponent } from './pages/channelpage/channelpage.component'
 import { ChannelsComponent } from './pages/channels/channels.component';
 import { FavoritesComponent } from './pages/favorites/favorites.component';
 import { TagsPipe } from './tags.pipe';
+import { AutocompleteLibModule} from "angular-ng-autocomplete";
+import { SearchBarComponent } from './components/search-bar/search-bar.component';
 
 @NgModule({
   declarations: [
@@ -55,7 +57,8 @@ import { TagsPipe } from './tags.pipe';
     ChannelpageComponent,
     ChannelsComponent,
     FavoritesComponent,
-    TagsPipe
+    TagsPipe,
+    SearchBarComponent,
   ],
 
   imports: [
@@ -67,6 +70,7 @@ import { TagsPipe } from './tags.pipe';
     FormsModule,
     FontAwesomeModule,
     ReactiveFormsModule,
+    AutocompleteLibModule,
   ],
 
   providers: [],

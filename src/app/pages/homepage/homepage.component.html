@@ -1,7 +1,9 @@
 <div class="main_div">
   <div class="recent_videos">
-    <div *ngIf="!tag" class="title"><h2>Recent Videos</h2></div>
-    <div *ngIf="tag" class="title"><h2>{{str}}</h2></div>
+    <div *ngIf="!tag else titletag" class="title"><h2>Recent Videos</h2></div>
+    <ng-template #titletag>
+    <div class="title"><h2>{{str | titlecase}}</h2></div>
+    </ng-template>
     <div class=videos_container>
       <app-video
         *ngFor="let video of videos"
@@ -13,6 +15,7 @@
         [user_picture]="video.user_picture"
         [field_duration]="video.field_duration"
         [field_channel_1]="video.field_channel_1"
+        [field_tags]="video.field_tags"
         share_type="icons">
       </app-video>
     </div>

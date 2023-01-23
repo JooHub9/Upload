@@ -95,23 +95,10 @@ interface Thematic {
   field_thumbnail_article: string;
   body: string;
   field_external_links: string;
+  field_external_links_1: string;
   user_picture: string;
-  name: string
+  name: string;
 }
-
-/*interface Thematic_Videos {
-  mid: string;
-  field_video_title: string;
-  field_duration: string;
-  created: string;
-  thumbnail__target_id: string;
-  field_video_description: string;
-  field_media_oembed_video: string;
-  field_tags: string;
-  user_picture: string;
-  name_1: string;
-  type: string
-}*/
 
 
 /*____________ Channel ____________*/

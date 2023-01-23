@@ -10,6 +10,7 @@
     flex-wrap: wrap;
     align-content: center;
     gap: 20px;
+    justify-content: center;
 
   }
 
@@ -47,6 +48,7 @@
   width: auto;
   //margin: 0;
   padding-left: 10px;
+
 
 
   .suggested_content {
@@ -104,6 +106,8 @@
     }
   }
 
+
+  }
   #channel_content {
     border-radius: 15px 15px 0 0;
   }
@@ -132,6 +136,9 @@
     color: #292932;
   }
 
+/* @Media for Mobile */
+@media (max-width: 480px) {
+  .sidebar{
+    display:none
+  }
 }
-
-

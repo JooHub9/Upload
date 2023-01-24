@@ -229,8 +229,11 @@ export class AppService {
   notifySearchObservable = this.notifySearch.asObservable();
 
   getSearch(filter?: string) {
+
     return this.http.get<Video[]>(this.BASE_URL + "api/videos/search/?name=" + filter);
+
   }
+
 
   /*_______ Tags _______*/
 

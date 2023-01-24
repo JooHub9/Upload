@@ -17,9 +17,11 @@ export class HomepageComponent {
   t: Tags[] = []
   tag?: number = 0;
 
+  url: string = 'https://dev-project-upskill2-grupo3-ii.pantheonsite.io/'
   obj!: Tags
   str?: string = ""
   list: Tags[] = []
+  filter: string = ""
 
 
   constructor(public appService: AppService, public route: ActivatedRoute) {
@@ -64,6 +66,14 @@ export class HomepageComponent {
   videosList(): void {
     this.appService.getVideos(this.page, this.tag).subscribe((video) => {
       this.videos = [...this.videos, ...video]
+    })
+
+    this.appService.notifySearchObservable.subscribe(search=>{
+      if (search.refreshVideo){
+        this.appService.getSearch(this.filter).subscribe(v=> {
+          this.videos = search;
+        })
+      }
     })
   }
 

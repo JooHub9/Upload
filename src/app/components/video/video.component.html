@@ -7,14 +7,18 @@
     <div class="main_duration">
       <p class="duration">{{field_duration}}</p>
     </div>
+
     <div class="user_pic"><!--*ngIf="field_channel" class="user_pic" [routerLink]="['/channelpage/',field_channel_1]"-->
     <!--<div *ngIf="field_channel" class="user_pic" [routerLink]="['/channelpage/',field_channel_1]">-->
+
+    <div *ngIf="field_channel" class="user_pic" [routerLink]="['/channelpage/',field_channel_1]">
+
       <img class="picture" [src]="'https://dev-project-upskill2-grupo3-ii.pantheonsite.io/' + user_picture" alt="user picture">
     </div>
   </div>
   <div class="video_info">
     <div class="info">
-      <p class="field_tags">{{field_tags | tags}}</p>
+      <p *ngIf="field_tags" class="field_tags">{{field_tags | tags}}</p>
       <p *ngIf="field_channel" class="channel" [routerLink]="['/channelpage/',field_channel_1]">{{field_channel}}</p>
       <h3 class="video_name" [routerLink]="['/video/',mid]" >{{field_video_title}}</h3>
       <p class="created">{{created}}</p>
@@ -33,4 +37,6 @@
       </div>
     </div>
   </div>
+</div>
+
 </div>

@@ -2,14 +2,14 @@
   <div class="thematic_container">
     <h1 class="thematic_title">{{thematic.title}}</h1>
     <div class="images_thematic">
-    <div class="thematic_image_header">
+    <!--<div class="thematic_image_header">-->
       <img class="image_header_thematic"
            [src]="'https://dev-project-upskill2-grupo3-ii.pantheonsite.io/' + thematic.field_image_header">
-    </div>
-      <div class="thumbnail_thematic">
+
+      <!--<div class="thumbnail_thematic">-->
         <img class="thematic_thumbnail"
              [src]="'https://dev-project-upskill2-grupo3-ii.pantheonsite.io/' + thematic.field_thumbnail_article">
-      </div>
+
     </div>
     <div class="thematic_tag">#{{thematic.field_tag}}</div>
     <div class="thematic_teaser">{{thematic.field_teaser}}</div>
@@ -18,7 +18,7 @@
       <div class="external_links_title" *ngFor="let title of external_list; let t = index">
         <div class="external_links_url" *ngFor="let url of links_list; let l = index">
           <div class="matching_external_links" *ngIf= "t === l">
-            <a href="{{url}}">{{title}}</a>
+            <a [href]="url | safe" target="_blank">{{title}}</a>
           </div>
         </div>
       </div>
@@ -27,7 +27,7 @@
       <div class="thematic_article_videos"
            *ngIf="thematic">
         <app-video
-          *ngFor="let tv of thematic_videos"
+          *ngFor="let tv of thematic_videos; let i = index"
           [mid]="tv.mid"
           [thumbnail__target_id]="tv.thumbnail__target_id"
           [user_picture]="tv.user_picture"

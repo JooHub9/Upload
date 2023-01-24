@@ -6,12 +6,11 @@
           <p class="title">{{objvideo.field_video_title}}</p>
           <p class="tags">{{tags}}</p>
         </div>
-        <div class="iconcontainer">
-          <fa-icon class="iconfav" [icon]="appService.isFavorite(objvideo.mid)? faBookmarkFull : faBookmark"
-                   (click)="appService.toggleFavorite(objvideo.mid)"></fa-icon>
+        <div class="iconcontainer" (click)="appService.toggleFavorite(objvideo.mid)">
+          <fa-icon class="iconfav" [icon]="appService.isFavorite(objvideo.mid)? faBookmarkFull : faBookmark"></fa-icon>
         </div>
       </div>
-      <iframe class="video" title="video" [src]="videoclean"
+      <iframe class="video" title="video" [src]="video | safe"
               allow="autoplay; fullscreen; picture-in-picture"
       ></iframe>
     </div>
@@ -27,11 +26,11 @@
       <div class="right">
         <div class="likes">
           <fa-icon class="iconThumbsUp" [icon]="faThumbsUp" (click)="updateLikes()"></fa-icon>
-          <p class="likenumber">{{objlikes.count}}</p>
+          <p class="likenumber">{{likes}}</p>
         </div>
         <div class="dislikes">
           <fa-icon class="iconThumbsDown" [icon]="faThumbsDown" (click)="updateDislikes()"></fa-icon>
-          <p class="dislikesnumber">{{objdislikes.count}}</p>
+          <p class="dislikesnumber">{{dislikes}}</p>
         </div>
       </div>
     </div>
@@ -42,17 +41,23 @@
       [id]="id"
       page="video"
     ></app-form>
-    <app-comment *ngFor="let v of listvideoCom"
-                 type="video"
-                 [uid]="v.uid"
-                 [user_picture]="v.user_picture"
-                 [username]="v.field_username_video"
-                 [date]="v.created"
-                 [comment]="v.comment_body"
-                 [email]="v.field_comment_email"
-                 [idComment]="v.cid"
-                 [channel]=false
-    ></app-comment>
+    <div *ngFor="let v of listvideoCom">
+      <app-comment *ngIf="parseNum(v.field_count_reports_vc) < 3"
+                   type="video"
+                   [uid]="v.uid"
+                   [user_picture]="v.user_picture"
+                   [username]="v.field_username_video"
+                   [date]="v.created"
+                   [comment]="v.comment_body"
+                   [email]="v.field_comment_email"
+                   [idComment]="v.cid"
+                   [reasons]="v.field_report_reasons_vc"
+                   [count]="v.field_count_reports_vc"
+                   [channel]=false
+      ></app-comment>
+
+    </div>
+
   </div>
   <div class="sidebar">
     <div *ngFor="let v of listvideos">

@@ -44,14 +44,16 @@ export class ChannelpageComponent {
 
     this.appService.notifyChannelObservable.subscribe(res => {
       if (res.refreshChannel) {
-
-        console.log("Isto aconteceu no channel!!")
-
         this.appService.getContentComments(this.id).subscribe(cc => {
           this.listchannelCom = cc;
         });
       }
     })
+  }
+
+  parseNum(str: string)
+  {
+    return Number(str)
   }
 }
 

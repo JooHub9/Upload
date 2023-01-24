@@ -9,6 +9,8 @@ interface ContentComment {
   field_email: string;
   user_picture: string;
   cid: string;
+  field_count_reports_cc: string;
+  field_report_reasons_cc:string;
 }
 
 
@@ -22,6 +24,8 @@ interface VideoComment {
   user_picture: string;
   mid: string;
   cid: string;
+  field_count_reports_vc: string;
+  field_report_reasons_vc:string;
 }
 
 
@@ -51,6 +55,8 @@ interface Video {
 
 interface Tags {
   name: string;
+  tid: number;
+
 }
 
 
@@ -104,7 +110,6 @@ interface Thematic {
 }
 
 
-
 /*____________ Channel ____________*/
 
 interface Channel {
@@ -141,7 +146,11 @@ interface Likes {
   id: string;
   entity_type: string;
   count: string;
-
 }
 
+/*____________ Report ____________*/
+
+interface Reason {
+  name: string;
+}
 

@@ -32,7 +32,7 @@
       </div>
       <div class="text_container" *ngFor="let channel of channels" [routerLink]="['/channelpage',channel.nid]">
         <div routerLink="channels">
-          <img class="logo" [src]="'https://dev-project-upskill2-grupo3-ii.pantheonsite.io/' + channel.field_logo" alt="channel logo">
+          <img class="logo" [src]="'https://dev-project-upskill2-grupo3-ii.pantheonsite.io' + channel.field_logo" alt="channel logo">
         </div>
         <div class="title"> {{channel.title}}</div>
       </div>
@@ -48,14 +48,14 @@
       <div class="container_t">
         <div class="text_container">
           <div>
-            <img class="logo" [src]="'https://dev-project-upskill2-grupo3-ii.pantheonsite.io/' + suggested_thematic.field_thumbnail_article" alt="thematic thumbnail">
+            <img class="logo" [src]="'https://dev-project-upskill2-grupo3-ii.pantheonsite.io' + suggested_thematic.field_thumbnail_article" alt="thematic thumbnail">
           </div>
           <div class="title">
             <p>{{suggested_thematic.title}}</p>
             <p class="subtitle">{{suggested_thematic.name}}</p></div>
         </div>
         <div>
-          <img class="image_header" [src]="'https://dev-project-upskill2-grupo3-ii.pantheonsite.io/' + suggested_thematic.field_image_header" alt="thematic image">
+          <img class="image_header" [src]="'https://dev-project-upskill2-grupo3-ii.pantheonsite.io' + suggested_thematic.field_image_header" alt="thematic image">
         </div>
       </div>
     </div>

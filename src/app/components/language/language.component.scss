@@ -1,19 +1,31 @@
-.languagecontainer
-{
+.languagecontainer {
   display: flex;
   justify-content: flex-start;
+  align-items: center;
   margin: 10px 0;
+  padding: 10px 0;
+  gap: 5px;
+  cursor: pointer;
+  width: 90%;
+  border-radius: 5px;
+
+  &:hover { * {font-size: larger;} }
 
 
-  .iconfaGlobe
-  {
+  .iconfaGlobe {
     font-size: 16pt;
     color: #92929D;
     margin: 0;
-    cursor: pointer;
   }
 
+  .text {
+    font-size: 8pt;
+    color: #92929D;
+    margin: 0;
 
+
+  }
+;
 
 
 }

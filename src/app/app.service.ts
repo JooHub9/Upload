@@ -3,47 +3,73 @@ import {HttpClient} from "@angular/common/http";
 import {BehaviorSubject} from "rxjs";
 
 
-
 @Injectable({providedIn: 'root'})
 
 export class AppService {
-
   BASE_URL: string = "";
-  userlanguage: string[] = JSON.parse(localStorage.getItem("userlanguage") || "[]");
+  getlanguage!: string[]
+  userlanguage !: string
 
   constructor(private http: HttpClient) {
-    this.modifyLanguage(this.userlanguage[0])
+    this.language()
+  }
+
+  ngOnInit() {
+    this.langUpdateObservable.subscribe(res => {
+      if (res.langUpdate) {
+        this.language();
+      }
+    });
+  }
+
+
+  public langUpdate = new BehaviorSubject<any>('');
+  langUpdateObservable = this.langUpdate.asObservable();
+
+  public notifylangUpdate(data: any) {
+    if (data) {
+      this.langUpdate.next(data);
+    }
+  }
+
+
+
+
+
+  language() {
+    this.getlanguage = JSON.parse(localStorage.getItem("userlanguage") || "[]");
+    this.userlanguage = this.getlanguage.toString()
+
+    console.log("a locastorage é PRIMEIRO - ", this.userlanguage)
+
+    if (this.userlanguage === 'pt')
+    {
+      this.BASE_URL = "https://dev-project-upskill2-grupo3-ii.pantheonsite.io/pt/";
+    }
+    else
+    {
+      this.userlanguage = "en"
+      localStorage.setItem("userlanguage", JSON.stringify(this.userlanguage));
+      this.BASE_URL = "https://dev-project-upskill2-grupo3-ii.pantheonsite.io/en/";
+    }
+
+    console.log("A lingua Final - ", this.userlanguage)
+  }
+
+  getLanguage() {
+    return this.userlanguage;
   }
 
 
   /*_______ Refresh Language _______*/
 
-  getLanguage() {
-    console.log("a lingua no inicio - ", this.userlanguage[0])
-    if (this.userlanguage[0] === "") {
-      return "en"
-    } else return "pt"
-  }
 
   modifyLanguage(lang: string) {
-    if (lang === "pt") {
-      this.BASE_URL = "https://dev-project-upskill2-grupo3-ii.pantheonsite.io/pt/";
-      this.userlanguage[0] = lang;
-      localStorage.setItem("userlanguage", JSON.stringify(this.userlanguage));
+    this.userlanguage = lang;
+    localStorage.setItem("userlanguage", JSON.stringify(this.userlanguage));
 
-      console.log("language1 - ", lang);
-      console.log("this.userlanguage1 - ", this.userlanguage);
-    }
-    else {
-      this.BASE_URL = "https://dev-project-upskill2-grupo3-ii.pantheonsite.io/en/";
-      this.userlanguage[0] = lang;
-      localStorage.setItem("userlanguage", JSON.stringify(this.userlanguage));
-
-      console.log("language2 - ", lang);
-      console.log("this.userlanguage2 - ", this.userlanguage);
-    }
+    console.log("a locastorage AGORA é - ", localStorage.getItem("userlanguage"))
   }
-
 
   /*_______ Playlists _______*/
 
@@ -180,7 +206,7 @@ export class AppService {
   /*_______ Videos _______*/
 
 
-  getVideos(page?: number, tag?: number, filter?:string) {
+  getVideos(page?: number, tag?: number, filter?: string) {
     let url = this.BASE_URL + "api/videos"
     if (page) {
       url = url + "?page=" + page
@@ -202,7 +228,7 @@ export class AppService {
   public notifySearch = new BehaviorSubject<any>('');
   notifySearchObservable = this.notifySearch.asObservable();
 
-  getSearch(filter?:string){
+  getSearch(filter?: string) {
     return this.http.get<Video[]>(this.BASE_URL + "api/videos/search/?name=" + filter);
   }
 

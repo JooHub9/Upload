@@ -19,24 +19,26 @@ export class LanguageComponent {
 
   ngOnInit() {
     this.language = this.appService.getLanguage();
-   /* this.language === "en" ? this.otherlanguage = "en" : this.otherlanguage = "pt";*/
+    this.language === "en" ? this.otherlanguage = "Alterar para Português" : this.otherlanguage = "Change to English"
   }
 
   changeLanguage() {
+    this.language = this.appService.getLanguage();
     this.language === "en" ? this.language = "pt" : this.language = "en"
 
+
     this.appService.modifyLanguage(this.language)
-
-    //this.language = this.appService.getLanguage();
-/*
-    this.language === "en" ? this.otherlanguage = "en" : this.otherlanguage = "pt";*/
+    console.log("a lingua agora - ", this.language)
 
 
-   /* setTimeout(()=>{
-      window.location.reload(), 5000
-    });*/
+    // ----  refresh language
+    setTimeout(()=>{
+      this.appService.notifylangUpdate({langUpdate: true});
+    }, 300);
 
-
+    setTimeout(()=>{
+      window.location.reload()
+    }, 600);
   }
 
 }

@@ -1,6 +1,6 @@
 import {Component, OnInit} from '@angular/core';
 import {AppService} from "../../app.service";
-import {Observable} from "rxjs";
+
 
 @Component({
   selector: 'app-search-bar',
@@ -11,7 +11,7 @@ export class SearchBarComponent {
 
   keyword: string = 'field_video_title'
   data!: any[];
-  str: string = ""
+  item: string = ""
 
 
   constructor(public appService: AppService) {
@@ -19,7 +19,7 @@ export class SearchBarComponent {
 
   ngOnInit(): void {
 
-    this.appService.getVideos().subscribe(v => {
+    this.appService.getSearch(this.item).subscribe(v => {
       this.data = v
     })
 
@@ -30,10 +30,7 @@ export class SearchBarComponent {
   }
 
  searchVideo(filter: any) {
-    this.str = filter;
-    console.log(this.str)
-    //this.appService.getSearch(this.str).subscribe(v => {
-      //this.data = v
-    //})
+    this.item = filter;
+
   }
 }

@@ -11,6 +11,7 @@ import {ChannelpageComponent} from "./pages/channelpage/channelpage.component";
 import {ChannelsComponent} from "./pages/channels/channels.component";
 import {FavoritesComponent} from "./pages/favorites/favorites.component";
 import {ThematicArticleComponent} from "./pages/thematic-article/thematic-article.component";
+import {LanguageComponent} from "./components/language/language.component";
 
 const routes: Routes = [
   {path: '', redirectTo: 'homepage',pathMatch: 'full'},
@@ -25,6 +26,7 @@ const routes: Routes = [
   {path: 'channels', component: ChannelsComponent},
   {path: 'favorites', component: FavoritesComponent},
   {path: 'categorias', component: CategoriesComponent},
+  {path: 'language', component: LanguageComponent}
 ];
 
 @NgModule({

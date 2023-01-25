@@ -10,6 +10,15 @@ import {ActivatedRoute} from "@angular/router";
 })
 export class HomepageComponent {
 
+  listTerms: Terms[] = [];
+  recentvideostext: string = "";
+  morevideostext: string = "";
+  suggestedchannelstext: string = "";
+  seemoretext: string = "";
+  suggestedthematicstext: string = "";
+  seealltext: string = "";
+
+
   videos: Video[] = []
   page = 0
   channels: Channel[] = []
@@ -60,6 +69,42 @@ export class HomepageComponent {
         this.str = this.obj.name
       }))
     })
+
+
+    this.appService.getTerms().subscribe(tm => {
+      this.listTerms = tm;
+
+      this.listTerms.forEach(t=>{
+
+        switch(Number(t.tid)) {
+          case 68: {
+            this.recentvideostext = t.name
+            break;
+          }
+          case 73: {
+            this.morevideostext = t.name
+            break;
+          }
+          case 69: {
+            this.suggestedchannelstext = t.name
+            break;
+          }
+          case 70: {
+            this.seemoretext = t.name
+            break;
+          }
+          case 72: {
+            this.suggestedthematicstext = t.name
+            break;
+          }
+          case 71: {
+            this.seealltext = t.name
+            break;
+          }
+
+        }})});
+
+
   }
 
 

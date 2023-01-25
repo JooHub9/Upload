@@ -13,14 +13,38 @@ export class FavoritesComponent implements OnInit {
   favorites_list: Video[] = []
   faPoo = faPoo
 
-  constructor(public appService: AppService) {
-  }
+  listTerms: Terms[] = [];
+  favoritestext: string = "";
+  Ooopstext: string = "";
+
+
+
+  constructor(public appService: AppService) {}
 
   ngOnInit(): void {
     this.appService.getFavorites().subscribe((favorites) => {
       this.favorites_list = favorites;
+    });
 
-    })
+    this.appService.getTerms().subscribe(tm => {
+      this.listTerms = tm;
+
+      this.listTerms.forEach(t=>{
+
+        switch(Number(t.tid)) {
+          case 65: {
+            this.favoritestext = t.name
+            break;
+          }
+          case 88: {
+            this.Ooopstext = t.name
+            break;
+          }
+
+        }})});
+
+
+
   }
 }
 

@@ -53,7 +53,7 @@
 
           .tags {
             color: #1E75FF;
-            font-size: 10px;
+            font-size: 14px;
           }
 
         }
@@ -103,6 +103,7 @@
           border-radius: 50%;
           background-size: cover;
           border: solid 2px #FFFFFF;
+          cursor: pointer;
         }
 
         .textinfo {
@@ -202,6 +203,13 @@
 
     }
 
+    .textocomentarios
+    {
+      font-weight: 600;
+      font-size: 14pt;
+      width: auto;
+      color: white;
+    }
   }
 
   .sidebar {

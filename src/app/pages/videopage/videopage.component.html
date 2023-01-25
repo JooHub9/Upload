@@ -17,7 +17,8 @@
     <div class="divundervideo">
       <div class="left">
         <div class="profilepicture" [ngStyle]="{'background-image':
-  'url(https://dev-project-upskill2-grupo3-ii.pantheonsite.io/'  + objvideo.user_picture + ')'} "></div>
+  'url(https://dev-project-upskill2-grupo3-ii.pantheonsite.io/'  + objvideo.user_picture + ')'}
+"[routerLink]="'/channelpage/'+objvideo.field_channel_1"></div>
         <div class="textinfo">
           <p class="channel"> {{objvideo.name_1}} </p>
           <p class="date"> {{objvideo.created}} </p>
@@ -41,6 +42,7 @@
       [id]="id"
       page="video"
     ></app-form>
+    <div class="textocomentarios">{{commentstext}}</div>
     <div *ngFor="let v of listvideoCom">
       <app-comment *ngIf="parseNum(v.field_count_reports_vc) < 3"
                    type="video"

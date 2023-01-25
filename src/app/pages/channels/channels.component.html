@@ -1,5 +1,5 @@
-<div class="main_container">
-  <div class="channeltext">Channels</div>
+<div class="main_container" *ngIf="!loading">
+  <div class="channeltext">{{channelstext}}</div>
   <div class=channel_container>
     <app-compact-box
       *ngFor="let c of channels"
@@ -12,3 +12,6 @@
   </div>
 </div>
 
+<div class="loadercontainer">
+  <div class="loader" *ngIf="loading"></div>
+</div>

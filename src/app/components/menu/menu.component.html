@@ -11,13 +11,13 @@
       <div class="channels" id="channels_button" routerLink="channels">
         <div class="active_div" routerLinkActive="active">
           <fa-icon [icon]="faBarsStaggered"></fa-icon>
-          <p>Channels</p>
+          <p>{{channelstext}}</p>
         </div>
       </div>
       <div class="thematics" id="thematics_button" routerLink="thematics">
         <div class="active_div" routerLinkActive="active">
           <fa-icon [icon]="faClapperboard"></fa-icon>
-          <p>Thematics</p>
+          <p>{{thematicstext}}</p>
         </div>
       </div>
       <div class="playlists" id="playlists_button" routerLink="playlists">
@@ -30,11 +30,11 @@
     <div class="favourites" id="favourites_button" routerLink="favorites">
       <div class="active_div" routerLinkActive="active">
         <fa-icon [icon]="faBookmark"></fa-icon>
-        <p>Favorites</p>
+        <p>{{favoritestext}}</p>
       </div>
     </div>
     <div class="titles">
-      <h3>TAGS</h3>
+      <h3>{{tagstext}}</h3>
       <div class="tags_flex">
         <div class="tag" *ngFor="let tag of tags" [queryParams]="{tag: tag.tid}" routerLink="/homepage">
           {{tag.name}}
@@ -42,7 +42,7 @@
       </div>
     </div>
     <div class="titles">
-      <h3>SEARCH VIDEO</h3>
+      <h3>{{searchvideotext}}</h3>
       <div class="search">
         <app-search-bar></app-search-bar>
       </div>

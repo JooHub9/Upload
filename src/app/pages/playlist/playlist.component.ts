@@ -12,6 +12,9 @@ export class PlaylistComponent implements OnInit {
   playlist = {} as Playlist;
   playlist_videos: Video [] = [];
 
+  videostext: string = "";
+  listTerms: Terms[] = [];
+
   constructor(public route: ActivatedRoute, public AppService: AppService) {
     this.nid = route.snapshot.params["nid"];
   }
@@ -26,6 +29,16 @@ export class PlaylistComponent implements OnInit {
       this.playlist_videos = playlist_videos;
     });
 
+    this.AppService.getTerms().subscribe(tm => {
+      this.listTerms = tm;
+
+      this.listTerms.forEach(t=>{
+
+        if(Number(t.tid)===77)
+        {
+          this.videostext = t.name
+        }
+      })});
 
   }
   }

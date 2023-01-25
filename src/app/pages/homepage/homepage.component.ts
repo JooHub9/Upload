@@ -14,14 +14,14 @@ export class HomepageComponent {
   page = 0
   channels: Channel[] = []
   suggested_thematic = {} as Thematics;
-  t : Tags[] = []
+  t: Tags[] = []
   tag?: number = 0;
 
+  url: string = 'https://dev-project-upskill2-grupo3-ii.pantheonsite.io/'
   obj!: Tags
-  str: string = ""
+  str?: string = ""
   list: Tags[] = []
-
-
+  filter: string = ""
 
 
   constructor(public appService: AppService, public route: ActivatedRoute) {
@@ -33,40 +33,52 @@ export class HomepageComponent {
     this.appService.getSuggestedChannels().subscribe(channel => {
       this.channels = channel
 
-      this.appService.getSuggestedThematic().subscribe(thematic => {
-        this.suggested_thematic = thematic[0];
-
-      })
     })
+
+    this.appService.getSuggestedThematic().subscribe(thematic => {
+      this.suggested_thematic = thematic[0];
+
+    })
+
 
     this.route.queryParams.subscribe(q => {
       this.tag = q['tag'];
       this.videos = [];
 
-      setTimeout(() =>{
+
+      setTimeout(() => {
         this.videosList(), 500;
       })
 
+
+      this.appService.getTags().subscribe((st => {
+        this.t = st
+        this.list = this.t.filter(v => {
+          return v.tid === this.tag
+        })
+        this.obj = this.list[0]
+        this.str = this.obj.name
+      }))
     })
   }
+
 
   videosList(): void {
     this.appService.getVideos(this.page, this.tag).subscribe((video) => {
       this.videos = [...this.videos, ...video]
     })
-    this.appService.getTags().subscribe((st=> {
-      this.t = st
-      this.list = this.t.filter(v => {return  v.tid === this.tag})
-      this.obj = this.list[0]
-      this.str = this.obj.name
-    }))
 
-
+    this.appService.notifySearchObservable.subscribe(search=>{
+      if (search.refreshVideo){
+        this.appService.getSearch(this.filter).subscribe(v=> {
+          this.videos = search;
+        })
+      }
+    })
   }
 
   moreResults(): void {
     this.page++
     this.videosList()
   }
-
 }

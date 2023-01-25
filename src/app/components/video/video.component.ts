@@ -23,6 +23,7 @@ export class VideoComponent implements OnInit {
   @Input() field_channel_1?: string;
   @Input() field_media_oembed_video!: string;
   @Input() share_type?: string;
+  @Input() thematics? : boolean;
 
 
   faBookmark = faBookmark

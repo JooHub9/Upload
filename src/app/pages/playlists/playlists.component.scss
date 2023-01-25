@@ -28,7 +28,7 @@
         position: relative;
 
         .bookmark_play {
-          cursor: pointer;
+          cursor:pointer;
 
           .bookmark {
             color: white;
@@ -66,6 +66,7 @@
           .user_picture {
             width: 75px;
             height: 75px;
+            object-fit: cover;
             border-radius: 50px;
             border: 2px solid white;
             right: 35px;

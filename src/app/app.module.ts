@@ -31,12 +31,11 @@ import {ChannelsComponent} from './pages/channels/channels.component';
 import {FavoritesComponent} from './pages/favorites/favorites.component';
 import {TagsPipe} from './tags.pipe';
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
-/*import {MatRadioModule} from "@angular/material/radio";
-import {MatFormFieldModule} from "@angular/material/form-field";
-import {MatSelectModule} from "@angular/material/select";
-import {MatIconModule} from "@angular/material/icon";
-import {MatInputModule} from "@angular/material/input";*/
+import { AutocompleteLibModule} from "angular-ng-autocomplete";
+import { SearchBarComponent } from './components/search-bar/search-bar.component';
 import { SanitizePipe } from './sanitize.pipe';
+import { LanguageComponent } from './components/language/language.component';
+
 
 @NgModule({
   declarations: [
@@ -63,7 +62,9 @@ import { SanitizePipe } from './sanitize.pipe';
     ChannelsComponent,
     FavoritesComponent,
     TagsPipe,
-    SanitizePipe
+    SanitizePipe,
+    LanguageComponent,
+    SearchBarComponent
   ],
 
   imports: [
@@ -76,15 +77,12 @@ import { SanitizePipe } from './sanitize.pipe';
     FontAwesomeModule,
     ReactiveFormsModule,
     BrowserAnimationsModule,
-    /*MatRadioModule,
-    MatFormFieldModule,
-    MatSelectModule,
-    MatIconModule,
-    MatInputModule,*/
+    AutocompleteLibModule
   ],
 
   providers: [],
   bootstrap: [AppComponent]
 })
+
 export class AppModule {
 }

@@ -91,6 +91,7 @@
     display: flex;
     position: relative;
     font-size: 13px;
+    color:black;
 
 
     .search_bar {
@@ -114,4 +115,8 @@
     }
   }
 
-
+@media (max-width: 480px) {
+  .main_container{
+    display:none
+  }
+}

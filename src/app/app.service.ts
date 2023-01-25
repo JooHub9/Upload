@@ -2,62 +2,116 @@ import {Injectable} from '@angular/core';
 import {HttpClient} from "@angular/common/http";
 import {BehaviorSubject} from "rxjs";
 
-const BASE_URL = "https://dev-project-upskill2-grupo3-ii.pantheonsite.io/api/"
-
 
 @Injectable({providedIn: 'root'})
 
 export class AppService {
-
-
+  BASE_URL: string = "";
+  getlanguage!: string[]
+  userlanguage !: string
 
   constructor(private http: HttpClient) {
+    this.language()
   }
 
+  ngOnInit() {
+    this.langUpdateObservable.subscribe(res => {
+      if (res.langUpdate) {
+        this.language();
+      }
+    });
+  }
+
+
+  public langUpdate = new BehaviorSubject<any>('');
+  langUpdateObservable = this.langUpdate.asObservable();
+
+  public notifylangUpdate(data: any) {
+    if (data) {
+      this.langUpdate.next(data);
+    }
+  }
+
+
+
+
+
+  language() {
+    this.getlanguage = JSON.parse(localStorage.getItem("userlanguage") || "[]");
+    this.userlanguage = this.getlanguage.toString()
+
+    console.log("a locastorage é PRIMEIRO - ", this.userlanguage)
+
+    if (this.userlanguage === 'pt')
+    {
+      this.BASE_URL = "https://dev-project-upskill2-grupo3-ii.pantheonsite.io/pt/";
+    }
+    else
+    {
+      this.userlanguage = "en"
+      localStorage.setItem("userlanguage", JSON.stringify(this.userlanguage));
+      this.BASE_URL = "https://dev-project-upskill2-grupo3-ii.pantheonsite.io/en/";
+    }
+
+    console.log("A lingua Final - ", this.userlanguage)
+  }
+
+  getLanguage() {
+    return this.userlanguage;
+  }
+
+
+  /*_______ Refresh Language _______*/
+
+
+  modifyLanguage(lang: string) {
+    this.userlanguage = lang;
+    localStorage.setItem("userlanguage", JSON.stringify(this.userlanguage));
+
+    console.log("a locastorage AGORA é - ", localStorage.getItem("userlanguage"))
+  }
 
   /*_______ Playlists _______*/
 
 
   getPlaylists() {
-    return this.http.get<Playlist[]>(BASE_URL + "playlists");
+    return this.http.get<Playlist[]>(this.BASE_URL + "api/playlists");
   }
 
   getPlaylist(nid: string) {
-    return this.http.get<Playlist[]>(BASE_URL + "playlists/" + nid);
+    return this.http.get<Playlist[]>(this.BASE_URL + "api/playlists/" + nid);
   }
 
 
-  getPlaylistVideos(nid : string) {
-    return this.http.get<Video[]>(BASE_URL + "playlist/videos/" + nid);
+  getPlaylistVideos(nid: string) {
+    return this.http.get<Video[]>(this.BASE_URL + "api/playlist/videos/" + nid);
   }
-
 
 
   /*_______ Thematics _______*/
 
   getThematics() {
-    return this.http.get<Thematic[]>(BASE_URL + "thematics");
+    return this.http.get<Thematic[]>(this.BASE_URL + "api/thematics");
   }
 
   getSuggestedThematic() {
-    return this.http.get<Thematics[]>(BASE_URL + "thematicsrandom?r=" + Date.now());
+    return this.http.get<Thematics[]>(this.BASE_URL + "api/thematicsrandom?r=" + Date.now());
   }
 
-  getThematic(nid : string) {
-    return this.http.get<Thematic[]>(BASE_URL + "thematics/" + nid);
+  getThematic(nid: string) {
+    return this.http.get<Thematic[]>(this.BASE_URL + "api/thematics/" + nid);
   }
 
-  getThematicVideos(nid : string) {
-    return this.http.get<Video[]>(BASE_URL + "thematic_article/videos/" + nid);
+  getThematicVideos(nid: string) {
+    return this.http.get<Video[]>(this.BASE_URL + "api/thematic_article/videos/" + nid);
   }
 
 
   /*_______ Categories _______*/
 
   getCategories() {
-    return this.http.get(BASE_URL + "categorias")
+    return this.http.get(this.BASE_URL + "api/categorias")
   }
-
 
 
   /*_______ Comments _______*/
@@ -65,21 +119,21 @@ export class AppService {
   /*------ GET ------*/
 
   getContentComments(id?: string) {
-    return this.http.get<ContentComment[]>(BASE_URL + "contentcomments/" + id);
+    return this.http.get<ContentComment[]>(this.BASE_URL + "api/contentcomments/" + id);
   }
 
   getVideoComments() {
-    return this.http.get<VideoComment[]>(BASE_URL + "videocomments");
+    return this.http.get<VideoComment[]>(this.BASE_URL + "api/videocomments");
   }
 
   getOneVideoComments(id: string) {
-    return this.http.get<VideoComment[]>(BASE_URL + "videocomments/" + id);
+    return this.http.get<VideoComment[]>(this.BASE_URL + "api/videocomments/" + id);
   }
 
   /*------ POST ------*/
 
   getToken() {
-    return this.http.get("https://dev-project-upskill2-grupo3-ii.pantheonsite.io/session/token");
+    return this.http.get(this.BASE_URL + "session/token");
   }
 
   token = this.getToken();
@@ -89,7 +143,7 @@ export class AppService {
 
 
   postComment(body: {}) {
-    return this.http.post("https://dev-project-upskill2-grupo3-ii.pantheonsite.io/comment/",
+    return this.http.post(this.BASE_URL + "comment/",
       body,
       {'headers': this.headers});
   }
@@ -119,26 +173,25 @@ export class AppService {
   /*------- Report Comment ------*/
 
   getReasons() {
-    return this.http.get<Reason[]>(BASE_URL + "reasonsreport");
+    return this.http.get<Reason[]>(this.BASE_URL + "api/reasonsreport");
   }
 
 
-  Report (id:string,channel:boolean,reasons:{}[],count:number) {
+  Report(id: string, channel: boolean, reasons: {}[], count: number) {
     let body
-    if(channel)
-    {
-      body ={
+    if (channel) {
+      body = {
         "field_reported_cc": [{"value": 1}],
         "comment_type": [{"target_id": "comment"}],
-        "field_report_reasons_cc":reasons,
+        "field_report_reasons_cc": reasons,
         "field_count_reports_cc": [{"value": count}],
         "uid": [0]
-      }}
-    else {
+      }
+    } else {
       body = {
         "field_reported_vc": [{"value": 1}],
         "comment_type": [{"target_id": "video_comment"}],
-        "field_report_reasons_vc":reasons,
+        "field_report_reasons_vc": reasons,
         "field_count_reports_vc": [{"value": count}],
         "uid": [0]
       }
@@ -152,8 +205,9 @@ export class AppService {
 
   /*_______ Videos _______*/
 
-  getVideos(page?: number, tag?: number) {
-    let url = BASE_URL + "videos"
+
+  getVideos(page?: number, tag?: number, filter?: string) {
+    let url = this.BASE_URL + "api/videos"
     if (page) {
       url = url + "?page=" + page
     }
@@ -164,18 +218,27 @@ export class AppService {
   }
 
   getVideo(id: string) {
-    return this.http.get<Video[]>(BASE_URL + "videos/" + id);
+    return this.http.get<Video[]>(this.BASE_URL + "api/videos/" + id);
   }
 
   getAllVideosChannel(id: string) {
-    return this.http.get<Video[]>(BASE_URL + "allvideos/" + id);
+    return this.http.get<Video[]>(this.BASE_URL + "api/allvideos/" + id);
+  }
+
+  public notifySearch = new BehaviorSubject<any>('');
+  notifySearchObservable = this.notifySearch.asObservable();
+
+  getSearch(filter?: string) {
+
+    return this.http.get<Video[]>(this.BASE_URL + "api/videos/search/?name=" + filter);
+
   }
 
 
   /*_______ Tags _______*/
 
   getTags() {
-    return this.http.get<Tags[]>(BASE_URL + "tags?r=" + Date.now());
+    return this.http.get<Tags[]>(this.BASE_URL + "api/tags?r=" + Date.now());
   }
 
 
@@ -184,30 +247,28 @@ export class AppService {
   /*------ GET ------*/
 
   getLikes(entity_id: string) {
-    return this.http.get<Likes[]>(BASE_URL + "likesvideo/" + entity_id);
+    return this.http.get<Likes[]>(this.BASE_URL + "api/likesvideo/" + entity_id);
   }
 
   getDislikes(entity_id: string) {
-    return this.http.get<Likes[]>(BASE_URL + "dislikesvideo/" + entity_id);
+    return this.http.get<Likes[]>(this.BASE_URL + "api/dislikesvideo/" + entity_id);
   }
 
 
   /*------ POST ------*/
 
-  postLike (body:{} )
-  {
-    return this.http.post("https://dev-project-upskill2-grupo3-ii.pantheonsite.io/entity/flagging",
-      body,{'headers': this.headers});
+  postLike(body: {}) {
+    return this.http.post(this.BASE_URL + "entity/flagging",
+      body, {'headers': this.headers});
   }
 
-  postDislike (body:{} )
-  {
-    return this.http.post("https://dev-project-upskill2-grupo3-ii.pantheonsite.io/entity/flagging",
-      body,{'headers': this.headers});
+  postDislike(body: {}) {
+    return this.http.post(this.BASE_URL + "entity/flagging",
+      body, {'headers': this.headers});
 
   }
 
-      /*------ Refresh Likes / Dislikes ------*/
+  /*------ Refresh Likes / Dislikes ------*/
 
   public notifyLike = new BehaviorSubject<any>('');
   notifyLikesObservable = this.notifyLike.asObservable();
@@ -231,19 +292,19 @@ export class AppService {
 
 
   getChannels() {
-    return this.http.get<Channel[]>(BASE_URL + "channels/");
+    return this.http.get<Channel[]>(this.BASE_URL + "api/channels/");
   }
 
   getoneChannel(id: string) {
-    return this.http.get<Channel[]>(BASE_URL + "channels/" + id);
+    return this.http.get<Channel[]>(this.BASE_URL + "api/channels/" + id);
   }
 
   getChannelsVideos(id: string) {
-    return this.http.get<ChannelVideos[]>(BASE_URL + "channelvideos/" + id);
+    return this.http.get<ChannelVideos[]>(this.BASE_URL + "api/channelvideos/" + id);
   }
 
   getSuggestedChannels() {
-    return this.http.get<Channel[]>(BASE_URL + "channelsrandom?r=" + Date.now());
+    return this.http.get<Channel[]>(this.BASE_URL + "api/channelsrandom?r=" + Date.now());
   }
 
 
@@ -253,7 +314,7 @@ export class AppService {
 
 
   getFavorites() {
-      return this.http.get<Video[]>(BASE_URL + "videos/favs/" + this.favorites.join(","));
+    return this.http.get<Video[]>(this.BASE_URL + "api/videos/favs/" + this.favorites.join(","));
   }
 
   isFavorite(mid: string) {
@@ -272,19 +333,5 @@ export class AppService {
     localStorage.setItem("favorites", JSON.stringify(this.favorites))
   }
 
-
- /* /!*------- Refresh VideoPage ------*!/
-
-/*
-  public changePage = new BehaviorSubject<any>('');
-
-  notifyVideoPage = this.changePage.asObservable();
-
-  public notifyPage(data: any) {
-    if (data) {
-      this.changePage.next(data);
-    }
-
-  }*/
 }
 

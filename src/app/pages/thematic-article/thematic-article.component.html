@@ -3,13 +3,11 @@
     <h1 class="thematic_title">{{thematic.title}}</h1>
     <div class="images_thematic">
     <!--<div class="thematic_image_header">-->
-      <img class="image_header_thematic"
-           [src]="'https://dev-project-upskill2-grupo3-ii.pantheonsite.io/' + thematic.field_image_header">
-
+        <img class="image_header_thematic"
+             [src]="'https://dev-project-upskill2-grupo3-ii.pantheonsite.io/' + thematic.field_image_header">
       <!--<div class="thumbnail_thematic">-->
         <img class="thematic_thumbnail"
              [src]="'https://dev-project-upskill2-grupo3-ii.pantheonsite.io/' + thematic.field_thumbnail_article">
-
     </div>
     <div class="thematic_tag">#{{thematic.field_tag}}</div>
     <div class="thematic_teaser">{{thematic.field_teaser}}</div>
@@ -34,7 +32,8 @@
           [field_duration]="tv.field_duration"
           [field_tags]="tv.field_tags"
           [field_video_title]="tv.field_video_title"
-          [created]="tv.created">
+          [created]="tv.created"
+          [thematics]=true>
         </app-video>
       </div>
   </div>

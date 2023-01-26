@@ -13,6 +13,13 @@ export class CommentComponent {
   faEllipsisVertical = faEllipsisVertical;
   faFlag = faFlag;
 
+  thankstext:string = "Thank you for reporting";
+  pleasetext:string = "Please choose a reason";
+  otherreasontext:string = "";
+  reporttext:string = "";
+  listTerms: Terms[] = [];
+
+
   selected: boolean = false;
   warning: boolean = false;
   optionsInvisible: boolean = true;
@@ -58,6 +65,32 @@ export class CommentComponent {
       .map(r => {
         return {"value": r}
       })
+
+
+      this.appService.getTerms().subscribe(tm => {
+        this.listTerms = tm;
+
+        this.listTerms.forEach(t=>{
+
+          switch(Number(t.tid)) {
+            case 86: {
+              this.thankstext = t.name
+              break;
+            }
+            case 87: {
+              this.pleasetext = t.name
+              break;
+            }
+            case 81: {
+              this.otherreasontext = t.name
+              break;
+            }
+            case 80: {
+              this.reporttext = t.name
+              break;
+            }
+
+          }})});
 
   }
 
@@ -144,14 +177,9 @@ console.log("o ARRAY1: ", this.reasonsArray)
     setTimeout(()=>{
       this.channel?
         this.appService.notifyChannels({refreshChannel: true}):this.appService.notifyVideos({refreshVideo: true});
-    }, 5000);
+    }, 1000);
 
     this.toggleReportThanks();
-
-
-  /*  setTimeout(()=>{
-      this.toggleReportThanks()
-    }, 10000);*/
 
   }
 

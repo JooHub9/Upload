@@ -1,6 +1,6 @@
 <div class="profilepicture" *ngIf="type==='form'" [ngStyle]="{'background-image': 'url(' + urlForm + ')'}"></div>
 
-<div class="profilepicture" *ngIf="type==='comment'" [ngStyle]="{'background-image': uid === 'Anonymous'
+<div class="profilepicture" *ngIf="type==='comment'" [ngStyle]="{'background-image': uid === 'Anonymous' || uid === 'Anónimo'
          ? 'url(' + url + ')'
          : 'url(https://dev-project-upskill2-grupo3-ii.pantheonsite.io/'  + user_picture + ')'} "
 ></div>

@@ -9,7 +9,7 @@
     <div class="personalinfo">
 
       <div class="divname">
-        <input class="fields" id="name" placeholder="Name" type="text" formControlName="name">
+        <input class="fields" id="name" [placeholder]=nametext type="text" formControlName="name">
       </div>
 
       <div class="divemail">
@@ -19,11 +19,11 @@
     </div>
 
     <div class="divcomment">
-      <input class="fields" id="comment" placeholder="Message" type="text" formControlName="comment">
+      <input class="fields" id="comment" [placeholder]=messagetext type="text" formControlName="comment">
     </div>
 
     <div class="divbutton">
-      <button class="button" type="submit">Comment</button>
+      <button class="button" type="submit">{{commenttext}}</button>
     </div>
 
   </form>

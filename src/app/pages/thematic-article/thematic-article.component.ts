@@ -15,6 +15,9 @@ export class ThematicArticleComponent implements OnInit {
   thematic = {} as Thematic;
   thematic_videos: Video [] = [];
 
+  videostext: string = "";
+  listTerms: Terms[] = [];
+
   constructor(public route: ActivatedRoute, public AppService: AppService) {
     this.nid = route.snapshot.params["nid"];
   }
@@ -28,5 +31,20 @@ export class ThematicArticleComponent implements OnInit {
     this.AppService.getThematicVideos(this.nid).subscribe((thematic_videos ) => {
       this.thematic_videos = thematic_videos;
     });
+
+    this.AppService.getTerms().subscribe(tm => {
+      this.listTerms = tm;
+
+      this.listTerms.forEach(t=>{
+
+        if(Number(t.tid)===77)
+        {
+          this.videostext = t.name
+        }
+      })});
+
+
+
+
   }
 }

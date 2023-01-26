@@ -36,7 +36,6 @@ import { SanitizePipe } from './sanitize.pipe';
 import { LanguageComponent } from './components/language/language.component';
 import { MoreResultsComponent } from './components/more-results/more-results.component';
 
-
 @NgModule({
   declarations: [
     AppComponent,

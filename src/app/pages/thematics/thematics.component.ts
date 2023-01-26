@@ -10,6 +10,9 @@ import {AppService} from "src/app/app.service";
 export class ThematicsComponent implements OnInit{
   thematics : Thematic[] = [];
 
+  listTerms: Terms[] = [];
+  thematicstext:string="";
+
   constructor(public route: ActivatedRoute, public AppService: AppService) {
   }
 
@@ -18,6 +21,21 @@ export class ThematicsComponent implements OnInit{
     this.AppService.getThematics().subscribe((thematics ) => {
       this.thematics = thematics;
     });
+
+    this.AppService.getTerms().subscribe(tm => {
+      this.listTerms = tm;
+
+      this.listTerms.forEach(t=>{
+
+        if(Number(t.tid)===63)
+        {
+          this.thematicstext = t.name
+        }
+      })});
+
+
+
+
   }
 }
 

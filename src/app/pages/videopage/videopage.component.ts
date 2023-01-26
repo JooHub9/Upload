@@ -20,6 +20,10 @@ export class VideopageComponent {
   id: string = "";
   tags: string = "";
 
+  commentstext: string = "";
+
+  listTerms: Terms[] = [];
+
   likes: string = "0";
   dislikes: string = "0";
   objlikes = {} as Likes;
@@ -54,7 +58,7 @@ export class VideopageComponent {
       this.dislikes = dl[0].count
     })
 
-    ,500})
+    ,200})
 
   }
 
@@ -68,6 +72,19 @@ export class VideopageComponent {
       this.refreshInfo(), 500
     })
     });
+
+    this.appService.getTerms().subscribe(tm => {
+      this.listTerms = tm;
+
+      this.listTerms.forEach(t=>{
+
+        if(String(t.tid) === "78")
+        {
+          this.commentstext = t.name;
+        }
+
+
+        })});
   }
 
 //______ Main Function _________
@@ -78,6 +95,10 @@ export class VideopageComponent {
 
     this.appService.getVideo(this.id).subscribe(v => {
       this.objvideo = v[0];
+      console.log("todos os videos: ", this.objvideo)
+
+
+
       //---- Get the Tags ----//
 
       if (this.objvideo.field_tags != "") {
@@ -102,7 +123,7 @@ export class VideopageComponent {
 
       this.appService.getAllVideosChannel(this.objvideo.field_channel_1).subscribe(vd => {
         this.listvideos = vd;
-
+        console.log("a lista de videos: ", this.listvideos)
       });
 
       //---- Get the Comments ----//

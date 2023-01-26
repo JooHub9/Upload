@@ -1,8 +1,7 @@
 <ng-autocomplete
   [data]="data"
   [searchKeyword]="keyword"
-  (selected)='searchVideo($event)'
-  (inputChanged)='searchVideo($event)'
+  ngModel (ngModelChange)="searchVideo($event)"
   [itemTemplate]="itemTemplate"
   [notFoundTemplate]="notFoundTemplate">
 </ng-autocomplete>

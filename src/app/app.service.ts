@@ -228,6 +228,12 @@ export class AppService {
   public notifySearch = new BehaviorSubject<any>('');
   notifySearchObservable = this.notifySearch.asObservable();
 
+  public noteSearch(data: any) {
+    if (data) {
+      this.notifySearch.next(data);
+    }
+  }
+
   getSearch(filter?: string) {
 
     return this.http.get<Video[]>(this.BASE_URL + "api/videos/search/?name=" + filter);

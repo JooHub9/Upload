@@ -23,23 +23,27 @@ export class VideoComponent implements OnInit {
   @Input() field_channel_1?: string;
   @Input() field_media_oembed_video!: string;
   @Input() share_type?: string;
-  @Input() thematics? : boolean;
-
+  @Input() thematics?: boolean;
+  @Input() autoplay!: string;
 
   faBookmark = faBookmark
   faBookmarksolid = faBookmarkSolid
   faSharenodes = faShareNodes
   faCirclePlay = faCirclePlay
 
-  player:boolean;
-  full : boolean = false;
+  player: boolean;
+  full: boolean = false;
 
 
   constructor(public appService: AppService) {
-    this.player=false
+    this.player = false
 
   }
 
-  ngOnInit(): void {}
+  ngOnInit(): void {
+this.autoplay = this.autoplay.replace('/watch?v=', '/embed/')
+  .split("&")
++ '?autoplay=0&cc_load_policy=1&cc_lang_pref=pt'
 
+  }
 }

@@ -1,9 +1,13 @@
 <div class="video" (mouseover)="player=true" (mouseout)="player=false">
   <div class="images" >
-    <img class=thumbnail [src]="'https://dev-project-upskill2-grupo3-ii.pantheonsite.io/' + thumbnail__target_id"
+    <!--<img class=thumbnail [src]="'https://dev-project-upskill2-grupo3-ii.pantheonsite.io/' + thumbnail__target_id"
          [routerLink]="['/video/',mid]" alt="video thumbnail">
-    <div class="play" *ngIf="player">
-    <fa-icon [icon]="faCirclePlay"></fa-icon></div>
+    <div class="play" *ngIf="player">-->
+    <iframe class="video" title="video" [src]=" autoplay | safe"
+            allow="autoplay; fullscreen; picture-in-picture"
+    ></iframe>
+   <!--<fa-icon [icon]="faCirclePlay"></fa-icon>-->
+
     <div class="main_duration">
       <p class="duration">{{field_duration}}</p>
     </div>
@@ -26,11 +30,10 @@
         <a href="https://www.facebook.com/sharer.php?u={{field_media_oembed_video}}"
          onclick="window.open(this.href, 'Share on Facebook', 'menubar=no,toolbar=no,resizable=yes,scrollbars=no,height=300,width=600, title=Share on Facebook!');return false;"
          target="_blank">
-       <!--<a href="https://www.facebook.com/sharer.php?u={{field_media_oembed_video}}" target="_blank">-->
         <fa-icon [icon]="faSharenodes"></fa-icon>
         </a>
       </div>
     </div>
   </div>
 </div>
-<!--</div>-->
+

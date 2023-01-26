@@ -17,11 +17,17 @@ export class HomepageComponent {
   t: Tags[] = []
   tag?: number = 0;
 
-  url: string = 'https://dev-project-upskill2-grupo3-ii.pantheonsite.io/'
+
   obj!: Tags
   str?: string = ""
   list: Tags[] = []
   filter: string = ""
+  video_url: string = ""
+  video_list : Video[] = []
+  video_obj! : Video
+
+
+
 
 
   constructor(public appService: AppService, public route: ActivatedRoute) {
@@ -59,26 +65,30 @@ export class HomepageComponent {
         this.obj = this.list[0]
         this.str = this.obj.name
       }))
+
     })
   }
-
 
   videosList(): void {
     this.appService.getVideos(this.page, this.tag).subscribe((video) => {
       this.videos = [...this.videos, ...video]
-    })
+
+    });
 
     this.appService.notifySearchObservable.subscribe(search=>{
-      if (search.refreshVideo){
+      if (search.notifySearch){
         this.appService.getSearch(this.filter).subscribe(v=> {
-          this.videos = search;
+          this.videos = [...this.videos,...search];
+
         })
       }
     })
   }
 
+
   moreResults(): void {
     this.page++
     this.videosList()
   }
+
 }

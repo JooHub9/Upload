@@ -17,15 +17,22 @@ export class SearchBarComponent {
   constructor(public appService: AppService) {
   }
 
+
+
   ngOnInit(): void {
 
+    //Observable está à escuta
+    this.appService.notifySearchObservable.subscribe((filter:string) => {
+      this.searchVideo(filter)
+    })
+
+    //esta parte do código mostra a lista dos videos no input
     this.appService.getSearch(this.item).subscribe(v => {
       this.data = v
     })
 
-    this.appService.notifySearchObservable.subscribe((filter:string) => {
-     this.searchVideo(filter)
-    })
+    //envia se notar mudança
+    this.appService.noteSearch({notifySearch: true});
 
   }
 
@@ -34,3 +41,4 @@ export class SearchBarComponent {
 
   }
 }
+

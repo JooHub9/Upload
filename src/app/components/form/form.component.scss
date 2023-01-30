@@ -7,6 +7,8 @@
 
   form {
     width: 100%;
+    position: relative;
+    background-color: transparent;
 
     .personalinfo {
       display: flex;
@@ -21,6 +23,11 @@
         margin: 10px 0;
         color: #FAFAFB;
 
+        &:-webkit-autofill,
+        &:-webkit-autofill:focus {
+          transition: background-color 600000s 0s, color 600000s 0s;
+        }
+
 
         &:focus {
           outline: 0;
@@ -32,8 +39,7 @@
 
       .divname {
         width: 50%;
-
-      }
+              }
 
       .divemail {
         width: 50%;
@@ -43,8 +49,9 @@
     }
 
     .divcomment {
+
       .fields {
-        background-color: transparent;
+        background-color: transparent !important;
         border: 0;
         border-bottom: 1px solid #FFFFFF;
         width: 100%;
@@ -55,7 +62,15 @@
           outline: 0;
           color: #FAFAFB;
         }
+
+        &:-webkit-autofill,
+        &:-webkit-autofill:focus {
+          transition: background-color 600000s 0s, color 600000s 0s;
+        }
+
+
       }
+
 
 
     }
@@ -77,8 +92,20 @@
       }
 
     }
+
+    .errorMessage
+    {
+      color: darkred;
+      position: absolute;
+      bottom:22px;
+    }
   }
 
+
+  .changeBG
+  {
+    background-color: #1C1C24;
+  }
 
 }
 

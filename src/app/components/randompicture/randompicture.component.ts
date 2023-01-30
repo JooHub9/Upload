@@ -24,8 +24,6 @@ export class RandompictureComponent {
 
   urlForm = "https://robohash.org/Anonymous" + this.image_number + "?set=any&bgset=any"
 
-
-
   ngOnInit(): void {
     this.url = "https://robohash.org/" + this.email + "?set=any&bgset=any"
     console.log("uid - ",this.uid)

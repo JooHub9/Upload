@@ -43,8 +43,13 @@
       page="video"
     ></app-form>
     <div class="textocomentarios">{{commentstext}}</div>
-    <div *ngFor="let v of listvideoCom">
-      <app-comment *ngIf="parseNum(v.field_count_reports_vc) < 3"
+
+    <div *ngIf="!includesComments"><i>{{nocommentstext}}</i></div>
+
+
+    <div *ngIf="includesComments">
+    <div *ngFor="let v of listvideoCom; let i = index">
+      <app-comment *ngIf="parseNum(v.field_count_reports_vc) < 3 "
                    type="video"
                    [uid]="v.uid"
                    [user_picture]="v.user_picture"
@@ -55,11 +60,12 @@
                    [idComment]="v.cid"
                    [reasons]="v.field_report_reasons_vc"
                    [count]="v.field_count_reports_vc"
+                   [idreason]= i
                    [channel]=false
       ></app-comment>
 
     </div>
-
+    </div>
   </div>
   <div class="sidebar">
     <div *ngFor="let v of listvideos">

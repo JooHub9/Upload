@@ -34,7 +34,6 @@ export class HomepageComponent {
 
 
   constructor(public appService: AppService, public route: ActivatedRoute) {
-
   }
 
   ngOnInit(): void {
@@ -54,20 +53,19 @@ export class HomepageComponent {
       this.tag = q['tag'];
       this.videos = [];
 
-
-      setTimeout(() => {
+      /*setTimeout(() => {
         this.videosList(), 500;
-      })
-
-
-      this.appService.getTags().subscribe((st => {
+      })*/
+      this.appService.getTags().subscribe(
+        st => {
         this.t = st
         this.list = this.t.filter(v => {
           return v.tid === this.tag
         })
         this.obj = this.list[0]
         this.str = this.obj.name
-      }))
+      })
+      this.videosList()
     })
 
 

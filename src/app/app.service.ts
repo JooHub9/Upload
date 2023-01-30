@@ -3,6 +3,7 @@ import {HttpClient} from "@angular/common/http";
 import {BehaviorSubject} from "rxjs";
 
 
+
 @Injectable({providedIn: 'root'})
 
 export class AppService {
@@ -33,14 +34,9 @@ export class AppService {
   }
 
 
-
-
-
   language() {
     this.getlanguage = JSON.parse(localStorage.getItem("userlanguage") || "[]");
     this.userlanguage = this.getlanguage.toString()
-
-    console.log("a locastorage é PRIMEIRO - ", this.userlanguage)
 
     if (this.userlanguage === 'pt')
     {
@@ -53,7 +49,6 @@ export class AppService {
       this.BASE_URL = "https://dev-project-upskill2-grupo3-ii.pantheonsite.io/en/";
     }
 
-    console.log("A lingua Final - ", this.userlanguage)
   }
 
   getLanguage() {
@@ -67,11 +62,7 @@ export class AppService {
   modifyLanguage(lang: string) {
     this.userlanguage = lang;
     localStorage.setItem("userlanguage", JSON.stringify(this.userlanguage));
-
-    console.log("a locastorage AGORA é - ", localStorage.getItem("userlanguage"))
   }
-
-
 
 
 
@@ -141,10 +132,7 @@ export class AppService {
   }
 
   token = this.getToken();
-
-
   headers = {'Accept': 'application/vnd.api+json', 'X-CSRF-Token': String(this.token)};
-
 
   postComment(body: {}) {
     return this.http.post(this.BASE_URL + "comment/",
@@ -153,7 +141,6 @@ export class AppService {
   }
 
   /*------- Refresh Comments ------*/
-
 
   public notifyVideo = new BehaviorSubject<any>('');
   public notifyChannel = new BehaviorSubject<any>('');
@@ -180,7 +167,6 @@ export class AppService {
     return this.http.get<Reason[]>(this.BASE_URL + "api/reasonsreport");
   }
 
-
   Report(id: string, channel: boolean, reasons: {}[], count: number) {
     let body
     if (channel) {
@@ -202,10 +188,10 @@ export class AppService {
     }
     return this.http.patch("https://dev-project-upskill2-grupo3-ii.pantheonsite.io/comment/" + id, body,
 
-      {'headers': this.headers}).subscribe()
-
+      {'headers': this.headers}).subscribe(()=>{
+      channel ? this.notifyChannels({refreshChannel: true}) : this.notifyVideos({refreshVideo: true});
+      })
   }
-
 
   /*_______ Videos _______*/
 
@@ -229,25 +215,20 @@ export class AppService {
     return this.http.get<Video[]>(this.BASE_URL + "api/allvideos/" + id);
   }
 
-
   /*_______ Search _______*/
 
   public notifySearch = new BehaviorSubject<any>('');
   notifySearchObservable = this.notifySearch.asObservable();
 
   getSearch(filter?: string) {
-
     return this.http.get<Video[]>(this.BASE_URL + "api/videos/search/?name=" + filter);
-
   }
-
 
   /*_______ Tags _______*/
 
   getTags() {
     return this.http.get<Tags[]>(this.BASE_URL + "api/tags?r=" + Date.now());
   }
-
 
   /*_______ Likes _______*/
 
@@ -261,7 +242,6 @@ export class AppService {
     return this.http.get<Likes[]>(this.BASE_URL + "api/dislikesvideo/" + entity_id);
   }
 
-
   /*------ POST ------*/
 
   postLike(body: {}) {
@@ -272,7 +252,6 @@ export class AppService {
   postDislike(body: {}) {
     return this.http.post(this.BASE_URL + "entity/flagging",
       body, {'headers': this.headers});
-
   }
 
   /*------ Refresh Likes / Dislikes ------*/
@@ -297,7 +276,6 @@ export class AppService {
 
   /*_______ Channels _______*/
 
-
   getChannels() {
     return this.http.get<Channel[]>(this.BASE_URL + "api/channels/");
   }
@@ -306,19 +284,19 @@ export class AppService {
     return this.http.get<Channel[]>(this.BASE_URL + "api/channels/" + id);
   }
 
-  getChannelsVideos(id: string) {
-    return this.http.get<ChannelVideos[]>(this.BASE_URL + "api/channelvideos/" + id);
+  getChannelsVideos(id: string,page?: number,) {
+    let url = this.BASE_URL + "api/channelvideos/" + id;
+    page? url+= "?page=" + page : url
+    return this.http.get<ChannelVideos[]>(url);
   }
 
   getSuggestedChannels() {
     return this.http.get<Channel[]>(this.BASE_URL + "api/channelsrandom?r=" + Date.now());
   }
 
-
   /*------Favorites------*/
 
   favorites: number[] = JSON.parse(localStorage.getItem("favorites") || "[]");
-
 
   getFavorites() {
     return this.http.get<Video[]>(this.BASE_URL + "api/videos/favs/" + this.favorites.join(","));
@@ -346,6 +324,16 @@ export class AppService {
     return this.http.get<Terms[]>(this.BASE_URL + "api/angularterms");
   }
 
+  /*_______ Refresh ID videpage  _______*/
+
+  public anotherID = new BehaviorSubject<any>('');
+  notifyanotherID = this.anotherID.asObservable();
+
+  public notifyAnotherID(data: any) {
+    if (data) {
+      this.anotherID.next(data);
+    }
+  }
 
 }
 

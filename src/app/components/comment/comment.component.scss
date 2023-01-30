@@ -1,5 +1,6 @@
 :host {
   flex: 1;
+
 }
 
 .commentcontainer {
@@ -8,6 +9,7 @@
   align-items: center;
   justify-content: space-between;
   margin: 10px 0 50px 0;
+
 
   .pictextcontainer {
     display: flex;
@@ -37,10 +39,10 @@
   }
 
   .commenticon {
-    width: 50px;
+    width: 150px;
     position: relative;
     visibility: hidden;
-    background-color: #13131a;
+
 
     .iconcontainer {
       width: 100%;
@@ -48,11 +50,29 @@
       cursor: pointer;
       display: flex;
       justify-content: right;
+      right: -20px;
+
+
+
+
+
+      .iconEllipsis
+      {
+
+      }
 
       .thanks
       {
         position: absolute;
-        right: 5px;
+        right: 30px;
+        bottom: 30px;
+        font-size: 10pt;
+        width: 150px;
+        color: #bf1c1c;
+      }
+      .warning {
+        position: absolute;
+        right: 15px;
         bottom: 30px;
         font-size: 10pt;
         width: 150px;
@@ -62,8 +82,7 @@
       .reporttext {
         position: absolute;
         border: 0.5px solid #4b4b4b;
-        bottom: -22px;
-        right: 10px;
+        right: 15px;
         padding: 5px 15px;
         font-size: 10pt;
         color: #787878;
@@ -72,10 +91,14 @@
         display: flex;
         gap:10px;
         cursor: pointer;
+
+        .iconFlag{
+          color: darkred;
+        }
       }
 
-    }
 
+    }
 
 
     .reporttextcontainer {
@@ -89,16 +112,19 @@
       border: 2px solid rgba(146, 146, 157, 0.18);
       border-radius: 10px;
       padding: 5px;
-      //cursor: pointer;
       gap: 15px;
       color: rgb(146, 146, 157);
       background-color: #13131a;
-      //background-color: #39f512;
 
 
       .optionsContainer {
 
-
+        .choosetext
+        {
+          color: #6a6a6a;
+          font-size: 12pt;
+          margin: 5px 5px;
+        }
 
         .formContainer {
           display: flex;
@@ -106,29 +132,36 @@
           justify-content: center;
           flex-direction: column;
 
-
-          .reason {
+          .reasongroup
+          {
+            display: flex;
+            align-items: center;
+            justify-content: flex-start;
+            width:100%;
             border: none;
-            border-bottom: 0.5px solid #3b3b3b;
-            text-align: center;
-            background-color: #13131a;
-            height: 40px;
-            cursor: pointer;
-            color: white;
-            width: 100%;
-
+            height: 35px;
+            color: #cbcaca;
+            gap:10px;
+            border-radius: 5px;
 
             &:hover {
               background-color: #92929D66;
             }
 
-            &:focus {
-              outline: none !important;
-              border: 1px solid rgba(213, 82, 82, 0.72);
-              border-radius: 3px;
+            .radios
+            {
+              accent-color: #13131a;
+            }
+            .reason {
+              display: flex;
+              align-items: center;
+              justify-content: flex-start;
+              cursor: pointer;
+              width: 100%;
+              height: 100%;
+              font-size: 10pt;
             }
           }
-
 
           .inputreason {
             width: 100%;
@@ -137,17 +170,23 @@
             resize: vertical;
             overflow: auto;
             padding: 0;
-            background-color: #1C1C24;
+            background-color: #3f3f51;
             color: whitesmoke;
             font-weight: 200;
             border-radius: 3px;
-            border: none;
+            border: 1px solid #8e8d8d;
+            margin-top: 5px;
 
             &:focus {
               outline: none !important;
-              border: 1px solid rgba(213, 82, 82, 0.72);
+              border: 1px solid white;
               border-radius: 3px;
               text-decoration: none !important;
+            }
+
+            &:hover
+            {
+              border-color: whitesmoke;
             }
           }
 
@@ -160,31 +199,25 @@
             align-items: center;
             justify-content: space-around;
             width: 100%;
-            color: #272731;
-            font-size: 20px;
-            border: 0.2px solid #1e1e2a;
-            border-radius: 2px;
+            color: white;
+            font-size:15px;
+            border: 0.2px solid #323232;
+            border-radius: 5px;
             background-color: #13131a;
+            height: 35px;
 
-
-            &:hover .iconFlag {
-              font-size: 30px;
-
+            &:hover
+            {
+              border-color: darkred;
             }
 
-            .iconFlag {
+            /*.iconFlag {
               filter: drop-shadow(-1px -1px 0.5px #92929D66);
               transform: rotate(-10deg);
               margin: 5px;
-            }
+              color: #ff0000;
+            }*/
 
-
-            .warning {
-              position: absolute;
-              bottom: -50px;
-              color: darkred;
-              font-size: 10pt;
-            }
 
 
           }
@@ -192,13 +225,10 @@
         }
       }
     }
-
-
-
   }
-
-
 }
+
+
 .displayNone
 {
   display:none;
@@ -208,18 +238,11 @@
   background-color: #92929D66;
 }
 
-
-.reason:hover .greybg {
-  background-color: #92929D;
-}
-
-
 ::-webkit-input-placeholder {
   text-align: center;
   line-height: 40px;
   font-style: italic;
 }
-
 .commentcontainer:hover .iconcontainer {
   visibility: visible;
 }

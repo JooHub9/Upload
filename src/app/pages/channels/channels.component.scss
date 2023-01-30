@@ -5,7 +5,6 @@
 .main_container {
   margin: 20px;
 
-
   .channeltext {
     font-size: 20px;
     font-weight: 600;
@@ -15,8 +14,10 @@
   .channel_container {
     display: flex;
     flex-wrap: wrap;
-    gap: 20px;
+   gap: 50px;
     flex-basis: 33%;
+    justify-content: center;
+
   }
 }
 

@@ -2,6 +2,7 @@ import {Component, OnInit, Input} from '@angular/core';
 import {AppService} from "../../app.service";
 import {faBookmark} from "@fortawesome/free-regular-svg-icons"
 import {faShareNodes, faBookmark as faBookmarkSolid, faCirclePlay} from "@fortawesome/free-solid-svg-icons";
+import {Router} from "@angular/router";
 
 @Component({
   selector: 'app-video',
@@ -23,7 +24,8 @@ export class VideoComponent implements OnInit {
   @Input() field_channel_1?: string;
   @Input() field_media_oembed_video!: string;
   @Input() share_type?: string;
-  @Input() thematics? : boolean;
+  @Input() thematics?: boolean;
+ /* @Input() logo?: string;*/
 
 
   faBookmark = faBookmark
@@ -31,15 +33,39 @@ export class VideoComponent implements OnInit {
   faSharenodes = faShareNodes
   faCirclePlay = faCirclePlay
 
-  player:boolean;
-  full : boolean = false;
+  player: boolean;
+  full: boolean = false;
+  warning: boolean = false;
 
+  urlvtitle!: string;
 
-  constructor(public appService: AppService) {
-    this.player=false
+  constructor(public appService: AppService, private router: Router) {
+    this.player = false
+
 
   }
 
-  ngOnInit(): void {}
+  ngOnInit(): void {
+    this.urlvtitle = this.field_video_title?.replaceAll(" ", "")
+
+    /*if(this.field_channel_1 === "17")
+    {
+      this.warning = true;
+    }*/
+  }
+
+  gotoVideoPage()
+  {
+  console.log("o titulo - ", this.urlvtitle );
+    console.log("o ID - ", this.mid)
+
+    this.router.navigateByUrl('/video/'+this.urlvtitle,
+    { state: { idvalue: this.mid } }).then(() => {
+      console.log("DONE - ID - ", this.mid)
+      });
+
+    this.appService.notifyAnotherID({anotherID: true});
+
+  }
 
 }

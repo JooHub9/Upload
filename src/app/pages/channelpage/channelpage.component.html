@@ -5,15 +5,14 @@
   'url(https://dev-project-upskill2-grupo3-ii.pantheonsite.io/'
                                       + objchannels.field_channel_cover + ')'}">
 
-    <!--<img class="userpicture" [src]="'https://dev-project-upskill2-grupo3-ii.pantheonsite.io/' + objchannels.field_logo"
-         alt="Logo">-->
-    -<img class="userpicture" [ngStyle]="{'background-image':'url(https://dev-project-upskill2-grupo3-ii.pantheonsite.io/' + objchannels.field_logo + ')'}">
+    -<img class="userpicture"
+          [ngStyle]="{'background-image':'url(https://dev-project-upskill2-grupo3-ii.pantheonsite.io/' + objchannels.field_logo + ')'}">
   </div>
   <div class="textcontainer">
     <div class="title">{{objchannels.title}}</div>
     <div class="description">{{objchannels.field_description}}</div>
   </div>
-  <div class="textovideos">{{video}}</div>
+  <div class="textovideos">{{videotext}}</div>
   <div class="listvideos">
     <app-video
       *ngFor="let v of listvideos"
@@ -24,18 +23,27 @@
       [thumbnail__target_id]="v.thumbnail__target_id"
       [user_picture]="v.user_picture"
       [field_duration]="v.field_duration"
-      [field_channel_1]="v.nid">
+      [field_channel_1]="v.nid"
+    >
     </app-video>
   </div>
-  <div class="textocomentarios">{{comments}}</div>
+
+  <div *ngIf="moreSix" class="container_more_videos">
+  <div class="more_videos_border" (click)="moreResults()">
+    <p class="more_videos_text">{{morevideostext}}</p>
+  </div>
+  </div>
+
+  <div class="textocomentarios">{{commentstext}}</div>
   <div class="commentscontainer">
     <app-form
       [id]="id"
       page="channel"
     ></app-form>
-    <div class="commentcontainer" *ngFor="let cc of listchannelCom">
+    <div *ngIf="!includesComments"><i>{{nocommentstext}}</i></div>
+    <div *ngIf="includesComments">
+    <div class="commentcontainer" *ngFor="let cc of listchannelCom; let i = index">
       <app-comment *ngIf="parseNum(cc.field_count_reports_cc) < 3"
-
                    [uid]="cc.uid"
                    [user_picture]="cc.user_picture"
                    [username]="cc.field_username"
@@ -45,10 +53,12 @@
                    [idComment]="cc.cid"
                    [reasons]="cc.field_report_reasons_cc"
                    [count]="cc.field_count_reports_cc"
+                   [idreason]= i
                    [channel]=true>
         <fa-icon class="commenticon" [icon]="faEllipsisVertical"></fa-icon>
       </app-comment>
     </div>
+  </div>
   </div>
 </div>
 

@@ -1,18 +1,17 @@
-<div class="video" (mouseover)="player=true" (mouseout)="player=false">
-  <div class="images" >
-    <!--<img class=thumbnail [src]="'https://dev-project-upskill2-grupo3-ii.pantheonsite.io/' + thumbnail__target_id"
+<div class="video" (mouseover)="player=true" (mouseleave)="player=false">
+  <div class="images">
+    <img class=thumbnail [src]="'https://dev-project-upskill2-grupo3-ii.pantheonsite.io' + thumbnail__target_id"
          [routerLink]="['/video/',mid]" alt="video thumbnail">
-    <div class="play" *ngIf="player">-->
-    <iframe class="video" title="video" [src]=" autoplay | safe"
-            allow="autoplay; fullscreen; picture-in-picture"
-    ></iframe>
+    <div class="play" >
+    <iframe [routerLink]="['/video/',mid]" class="iframe" title="video" [src]=" autoplay | safe"
+            width="310" height="160" frameborder="0" allow="autoplay; fullscreen; picture-in-picture"
+    ></iframe></div>
    <!--<fa-icon [icon]="faCirclePlay"></fa-icon>-->
-
     <div class="main_duration">
       <p class="duration">{{field_duration}}</p>
     </div>
     <div *ngIf="field_channel" class="user_pic" [routerLink]="['/channelpage/',field_channel_1]">
-      <img class="picture" [src]="'https://dev-project-upskill2-grupo3-ii.pantheonsite.io/' + user_picture" alt="user picture">
+      <img class="picture" [src]="'https://dev-project-upskill2-grupo3-ii.pantheonsite.io' + user_picture" alt="user picture">
     </div>
   </div>
   <div class="video_info">

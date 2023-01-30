@@ -41,6 +41,7 @@ export class VideopageComponent {
 
 
   constructor(private route: ActivatedRoute, public appService: AppService) {
+
     this.id = route.snapshot.params['id_video'];
 
 

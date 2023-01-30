@@ -34,7 +34,7 @@ import { AutocompleteLibModule} from "angular-ng-autocomplete";
 import { SearchBarComponent } from './components/search-bar/search-bar.component';
 import { SanitizePipe } from './sanitize.pipe';
 import { LanguageComponent } from './components/language/language.component';
-import { MoreResultsComponent } from './components/more-results/more-results.component';
+import { SidebarComponent } from './components/sidebar/sidebar.component';
 
 @NgModule({
   declarations: [
@@ -64,7 +64,7 @@ import { MoreResultsComponent } from './components/more-results/more-results.com
     SanitizePipe,
     LanguageComponent,
     SearchBarComponent,
-    MoreResultsComponent
+    SidebarComponent,
   ],
 
   imports: [

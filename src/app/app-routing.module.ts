@@ -16,6 +16,7 @@ import {LanguageComponent} from "./components/language/language.component";
 const routes: Routes = [
   {path: '', redirectTo: 'homepage',pathMatch: 'full'},
   {path: 'homepage', component: HomepageComponent },
+  {path: 'homepage/?search=item', component: HomepageComponent},
   {path: 'comments', component: CommentsComponent },
   {path: 'video/:id_video', component: VideopageComponent},
   {path: 'playlists/:nid', component: PlaylistComponent},

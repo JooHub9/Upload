@@ -4,9 +4,11 @@
   border-radius: 20px;
   cursor: pointer;
   overflow: hidden;
+  opacity: 0.8;
 
   .images {
     position: relative;
+
 
     .thumbnail {
       border-top-right-radius: 20px;
@@ -15,10 +17,9 @@
 
     .play {
       position: absolute;
-      bottom: 40px;
-      left: 130px;
-      font-size: 46px;
-      color: #92929D;
+      bottom: 0;
+      left: 0;
+      display: none;
     }
 
     .main_duration {
@@ -92,7 +93,15 @@
   }
 }
 
+
 .video:hover {
-  transform: scale(1.1);
-  background: rgba(146, 146, 157, 0.4);
+  //transform: scale(1.1);
+ background: rgba(146, 146, 157, 0.4);
+ overflow: visible;
+
+
+}
+
+.thumbnail:hover{
+  overflow: hidden;
 }

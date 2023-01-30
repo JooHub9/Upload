@@ -13,10 +13,7 @@ export class HomepageComponent {
   listTerms: Terms[] = [];
   recentvideostext: string = "";
   morevideostext: string = "";
-  suggestedchannelstext: string = "";
-  seemoretext: string = "";
-  suggestedthematicstext: string = "";
-  seealltext: string = "";
+
 
 
   videos: Video[] = []
@@ -25,17 +22,10 @@ export class HomepageComponent {
   suggested_thematic = {} as Thematics;
   t: Tags[] = []
   tag?: number = 0;
-
-
   obj!: Tags
   str?: string = ""
   list: Tags[] = []
   filter: string = ""
-  video_url: string = ""
-  video_list : Video[] = []
-  video_obj! : Video
-
-
 
 
 
@@ -55,15 +45,16 @@ export class HomepageComponent {
 
     })
 
-
     this.route.queryParams.subscribe(q => {
       this.tag = q['tag'];
       this.videos = [];
+      this.filter = q['search']
 
 
-      setTimeout(() => {
+    /*  setTimeout(() => {
         this.videosList(), 500;
-      })
+      })*/
+      this.videosList()
 
 
       this.appService.getTags().subscribe((st => {
@@ -81,9 +72,9 @@ export class HomepageComponent {
     this.appService.getTerms().subscribe(tm => {
       this.listTerms = tm;
 
-      this.listTerms.forEach(t=>{
+      this.listTerms.forEach(t => {
 
-        switch(Number(t.tid)) {
+        switch (Number(t.tid)) {
           case 68: {
             this.recentvideostext = t.name
             break;
@@ -92,42 +83,22 @@ export class HomepageComponent {
             this.morevideostext = t.name
             break;
           }
-          case 69: {
-            this.suggestedchannelstext = t.name
-            break;
-          }
-          case 70: {
-            this.seemoretext = t.name
-            break;
-          }
-          case 72: {
-            this.suggestedthematicstext = t.name
-            break;
-          }
-          case 71: {
-            this.seealltext = t.name
-            break;
-          }
-
-        }})});
+        }
+      })
+    });
 
 
   }
 
-  videosList(): void {
-    this.appService.getVideos(this.page, this.tag).subscribe((video) => {
+  videosList(clean: boolean=false): void {
+    this.appService.getVideos(this.page, this.tag, this.filter).subscribe((video) => {
+      let results= <[]>video
+      if(clean)
+        this.videos=results
+      else
       this.videos = [...this.videos, ...video]
-
     });
 
-    this.appService.notifySearchObservable.subscribe(search=>{
-      if (search.notifySearch){
-        this.appService.getSearch(this.filter).subscribe(v=> {
-          this.videos = [...this.videos,...search];
-
-        })
-      }
-    })
   }
 
 

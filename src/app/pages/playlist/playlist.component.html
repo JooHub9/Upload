@@ -6,8 +6,8 @@
            [src]="'https://dev-project-upskill2-grupo3-ii.pantheonsite.io/' + playlist.field_cover_image_playlist">
     </div>
     <div class="text_playlist">
-    <div class="playlist_category">{{playlist.field_category_playlist}} |</div>
-    <div class="playlist_body">{{playlist.body}}</div>
+      <div class="playlist_category">{{playlist.field_category_playlist}} |</div>
+      <div class="playlist_body">{{playlist.body}}</div>
     </div>
     <h2 class="videos">{{videostext}}</h2>
     <div class="videos_playlist">
@@ -21,7 +21,8 @@
           [name_1]="pv.name_1"
           [field_duration]="pv.field_duration"
           [field_video_title]="pv.field_video_title"
-          [created]="pv.created">
+          [created]="pv.created"
+          [autoplay]="pv.field_media_oembed_video" ]>
         </app-video>
       </div>
     </div>

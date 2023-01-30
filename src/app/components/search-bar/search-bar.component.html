@@ -1,18 +1,3 @@
-<ng-autocomplete
-  [data]="data"
-  [searchKeyword]="keyword"
-  (selected)='searchVideo($event)'
-  (inputChanged)='searchVideo($event)'
-  [itemTemplate]="itemTemplate"
-  [notFoundTemplate]="notFoundTemplate">
-</ng-autocomplete>
+<input class="search_bar" placeholder="Type here!" ngModel (ngModelChange)="searchVideo($event)">
+      <fa-icon class="find" [icon]="faMagnifyinGlass "></fa-icon>
 
-<ng-template #itemTemplate let-item>
-  <div class="item">
-    <span [innerHTML]="item.field_video_title"></span>
-  </div>
-</ng-template>
-
-<ng-template #notFoundTemplate let-notFound>
-  <div [innerHTML]="notFound"></div>
-</ng-template>

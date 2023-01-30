@@ -1,5 +1,4 @@
-<div class="main_container">
-  <img src="/assets/upload.svg" alt="logo" class="logo" routerLink="homepage">
+<div class="main_container" [ngClass]="{'open' : isMenu}">
   <div class="menu">
     <div class="buttons">
       <div class="home" id="home_button" routerLink="homepage">
@@ -48,9 +47,7 @@
       </div>
       <!--<input class="search_bar" placeholder="Type here!">
       <fa-icon class="find" [icon]="faMagnifyinGlass"></fa-icon>-->
-
-       <app-language></app-language>
-
+      <app-language></app-language>
     </div>
   </div>
 </div>

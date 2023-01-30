@@ -25,8 +25,7 @@ export class VideoComponent implements OnInit {
   @Input() field_media_oembed_video!: string;
   @Input() share_type?: string;
   @Input() thematics?: boolean;
- /* @Input() logo?: string;*/
-
+  @Input() autoplay!: string;
 
   faBookmark = faBookmark
   faBookmarksolid = faBookmarkSolid
@@ -35,37 +34,27 @@ export class VideoComponent implements OnInit {
 
   player: boolean;
   full: boolean = false;
-  warning: boolean = false;
 
   urlvtitle!: string;
 
   constructor(public appService: AppService, private router: Router) {
     this.player = false
-
-
   }
 
   ngOnInit(): void {
-    this.urlvtitle = this.field_video_title?.replaceAll(" ", "")
 
-    /*if(this.field_channel_1 === "17")
-    {
-      this.warning = true;
-    }*/
+    this.urlvtitle = this.field_video_title?.replaceAll(" ", "")
+    this.autoplay = this.autoplay.replace('/watch?v=', '/embed/')
+        .split("&")
+      + '?autoplay=0&cc_load_policy=1&cc_lang_pref=pt'
   }
 
   gotoVideoPage()
   {
-  console.log("o titulo - ", this.urlvtitle );
-    console.log("o ID - ", this.mid)
-
     this.router.navigateByUrl('/video/'+this.urlvtitle,
     { state: { idvalue: this.mid } }).then(() => {
-      console.log("DONE - ID - ", this.mid)
       });
-
     this.appService.notifyAnotherID({anotherID: true});
-
   }
 
 }

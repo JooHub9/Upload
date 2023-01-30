@@ -45,7 +45,6 @@ export class VideopageComponent {
 
   body: {} = {};
 
-
   constructor(private route: ActivatedRoute, public appService: AppService, private router: Router) {
     try {
       this.umastring = this.router.getCurrentNavigation()!.extras.state!['idvalue']

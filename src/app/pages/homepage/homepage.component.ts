@@ -13,10 +13,7 @@ export class HomepageComponent {
   listTerms: Terms[] = [];
   recentvideostext: string = "";
   morevideostext: string = "";
-  suggestedchannelstext: string = "";
-  seemoretext: string = "";
-  suggestedthematicstext: string = "";
-  seealltext: string = "";
+
 
 
   videos: Video[] = []
@@ -25,12 +22,11 @@ export class HomepageComponent {
   suggested_thematic = {} as Thematics;
   t: Tags[] = []
   tag?: number = 0;
-
-  url: string = 'https://dev-project-upskill2-grupo3-ii.pantheonsite.io/'
   obj!: Tags
   str?: string = ""
   list: Tags[] = []
   filter: string = ""
+
 
 
   constructor(public appService: AppService, public route: ActivatedRoute) {
@@ -48,16 +44,16 @@ export class HomepageComponent {
 
     })
 
-
     this.route.queryParams.subscribe(q => {
       this.tag = q['tag'];
       this.videos = [];
+      this.filter = q['search']
 
       /*setTimeout(() => {
         this.videosList(), 500;
       })*/
-      this.appService.getTags().subscribe(
-        st => {
+
+      this.appService.getTags().subscribe(st => {
         this.t = st
         this.list = this.t.filter(v => {
           return v.tid === this.tag
@@ -66,15 +62,14 @@ export class HomepageComponent {
         this.str = this.obj.name
       })
       this.videosList()
-    })
-
+      })
 
     this.appService.getTerms().subscribe(tm => {
       this.listTerms = tm;
 
-      this.listTerms.forEach(t=>{
+      this.listTerms.forEach(t => {
 
-        switch(Number(t.tid)) {
+        switch (Number(t.tid)) {
           case 68: {
             this.recentvideostext = t.name
             break;
@@ -83,45 +78,24 @@ export class HomepageComponent {
             this.morevideostext = t.name
             break;
           }
-          case 69: {
-            this.suggestedchannelstext = t.name
-            break;
-          }
-          case 70: {
-            this.seemoretext = t.name
-            break;
-          }
-          case 72: {
-            this.suggestedthematicstext = t.name
-            break;
-          }
-          case 71: {
-            this.seealltext = t.name
-            break;
-          }
+        }
+      })
+    });
+  } //fim oninit
 
-        }})});
-
-
-  }
-
-
-  videosList(): void {
-    this.appService.getVideos(this.page, this.tag).subscribe((video) => {
+  videosList(clean: boolean=false): void {
+    this.appService.getVideos(this.page, this.tag, this.filter).subscribe((video) => {
+      let results= <[]>video
+      if(clean)
+        this.videos=results
+      else
       this.videos = [...this.videos, ...video]
-    })
-
-    this.appService.notifySearchObservable.subscribe(search=>{
-      if (search.refreshVideo){
-        this.appService.getSearch(this.filter).subscribe(v=> {
-          this.videos = search;
-        })
-      }
-    })
+    });
   }
 
   moreResults(): void {
     this.page++
     this.videosList()
   }
+
 }

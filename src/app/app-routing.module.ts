@@ -14,10 +14,11 @@ import {ThematicArticleComponent} from "./pages/thematic-article/thematic-articl
 import {LanguageComponent} from "./components/language/language.component";
 
 const routes: Routes = [
-  {path: '', redirectTo: 'homepage', pathMatch: 'full'},
-  {path: 'homepage', component: HomepageComponent},
-  {path: 'comments', component: CommentsComponent},
-  {path: 'video/:title', component: VideopageComponent,},
+  {path: '', redirectTo: 'homepage',pathMatch: 'full'},
+  {path: 'homepage', component: HomepageComponent },
+  {path: 'homepage/?search=item', component: HomepageComponent},
+  {path: 'comments', component: CommentsComponent },
+  {path: 'video/:title', component: VideopageComponent},
   {path: 'playlists/:nid', component: PlaylistComponent},
   {path: 'playlists', component: PlaylistsComponent},
   {path: 'thematics', component: ThematicsComponent},

@@ -34,6 +34,7 @@ import { AutocompleteLibModule} from "angular-ng-autocomplete";
 import { SearchBarComponent } from './components/search-bar/search-bar.component';
 import { SanitizePipe } from './sanitize.pipe';
 import { LanguageComponent } from './components/language/language.component';
+import { SidebarComponent } from './components/sidebar/sidebar.component';
 
 @NgModule({
   declarations: [
@@ -62,7 +63,8 @@ import { LanguageComponent } from './components/language/language.component';
     TagsPipe,
     SanitizePipe,
     LanguageComponent,
-    SearchBarComponent
+    SearchBarComponent,
+    SidebarComponent,
   ],
 
   imports: [

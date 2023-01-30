@@ -2,8 +2,6 @@ import {Injectable} from '@angular/core';
 import {HttpClient} from "@angular/common/http";
 import {BehaviorSubject} from "rxjs";
 
-
-
 @Injectable({providedIn: 'root'})
 
 export class AppService {
@@ -38,12 +36,9 @@ export class AppService {
     this.getlanguage = JSON.parse(localStorage.getItem("userlanguage") || "[]");
     this.userlanguage = this.getlanguage.toString()
 
-    if (this.userlanguage === 'pt')
-    {
+    if (this.userlanguage === 'pt') {
       this.BASE_URL = "https://dev-project-upskill2-grupo3-ii.pantheonsite.io/pt/";
-    }
-    else
-    {
+    } else {
       this.userlanguage = "en"
       localStorage.setItem("userlanguage", JSON.stringify(this.userlanguage));
       this.BASE_URL = "https://dev-project-upskill2-grupo3-ii.pantheonsite.io/en/";
@@ -63,8 +58,6 @@ export class AppService {
     this.userlanguage = lang;
     localStorage.setItem("userlanguage", JSON.stringify(this.userlanguage));
   }
-
-
 
   /*_______ Playlists _______*/
 
@@ -198,11 +191,12 @@ export class AppService {
 
   getVideos(page?: number, tag?: number, filter?: string) {
     let url = this.BASE_URL + "api/videos"
-    if (page) {
-      url = url + "?page=" + page
-    }
-    if (tag) {
+    if (filter) {
+      url = url + "/search/?name=" + filter
+    } else if (tag) {
       url = url + "/tag/" + tag
+    } else if (page) {
+      url = url + "/?page=" + page
     }
     return this.http.get<Video[]>(url);
   }
@@ -217,12 +211,19 @@ export class AppService {
 
   /*_______ Search _______*/
 
-  public notifySearch = new BehaviorSubject<any>('');
+  /*public notifySearch = new BehaviorSubject<any>('');
   notifySearchObservable = this.notifySearch.asObservable();
 
   getSearch(filter?: string) {
     return this.http.get<Video[]>(this.BASE_URL + "api/videos/search/?name=" + filter);
   }
+
+  public noteSearch(data: any) {
+    if (data) {
+      this.notifySearch.next(data);
+    }
+  }*/
+
 
   /*_______ Tags _______*/
 

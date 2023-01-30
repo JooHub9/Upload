@@ -5,7 +5,7 @@ import {
   faClapperboard,
   faPlay,
   faBookmark,
-  faMagnifyingGlass
+  faMagnifyingGlass,
 } from "@fortawesome/free-solid-svg-icons"
 import {AppService} from "../../app.service";
 
@@ -16,7 +16,7 @@ import {AppService} from "../../app.service";
   styleUrls: ['./menu.component.scss']
 })
 export class MenuComponent {
-
+/*faIcons*/
   faHome = faHome;
   faBarsStaggered = faBarsStaggered;
   faClapperboard = faClapperboard;
@@ -24,8 +24,9 @@ export class MenuComponent {
   faBookmark = faBookmark;
   faMagnifyinGlass = faMagnifyingGlass
 
-  tags: Tags[] = [];
 
+  /*Variables*/
+  tags: Tags[] = [];
   listTerms: Terms[] = [];
 
   channelstext: string = "";
@@ -33,6 +34,9 @@ export class MenuComponent {
   favoritestext: string = "";
   tagstext: string = "";
   searchvideotext: string = "";
+
+
+  @Input() isMenu! : boolean;
 
 
   constructor(public appService: AppService) {
@@ -73,21 +77,6 @@ export class MenuComponent {
           }
 
         }})});
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
 
 
   }

@@ -16,7 +16,6 @@ import {VideoComponent} from "./components/video/video.component";
 import {HomepageComponent} from "./pages/homepage/homepage.component";
 import {FontAwesomeModule} from '@fortawesome/angular-fontawesome';
 import {MenuComponent} from './components/menu/menu.component';
-import {HeadlineVideoComponent} from './components/headline-video/headline-video.component';
 import {VideopageComponent} from './pages/videopage/videopage.component';
 import {FormComponent} from './components/form/form.component';
 import {ReactiveFormsModule} from "@angular/forms";
@@ -35,6 +34,7 @@ import { SearchBarComponent } from './components/search-bar/search-bar.component
 import { SanitizePipe } from './sanitize.pipe';
 import { LanguageComponent } from './components/language/language.component';
 import { SidebarComponent } from './components/sidebar/sidebar.component';
+import { LoaderComponent } from './components/loader/loader.component';
 
 @NgModule({
   declarations: [
@@ -48,7 +48,6 @@ import { SidebarComponent } from './components/sidebar/sidebar.component';
     VideoComponent,
     HomepageComponent,
     MenuComponent,
-    HeadlineVideoComponent,
     VideopageComponent,
     FormComponent,
     RandompictureComponent,
@@ -65,6 +64,7 @@ import { SidebarComponent } from './components/sidebar/sidebar.component';
     LanguageComponent,
     SearchBarComponent,
     SidebarComponent,
+    LoaderComponent,
   ],
 
   imports: [

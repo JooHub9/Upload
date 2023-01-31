@@ -13,6 +13,7 @@ export class ChannelpageComponent {
   faEllipsisVertical = faEllipsisVertical;
   id: string;
   includesComments: boolean=true;
+  loading: boolean = true;
   page = 0;
   moreSix:boolean=false;
   videotext: string = "";
@@ -82,6 +83,8 @@ export class ChannelpageComponent {
   videosList()
   {
     this.appService.getChannelsVideos(this.id,this.page).subscribe(v => {
+      this.loading=true;
+      if(v) {this.loading = false}
       this.listvideos = [...this.listvideos, ...v];
       v.length>=4? this.moreSix=true: this.moreSix=false;
     })

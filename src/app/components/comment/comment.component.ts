@@ -2,7 +2,6 @@ import {Component, ElementRef, Input, Renderer2, ViewChild} from '@angular/core'
 import {AppService} from "../../app.service";
 import {faEllipsisVertical, faFlag} from "@fortawesome/free-solid-svg-icons";
 import {FormBuilder, FormControl, FormGroup} from "@angular/forms";
-import {createPopper} from "@popperjs/core";
 
 @Component({
   selector: 'app-comment',

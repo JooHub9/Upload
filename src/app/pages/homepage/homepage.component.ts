@@ -14,7 +14,7 @@ export class HomepageComponent {
   recentvideostext: string = "";
   morevideostext: string = "";
 
-
+  loading: boolean = true;
 
   videos: Video[] = []
   page = 0
@@ -85,6 +85,8 @@ export class HomepageComponent {
 
   videosList(clean: boolean=false): void {
     this.appService.getVideos(this.page, this.tag, this.filter).subscribe((video) => {
+      this.loading=true;
+      if(video) {this.loading = false}
       let results= <[]>video
       if(clean)
         this.videos=results

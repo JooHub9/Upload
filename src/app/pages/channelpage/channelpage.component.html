@@ -13,6 +13,7 @@
     <div class="description">{{objchannels.field_description}}</div>
   </div>
   <div class="textovideos">{{videotext}}</div>
+  <app-loader *ngIf="this.loading" [loading]="this.loading"></app-loader>
   <div class="listvideos">
     <app-video
       *ngFor="let v of listvideos"

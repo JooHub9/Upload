@@ -12,6 +12,4 @@
   </div>
 </div>
 
-<div class="loadercontainer">
-  <div class="loader" *ngIf="loading"></div>
-</div>
+<app-loader *ngIf="this.loading" [loading]="this.loading"></app-loader>

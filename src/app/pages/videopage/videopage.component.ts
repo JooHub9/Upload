@@ -21,6 +21,8 @@ export class VideopageComponent {
   urlvideotitle: string = "";
   includesComments: boolean=true;
 
+  loading: boolean = true;
+
   id: any;
   umastring?: any;
 

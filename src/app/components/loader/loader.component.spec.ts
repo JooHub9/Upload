@@ -1,18 +1,18 @@
 import { ComponentFixture, TestBed } from '@angular/core/testing';
 
-import { HeadlineVideoComponent } from './headline-video.component';
+import { LoaderComponent } from './loader.component';
 
-describe('HeadlineVideoComponent', () => {
-  let component: HeadlineVideoComponent;
-  let fixture: ComponentFixture<HeadlineVideoComponent>;
+describe('LoaderComponent', () => {
+  let component: LoaderComponent;
+  let fixture: ComponentFixture<LoaderComponent>;
 
   beforeEach(async () => {
     await TestBed.configureTestingModule({
-      declarations: [ HeadlineVideoComponent ]
+      declarations: [ LoaderComponent ]
     })
     .compileComponents();
 
-    fixture = TestBed.createComponent(HeadlineVideoComponent);
+    fixture = TestBed.createComponent(LoaderComponent);
     component = fixture.componentInstance;
     fixture.detectChanges();
   });

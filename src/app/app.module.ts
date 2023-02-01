@@ -35,6 +35,7 @@ import { SanitizePipe } from './sanitize.pipe';
 import { LanguageComponent } from './components/language/language.component';
 import { SidebarComponent } from './components/sidebar/sidebar.component';
 import { LoaderComponent } from './components/loader/loader.component';
+import { SharePopUpComponent } from './components/share-pop-up/share-pop-up.component';
 
 @NgModule({
   declarations: [
@@ -65,6 +66,7 @@ import { LoaderComponent } from './components/loader/loader.component';
     SearchBarComponent,
     SidebarComponent,
     LoaderComponent,
+    SharePopUpComponent,
   ],
 
   imports: [

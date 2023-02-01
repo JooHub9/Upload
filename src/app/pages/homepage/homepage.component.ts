@@ -16,17 +16,16 @@ export class HomepageComponent {
 
   loading: boolean = true;
 
-  videos: Video[] = []
-  page = 0
-  channels: Channel[] = []
+  videos: Video[] = [];
+  page = 0;
+  channels: Channel[] = [];
   suggested_thematic = {} as Thematics;
-  t: Tags[] = []
+  t: Tags[] = [];
   tag?: number = 0;
-  obj!: Tags
-  str?: string = ""
-  list: Tags[] = []
-  filter: string = ""
-
+  obj!: Tags;
+  str?: string = "";
+  list: Tags[] = [];
+  filter: string = "";
 
 
   constructor(public appService: AppService, public route: ActivatedRoute) {
@@ -44,25 +43,22 @@ export class HomepageComponent {
 
     })
 
-    this.route.queryParams.subscribe(q => {
-      this.tag = q['tag'];
+    this.route.queryParams.subscribe(param => {
+      this.tag = param['tag'];
       this.videos = [];
-      this.filter = q['search']
-
-      /*setTimeout(() => {
-        this.videosList(), 500;
-      })*/
+      this.filter = param['search']
 
       this.appService.getTags().subscribe(st => {
         this.t = st
         this.list = this.t.filter(v => {
           return v.tid === this.tag
-        })
+        });
         this.obj = this.list[0]
         this.str = this.obj.name
-      })
+      });
       this.videosList()
-      })
+    });
+
 
     this.appService.getTerms().subscribe(tm => {
       this.listTerms = tm;
@@ -83,15 +79,17 @@ export class HomepageComponent {
     });
   } //fim oninit
 
-  videosList(clean: boolean=false): void {
+  videosList(clean: boolean = false): void {
     this.appService.getVideos(this.page, this.tag, this.filter).subscribe((video) => {
-      this.loading=true;
-      if(video) {this.loading = false}
-      let results= <[]>video
-      if(clean)
-        this.videos=results
+      this.loading = true;
+      if (video) {
+        this.loading = false
+      }
+      let results = <[]>video
+      if (clean)
+        this.videos = results
       else
-      this.videos = [...this.videos, ...video]
+        this.videos = [...this.videos, ...video]
     });
   }
 

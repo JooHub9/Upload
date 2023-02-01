@@ -3,7 +3,7 @@
 <div class="main_div">
   <div class="recent_videos">
     <div *ngIf="!tag " class="title"><h2>{{recentvideostext}}</h2></div>
-    <div *ngIf="tag" class="title"><h2>{{str | titlecase}}</h2></div>
+    <div *ngIf="tag" class="title"><h2>{{ this.str| titlecase}}</h2></div>
 
 
     <div class=videos_container>
@@ -28,6 +28,6 @@
       </div>
     </div>
   </div>
-<app-sidebar></app-sidebar>
+  <app-sidebar></app-sidebar>
 </div>
 

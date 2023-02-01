@@ -1,9 +1,9 @@
 
 .wrapper {
   display: flex;
- justify-content: space-between;
+  justify-content: space-between;
 
-  .main_menu{
+  .main_menu {
     display: flex;
     flex-direction: column;
   }
@@ -15,11 +15,13 @@
   }
 
 }
+
 @media (max-width: 768px) {
 
   .content {
-    position: relative;
-    top: 80px;
+    //position: relative;
+    //top: 80px;
+    padding-top:100px;
   }
 }
 

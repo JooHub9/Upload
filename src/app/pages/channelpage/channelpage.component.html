@@ -13,7 +13,7 @@
     <div class="title">{{objchannels.title}}</div>
     <div class="description">{{objchannels.field_description}}</div>
   </div>
-  <div class="textovideos">Vídeos</div>
+  <div class="textovideos">{{video}}</div>
   <div class="listvideos">
     <app-video
       *ngFor="let v of listvideos"
@@ -27,7 +27,7 @@
       [field_channel_1]="v.nid">
     </app-video>
   </div>
-  <div class="textocomentarios">Comentários</div>
+  <div class="textocomentarios">{{comments}}</div>
   <div class="commentscontainer">
     <app-form
       [id]="id"

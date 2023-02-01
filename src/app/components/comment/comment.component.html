@@ -24,7 +24,7 @@
         <div class="reporttext"
              (mouseleave)="toggleReportText()">
           <fa-icon class="iconFlag" [icon]="faFlag"></fa-icon>
-          Report
+          {{reporttext}}
         </div>
       </div>
 
@@ -47,7 +47,7 @@
 
             <input class="inputreason"
                    type=textarea
-                   placeholder="Other reason"
+                   [placeholder]=otherreasontext
                    formControlName="userReason"
                    onblur="this.value=''"
                    (click)="selected=false;">

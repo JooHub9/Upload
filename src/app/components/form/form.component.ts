@@ -9,6 +9,13 @@ import {AppService} from "../../app.service";
 })
 export class FormComponent {
 
+  nametext: string = "macaco";
+  messagetext: string = "";
+  commenttext: string = "Comment";
+
+  listTerms: Terms[] = [];
+  objTerms = {} as Terms;
+
   commentForm: FormGroup;
 
   body: {} = {};
@@ -24,6 +31,34 @@ export class FormComponent {
       comment: [''],
     });
   }
+
+  ngOnInit(): void {
+
+
+  this.appService.getTerms().subscribe(tm => {
+  this.listTerms = tm;
+
+  this.listTerms.forEach(t=>{
+
+  switch(Number(t.tid)) {
+  case 83: {
+    this.nametext = t.name
+    break;
+  }
+  case 85: {
+    this.messagetext = t.name
+    break;
+  }
+    case 79: {
+      this.commenttext = t.name
+      break;
+    }
+
+}})});}
+
+
+
+
 
   get email() {
     return this.commentForm.get('email');

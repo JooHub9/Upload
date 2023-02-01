@@ -9,10 +9,15 @@
     <div class="playlist_category">{{playlist.field_category_playlist}} |</div>
     <div class="playlist_body">{{playlist.body}}</div>
     </div>
-    <h2 class="videos">Videos</h2>
+  </div>
     <div class="videos_playlist">
-      <div class="playlist_videos"
+      <h2 class="videos">{{videostext}}</h2>
+      <!--<app-videopage></app-videopage>-->
+      <div class="playlist_videos_sidebar"
            *ngIf="playlist">
+        <!--<iframe class="playlist_video" title="playlist_video" [src]="video_playlist | safe"
+                allow="controls; fullscreen; picture-in-picture"
+        ></iframe>-->
         <app-video
           *ngFor="let pv of playlist_videos"
           [mid]="pv.mid"
@@ -25,6 +30,4 @@
         </app-video>
       </div>
     </div>
-  </div>
 </div>
-

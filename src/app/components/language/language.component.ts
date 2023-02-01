@@ -1,6 +1,7 @@
 import {Component} from '@angular/core';
 import {faGlobe} from '@fortawesome/free-solid-svg-icons';
 import {AppService} from "../../app.service";
+import {ActivatedRoute, Router} from "@angular/router";
 
 
 @Component({
@@ -13,13 +14,14 @@ export class LanguageComponent {
   faGlobe = faGlobe;
 
   otherlanguage: string = "";
-  language: string="";
+  language: string = "";
 
-  constructor(private appService: AppService){}
+  constructor(private appService: AppService, private route: ActivatedRoute, private router: Router) {
+  }
 
   ngOnInit() {
     this.language = this.appService.getLanguage();
-    this.language === "en" ? this.otherlanguage = "Alterar para Português" : this.otherlanguage = "Change to English"
+    this.language === "en" ? this.otherlanguage = "EN | Alterar para Português" : this.otherlanguage = "PT | Change to English"
   }
 
   changeLanguage() {
@@ -30,15 +32,12 @@ export class LanguageComponent {
     this.appService.modifyLanguage(this.language)
     console.log("a lingua agora - ", this.language)
 
+    this.appService.notifylangUpdate({langUpdate: true});
 
-    // ----  refresh language
-    setTimeout(()=>{
-      this.appService.notifylangUpdate({langUpdate: true});
-    }, 300);
+    this.router.navigate(['/homepage']).then(x => x)
 
-    setTimeout(()=>{
-      window.location.reload()
-    }, 600);
+    window.location.reload()
+
   }
 
 }

@@ -28,5 +28,6 @@ export class RandompictureComponent {
 
   ngOnInit(): void {
     this.url = "https://robohash.org/" + this.email + "?set=any&bgset=any"
+    console.log("uid - ",this.uid)
   }
 }

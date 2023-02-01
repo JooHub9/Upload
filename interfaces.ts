@@ -154,3 +154,10 @@ interface Reason {
   name: string;
 }
 
+/*____________ Terms ____________*/
+
+interface Terms {
+  name: string;
+  tid: number;
+}
+

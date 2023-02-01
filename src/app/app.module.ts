@@ -36,7 +36,6 @@ import { SearchBarComponent } from './components/search-bar/search-bar.component
 import { SanitizePipe } from './sanitize.pipe';
 import { LanguageComponent } from './components/language/language.component';
 
-
 @NgModule({
   declarations: [
     AppComponent,

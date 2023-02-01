@@ -71,6 +71,10 @@ export class AppService {
     console.log("a locastorage AGORA é - ", localStorage.getItem("userlanguage"))
   }
 
+
+
+
+
   /*_______ Playlists _______*/
 
 
@@ -225,6 +229,9 @@ export class AppService {
     return this.http.get<Video[]>(this.BASE_URL + "api/allvideos/" + id);
   }
 
+
+  /*_______ Search _______*/
+
   public notifySearch = new BehaviorSubject<any>('');
   notifySearchObservable = this.notifySearch.asObservable();
 
@@ -332,6 +339,13 @@ export class AppService {
 
     localStorage.setItem("favorites", JSON.stringify(this.favorites))
   }
+
+  /*_______ Terms _______*/
+
+  getTerms() {
+    return this.http.get<Terms[]>(this.BASE_URL + "api/angularterms");
+  }
+
 
 }
 

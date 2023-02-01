@@ -12,6 +12,7 @@
     <div class="thematic_tag">#{{thematic.field_tag}}</div>
     <div class="thematic_teaser">{{thematic.field_teaser}}</div>
     <div class="thematic_body">{{thematic.body}}</div>
+
     <div class="thematic_external_links">
       <div class="external_links_title" *ngFor="let title of external_list; let t = index">
         <div class="external_links_url" *ngFor="let url of links_list; let l = index">
@@ -21,7 +22,7 @@
         </div>
       </div>
     </div>
-    <h2 class="thematic_videos">Videos</h2>
+    <h2 class="thematic_videos">{{videostext}}</h2>
       <div class="thematic_article_videos"
            *ngIf="thematic">
         <app-video

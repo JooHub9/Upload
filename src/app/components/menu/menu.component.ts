@@ -26,6 +26,14 @@ export class MenuComponent {
 
   tags: Tags[] = [];
 
+  listTerms: Terms[] = [];
+
+  channelstext: string = "";
+  thematicstext: string = "";
+  favoritestext: string = "";
+  tagstext: string = "";
+  searchvideotext: string = "";
+
 
   constructor(public appService: AppService) {
   }
@@ -34,5 +42,53 @@ export class MenuComponent {
     this.appService.getTags().subscribe((tag) => {
       this.tags = tag;
     })
+
+
+    this.appService.getTerms().subscribe(tm => {
+      this.listTerms = tm;
+
+      this.listTerms.forEach(t=>{
+
+        switch(Number(t.tid)) {
+          case 62: {
+            this.channelstext = t.name
+            break;
+          }
+          case 63: {
+            this.thematicstext = t.name
+            break;
+          }
+
+          case 65: {
+            this.favoritestext = t.name
+            break;
+          }
+          case 66: {
+            this.tagstext = t.name
+            break;
+          }
+          case 67: {
+            this.searchvideotext = t.name
+            break;
+          }
+
+        }})});
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
   }
 }

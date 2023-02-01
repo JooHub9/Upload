@@ -205,8 +205,16 @@ export class AppService {
     return this.http.get<Video[]>(this.BASE_URL + "api/videos/" + id);
   }
 
+  getVideoByTitle(title: string) {
+    return this.http.get<Video[]>(this.BASE_URL + "api/videostitle/" + title);
+  }
+
   getAllVideosChannel(id: string) {
-    return this.http.get<Video[]>(this.BASE_URL + "api/allvideos/" + id);
+    return this.http.get<Video[]>(this.BASE_URL + "api/allvideos/" + id+"?r=" + Date.now());
+  }
+
+  getAllVideosChannelTags(tags:string) {
+    return this.http.get<Video[]>(this.BASE_URL + "api/allvideostags/?name="+tags);
   }
 
   /*_______ Search _______*/
@@ -281,9 +289,13 @@ export class AppService {
     return this.http.get<Channel[]>(this.BASE_URL + "api/channels/");
   }
 
-  getoneChannel(id: string) {
+  /*getoneChannel(id: string) {
     return this.http.get<Channel[]>(this.BASE_URL + "api/channels/" + id);
+  }*/
+  getoneChannel(title: string) {
+    return this.http.get<Channel[]>(this.BASE_URL + "api/channels/" + title);
   }
+
 
   getChannelsVideos(id: string,page?: number,) {
     let url = this.BASE_URL + "api/channelvideos/" + id;

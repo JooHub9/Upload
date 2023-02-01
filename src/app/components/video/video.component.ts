@@ -36,6 +36,7 @@ export class VideoComponent implements OnInit {
   full: boolean = false;
 
   urlvtitle!: string;
+  urlctitle?: string;
 
   constructor(public appService: AppService, private router: Router) {
     this.player = false
@@ -43,18 +44,22 @@ export class VideoComponent implements OnInit {
 
   ngOnInit(): void {
 
-    this.urlvtitle = this.field_video_title?.replaceAll(" ", "")
+    this.urlvtitle = this.field_video_title?.replaceAll(" ", "-").toLowerCase()
+
+    this.urlctitle = this.field_channel?.replaceAll(" ", "-").toLowerCase()
+
     this.autoplay = this.autoplay.replace('/watch?v=', '/embed/')
         .split("&")
       + '?autoplay=0&cc_load_policy=1&cc_lang_pref=pt'
   }
 
-  gotoVideoPage()
+
+  /*gotoVideoPage()
   {
     this.router.navigateByUrl('/video/'+this.urlvtitle,
     { state: { idvalue: this.mid } }).then(() => {
       });
     this.appService.notifyAnotherID({anotherID: true});
-  }
+  }*/
 
 }

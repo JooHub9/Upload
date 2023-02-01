@@ -23,7 +23,7 @@ const routes: Routes = [
   {path: 'playlists', component: PlaylistsComponent},
   {path: 'thematics', component: ThematicsComponent},
   {path: 'thematics/:nid', component: ThematicArticleComponent},
-  {path: 'channelpage/:id_channel', component: ChannelpageComponent},
+  {path: 'channel/:title', component: ChannelpageComponent},
   {path: 'channels', component: ChannelsComponent},
   {path: 'favorites', component: FavoritesComponent},
   {path: 'categorias', component: CategoriesComponent},

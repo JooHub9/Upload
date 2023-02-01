@@ -13,5 +13,11 @@ export class CompactBoxComponent {
   @Input() user_picture!: string;
   @Input() name!: string;
 
+  urlctitle!:string;
+
+
+  ngOnInit(): void {
+    this.urlctitle = this.title.replaceAll(" ", "-").toLowerCase()
+  }
 
 }

@@ -9,13 +9,15 @@
   width: 90%;
   border-radius: 5px;
 
-  &:hover { * {font-size: larger;} }
+  &:hover { * {color: white;} }
 
 
   .iconfaGlobe {
     font-size: 16pt;
     color: #92929D;
     margin: 0;
+
+    &:hover {color: white;}
   }
 
   .text {

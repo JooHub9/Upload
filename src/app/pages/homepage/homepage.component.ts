@@ -36,7 +36,6 @@ export class HomepageComponent {
 
     this.appService.getSuggestedChannels().subscribe(channel => {
       this.channels = channel
-
     })
 
     this.appService.getSuggestedThematic().subscribe(thematic => {

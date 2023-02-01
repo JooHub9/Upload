@@ -18,6 +18,8 @@ export class VideopageComponent {
   faThumbsDown = faThumbsDown;
   objvideo = {} as Video;
 
+  listtagsinicio: Tags[] = [];
+
   urlvideotitle: string = "";
   includesComments: boolean=true;
 
@@ -25,6 +27,7 @@ export class VideopageComponent {
 
   id: any;
   umastring?: any;
+  urlvtitle!: string;
 
   tags: string = "";
 
@@ -40,37 +43,22 @@ export class VideopageComponent {
 
   video_string: string [] = [];
   video: string = "";
+  objtags: string = "";
+  listtags: string[] = [];
 
   listvideoCom: VideoComment[] = [];
   objvideoCom = {} as VideoComment;
   listvideos: Video[] = [];
+  listvideostags: Video[] = [];
 
   body: {} = {};
 
-  constructor(private route: ActivatedRoute, public appService: AppService, private router: Router) {
-    try {
-      this.umastring = this.router.getCurrentNavigation()!.extras.state!['idvalue']
-      this.id = this.umastring
-      localStorage.setItem("IDVideo", this.umastring)
-    } catch (e) {
-      this.id = localStorage.getItem("IDVideo")
-    }
-  }
+  constructor(private route: ActivatedRoute, public appService: AppService) {}
 
   ngOnInit() {
-    this.refreshInfo()
-
-    this.appService.notifyanotherID.subscribe(res => {
-      if (res.anotherID) {
-        try {
-          this.umastring = this.router.getCurrentNavigation()!.extras.state!['idvalue']
-          this.id = this.umastring
-          localStorage.setItem("IDVideo", this.umastring)
-        } catch (e) {
-          this.id = localStorage.getItem("IDVideo")
-        }
-        this.refreshInfo()
-      }
+    this.route.params.subscribe(params => {
+      this.urlvtitle = params['title'];
+      this.refreshInfo()
     })
   }
 
@@ -95,8 +83,9 @@ export class VideopageComponent {
 
     //---- Get the Video ----//
 
-    this.appService.getVideo(this.id).subscribe(v => {
+    this.appService.getVideoByTitle(this.urlvtitle).subscribe(v => {
       this.objvideo = v[0];
+      this.id = this.objvideo.mid
 
       //---- Get the Tags ----//
 
@@ -104,6 +93,7 @@ export class VideopageComponent {
         this.tags = this.objvideo.field_tags
           .split(", ")
           .map(x => {
+            this.listtags.push(x)
             return "#" + x
           })
           .toString()
@@ -120,8 +110,17 @@ export class VideopageComponent {
 
       //---- Get the Videos for sidebar ----//
 
+
+
       this.appService.getAllVideosChannel(this.objvideo.field_channel_1).subscribe(vd => {
         this.listvideos = vd;
+      });
+
+      this.appService.getAllVideosChannelTags(this.objvideo.field_tags).subscribe(vd => {
+        this.listvideostags = vd;
+        console.log("listvideostags",this.listvideostags)
+        console.log("this.objvideo.field_tags",this.objvideo.field_tags)
+        console.log("this.listtags",this.listtags)
       });
 
       //---- Get the Comments ----//
@@ -145,6 +144,12 @@ export class VideopageComponent {
       })
 
     }); //fim do get video
+
+    //---- Get the Tags ----//
+
+    this.appService.getTags().subscribe((tag) => {
+      this.listtagsinicio = tag;
+    })
 
 
     //---- Get Likes / Dislikes ----//
@@ -180,7 +185,8 @@ export class VideopageComponent {
         });
       }
     });
-  } // fim do refreshInfo / Main Function
+
+  } // fim do oninit
 
 //---- Updating Likes / Dislikes ----//
 
@@ -213,7 +219,6 @@ export class VideopageComponent {
   parseNum(str: string) {
     return Number(str)
   }
-
 
 }
 

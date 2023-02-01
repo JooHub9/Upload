@@ -1,5 +1,5 @@
 import {Component} from '@angular/core';
-import {ActivatedRoute, Router} from "@angular/router";
+import {ActivatedRoute} from "@angular/router";
 import {AppService} from "../../app.service";
 import {faEllipsisVertical} from "@fortawesome/free-solid-svg-icons";
 
@@ -11,7 +11,7 @@ import {faEllipsisVertical} from "@fortawesome/free-solid-svg-icons";
 export class ChannelpageComponent {
 
   faEllipsisVertical = faEllipsisVertical;
-  id: string;
+  id!: string;
   includesComments: boolean=true;
   loading: boolean = true;
   page = 0;
@@ -24,49 +24,55 @@ export class ChannelpageComponent {
   listvideos: ChannelVideos[] = [];
   listTerms: Terms[] = [];
   listchannelCom: ContentComment[] = [];
+  urlvtitle!: string;
 
 
-  constructor(private route: ActivatedRoute, private appService: AppService) {
-    this.id = route.snapshot.params['id_channel'];
-  }
+  constructor(private route: ActivatedRoute, private appService: AppService) {}
 
   ngOnInit(): void {
 
-   this.appService.getTerms().subscribe(tm => {
+    this.route.params.subscribe(params => {
+      this.urlvtitle = params['title'];
+
+      this.appService.getoneChannel(this.urlvtitle).subscribe(ch => {
+        this.objchannels = ch[0];
+        this.id = this.objchannels.nid;
+        this.videosList()
+
+
+
+    this.appService.getTerms().subscribe(tm => {
       this.listTerms = tm;
-      this.listTerms.forEach(t=>{
+      this.listTerms.forEach(t => {
 
-     switch(Number(t.tid)) {
-       case 77: {
-         this.videotext = t.name
-         break;
-       }
-       case 78: {
-         this.commentstext = t.name
-         break;
-       }
-       case 90: {
-         this.nocommentstext = t.name
-         break;
-       }
-       case 73: {
-         this.morevideostext = t.name
-         break;
-       }
+        switch (Number(t.tid)) {
+          case 77: {
+            this.videotext = t.name
+            break;
+          }
+          case 78: {
+            this.commentstext = t.name
+            break;
+          }
+          case 90: {
+            this.nocommentstext = t.name
+            break;
+          }
+          case 73: {
+            this.morevideostext = t.name
+            break;
+          }
 
-     }})});
-
-
-    this.appService.getoneChannel(this.id).subscribe(ch => {
-      this.objchannels = ch[0];
-      this.videosList()
+        }
+      })
     });
+
 
     //---- Get the Comments ----//
 
     this.appService.getContentComments(this.id).subscribe(cc => {
       this.listchannelCom = cc;
-      this.listchannelCom.length===0 ?this.includesComments=false:this.includesComments=true
+      this.listchannelCom.length === 0 ? this.includesComments = false : this.includesComments = true
     });
 
 
@@ -74,11 +80,14 @@ export class ChannelpageComponent {
       if (res.refreshChannel) {
         this.appService.getContentComments(this.id).subscribe(cc => {
           this.listchannelCom = cc;
-          this.listchannelCom.length===0 ?this.includesComments=false:this.includesComments=true
+          this.listchannelCom.length === 0 ? this.includesComments = false : this.includesComments = true
         });
       }
     })
-  }
+      });
+
+    })
+  } // fim do oninit
 
   videosList()
   {
@@ -88,7 +97,6 @@ export class ChannelpageComponent {
       this.listvideos = [...this.listvideos, ...v];
       v.length>=4? this.moreSix=true: this.moreSix=false;
     })
-
   }
 
   parseNum(str: string)

@@ -9,10 +9,8 @@ import {AppService} from "../../app.service";
 export class ChannelsComponent {
 
   channels: Channel[] = [];
-
   listTerms: Terms[] = [];
   channelstext: string = "";
-
   loading: boolean = true;
 
   constructor(public appService: AppService) {}
@@ -24,6 +22,7 @@ export class ChannelsComponent {
       this.loading=true;
       if(c) {this.loading = false}
       this.channels = c;
+      console.log("this channels - ", this.channels)
     });
 
 

@@ -20,11 +20,11 @@ export class HomepageComponent {
   page = 0;
   channels: Channel[] = [];
   suggested_thematic = {} as Thematics;
-  t: Tags[] = [];
-  tag?: number = 0;
-  obj!: Tags;
+  //t: Tags[] = [];
+  tag?: string = "";
+  /*obj!: Tags;
   str?: string = "";
-  list: Tags[] = [];
+  list: Tags[] = [];*/
   filter: string = "";
 
 
@@ -43,19 +43,19 @@ export class HomepageComponent {
 
     })
 
-    this.route.queryParams.subscribe(param => {
-      this.tag = param['tag'];
+  this.route.queryParams.subscribe(param => {
+      //this.tag = param['tag'];
       this.videos = [];
       this.filter = param['search']
 
-      this.appService.getTags().subscribe(st => {
+     /* this.appService.getTags().subscribe(st => {
         this.t = st
         this.list = this.t.filter(v => {
           return v.tid === this.tag
         });
         this.obj = this.list[0]
         this.str = this.obj.name
-      });
+      });*/
       this.videosList()
     });
 
@@ -80,7 +80,7 @@ export class HomepageComponent {
   } //fim oninit
 
   videosList(clean: boolean = false): void {
-    this.appService.getVideos(this.page, this.tag, this.filter).subscribe((video) => {
+    this.appService.getVideos(this.page, this.tag,this.filter).subscribe((video) => {
       this.loading = true;
       if (video) {
         this.loading = false

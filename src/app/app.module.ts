@@ -36,6 +36,7 @@ import { LanguageComponent } from './components/language/language.component';
 import { SidebarComponent } from './components/sidebar/sidebar.component';
 import { LoaderComponent } from './components/loader/loader.component';
 import { SharePopUpComponent } from './components/share-pop-up/share-pop-up.component';
+import { TagpageComponent } from './pages/tagpage/tagpage.component';
 
 @NgModule({
   declarations: [
@@ -67,6 +68,7 @@ import { SharePopUpComponent } from './components/share-pop-up/share-pop-up.comp
     SidebarComponent,
     LoaderComponent,
     SharePopUpComponent,
+    TagpageComponent,
   ],
 
   imports: [

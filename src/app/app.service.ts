@@ -189,7 +189,7 @@ export class AppService {
   /*_______ Videos _______*/
 
 
-  getVideos(page?: number, tag?: number, filter?: string) {
+  getVideos(page?: number, tag?: string, filter?: string) {
     let url = this.BASE_URL + "api/videos"
     if (filter) {
       url = url + "/search/?name=" + filter

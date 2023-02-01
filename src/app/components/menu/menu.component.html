@@ -36,7 +36,7 @@
   </div>
     <div class="titles">
       <div class="tags_flex" *ngFor="let tag of tags, let i = index">
-        <div class="tag" [queryParams]="{tag: tag.tid}" routerLink="/homepage" *ngIf="i < 10">
+        <div class="tag" *ngIf="i < 10" [queryParams]="{tag: tag.name}" [routerLink]="['/tag/', tag.name]" >
           {{tag.name}}
         </div>
       </div>

@@ -3,6 +3,7 @@ import {AppService} from "../../app.service";
 import {faEllipsisVertical, faFlag} from "@fortawesome/free-solid-svg-icons";
 import {FormBuilder, FormControl, FormGroup} from "@angular/forms";
 
+
 @Component({
   selector: 'app-comment',
   templateUrl: './comment.component.html',

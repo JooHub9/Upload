@@ -16,7 +16,8 @@ import {AppService} from "../../app.service";
   styleUrls: ['./menu.component.scss']
 })
 export class MenuComponent {
-/*faIcons*/
+
+  /*faIcons*/
   faHome = faHome;
   faBarsStaggered = faBarsStaggered;
   faClapperboard = faClapperboard;
@@ -37,6 +38,7 @@ export class MenuComponent {
 
 
   @Input() isMenu! : boolean;
+
 
 
   constructor(public appService: AppService) {

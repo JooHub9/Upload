@@ -16,13 +16,14 @@ export class FavoritesComponent implements OnInit {
   listTerms: Terms[] = [];
   favoritestext: string = "";
   Ooopstext: string = "";
-
+  loading: boolean = true;
 
 
   constructor(public appService: AppService) {}
 
   ngOnInit(): void {
     this.appService.getFavorites().subscribe((favorites) => {
+      this.loading = !favorites;
       this.favorites_list = favorites;
     });
 

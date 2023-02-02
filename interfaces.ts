@@ -47,7 +47,7 @@ interface Video {
   nid: string;
   field_like: string;
   field_dislike: string;
-
+  view_media: string;
 }
 
 
@@ -115,6 +115,7 @@ interface Channel {
   user_picture: string;
   field_logo: string;
   field_description: string;
+  view_node: string;
 }
 
 /*____________All videos from one Channel ____________*/
@@ -130,6 +131,7 @@ interface ChannelVideos {
   name: string;
   field_media_oembed_video: string;
   nid: string;
+  view_media:string;
 }
 
 /*____________ Thematics ____________*/

@@ -31,11 +31,12 @@
         <fa-icon [icon]="faBookmark"></fa-icon>
         <p>{{favoritestext}}</p>
       </div>
-    </div>
+    </div><div class="titles">
+    <h3>{{tagstext}}</h3>
+  </div>
     <div class="titles">
-      <h3>{{tagstext}}</h3>
-      <div class="tags_flex">
-        <div class="tag" *ngFor="let tag of tags" [queryParams]="{tag: tag.tid}" routerLink="/homepage">
+      <div class="tags_flex" *ngFor="let tag of tags, let i = index">
+        <div class="tag" *ngIf="i < 10" [queryParams]="{tag: tag.name}" [routerLink]="['/tag/', tag.name]" >
           {{tag.name}}
         </div>
       </div>

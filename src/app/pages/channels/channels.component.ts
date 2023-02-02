@@ -22,7 +22,6 @@ export class ChannelsComponent {
       this.loading=true;
       if(c) {this.loading = false}
       this.channels = c;
-      console.log("this channels - ", this.channels)
     });
 
 

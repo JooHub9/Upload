@@ -4,7 +4,7 @@
       <div class="text_flag">
         <div class="text">
           <p class="title">{{objvideo.field_video_title}}</p>
-          <p class="tags">{{tags}}</p>
+          <p class="tags" >{{tags}}</p>
         </div>
         <div class="iconcontainer" (click)="appService.toggleFavorite(objvideo.mid)">
           <fa-icon class="iconfav" [icon]="appService.isFavorite(objvideo.mid)? faBookmarkFull : faBookmark"></fa-icon>
@@ -46,7 +46,6 @@
 
     <div *ngIf="!includesComments"><i>{{nocommentstext}}</i></div>
 
-
     <div *ngIf="includesComments">
       <div *ngFor="let v of listvideoCom; let i = index">
         <app-comment *ngIf="parseNum(v.field_count_reports_vc) < 3 "
@@ -80,7 +79,8 @@
         [thumbnail__target_id]="v.thumbnail__target_id"
         [user_picture]="v.user_picture"
         [field_duration]="v.field_duration"
-        [field_channel_1]="v.nid">
+        [field_channel_1]="v.nid"
+        [autoplay]="v.field_media_oembed_video">
       </app-video>
     </div>
   </div>
@@ -96,7 +96,8 @@
         [thumbnail__target_id]="v.thumbnail__target_id"
         [user_picture]="v.user_picture"
         [field_duration]="v.field_duration"
-        [field_channel_1]="v.nid">
+        [field_channel_1]="v.nid"
+        [autoplay]="v.field_media_oembed_video">
       </app-video>
     </div>
   </div>

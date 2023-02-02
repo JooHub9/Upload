@@ -2,7 +2,6 @@ import {Component, OnInit, Input} from '@angular/core';
 import {AppService} from "../../app.service";
 import {faBookmark} from "@fortawesome/free-regular-svg-icons"
 import {faShareNodes, faBookmark as faBookmarkSolid, faCirclePlay} from "@fortawesome/free-solid-svg-icons";
-import {Router} from "@angular/router";
 
 @Component({
   selector: 'app-video',
@@ -14,7 +13,7 @@ export class VideoComponent implements OnInit {
   @Input() mid!: string;
   @Input() field_video_title!: string;
   @Input() created!: string;
-  @Input() field_video_description?: string;
+  @Input() field_video_description!: string;
   @Input() field_duration!: string;
   @Input() thumbnail__target_id!: string;
   @Input() user_picture!: string;
@@ -26,40 +25,33 @@ export class VideoComponent implements OnInit {
   @Input() share_type?: string;
   @Input() thematics?: boolean;
   @Input() autoplay!: string;
+  @Input() view_media!: string;
+
 
   faBookmark = faBookmark
   faBookmarksolid = faBookmarkSolid
   faSharenodes = faShareNodes
   faCirclePlay = faCirclePlay
 
-  player: boolean;
   full: boolean = false;
 
   urlvtitle!: string;
   urlctitle?: string;
+  hover?: boolean
 
-  constructor(public appService: AppService, private router: Router) {
-    this.player = false
-  }
+
+  constructor(public appService: AppService) {}
 
   ngOnInit(): void {
 
-    this.urlvtitle = this.field_video_title?.replaceAll(" ", "-").toLowerCase()
+    this.urlvtitle = this.view_media?.split('video/')[1]
 
-    this.urlctitle = this.field_channel?.replaceAll(" ", "-").toLowerCase()
+
+    //this.urlctitle = this.view_media?.split('video/')[1]
 
     this.autoplay = this.autoplay.replace('/watch?v=', '/embed/')
         .split("&")
-      + '?autoplay=0&cc_load_policy=1&cc_lang_pref=pt'
+      + '?autoplay=1&cc_load_policy=1&cc_lang_pref=pt'
   }
-
-
-  /*gotoVideoPage()
-  {
-    this.router.navigateByUrl('/video/'+this.urlvtitle,
-    { state: { idvalue: this.mid } }).then(() => {
-      });
-    this.appService.notifyAnotherID({anotherID: true});
-  }*/
 
 }

@@ -12,34 +12,55 @@ export class ChannelpageComponent {
 
   faEllipsisVertical = faEllipsisVertical;
   id!: string;
-  includesComments: boolean=true;
+  includesComments: boolean = true;
   loading: boolean = true;
   page = 0;
-  moreSix:boolean=false;
+  moreSix: boolean = false;
   videotext: string = "";
   commentstext: string = "";
-  nocommentstext:string=""
+  nocommentstext: string = ""
   morevideostext: string = "";
   objchannels = {} as Channel;
   listvideos: ChannelVideos[] = [];
   listTerms: Terms[] = [];
   listchannelCom: ContentComment[] = [];
-  urlvtitle!: string;
+  urlctitle!: string;
 
 
-  constructor(private route: ActivatedRoute, private appService: AppService) {}
+  constructor(private route: ActivatedRoute, private appService: AppService) {
+  }
 
   ngOnInit(): void {
 
     this.route.params.subscribe(params => {
-      this.urlvtitle = params['title'];
+      this.urlctitle = params['title'];
 
-      this.appService.getoneChannel(this.urlvtitle).subscribe(ch => {
-        this.objchannels = ch[0];
-        this.id = this.objchannels.nid;
+      this.appService.getIDByTitleChannel(this.urlctitle).subscribe(v => {
+        this.id = v.nid[0].value
         this.videosList()
 
+        this.appService.getoneChannel(this.id).subscribe(ch => {
+          this.objchannels = ch[0];
+        })
+        this.appService.getContentComments(this.id).subscribe(cc => {
+          this.listchannelCom = cc;
+          this.listchannelCom.length === 0 ? this.includesComments = false : this.includesComments = true
+        })
+      })
+    }) // FIM do route
 
+      //---- Refresh Comments ----//
+
+      this.appService.notifyChannelObservable.subscribe(res => {
+        if (res.refreshChannel) {
+          this.appService.getContentComments(this.id).subscribe(cc => {
+            this.listchannelCom = cc;
+            this.listchannelCom.length === 0 ? this.includesComments = false : this.includesComments = true
+          });
+        }
+      })
+
+//_____________TERMS ___________________________________
 
     this.appService.getTerms().subscribe(tm => {
       this.listTerms = tm;
@@ -68,39 +89,21 @@ export class ChannelpageComponent {
     });
 
 
-    //---- Get the Comments ----//
-
-    this.appService.getContentComments(this.id).subscribe(cc => {
-      this.listchannelCom = cc;
-      this.listchannelCom.length === 0 ? this.includesComments = false : this.includesComments = true
-    });
-
-
-    this.appService.notifyChannelObservable.subscribe(res => {
-      if (res.refreshChannel) {
-        this.appService.getContentComments(this.id).subscribe(cc => {
-          this.listchannelCom = cc;
-          this.listchannelCom.length === 0 ? this.includesComments = false : this.includesComments = true
-        });
-      }
-    })
-      });
-
-    })
   } // fim do oninit
 
-  videosList()
-  {
-    this.appService.getChannelsVideos(this.id,this.page).subscribe(v => {
-      this.loading=true;
-      if(v) {this.loading = false}
+
+  videosList() {
+    this.appService.getChannelsVideos(this.id, this.page).subscribe(v => {
+      this.loading = true;
+      if (v) {
+        this.loading = false
+      }
       this.listvideos = [...this.listvideos, ...v];
-      v.length>=4? this.moreSix=true: this.moreSix=false;
+      v.length >= 4 ? this.moreSix = true : this.moreSix = false;
     })
   }
 
-  parseNum(str: string)
-  {
+  parseNum(str: string) {
     return Number(str)
   }
 

@@ -1,6 +1,6 @@
-import {Component, OnInit, ChangeDetectorRef} from '@angular/core';
+import {Component} from '@angular/core';
 import {AppService} from "../../app.service";
-import {ActivatedRoute, Router, NavigationStart} from "@angular/router";
+import {ActivatedRoute} from "@angular/router";
 import {faBookmark as faBookmarkFull, faThumbsUp} from '@fortawesome/free-solid-svg-icons';
 import {faBookmark, faThumbsDown} from '@fortawesome/free-regular-svg-icons';
 
@@ -58,13 +58,19 @@ export class VideopageComponent {
   ngOnInit() {
     this.route.params.subscribe(params => {
       this.urlvtitle = params['title'];
-      this.refreshInfo()
+
+      this.appService.getIDByTitle(this.urlvtitle).subscribe(v => {
+        this.id=v.mid[0].value
+        this.refreshInfo()
+      })
+
     })
   }
 
 //______ Main Function _________
 
   refreshInfo() {
+
 
     //---- Get Terms ----//
 
@@ -83,9 +89,8 @@ export class VideopageComponent {
 
     //---- Get the Video ----//
 
-    this.appService.getVideoByTitle(this.urlvtitle).subscribe(v => {
+    this.appService.getVideo(this.id).subscribe(v => {
       this.objvideo = v[0];
-      this.id = this.objvideo.mid
 
       //---- Get the Tags ----//
 
@@ -110,17 +115,12 @@ export class VideopageComponent {
 
       //---- Get the Videos for sidebar ----//
 
-
-
       this.appService.getAllVideosChannel(this.objvideo.field_channel_1).subscribe(vd => {
         this.listvideos = vd;
       });
 
       this.appService.getAllVideosChannelTags(this.objvideo.field_tags).subscribe(vd => {
         this.listvideostags = vd;
-        console.log("listvideostags",this.listvideostags)
-        console.log("this.objvideo.field_tags",this.objvideo.field_tags)
-        console.log("this.listtags",this.listtags)
       });
 
       //---- Get the Comments ----//
@@ -143,25 +143,26 @@ export class VideopageComponent {
         }
       })
 
+      //---- Get Likes / Dislikes ----//
+
+      this.appService.getLikes(this.id).subscribe(l => {
+        this.objlikes = l[0]
+        this.likes = l[0].count
+      })
+
+      this.appService.getDislikes(this.id).subscribe(dl => {
+        this.objdislikes = dl[0]
+        this.dislikes = dl[0].count
+      })
+
     }); //fim do get video
+    // );
+
 
     //---- Get the Tags ----//
 
     this.appService.getTags().subscribe((tag) => {
       this.listtagsinicio = tag;
-    })
-
-
-    //---- Get Likes / Dislikes ----//
-
-    this.appService.getLikes(this.id).subscribe(l => {
-      this.objlikes = l[0]
-      this.likes = l[0].count
-    })
-
-    this.appService.getDislikes(this.id).subscribe(dl => {
-      this.objdislikes = dl[0]
-      this.dislikes = dl[0].count
     })
 
     // -- refresh Likes
@@ -186,7 +187,9 @@ export class VideopageComponent {
       }
     });
 
-  } // fim do oninit
+  } // fim do da refreshInfo()
+
+
 
 //---- Updating Likes / Dislikes ----//
 

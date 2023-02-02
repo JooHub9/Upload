@@ -189,7 +189,7 @@ export class AppService {
   /*_______ Videos _______*/
 
 
-  getVideos(page?: number, tag?: number, filter?: string) {
+  getVideos(page?: number, tag?: string, filter?: string) {
     let url = this.BASE_URL + "api/videos"
     if (filter) {
       url = url + "/search/?name=" + filter
@@ -205,9 +205,10 @@ export class AppService {
     return this.http.get<Video[]>(this.BASE_URL + "api/videos/" + id);
   }
 
-  getVideoByTitle(title: string) {
-    return this.http.get<Video[]>(this.BASE_URL + "api/videostitle/" + title);
+  getIDByTitle(title:string){
+    return this.http.get<any>(this.BASE_URL + "/video/" + title+"?_format=json");
   }
+
 
   getAllVideosChannel(id: string) {
     return this.http.get<Video[]>(this.BASE_URL + "api/allvideos/" + id+"?r=" + Date.now());
@@ -289,13 +290,13 @@ export class AppService {
     return this.http.get<Channel[]>(this.BASE_URL + "api/channels/");
   }
 
-  /*getoneChannel(id: string) {
+  getoneChannel(id: string) {
     return this.http.get<Channel[]>(this.BASE_URL + "api/channels/" + id);
-  }*/
-  getoneChannel(title: string) {
-    return this.http.get<Channel[]>(this.BASE_URL + "api/channels/" + title);
   }
 
+  getIDByTitleChannel(title:string){
+    return this.http.get<any>(this.BASE_URL + title+"?_format=json");
+  }
 
   getChannelsVideos(id: string,page?: number,) {
     let url = this.BASE_URL + "api/channelvideos/" + id;

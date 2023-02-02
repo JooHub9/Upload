@@ -2,25 +2,25 @@
 
 <div class="main_div">
   <div class="recent_videos">
-    <div  class="title"><h2>{{recentvideostext}}</h2></div>
-
+    <div  class="title"><p>{{recentvideostext}}</p></div>
 
 
     <div class=videos_container>
-      <app-video
-        *ngFor="let video of videos"
-        [mid]="video.mid"
-        [field_channel]="video.field_channel"
-        [field_video_title]="video.field_video_title"
-        [created]="video.created"
-        [thumbnail__target_id]="video.thumbnail__target_id"
-        [user_picture]="video.user_picture"
-        [field_duration]="video.field_duration"
-        [field_channel_1]="video.field_channel_1"
-        [field_tags]="video.field_tags"
-        [autoplay]="video.field_media_oembed_video"
-        share_type="icons">
-      </app-video>
+      <div *ngFor="let video of videos">
+        <app-video
+          [mid]="video.mid"
+          [field_channel]="video.field_channel"
+          [field_video_title]="video.field_video_title"
+          [created]="video.created"
+          [thumbnail__target_id]="video.thumbnail__target_id"
+          [user_picture]="video.user_picture"
+          [field_duration]="video.field_duration"
+          [field_channel_1]="video.field_channel_1"
+          [field_tags]="video.field_tags"
+          [autoplay]="video.field_media_oembed_video"
+          share_type="icons">
+        </app-video>
+      </div>
     </div>
     <div  class="container_more_videos">
       <div class="more_videos_border" (click)="moreResults()">

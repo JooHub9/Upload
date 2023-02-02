@@ -22,9 +22,11 @@ export class FavoritesComponent implements OnInit {
   constructor(public appService: AppService) {}
 
   ngOnInit(): void {
-    this.appService.getFavorites().subscribe((favorites) => {
-      this.loading = !favorites;
-      this.favorites_list = favorites;
+    this.appService.getFavoritesObservable().subscribe(() => {
+      this.appService.getFavorites().subscribe((favorites) => {
+        this.loading = !favorites;
+        this.favorites_list = favorites;
+      });
     });
 
     this.appService.getTerms().subscribe(tm => {

@@ -1,6 +1,6 @@
 import {Injectable} from '@angular/core';
 import {HttpClient} from "@angular/common/http";
-import {BehaviorSubject} from "rxjs";
+import {BehaviorSubject, Observable} from "rxjs";
 
 @Injectable({providedIn: 'root'})
 
@@ -181,9 +181,9 @@ export class AppService {
     }
     return this.http.patch("https://dev-project-upskill2-grupo3-ii.pantheonsite.io/comment/" + id, body,
 
-      {'headers': this.headers}).subscribe(()=>{
+      {'headers': this.headers}).subscribe(() => {
       channel ? this.notifyChannels({refreshChannel: true}) : this.notifyVideos({refreshVideo: true});
-      })
+    })
   }
 
   /*_______ Videos _______*/
@@ -285,9 +285,9 @@ export class AppService {
     return this.http.get<Channel[]>(this.BASE_URL + "api/channels/" + id);
   }
 
-  getChannelsVideos(id: string,page?: number,) {
+  getChannelsVideos(id: string, page?: number,) {
     let url = this.BASE_URL + "api/channelvideos/" + id;
-    page? url+= "?page=" + page : url
+    page ? url += "?page=" + page : url
     return this.http.get<ChannelVideos[]>(url);
   }
 
@@ -297,26 +297,31 @@ export class AppService {
 
   /*------Favorites------*/
 
-  favorites: number[] = JSON.parse(localStorage.getItem("favorites") || "[]");
+  favorites: BehaviorSubject<number[]> = new BehaviorSubject(JSON.parse(localStorage.getItem("favorites") || "[]"));
 
   getFavorites() {
-    return this.http.get<Video[]>(this.BASE_URL + "api/videos/favs/" + this.favorites.join(","));
+    return this.http.get<Video[]>(this.BASE_URL + "api/videos/favs/" + this.favorites.value.join(","));
   }
 
   isFavorite(mid: string) {
     let id = parseInt(mid)
-    return this.favorites.includes(id);
+    return this.favorites.value.includes(id);
   }
 
   toggleFavorite(mid: string) {
-    let id = parseInt(mid)
+    let id = parseInt(mid);
+    let favorites = this.favorites.value;
     if (this.isFavorite(mid)) {
-      this.favorites.splice(this.favorites.indexOf(id), 1)
+      favorites.splice(favorites.indexOf(id), 1)
     } else {
-      this.favorites.push(id);
+      favorites.push(id);
     }
+    this.favorites.next(favorites);
+    localStorage.setItem("favorites", JSON.stringify(favorites))
+  }
 
-    localStorage.setItem("favorites", JSON.stringify(this.favorites))
+  getFavoritesObservable(){
+    return this.favorites.asObservable();
   }
 
   /*_______ Terms _______*/

@@ -1,16 +1,16 @@
 <div class="video" (mouseenter)="hover = true" (mouseleave)="hover = false">
   <div class="images">
     <img class=thumbnail [src]="'https://dev-project-upskill2-grupo3-ii.pantheonsite.io' + thumbnail__target_id"
-          alt="video thumbnail">
+         alt="video thumbnail">
     <div class="play" *ngIf="hover">
       <iframe [routerLink]="['/video/',mid]" class="iframe" title="video" [src]=" autoplay | safe"
-              width="310" height="160" frameborder="0" allow="autoplay; fullscreen; picture-in-picture"></iframe>
+              frameborder="0" allow="autoplay; fullscreen; picture-in-picture"></iframe>
     </div>
     <div class="invisible_div" (click)="gotoVideoPage()" [routerLink]="['/video/',mid]"></div>
     <div class="main_duration">
       <p class="duration">{{field_duration}}</p>
     </div>
-    <div *ngIf="field_channel" class="user_pic" [routerLink]="['/channelpage/',field_channel_1]">
+    <div class="user_pic" [routerLink]="['/channelpage/',field_channel_1]">
       <img class="picture" [src]="'https://dev-project-upskill2-grupo3-ii.pantheonsite.io' + user_picture"
            alt="user picture">
     </div>
@@ -18,8 +18,8 @@
   <div class="video_info">
     <div class="info">
       <p *ngIf="thematics" class="field_tags">{{field_tags | tags}}</p>
-      <p *ngIf="field_channel" class="channel" [routerLink]="['/channelpage/',field_channel_1]">{{field_channel}}</p>
-
+      <p *ngIf="field_channel" class="channel yes" [routerLink]="['/channelpage/',field_channel_1]">{{field_channel}}</p>
+      <p *ngIf="field_channel===''" class="channel no">Ceci ne pas un channel</p>
       <h3 class="video_name" (click)="gotoVideoPage()">{{field_video_title}}</h3>
 
       <p class="created">{{created}}</p>

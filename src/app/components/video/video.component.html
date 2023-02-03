@@ -11,7 +11,7 @@
     <div class="main_duration">
       <p class="duration">{{field_duration}}</p>
     </div>
-    <div *ngIf="field_channel" class="user_pic" [routerLink]="['/channel/',field_channel]">
+    <div *ngIf="field_channel" class="user_pic" [routerLink]="['/channel/',urlctitle]">
       <img class="picture" [src]="'https://dev-project-upskill2-grupo3-ii.pantheonsite.io' + user_picture"
            alt="user picture">
     </div>

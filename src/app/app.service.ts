@@ -290,7 +290,7 @@ export class AppService {
     return this.http.get<Channel[]>(this.BASE_URL + "api/channels/");
   }
 
-  getoneChannel(id: string) {
+  getoneChannel(id: string[]) {
     return this.http.get<Channel[]>(this.BASE_URL + "api/channels/" + id);
   }
 

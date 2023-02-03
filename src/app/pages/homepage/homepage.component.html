@@ -4,8 +4,6 @@
   <div class="recent_videos">
     <div  class="title"><h2>{{recentvideostext}}</h2></div>
 
-
-
     <div class=videos_container>
       <app-video
         *ngFor="let video of videos"
@@ -20,6 +18,7 @@
         [field_tags]="video.field_tags"
         [autoplay]="video.field_media_oembed_video"
         [view_media]="video.view_media"
+        [view_node]="returnNode(video.field_channel_1)"
         share_type="icons">
       </app-video>
     </div>
@@ -31,4 +30,5 @@
   </div>
   <app-sidebar></app-sidebar>
 </div>
+
 

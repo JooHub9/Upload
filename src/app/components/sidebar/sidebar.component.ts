@@ -9,6 +9,7 @@ import {ActivatedRoute} from "@angular/router";
 })
 export class SidebarComponent {
 
+  channelsraw: Channel[] = []
   channels: Channel[] = []
   suggested_thematic = {} as Thematics;
 
@@ -25,7 +26,11 @@ export class SidebarComponent {
   ngOnInit(): void {
 
     this.appService.getSuggestedChannels().subscribe(channel => {
-      this.channels = channel
+      this.channelsraw = channel
+
+      this.channels= this.channelsraw.map(x=>({...x, view_node : x.view_node.slice(4)}));
+
+      console.log("this.channels - ", this.channels)
 
     })
 

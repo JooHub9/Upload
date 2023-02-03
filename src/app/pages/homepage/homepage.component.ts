@@ -26,6 +26,9 @@ export class HomepageComponent {
   str?: string = "";
   list: Tags[] = [];*/
   filter: string = "";
+  channelsID: string[] = [];
+
+  channelsIDNames: {[key:string]:string}[] = [];
 
 
   constructor(public appService: AppService, public route: ActivatedRoute) {
@@ -42,19 +45,19 @@ export class HomepageComponent {
 
     })
 
-  this.route.queryParams.subscribe(param => {
+    this.route.queryParams.subscribe(param => {
       //this.tag = param['tag'];
       this.videos = [];
       this.filter = param['search']
 
-     /* this.appService.getTags().subscribe(st => {
-        this.t = st
-        this.list = this.t.filter(v => {
-          return v.tid === this.tag
-        });
-        this.obj = this.list[0]
-        this.str = this.obj.name
-      });*/
+      /* this.appService.getTags().subscribe(st => {
+         this.t = st
+         this.list = this.t.filter(v => {
+           return v.tid === this.tag
+         });
+         this.obj = this.list[0]
+         this.str = this.obj.name
+       });*/
       this.videosList()
     });
 
@@ -79,7 +82,7 @@ export class HomepageComponent {
   } //fim oninit
 
   videosList(clean: boolean = false): void {
-    this.appService.getVideos(this.page, this.tag,this.filter).subscribe((video) => {
+    this.appService.getVideos(this.page, this.tag, this.filter).subscribe((video) => {
       this.loading = true;
       if (video) {
         this.loading = false
@@ -89,7 +92,47 @@ export class HomepageComponent {
         this.videos = results
       else
         this.videos = [...this.videos, ...video]
+
+      console.log("this.videos - ", this.videos)
+
+      this.videos.forEach(x => {
+        if(x.field_channel_1)
+        {
+          this.channelsID.push(x.field_channel_1)
+        }
+        return this.channelsID
+      }) //fim do videosforeach
+
+      console.log("this.channelsID - ", this.channelsID)
+
+      this.appService.getoneChannel(this.channelsID).subscribe((ch) => {
+
+        ch.forEach(x => {
+          this.channelsIDNames.push({[x.nid]: x.view_node})
+          console.log("this.channelsIDNames - ", this.channelsIDNames)
+        })
+      })
     });
+
+
+  }
+
+
+  returnNode(x:any) : string {
+    let node
+    console.log(" o id - ", x);
+
+
+    node = this.channelsIDNames.find(obj => obj.hasOwnProperty(x))
+
+    if (node) {
+      console.log(node[x]);
+
+      return node[x]
+    } else {
+      console.log("NOT A CHANNEL");
+    }
+    return ""
   }
 
   moreResults(): void {
@@ -98,3 +141,13 @@ export class HomepageComponent {
   }
 
 }
+
+
+
+
+
+
+
+
+
+

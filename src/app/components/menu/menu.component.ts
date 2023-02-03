@@ -36,13 +36,9 @@ export class MenuComponent {
   tagstext: string = "";
   searchvideotext: string = "";
 
-
   @Input() isMenu! : boolean;
 
-
-
-  constructor(public appService: AppService) {
-  }
+  constructor(public appService: AppService) {}
 
   ngOnInit(): void {
     this.appService.getTags().subscribe((tag) => {

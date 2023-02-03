@@ -26,6 +26,7 @@ export class VideoComponent implements OnInit {
   @Input() thematics?: boolean;
   @Input() autoplay!: string;
   @Input() view_media!: string;
+  @Input() view_node!: string;
 
 
   faBookmark = faBookmark
@@ -36,7 +37,8 @@ export class VideoComponent implements OnInit {
   full: boolean = false;
 
   urlvtitle!: string;
-  urlctitle?: string;
+  urlctitle!: string;
+
   hover?: boolean
 
 
@@ -44,14 +46,13 @@ export class VideoComponent implements OnInit {
 
   ngOnInit(): void {
 
-    this.urlvtitle = this.view_media?.split('video/')[1]
-
-
-    //this.urlctitle = this.view_media?.split('video/')[1]
-
     this.autoplay = this.autoplay.replace('/watch?v=', '/embed/')
         .split("&")
       + '?autoplay=1&cc_load_policy=1&cc_lang_pref=pt'
+
+    this.urlvtitle = this.view_media.split('video/')[1];
+    this.urlctitle = this.view_node.slice(4)
+
   }
 
 }

@@ -107,7 +107,6 @@ interface Thematic {
 /*____________ Channel ____________*/
 
 interface Channel {
-
   nid: string;
   title: string;
   field_channel_cover: string;
@@ -132,6 +131,7 @@ interface ChannelVideos {
   field_media_oembed_video: string;
   nid: string;
   view_media:string;
+  view_node: string;
 }
 
 /*____________ Thematics ____________*/

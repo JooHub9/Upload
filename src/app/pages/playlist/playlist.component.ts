@@ -15,6 +15,9 @@ export class PlaylistComponent implements OnInit {
   videostext: string = "";
   listTerms: Terms[] = [];
 
+  channelsID: string[] = [];
+  channelsIDNames: {[key:string]:string}[] = [];
+
   constructor(public route: ActivatedRoute, public AppService: AppService) {
     this.nid = route.snapshot.params["nid"];
   }
@@ -27,7 +30,23 @@ export class PlaylistComponent implements OnInit {
 
     this.AppService.getPlaylistVideos(this.nid).subscribe((playlist_videos ) => {
       this.playlist_videos = playlist_videos;
-    });
+
+      this.playlist_videos.forEach(x => {
+        if(x.field_channel_1)
+        {
+          this.channelsID.push(x.field_channel_1)
+        }
+        return this.channelsID
+      }) //fim do videosforeach
+
+      this.AppService.getoneChannel(this.channelsID).subscribe((ch) => {
+
+        ch.forEach(x => {
+          this.channelsIDNames.push({[x.nid]: x.view_node})
+        })
+      })
+
+    }); //fim getPlaylistVideos
 
     this.AppService.getTerms().subscribe(tm => {
       this.listTerms = tm;
@@ -40,6 +59,16 @@ export class PlaylistComponent implements OnInit {
         }
       })});
 
+  } //fim do oninit
+
+  returnNode(x:any) : string {
+    let node
+
+    node = this.channelsIDNames.find(obj => obj.hasOwnProperty(x))
+
+    if (node) {return node[x]}
+    return ""
   }
+
   }
 

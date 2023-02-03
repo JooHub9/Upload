@@ -102,6 +102,7 @@ interface Thematic {
   field_external_links_1: string;
   user_picture: string;
   name: string;
+  view_media: string;
 }
 
 /*____________ Channel ____________*/

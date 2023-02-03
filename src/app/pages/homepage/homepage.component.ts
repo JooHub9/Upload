@@ -27,7 +27,6 @@ export class HomepageComponent {
   list: Tags[] = [];*/
   filter: string = "";
   channelsID: string[] = [];
-
   channelsIDNames: {[key:string]:string}[] = [];
 
 
@@ -93,8 +92,6 @@ export class HomepageComponent {
       else
         this.videos = [...this.videos, ...video]
 
-      console.log("this.videos - ", this.videos)
-
       this.videos.forEach(x => {
         if(x.field_channel_1)
         {
@@ -103,16 +100,13 @@ export class HomepageComponent {
         return this.channelsID
       }) //fim do videosforeach
 
-      console.log("this.channelsID - ", this.channelsID)
-
       this.appService.getoneChannel(this.channelsID).subscribe((ch) => {
 
         ch.forEach(x => {
           this.channelsIDNames.push({[x.nid]: x.view_node})
-          console.log("this.channelsIDNames - ", this.channelsIDNames)
         })
       })
-    });
+    }); //fim do getvideos
 
 
   }
@@ -120,8 +114,6 @@ export class HomepageComponent {
 
   returnNode(x:any) : string {
     let node
-    console.log(" o id - ", x);
-
 
     node = this.channelsIDNames.find(obj => obj.hasOwnProperty(x))
 

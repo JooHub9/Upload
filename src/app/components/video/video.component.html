@@ -4,9 +4,9 @@
          alt="video thumbnail">
     <div class="play" *ngIf="hover">
       <iframe [routerLink]="['/video/',mid]" class="iframe" title="video" [src]=" autoplay | safe"
-              frameborder="0" allow="autoplay; fullscreen; picture-in-picture"></iframe>
+               frameborder="0" allow="autoplay; fullscreen; picture-in-picture"></iframe>
     </div>
-    <div class="invisible_div" (click)="gotoVideoPage()" [routerLink]="['/video/',mid]"></div>
+    <div class="invisible_div" [routerLink]="['/video/',mid]"></div>
     <div class="main_duration">
       <p class="duration">{{field_duration}}</p>
     </div>
@@ -20,7 +20,7 @@
       <p *ngIf="thematics" class="field_tags">{{field_tags | tags}}</p>
       <p *ngIf="field_channel" class="channel yes" [routerLink]="['/channelpage/',field_channel_1]">{{field_channel}}</p>
       <p *ngIf="field_channel===''" class="channel no">Ceci ne pas un channel</p>
-      <h3 class="video_name" (click)="gotoVideoPage()">{{field_video_title}}</h3>
+      <p class="video_name" (click)="gotoVideoPage()">{{field_video_title}}</p>
 
       <p class="created">{{created}}</p>
     </div>

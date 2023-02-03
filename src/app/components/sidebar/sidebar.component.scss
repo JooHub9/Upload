@@ -22,9 +22,17 @@
       align-items: center;
       justify-content: space-between;
       align-content: center;
+      padding-left: 10px;
+
+      > p {
+        font-size: 14px;
+        font-weight: 500;
+        letter-spacing: 0.2px;
+      }
 
       .see_all {
         cursor: pointer;
+        padding-right: 10px;
       }
 
       .see_all:hover {
@@ -48,19 +56,21 @@
     .text_container {
       display: flex;
       align-items: center;
-      padding: 5px 0;
-      cursor:pointer;
+      padding: 5px 10px;
+      cursor: pointer;
 
       .logo {
         height: 40px;
         width: 40px;
         border-radius: 50%;
-        border: 2px solid white;
+        border: 1px solid white;
       }
 
       .title {
         padding-left: 20px;
         line-height: 1;
+        letter-spacing: 0.2px;
+        font-weight: 400;
 
         .subtitle {
           color: #B5B5BE;
@@ -102,7 +112,7 @@
 }
 
 /* @Media for Mobile */
-@media (max-width: 768px) {
+@media (max-width: 920px) {
   .sidebar {
     display: none
   }

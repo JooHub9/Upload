@@ -21,7 +21,6 @@
       <p *ngIf="field_channel" class="channel yes" [routerLink]="['/channelpage/',field_channel_1]">{{field_channel}}</p>
       <p *ngIf="field_channel===''" class="channel no">Ceci ne pas un channel</p>
       <p class="video_name" (click)="gotoVideoPage()">{{field_video_title}}</p>
-
       <p class="created">{{created}}</p>
     </div>
     <div *ngIf="share_type" class="icons">

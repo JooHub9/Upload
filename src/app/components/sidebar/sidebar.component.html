@@ -18,7 +18,7 @@
       <p>{{suggestedthematicstext}}</p>
       <p class="see_all" [routerLink]="['/thematics']">{{seealltext}}</p>
     </div>
-    <div class="container_t">
+    <div class="container_t" [routerLink]="['/thematics', suggested_thematic.nid]">
       <div class="text_container">
         <div>
           <img class="logo" [src]="'https://dev-project-upskill2-grupo3-ii.pantheonsite.io' + suggested_thematic.field_thumbnail_article" alt="thematic thumbnail">

@@ -2,10 +2,6 @@ import {Component, OnInit} from '@angular/core';
 import {AppService} from "../../app.service";
 import {Router} from "@angular/router";
 import {faMagnifyingGlass} from "@fortawesome/free-solid-svg-icons";
-import { debounceTime } from 'rxjs/operators';
-import { Subject } from 'rxjs';
-
-
 
 
 @Component({
@@ -19,32 +15,30 @@ export class SearchBarComponent {
   data!: any[];
   item: string = ""
   faMagnifyinGlass = faMagnifyingGlass
-  searchDebounce = new Subject<string>();
+  waitTime = 500;
+  timeout: any;
 
-  constructor(public appService: AppService, private router:Router) {
-    this.searchDebounce.pipe(debounceTime(1000))
-      .subscribe(val => this.searchVideo(val))
+
+  constructor(public appService: AppService, private router: Router) {
   }
 
   ngOnInit(): void {
-
-
     //esta parte do código mostra a lista dos videos no input
-
     this.appService.getVideo(this.item).subscribe(v => {
       this.data = v
-    })
+    });
 
   }
 
- searchVideo(filter: string) {
-    this.router.navigate(['/homepage'], {
-      queryParams: {
-        search : filter
-      }
-    })
+  searchVideo(filter: string) {
+    clearTimeout(this.timeout);
+    this.timeout = setTimeout(() => {
+      this.router.navigate(['/homepage'], {
+        queryParams: {
+          search: filter
+        }
+      });
+    }, this.waitTime);
   }
-
-
 }
 

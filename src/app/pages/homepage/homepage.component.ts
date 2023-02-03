@@ -13,6 +13,7 @@ export class HomepageComponent {
   listTerms: Terms[] = [];
   recentvideostext: string = "";
   morevideostext: string = "";
+  searchtext: string = "";
 
   loading: boolean = true;
 
@@ -26,6 +27,7 @@ export class HomepageComponent {
   str?: string = "";
   list: Tags[] = [];*/
   filter: string = "";
+
 
 
   constructor(public appService: AppService, public route: ActivatedRoute) {
@@ -43,19 +45,20 @@ export class HomepageComponent {
 
     })
 
-  this.route.queryParams.subscribe(param => {
+    this.route.queryParams.subscribe(param => {
       //this.tag = param['tag'];
       this.videos = [];
       this.filter = param['search']
 
-     /* this.appService.getTags().subscribe(st => {
-        this.t = st
-        this.list = this.t.filter(v => {
-          return v.tid === this.tag
-        });
-        this.obj = this.list[0]
-        this.str = this.obj.name
-      });*/
+
+      /* this.appService.getTags().subscribe(st => {
+         this.t = st
+         this.list = this.t.filter(v => {
+           return v.tid === this.tag
+         });
+         this.obj = this.list[0]
+         this.str = this.obj.name
+       });*/
       this.videosList()
     });
 
@@ -74,21 +77,25 @@ export class HomepageComponent {
             this.morevideostext = t.name
             break;
           }
+          case 92: {
+            this.searchtext = t.name
+            break;
+          }
         }
       })
     });
   } //fim oninit
 
   videosList(clean: boolean = false): void {
-    this.appService.getVideos(this.page, this.tag,this.filter).subscribe((video) => {
+    this.appService.getVideos(this.page, this.tag, this.filter).subscribe((video) => {
       this.loading = true;
       if (video) {
         this.loading = false
       }
       let results = <[]>video
-      if (clean)
+      if (clean) {
         this.videos = results
-      else
+      } else
         this.videos = [...this.videos, ...video]
     });
   }
@@ -97,5 +104,4 @@ export class HomepageComponent {
     this.page++
     this.videosList()
   }
-
 }

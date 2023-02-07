@@ -1,8 +1,8 @@
 import {Component} from '@angular/core';
 import {AppService} from "../../app.service";
 import {ActivatedRoute} from "@angular/router";
-import {faBookmark as faBookmarkFull, faThumbsUp} from '@fortawesome/free-solid-svg-icons';
-import {faBookmark, faThumbsDown} from '@fortawesome/free-regular-svg-icons';
+import {faBookmark as faBookmarkFull, faThumbsUp as faThumbsUpFull, faThumbsDown as faThumbsDownFull} from '@fortawesome/free-solid-svg-icons';
+import {faBookmark, faThumbsDown as faThumbsDownEmpty,faThumbsUp as faThumbsUpEmpty} from '@fortawesome/free-regular-svg-icons';
 
 @Component({
   selector: 'app-videopage',
@@ -14,27 +14,37 @@ export class VideopageComponent {
 
   faBookmark = faBookmark;
   faBookmarkFull = faBookmarkFull;
-  faThumbsUp = faThumbsUp;
-  faThumbsDown = faThumbsDown;
+
+  faThumbsUpFull = faThumbsUpFull;
+  faThumbsDownFull=faThumbsDownFull;
+
+  faThumbsDownEmpty = faThumbsDownEmpty;
+  faThumbsUpEmpty= faThumbsUpEmpty;
+
   objvideo = {} as Video;
 
   listtagsinicio: Tags[] = [];
 
   urlvideotitle: string = "";
-  includesComments: boolean=true;
+  includesComments: boolean = true;
 
   loading: boolean = true;
 
   id: any;
   umastring?: any;
-  urlvtitle!: string;
+  logo: string = "";
+  urlvtitle: string = "";
+  urlctitle: string = "";
 
   tags: string = "";
 
   commentstext: string = "";
-  nocommentstext:string=""
+  nocommentstext: string = ""
 
   listTerms: Terms[] = [];
+
+  toDislike: boolean = false;
+  toLike: boolean = false;
 
   likes: string = "0";
   dislikes: string = "0";
@@ -51,6 +61,7 @@ export class VideopageComponent {
   listvideos: Video[] = [];
   listvideostags: Video[] = [];
 
+
   body: {} = {};
 
   constructor(private route: ActivatedRoute, public appService: AppService) {}
@@ -60,7 +71,7 @@ export class VideopageComponent {
       this.urlvtitle = params['title'];
 
       this.appService.getIDByTitle(this.urlvtitle).subscribe(v => {
-        this.id=v.mid[0].value
+        this.id = v.mid[0].value
         this.refreshInfo()
       })
 
@@ -70,7 +81,6 @@ export class VideopageComponent {
 //______ Main Function _________
 
   refreshInfo() {
-
 
     //---- Get Terms ----//
 
@@ -92,6 +102,14 @@ export class VideopageComponent {
     this.appService.getVideo(this.id).subscribe(v => {
       this.objvideo = v[0];
 
+      if(this.objvideo.field_channel_1)
+      {
+        this.appService.getoneChannel([this.objvideo.field_channel_1]).subscribe(ch => {
+          this.urlctitle = ch[0].view_node.slice(4)
+          this.logo=ch[0].field_logo
+        })
+      }
+
       //---- Get the Tags ----//
 
       if (this.objvideo.field_tags != "") {
@@ -104,6 +122,7 @@ export class VideopageComponent {
           .toString()
           .replaceAll(",", " ")
       } else this.tags = "#tag #anothertag #onemoretag";
+
 
       //---- Change the Video ----//
 
@@ -128,7 +147,7 @@ export class VideopageComponent {
       this.appService.getOneVideoComments(this.id).subscribe(cc => {
         this.listvideoCom = cc;
         this.objvideoCom = this.listvideoCom[0];
-        this.listvideoCom.length===0 ?this.includesComments=false:this.includesComments=true
+        this.listvideoCom.length === 0 ? this.includesComments = false : this.includesComments = true
       });
 
       // -- refresh Comments
@@ -138,7 +157,7 @@ export class VideopageComponent {
           this.appService.getOneVideoComments(this.id).subscribe(cc => {
             this.listvideoCom = cc;
             this.objvideoCom = this.listvideoCom[0];
-            this.listvideoCom.length===0 ?this.includesComments=false:this.includesComments=true
+            this.listvideoCom.length === 0 ? this.includesComments = false : this.includesComments = true
           });
         }
       })
@@ -148,11 +167,13 @@ export class VideopageComponent {
       this.appService.getLikes(this.id).subscribe(l => {
         this.objlikes = l[0]
         this.likes = l[0].count
+
       })
 
       this.appService.getDislikes(this.id).subscribe(dl => {
         this.objdislikes = dl[0]
         this.dislikes = dl[0].count
+
       })
 
     }); //fim do get video
@@ -190,11 +211,12 @@ export class VideopageComponent {
   } // fim do da refreshInfo()
 
 
-
 //---- Updating Likes / Dislikes ----//
 
 
   updateLikes() {
+    this.toDislike = false;
+    this.toLike = true;
     this.body =
       {
         "entity_id": [this.id],
@@ -202,11 +224,14 @@ export class VideopageComponent {
         "flag_id": [{"target_id": "like", "target_type": "flag"}],
         "uid": ["0"]
       }
-    this.appService.postLike(this.body).subscribe(()=>{
-      this.appService.notifyLikes({refreshLikes: true});})
+    this.appService.postLike(this.body).subscribe(() => {
+      this.appService.notifyLikes({refreshLikes: true});
+    })
   }
 
   updateDislikes() {
+    this.toDislike = true;
+    this.toLike = false;
     this.body =
       {
         "entity_id": [this.id],
@@ -214,9 +239,9 @@ export class VideopageComponent {
         "flag_id": [{"target_id": "dislike", "target_type": "flag"}],
         "uid": ["0"]
       }
-    this.appService.postDislike(this.body).subscribe(()=>{
+    this.appService.postDislike(this.body).subscribe(() => {
       this.appService.notifyDislikes({refreshDislikes: true});
-      })
+    })
   }
 
   parseNum(str: string) {

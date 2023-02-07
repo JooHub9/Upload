@@ -9,6 +9,7 @@ interface ContentComment {
   field_email: string;
   user_picture: string;
   cid: string;
+  field_reported_cc:string;
   field_count_reports_cc: string;
   field_report_reasons_cc:string;
 }
@@ -133,6 +134,7 @@ interface ChannelVideos {
   nid: string;
   view_media:string;
   view_node: string;
+  field_tags: string;
 }
 
 /*____________ Thematics ____________*/

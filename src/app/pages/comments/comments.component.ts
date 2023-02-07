@@ -17,7 +17,7 @@ export class CommentsComponent {
 
   ngOnInit(): void {
 
-    this.appService.getContentComments().subscribe(cc => this.contentCom =cc)
+    this.appService.getContentComments("17").subscribe(cc => this.contentCom =cc)
 
     this.appService.getVideoComments().subscribe(cc => this.videoCom =cc)
 

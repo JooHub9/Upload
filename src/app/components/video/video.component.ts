@@ -28,6 +28,8 @@ export class VideoComponent implements OnInit {
   @Input() view_media!: string;
   @Input() view_node!: string;
 
+  thumbnail!:string;
+
 
   faBookmark = faBookmark
   faBookmarksolid = faBookmarkSolid
@@ -46,16 +48,15 @@ export class VideoComponent implements OnInit {
 
   ngOnInit(): void {
 
+    (this.field_tags.includes("warning") || this.field_tags.includes("aviso"))?
+      this.thumbnail="../../../assets/thumbnails/more18.png":
+      this.thumbnail = "https://dev-project-upskill2-grupo3-ii.pantheonsite.io" + this.thumbnail__target_id
+
     this.autoplay = this.autoplay.replace('/watch?v=', '/embed/')
         .split("&")
       + '?autoplay=1&cc_load_policy=1&cc_lang_pref=pt'
 
     this.urlvtitle = this.view_media.split('video/')[1];
     this.urlctitle = this.view_node.slice(4)
-
-
-    console.log(" this.urlctitle ", this.urlctitle )
-
   }
-
 }

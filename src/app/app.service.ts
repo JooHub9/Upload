@@ -106,7 +106,7 @@ export class AppService {
 
   /*------ GET ------*/
 
-  getContentComments(id?: string) {
+  getContentComments(id: string) {
     return this.http.get<ContentComment[]>(this.BASE_URL + "api/contentcomments/" + id);
   }
 

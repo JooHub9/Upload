@@ -35,8 +35,6 @@ export class ChannelpageComponent {
     this.route.params.subscribe(params => {
       this.urlctitle = params['title'];
 
-      console.log("this.urlctitle - recebido no channel",this.urlctitle)
-
       this.appService.getIDByTitleChannel(this.urlctitle).subscribe(v => {
         this.id = v.nid[0].value
         this.videosList()
@@ -102,8 +100,6 @@ export class ChannelpageComponent {
         this.loading = false
       }
       this.listvideos = [...this.listvideos, ...v];
-
-      console.log("videos - ",this.listvideos);
 
       v.length >= 4 ? this.moreSix = true : this.moreSix = false;
     })

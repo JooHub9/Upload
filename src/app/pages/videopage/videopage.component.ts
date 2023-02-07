@@ -136,12 +136,6 @@ export class VideopageComponent {
 
       this.appService.getAllVideosChannel(this.objvideo.field_channel_1).subscribe(vd => {
         this.listvideos = vd;
-
-
-
-
-
-
       });
 
       this.appService.getAllVideosChannelTags(this.objvideo.field_tags).subscribe(vd => {

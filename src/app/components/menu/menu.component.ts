@@ -5,7 +5,6 @@ import {
   faClapperboard,
   faPlay,
   faBookmark,
-  faMagnifyingGlass,
 } from "@fortawesome/free-solid-svg-icons"
 import {AppService} from "../../app.service";
 
@@ -23,7 +22,7 @@ export class MenuComponent {
   faClapperboard = faClapperboard;
   faPlay = faPlay;
   faBookmark = faBookmark;
-  faMagnifyinGlass = faMagnifyingGlass
+
 
 
   /*Variables*/
@@ -35,6 +34,7 @@ export class MenuComponent {
   favoritestext: string = "";
   tagstext: string = "";
   searchvideotext: string = "";
+
 
   @Input() isMenu! : boolean;
 

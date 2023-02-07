@@ -2,11 +2,10 @@
 
 <div class="main_div">
   <div class="recent_videos">
-    <div class="title"><h2>{{tagtext}} | {{ this.str| titlecase}}</h2></div>
-
+    <div class="title"><p>{{tagtext}} | {{ this.str| titlecase}}</p></div>
     <div class=videos_container>
-      <app-video
-        *ngFor="let video of videos"
+      <div *ngFor="let video of videos">
+        <app-video
         [mid]="video.mid"
         [field_channel]="video.field_channel"
         [field_video_title]="video.field_video_title"
@@ -22,11 +21,12 @@
         share_type="icons">
       </app-video>
     </div>
-    <div class="container_more_videos">
+      </div>
+    <!--<div class="container_more_videos">
       <div class="more_videos_border" (click)="moreResults()">
         <p class="more_videos_text">{{morevideostext}}</p>
       </div>
-    </div>
+    </div>-->
   </div>
   <app-sidebar></app-sidebar>
 </div>

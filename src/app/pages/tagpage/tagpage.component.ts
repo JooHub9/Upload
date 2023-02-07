@@ -92,10 +92,10 @@ export class TagpageComponent {
     }); //fim do get videos
   }
 
-  moreResults(): void {
+/*  moreResults(): void {
     this.page++
     this.getVideosbyTag()
-  }
+  }*/
 
   returnNode(x:any) : string {
     let node

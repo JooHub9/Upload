@@ -13,6 +13,7 @@ export class HomepageComponent {
   listTerms: Terms[] = [];
   recentvideostext: string = "";
   morevideostext: string = "";
+  searchtext: string = "";
 
   loading: boolean = true;
 
@@ -20,11 +21,7 @@ export class HomepageComponent {
   page = 0;
   channels: Channel[] = [];
   suggested_thematic = {} as Thematics;
-  //t: Tags[] = [];
   tag?: string = "";
-  /*obj!: Tags;
-  str?: string = "";
-  list: Tags[] = [];*/
   filter: string = "";
   channelsID: string[] = [];
   channelsIDNames: {[key:string]:string}[] = [];
@@ -35,28 +32,19 @@ export class HomepageComponent {
 
   ngOnInit(): void {
 
-    this.appService.getSuggestedChannels().subscribe(channel => {
+   /* this.appService.getSuggestedChannels().subscribe(channel => {
       this.channels = channel
     })
 
     this.appService.getSuggestedThematic().subscribe(thematic => {
       this.suggested_thematic = thematic[0];
 
-    })
+    })*/
 
     this.route.queryParams.subscribe(param => {
       //this.tag = param['tag'];
       this.videos = [];
       this.filter = param['search']
-
-      /* this.appService.getTags().subscribe(st => {
-         this.t = st
-         this.list = this.t.filter(v => {
-           return v.tid === this.tag
-         });
-         this.obj = this.list[0]
-         this.str = this.obj.name
-       });*/
       this.videosList()
     });
 
@@ -75,6 +63,10 @@ export class HomepageComponent {
             this.morevideostext = t.name
             break;
           }
+          case 92: {
+            this.searchtext = t.name
+            break;
+          }
         }
       })
     });
@@ -87,9 +79,9 @@ export class HomepageComponent {
         this.loading = false
       }
       let results = <[]>video
-      if (clean)
+      if (clean) {
         this.videos = results
-      else
+      } else
         this.videos = [...this.videos, ...video]
 
       this.videos.forEach(x => {
@@ -129,7 +121,6 @@ export class HomepageComponent {
     this.page++
     this.videosList()
   }
-
 }
 
 

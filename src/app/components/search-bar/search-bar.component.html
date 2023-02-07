@@ -1,3 +1,11 @@
-<input class="search_bar" placeholder="Type here!" ngModel (ngModelChange)="searchVideo($event)">
+<div class="drop">
+  <select name="dropdown" class="dropdown" (change)="selectChange($event)">
+    <option selected="selected" value="videos">{{videos_text}}</option>
+    <option value="channels">{{channels_text}}</option>
+  </select>
+</div>
+<div>
+<input class="search_bar" placeholder="{{placeholder_text}}" ngModel (ngModelChange)="searchVideo($event)">
       <fa-icon class="find" [icon]="faMagnifyinGlass "></fa-icon>
+</div>
 

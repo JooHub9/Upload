@@ -13,6 +13,7 @@ import {FavoritesComponent} from "./pages/favorites/favorites.component";
 import {ThematicArticleComponent} from "./pages/thematic-article/thematic-article.component";
 import {LanguageComponent} from "./components/language/language.component";
 import {TagpageComponent} from "./pages/tagpage/tagpage.component";
+import {SearchpageComponent} from "./pages/searchpage/searchpage.component";
 
 const routes: Routes = [
   {path: '', redirectTo: 'homepage',pathMatch: 'full'},
@@ -29,7 +30,8 @@ const routes: Routes = [
   {path: 'favorites', component: FavoritesComponent},
   {path: 'categorias', component: CategoriesComponent},
   {path: 'language', component: LanguageComponent},
-  {path: 'tag/:tag', component: TagpageComponent}
+  {path: 'tag/:tag', component: TagpageComponent},
+  {path: 'search', component:SearchpageComponent},
 ];
 
 @NgModule({

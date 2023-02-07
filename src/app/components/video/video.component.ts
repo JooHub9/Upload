@@ -43,6 +43,13 @@ export class VideoComponent implements OnInit {
 
   hover?: boolean
 
+  /*---Toggle Share---*/
+
+  showSharePopup = false;
+
+  toggleShare():void{
+    this.showSharePopup = !this.showSharePopup
+  }
 
   constructor(public appService: AppService) {}
 

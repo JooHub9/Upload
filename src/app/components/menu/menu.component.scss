@@ -38,10 +38,15 @@
 
     .active_div:hover {
       border-left: 3px solid white;
+
+      > p {
+        color: white;
+      }
     }
 
     .active {
       border-left: 1px solid white;
+
 
       fa-icon {
         color: white;
@@ -58,7 +63,9 @@
       flex-wrap: wrap;
 
       titles, h3 {
-        color: #92929D
+        color: #92929D;
+        letter-spacing: 0.85px;
+        text-transform: uppercase;
       }
 
 
@@ -72,6 +79,7 @@
           padding: 5px;
           margin-right: 9px;
           margin-bottom: 10px;
+          font-size: 14px;
           cursor: pointer;
         }
 
@@ -80,43 +88,21 @@
           color: #292932;
           border: 1px solid white;
         }
-
       }
-    }
-  }
 
-  .search {
-    display: flex;
-    position: relative;
-    font-size: 13px;
-    color: black;
-
-
-    .search_bar {
-      width: 190px;
-      height: 20px;
-      position: relative;
-      background-color: #292932;
-      border-radius: 15px;
-      border: 1px solid #92929D;
-      color: white;
-      align-items: center;
-    }
-
-    fa-icon {
-      position: absolute;
-      z-index: 1;
-      left: 173px;
-      top: 4px;
-      color: #92929D;
+      .search {
+        display: flex;
+        position: relative;
+        font-size: 14px;
+        color: black;
+      }
     }
   }
 }
 
-
 //Media Queries
 
-@media (max-width: 768px) {
+@media (max-width: 1025px) {
 
   .main_container {
     position: fixed;

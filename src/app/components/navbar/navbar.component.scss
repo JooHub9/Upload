@@ -20,7 +20,7 @@
   }
 
   .logo {
-    height: 41px;
+    height: 81px;
     left: 50px;
     top: 15px;
     padding: 20px 0;
@@ -28,7 +28,7 @@
   }
 }
 
-@media (min-width: 768px) {
+@media (min-width: 1025px) {
   .divlogo {
     max-width: 250px;
 

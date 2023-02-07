@@ -1,6 +1,6 @@
-import {Component, OnInit, ChangeDetectorRef} from '@angular/core';
+import {Component} from '@angular/core';
 import {AppService} from "../../app.service";
-import {ActivatedRoute, Router, NavigationStart} from "@angular/router";
+import {ActivatedRoute} from "@angular/router";
 import {faBookmark as faBookmarkFull, faThumbsUp} from '@fortawesome/free-solid-svg-icons';
 import {faBookmark, faThumbsDown} from '@fortawesome/free-regular-svg-icons';
 
@@ -18,6 +18,8 @@ export class VideopageComponent {
   faThumbsDown = faThumbsDown;
   objvideo = {} as Video;
 
+  listtagsinicio: Tags[] = [];
+
   urlvideotitle: string = "";
   includesComments: boolean=true;
 
@@ -25,6 +27,7 @@ export class VideopageComponent {
 
   id: any;
   umastring?: any;
+  urlvtitle!: string;
 
   tags: string = "";
 
@@ -40,43 +43,34 @@ export class VideopageComponent {
 
   video_string: string [] = [];
   video: string = "";
+  objtags: string = "";
+  listtags: string[] = [];
 
   listvideoCom: VideoComment[] = [];
   objvideoCom = {} as VideoComment;
   listvideos: Video[] = [];
+  listvideostags: Video[] = [];
 
   body: {} = {};
 
-  constructor(private route: ActivatedRoute, public appService: AppService, private router: Router) {
-    try {
-      this.umastring = this.router.getCurrentNavigation()!.extras.state!['idvalue']
-      this.id = this.umastring
-      localStorage.setItem("IDVideo", this.umastring)
-    } catch (e) {
-      this.id = localStorage.getItem("IDVideo")
-    }
-  }
+  constructor(private route: ActivatedRoute, public appService: AppService) {}
 
   ngOnInit() {
-    this.refreshInfo()
+    this.route.params.subscribe(params => {
+      this.urlvtitle = params['title'];
 
-    this.appService.notifyanotherID.subscribe(res => {
-      if (res.anotherID) {
-        try {
-          this.umastring = this.router.getCurrentNavigation()!.extras.state!['idvalue']
-          this.id = this.umastring
-          localStorage.setItem("IDVideo", this.umastring)
-        } catch (e) {
-          this.id = localStorage.getItem("IDVideo")
-        }
+      this.appService.getIDByTitle(this.urlvtitle).subscribe(v => {
+        this.id=v.mid[0].value
         this.refreshInfo()
-      }
+      })
+
     })
   }
 
 //______ Main Function _________
 
   refreshInfo() {
+
 
     //---- Get Terms ----//
 
@@ -104,6 +98,7 @@ export class VideopageComponent {
         this.tags = this.objvideo.field_tags
           .split(", ")
           .map(x => {
+            this.listtags.push(x)
             return "#" + x
           })
           .toString()
@@ -122,6 +117,10 @@ export class VideopageComponent {
 
       this.appService.getAllVideosChannel(this.objvideo.field_channel_1).subscribe(vd => {
         this.listvideos = vd;
+      });
+
+      this.appService.getAllVideosChannelTags(this.objvideo.field_tags).subscribe(vd => {
+        this.listvideostags = vd;
       });
 
       //---- Get the Comments ----//
@@ -144,19 +143,26 @@ export class VideopageComponent {
         }
       })
 
+      //---- Get Likes / Dislikes ----//
+
+      this.appService.getLikes(this.id).subscribe(l => {
+        this.objlikes = l[0]
+        this.likes = l[0].count
+      })
+
+      this.appService.getDislikes(this.id).subscribe(dl => {
+        this.objdislikes = dl[0]
+        this.dislikes = dl[0].count
+      })
+
     }); //fim do get video
+    // );
 
 
-    //---- Get Likes / Dislikes ----//
+    //---- Get the Tags ----//
 
-    this.appService.getLikes(this.id).subscribe(l => {
-      this.objlikes = l[0]
-      this.likes = l[0].count
-    })
-
-    this.appService.getDislikes(this.id).subscribe(dl => {
-      this.objdislikes = dl[0]
-      this.dislikes = dl[0].count
+    this.appService.getTags().subscribe((tag) => {
+      this.listtagsinicio = tag;
     })
 
     // -- refresh Likes
@@ -180,7 +186,10 @@ export class VideopageComponent {
         });
       }
     });
-  } // fim do refreshInfo / Main Function
+
+  } // fim do da refreshInfo()
+
+
 
 //---- Updating Likes / Dislikes ----//
 
@@ -213,7 +222,6 @@ export class VideopageComponent {
   parseNum(str: string) {
     return Number(str)
   }
-
 
 }
 

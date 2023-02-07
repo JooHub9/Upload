@@ -11,34 +11,63 @@ import {faMagnifyingGlass} from "@fortawesome/free-solid-svg-icons";
 })
 export class SearchBarComponent {
 
-  keyword: string = 'field_video_title'
+  keyword: string = ''
   data!: any[];
   item: string = ""
   faMagnifyinGlass = faMagnifyingGlass
   waitTime = 500;
   timeout: any;
+  selectOption: string = "videos"
+  listTerms: Terms[] = [];
+  channels_text:string="";
+  videos_text:string="";
+  placeholder_text:string="";
 
 
   constructor(public appService: AppService, private router: Router) {
   }
 
   ngOnInit(): void {
-    //esta parte do código mostra a lista dos videos no input
-    this.appService.getVideo(this.item).subscribe(v => {
-      this.data = v
-    });
+    this.searchVideo(this.keyword)
+    this.appService.getTerms().subscribe(tm => {
+      this.listTerms = tm;
 
-  }
+      this.listTerms.forEach(t => {
+        switch (Number(t.tid)) {
+          case 62: {
+            this.channels_text = t.name
+            break;
+          }
+          case 77: {
+            this.videos_text = t.name
+            break;
+        }
+          case 94: {
+            this.placeholder_text = t.name
+            break;
+          }
+        }
+      })
+    });
+  } //fim oninit
+
 
   searchVideo(filter: string) {
     clearTimeout(this.timeout);
     this.timeout = setTimeout(() => {
-      this.router.navigate(['/homepage'], {
+      this.router.navigate(['/search'], {
         queryParams: {
-          search: filter
+          search: filter,
+          select: this.selectOption,
         }
       });
     }, this.waitTime);
   }
+
+  selectChange(event: any) {
+    this.selectOption = event.target.value;
+   // this.searchVideo(this.selectOption)
+  }
+
 }
 

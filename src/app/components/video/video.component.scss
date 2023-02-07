@@ -4,6 +4,8 @@
   cursor: pointer;
   overflow: hidden;
   opacity: 0.8;
+  //z-index: 8;
+
 
   &:hover {
     //transform: scale(1.1);
@@ -46,6 +48,7 @@
         margin: 0;
         padding: 0;
       }
+
     }
 
     .invisible_div {
@@ -54,7 +57,7 @@
       left: 0;
       width: 100%;
       height: 100%;
-      z-index: 100;
+      //z-index: 100;
       // background-color: red;
 
     }
@@ -100,7 +103,7 @@
     .channel {
       margin: 0;
       padding-top: 5px;
-      font-size:14px;
+      font-size: 14px;
 
     }
 

@@ -18,7 +18,7 @@
       <div class="left">
         <div class="profilepicture" [ngStyle]="{'background-image':
   'url(https://dev-project-upskill2-grupo3-ii.pantheonsite.io/'  + objvideo.user_picture + ')'}
-"[routerLink]="'/channelpage/'+objvideo.field_channel_1"></div>
+" [routerLink]="'/channel/'+objvideo.field_channel_1"></div>
         <div class="textinfo">
           <p class="channel"> {{objvideo.name_1}} </p>
           <p class="date"> {{objvideo.created}} </p>
@@ -46,31 +46,32 @@
 
     <div *ngIf="!includesComments"><i>{{nocommentstext}}</i></div>
 
-
     <div *ngIf="includesComments">
-    <div *ngFor="let v of listvideoCom; let i = index">
-      <app-comment *ngIf="parseNum(v.field_count_reports_vc) < 3 "
-                   type="video"
-                   [uid]="v.uid"
-                   [user_picture]="v.user_picture"
-                   [username]="v.field_username_video"
-                   [date]="v.created"
-                   [comment]="v.comment_body"
-                   [email]="v.field_comment_email"
-                   [idComment]="v.cid"
-                   [reasons]="v.field_report_reasons_vc"
-                   [count]="v.field_count_reports_vc"
-                   [idreason]= i
-                   [channel]=false
-      ></app-comment>
+      <div *ngFor="let v of listvideoCom; let i = index">
+        <app-comment *ngIf="parseNum(v.field_count_reports_vc) < 3 "
+                     type="video"
+                     [uid]="v.uid"
+                     [user_picture]="v.user_picture"
+                     [username]="v.field_username_video"
+                     [date]="v.created"
+                     [comment]="v.comment_body"
+                     [email]="v.field_comment_email"
+                     [idComment]="v.cid"
+                     [reasons]="v.field_report_reasons_vc"
+                     [count]="v.field_count_reports_vc"
+                     [idreason]=i
+                     [channel]=false
+        ></app-comment>
 
-    </div>
+      </div>
     </div>
   </div>
-  <div class="sidebar">
-    <div *ngFor="let v of listvideos">
+
+
+  <div class="sidebar" *ngIf="objvideo.field_channel ">
+    <div *ngFor="let v of listvideos, let i = index">
       <app-video
-        *ngIf="v.field_channel=== objvideo.field_channel && v.mid != objvideo.mid"
+        *ngIf="v.field_channel=== objvideo.field_channel && v.mid != objvideo.mid && i <4"
         [mid]="v.mid"
         [field_channel]="v.field_channel"
         [field_video_title]="v.field_video_title"
@@ -83,6 +84,24 @@
       </app-video>
     </div>
   </div>
+
+  <div class="sidebar" *ngIf="!objvideo.field_channel ">
+    <div *ngFor="let v of listvideostags , let i = index">
+      <app-video
+        *ngIf="v.field_tags=== objvideo.field_tags && v.mid != objvideo.mid && i <4"
+        [mid]="v.mid"
+        [field_channel]="v.field_channel"
+        [field_video_title]="v.field_video_title"
+        [created]="v.created"
+        [thumbnail__target_id]="v.thumbnail__target_id"
+        [user_picture]="v.user_picture"
+        [field_duration]="v.field_duration"
+        [field_channel_1]="v.nid"
+        [autoplay]="v.field_media_oembed_video">
+      </app-video>
+    </div>
+  </div>
+
 </div>
 
 

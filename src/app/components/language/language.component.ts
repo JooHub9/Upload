@@ -16,8 +16,7 @@ export class LanguageComponent {
   otherlanguage: string = "";
   language: string = "";
 
-  constructor(private appService: AppService, private route: ActivatedRoute, private router: Router) {
-  }
+  constructor(private appService: AppService, private route: ActivatedRoute, private router: Router) {}
 
   ngOnInit() {
     this.language = this.appService.getLanguage();
@@ -29,13 +28,10 @@ export class LanguageComponent {
     this.language === "en" ? this.language = "pt" : this.language = "en"
 
     this.appService.modifyLanguage(this.language)
-    console.log("a lingua agora - ", this.language)
 
     this.appService.notifylangUpdate({langUpdate: true});
 
-    this.router.navigate(['/homepage']).then(x => x)
-
-    window.location.reload()
+    this.router.navigate(['/homepage']).then(()=> window.location.reload())
 
   }
 

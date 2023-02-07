@@ -21,13 +21,10 @@ export class HomepageComponent {
   page = 0;
   channels: Channel[] = [];
   suggested_thematic = {} as Thematics;
-  //t: Tags[] = [];
   tag?: string = "";
-  /*obj!: Tags;
-  str?: string = "";
-  list: Tags[] = [];*/
   filter: string = "";
-
+  channelsID: string[] = [];
+  channelsIDNames: {[key:string]:string}[] = [];
 
 
   constructor(public appService: AppService, public route: ActivatedRoute) {
@@ -35,30 +32,19 @@ export class HomepageComponent {
 
   ngOnInit(): void {
 
-    this.appService.getSuggestedChannels().subscribe(channel => {
+   /* this.appService.getSuggestedChannels().subscribe(channel => {
       this.channels = channel
-
     })
 
     this.appService.getSuggestedThematic().subscribe(thematic => {
       this.suggested_thematic = thematic[0];
 
-    })
+    })*/
 
     this.route.queryParams.subscribe(param => {
       //this.tag = param['tag'];
       this.videos = [];
       this.filter = param['search']
-
-
-      /* this.appService.getTags().subscribe(st => {
-         this.t = st
-         this.list = this.t.filter(v => {
-           return v.tid === this.tag
-         });
-         this.obj = this.list[0]
-         this.str = this.obj.name
-       });*/
       this.videosList()
     });
 
@@ -97,7 +83,40 @@ export class HomepageComponent {
         this.videos = results
       } else
         this.videos = [...this.videos, ...video]
-    });
+
+      this.videos.forEach(x => {
+        if(x.field_channel_1)
+        {
+          this.channelsID.push(x.field_channel_1)
+        }
+        return this.channelsID
+      }) //fim do videosforeach
+
+      this.appService.getoneChannel(this.channelsID).subscribe((ch) => {
+
+        ch.forEach(x => {
+          this.channelsIDNames.push({[x.nid]: x.view_node})
+        })
+      })
+    }); //fim do getvideos
+
+
+  }
+
+
+  returnNode(x:any) : string {
+    let node
+
+    node = this.channelsIDNames.find(obj => obj.hasOwnProperty(x))
+
+    if (node) {
+      console.log(node[x]);
+
+      return node[x]
+    } else {
+      console.log("NOT A CHANNEL");
+    }
+    return ""
   }
 
   moreResults(): void {
@@ -105,3 +124,13 @@ export class HomepageComponent {
     this.videosList()
   }
 }
+
+
+
+
+
+
+
+
+
+

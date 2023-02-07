@@ -3,7 +3,7 @@
     <fa-icon *ngIf="!isOpen"  class="hamburguer" [icon]="faBars"></fa-icon>
     <fa-icon *ngIf="isOpen" class="hamburguer" [icon]="faX"></fa-icon>
   </div>
-  <img src="/assets/upload.svg" alt="logo" class="logo" routerLink="homepage">
+  <img src="/assets/upload.svg" alt="logo" class="logo" [routerLink]="['/homepage']">
 </div>
 <div>
   <app-menu [isMenu]="isOpen" ></app-menu>

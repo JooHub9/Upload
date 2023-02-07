@@ -205,25 +205,32 @@ export class AppService {
     return this.http.get<Video[]>(this.BASE_URL + "api/videos/" + id);
   }
 
+  getIDByTitle(title:string){
+    return this.http.get<any>(this.BASE_URL + "/video/" + title+"?_format=json");
+  }
+
+
   getAllVideosChannel(id: string) {
-    return this.http.get<Video[]>(this.BASE_URL + "api/allvideos/" + id);
+    return this.http.get<Video[]>(this.BASE_URL + "api/allvideos/" + id+"?r=" + Date.now());
+  }
+
+  getAllVideosChannelTags(tags:string) {
+    return this.http.get<Video[]>(this.BASE_URL + "api/allvideostags/?name="+tags);
   }
 
   /*_______ Search _______*/
 
-  /*public notifySearch = new BehaviorSubject<any>('');
-  notifySearchObservable = this.notifySearch.asObservable();
-
-  getSearch(filter?: string) {
-    return this.http.get<Video[]>(this.BASE_URL + "api/videos/search/?name=" + filter);
+  searchChannel(filter:string) {
+    return this.http.get<Channel[]>(this.BASE_URL + "api/channels/search/?name=" + filter);
   }
 
-  public noteSearch(data: any) {
-    if (data) {
-      this.notifySearch.next(data);
-    }
-  }*/
+  /*selectOption = new BehaviorSubject<string>('');
+  currentSelectOption = this.selectOption.asObservable();
 
+  changeSelectOption(option: string) {
+    this.selectOption.next(option);
+    console.log("bicho", this.selectOption)
+  }/*
 
   /*_______ Tags _______*/
 
@@ -281,11 +288,16 @@ export class AppService {
     return this.http.get<Channel[]>(this.BASE_URL + "api/channels/");
   }
 
-  getoneChannel(id: string) {
+  getoneChannel(id: string[]) {
     return this.http.get<Channel[]>(this.BASE_URL + "api/channels/" + id);
   }
 
-  getChannelsVideos(id: string, page?: number,) {
+
+  getIDByTitleChannel(title:string){
+    return this.http.get<any>(this.BASE_URL + title+"?_format=json");
+  }
+
+  getChannelsVideos(id: string,page?: number,) {
     let url = this.BASE_URL + "api/channelvideos/" + id;
     page ? url += "?page=" + page : url
     return this.http.get<ChannelVideos[]>(url);

@@ -3,7 +3,9 @@
     <div class="container">
       <p>{{suggestedchannelstext}}</p>
     </div>
-    <div class="text_container" *ngFor="let channel of channels" [routerLink]="['/channelpage',channel.nid]">
+
+    <div class="text_container" *ngFor="let channel of channels" [routerLink]="['/channel',channel.view_node]">
+
       <div routerLink="channels">
         <img class="logo" [src]="'https://dev-project-upskill2-grupo3-ii.pantheonsite.io' + channel.field_logo" alt="channel logo">
       </div>

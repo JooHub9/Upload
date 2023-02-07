@@ -6,18 +6,19 @@
   margin: 20px;
 
 
-  main_div, h2{
-      font-size: 20px;
-      font-weight: 600;
-      margin: 20px 0;
+  main_div, p {
+    font-size: 24px;
+    font-weight: 500;
+    padding-left: 30px;
 
   }
-  .no_favs{
-    display:flex;
+
+  .no_favs {
+    display: flex;
     justify-content: center;
 
 
-    fa-icon{
+    fa-icon {
       font-size: 40px;
       padding-right: 10px;
       align-items: baseline;
@@ -27,7 +28,19 @@
   .favorites_container {
     display: flex;
     flex-wrap: wrap;
-    gap: 20px;
-    justify-content: center;
+    justify-content: space-evenly;
+    padding: 15px;
+
+    > div {
+      width: 33.333%;
+      padding: 15px;
+
+      @media(max-width: 1024px) {
+        width: 50%;
+      }
+      @media (max-width: 550px) {
+        width: 100%;
+      }
+    }
   }
 }

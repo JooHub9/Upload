@@ -20,7 +20,9 @@ export class TagpageComponent {
   list: Tags[] = [];
   filter: string = "";
   videos: Video[] = [];
-  page: number = 0
+  page: number = 0;
+  channelsID: string[] = [];
+  channelsIDNames: {[key:string]:string}[] = [];
 
   loading: boolean = true;
 
@@ -69,14 +71,42 @@ export class TagpageComponent {
       if (video) {
         this.loading = false
         this.videos = [...this.videos, ...video]
-      }
-    });
+
+
+      this.videos.forEach(x => {
+        if(x.field_channel_1)
+        {
+          this.channelsID.push(x.field_channel_1)
+        }
+        return this.channelsID
+      }) //fim do videosforeach
+
+      this.appService.getoneChannel(this.channelsID).subscribe((ch) => {
+
+        ch.forEach(x => {
+          this.channelsIDNames.push({[x.nid]: x.view_node})
+        })
+      })
+
+      }// fim do if
+    }); //fim do get videos
   }
 
-  moreResults(): void {
+/*  moreResults(): void {
     this.page++
     this.getVideosbyTag()
+  }*/
+
+  returnNode(x:any) : string {
+    let node
+    node = this.channelsIDNames.find(obj => obj.hasOwnProperty(x))
+
+    if (node) {
+      return node[x]
+    }
+    return ""
   }
+
 }
 
 

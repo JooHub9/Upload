@@ -52,7 +52,6 @@
   .textovideos {
     font-weight: 600;
     font-size: 14pt;
-
   }
 
   .listvideos {
@@ -61,6 +60,7 @@
     flex-wrap: wrap;
     width: auto;
     row-gap: 30px;
+    gap:20px;
     justify-content: space-evenly;
 
     .more_videos_text {
@@ -100,7 +100,8 @@
   }
 
   .commentscontainer {
-    max-width: 650px;
+   // max-width: 650px;
+    width:auto;
 
     .commentcontainer {
       display: flex;

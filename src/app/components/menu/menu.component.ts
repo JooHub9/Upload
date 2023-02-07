@@ -5,7 +5,6 @@ import {
   faClapperboard,
   faPlay,
   faBookmark,
-  faMagnifyingGlass,
 } from "@fortawesome/free-solid-svg-icons"
 import {AppService} from "../../app.service";
 
@@ -23,7 +22,7 @@ export class MenuComponent {
   faClapperboard = faClapperboard;
   faPlay = faPlay;
   faBookmark = faBookmark;
-  faMagnifyinGlass = faMagnifyingGlass
+
 
 
   /*Variables*/
@@ -39,10 +38,7 @@ export class MenuComponent {
 
   @Input() isMenu! : boolean;
 
-
-
-  constructor(public appService: AppService) {
-  }
+  constructor(public appService: AppService) {}
 
   ngOnInit(): void {
     this.appService.getTags().subscribe((tag) => {

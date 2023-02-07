@@ -121,8 +121,6 @@ export class HomepageComponent {
       console.log(node[x]);
 
       return node[x]
-    } else {
-      console.log("NOT A CHANNEL");
     }
     return ""
   }

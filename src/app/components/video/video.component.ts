@@ -53,6 +53,9 @@ export class VideoComponent implements OnInit {
     this.urlvtitle = this.view_media.split('video/')[1];
     this.urlctitle = this.view_node.slice(4)
 
+
+    console.log(" this.urlctitle ", this.urlctitle )
+
   }
 
 }

@@ -13,6 +13,7 @@ export class FormComponent {
   messagetext: string = "";
   commenttext: string = "Comment";
   errorMessagetext: string = "";
+  errorEmailtext: string = "";
 
   errorMessage: string = "";
   warning: boolean = false;
@@ -38,30 +39,37 @@ export class FormComponent {
   ngOnInit(): void {
 
 
-  this.appService.getTerms().subscribe(tm => {
-  this.listTerms = tm;
+    this.appService.getTerms().subscribe(tm => {
+      this.listTerms = tm;
 
-  this.listTerms.forEach(t=>{
+      this.listTerms.forEach(t => {
 
-  switch(Number(t.tid)) {
-  case 83: {
-    this.nametext = t.name
-    break;
+        switch (Number(t.tid)) {
+          case 83: {
+            this.nametext = t.name
+            break;
+          }
+          case 85: {
+            this.messagetext = t.name
+            break;
+          }
+          case 79: {
+            this.commenttext = t.name
+            break;
+          }
+          case 89: {
+            this.errorMessagetext = t.name
+            break;
+          }
+          case 93: {
+            this.errorEmailtext = t.name
+            break;
+          }
+
+        }
+      })
+    });
   }
-  case 85: {
-    this.messagetext = t.name
-    break;
-  }
-    case 79: {
-      this.commenttext = t.name
-      break;
-    }
-    case 89: {
-      this.errorMessagetext = t.name
-      break;
-    }
-
-}})});}
 
 
   get email() {
@@ -79,13 +87,28 @@ export class FormComponent {
   onSubmit(): void {
 
     if (this.commentForm.invalid) {
-      this.warning = true;
-      this.errorMessage = this.errorMessagetext;
-      setTimeout(() => {
-        this.warning=false;
-      }, 2000);
-    }
-    else {
+
+      if (this.commentForm.value.email.includes("@")) {
+        this.warning = true;
+        this.errorMessage = this.errorMessagetext;
+
+        setTimeout(() => {
+          this.warning = false;
+          this.errorMessage = ""
+        }, 2000);
+      }
+
+      else {
+        this.warning = true;
+        this.errorMessage = this.errorEmailtext
+
+        setTimeout(() => {
+          this.errorMessage = ""
+          this.warning = false;
+        }, 2000);
+      }
+
+    } else {
 
       if (this.page === "channel") {
         this.body =
@@ -100,7 +123,8 @@ export class FormComponent {
           }
 
         this.appService.postComment(this.body).subscribe(() => {
-          this.appService.notifyChannels({refreshChannel: true});})
+          this.appService.notifyChannels({refreshChannel: true});
+        })
 
       } else {
         this.body =
@@ -114,8 +138,8 @@ export class FormComponent {
             "comment_body": [{"value": this.commentForm.value.comment}]
           }
         this.appService.postComment(this.body).subscribe(() => {
-            this.appService.notifyVideos({refreshVideo: true});
-          })
+          this.appService.notifyVideos({refreshVideo: true});
+        })
       }
       this.commentForm.reset();
     }

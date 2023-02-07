@@ -4,7 +4,7 @@
       <div class="text_flag">
         <div class="text">
           <p class="title">{{objvideo.field_video_title}}</p>
-          <p class="tags" >{{tags}}</p>
+          <p class="tags">{{tags}}</p>
         </div>
         <div class="iconcontainer" (click)="appService.toggleFavorite(objvideo.mid)">
           <fa-icon class="iconfav" [icon]="appService.isFavorite(objvideo.mid)? faBookmarkFull : faBookmark"></fa-icon>
@@ -16,27 +16,34 @@
     </div>
     <div class="divundervideo">
       <div class="left">
-        <div class="profilepicture" [ngStyle]="{'background-image':
+
+        <div class="profilepicture" *ngIf="objvideo.field_channel" [ngStyle]="{'background-image':
+  'url(https://dev-project-upskill2-grupo3-ii.pantheonsite.io/'  + logo + ')'}
+"[routerLink]="urlctitle?'/channel/'+urlctitle : ''"></div>
+
+        <div class="profilepicture" *ngIf="!objvideo.field_channel" [ngStyle]="{'background-image':
   'url(https://dev-project-upskill2-grupo3-ii.pantheonsite.io/'  + objvideo.user_picture + ')'}
-" [routerLink]="'/channel/'+objvideo.field_channel_1"></div>
+"[routerLink]="urlctitle?'/channel/'+urlctitle : ''"></div>
+
         <div class="textinfo">
-          <p class="channel"> {{objvideo.name_1}} </p>
+          <p class="channel" *ngIf="objvideo.field_channel"> {{objvideo.field_channel}} </p>
+          <p class="channel" *ngIf="!objvideo.field_channel"> {{objvideo.name_1}} </p>
           <p class="date"> {{objvideo.created}} </p>
         </div>
       </div>
       <div class="right">
-        <div class="likes">
-          <fa-icon class="iconThumbsUp" [icon]="faThumbsUp" (click)="updateLikes()"></fa-icon>
+        <button class="likes" (click)="updateLikes()" [disabled]="toLike">
+          <fa-icon class="iconThumbsUp" [icon]="toLike?faThumbsUpFull:faThumbsUpEmpty"></fa-icon>
           <p class="likenumber">{{likes}}</p>
-        </div>
-        <div class="dislikes">
-          <fa-icon class="iconThumbsDown" [icon]="faThumbsDown" (click)="updateDislikes()"></fa-icon>
+        </button>
+        <button class="dislikes" (click)="updateDislikes()" [disabled]="toDislike">
+          <fa-icon class="iconThumbsDown" [icon]="toDislike? faThumbsDownFull: faThumbsDownEmpty"></fa-icon>
           <p class="dislikesnumber">{{dislikes}}</p>
-        </div>
+        </button>
       </div>
     </div>
     <div class="description">
-      <p class="descriptiontext">{{objvideo.field_video_description}}</p>
+      <p class="descriptiontext">{{objvideo.field_video_description | titlecase }} </p>
     </div>
     <app-form
       [id]="id"
@@ -80,7 +87,8 @@
         [user_picture]="v.user_picture"
         [field_duration]="v.field_duration"
         [field_channel_1]="v.nid"
-        [autoplay]="v.field_media_oembed_video">
+        [autoplay]="v.field_media_oembed_video"
+      [view_media]="v.view_media">
       </app-video>
     </div>
   </div>
@@ -97,7 +105,8 @@
         [user_picture]="v.user_picture"
         [field_duration]="v.field_duration"
         [field_channel_1]="v.nid"
-        [autoplay]="v.field_media_oembed_video">
+        [autoplay]="v.field_media_oembed_video"
+        [view_media]="v.view_media">
       </app-video>
     </div>
   </div>

@@ -96,11 +96,15 @@ export class ChannelpageComponent {
 
   videosList() {
     this.appService.getChannelsVideos(this.id, this.page).subscribe(v => {
+
       this.loading = true;
       if (v) {
         this.loading = false
       }
       this.listvideos = [...this.listvideos, ...v];
+
+      console.log("videos - ",this.listvideos);
+
       v.length >= 4 ? this.moreSix = true : this.moreSix = false;
     })
   }

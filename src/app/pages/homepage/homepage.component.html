@@ -1,9 +1,11 @@
+<app-loader *ngIf="this.loading" [loading]="this.loading"></app-loader>
+
 <div class="main_div">
   <div class="recent_videos">
-    <div *ngIf="!tag else titletag" class="title"><h2>{{recentvideostext}}</h2></div>
-    <ng-template #titletag>
-    <div class="title"><h2>{{str | titlecase}}</h2></div>
-    </ng-template>
+    <div *ngIf="!tag " class="title"><h2>{{recentvideostext}}</h2></div>
+    <div *ngIf="tag" class="title"><h2>{{ this.str| titlecase}}</h2></div>
+
+
     <div class=videos_container>
       <app-video
         *ngFor="let video of videos"
@@ -16,6 +18,7 @@
         [field_duration]="video.field_duration"
         [field_channel_1]="video.field_channel_1"
         [field_tags]="video.field_tags"
+        [autoplay]="video.field_media_oembed_video"
         share_type="icons">
       </app-video>
     </div>
@@ -25,39 +28,6 @@
       </div>
     </div>
   </div>
-  <div class="sidebar">
-    <div class="suggested_content" id="channel_content">
-      <div class="container">
-        <h4>{{suggestedchannelstext}}</h4>
-      </div>
-      <div class="text_container" *ngFor="let channel of channels" [routerLink]="['/channelpage',channel.nid]">
-        <div routerLink="channels">
-          <img class="logo" [src]="'https://dev-project-upskill2-grupo3-ii.pantheonsite.io' + channel.field_logo" alt="channel logo">
-        </div>
-        <div class="title"> {{channel.title}}</div>
-      </div>
-    </div>
-    <div class="more" [routerLink]="['/channels']">
-      <h5>{{seemoretext}}</h5>
-    </div>
-    <div class="suggested_content" id="thematic_content">
-      <div class="container">
-        <h4>{{suggestedthematicstext}}</h4>
-        <h4 class="see_all" [routerLink]="['/thematics']">{{seealltext}}</h4>
-      </div>
-      <div class="container_t">
-        <div class="text_container">
-          <div>
-            <img class="logo" [src]="'https://dev-project-upskill2-grupo3-ii.pantheonsite.io' + suggested_thematic.field_thumbnail_article" alt="thematic thumbnail">
-          </div>
-          <div class="title">
-            <p>{{suggested_thematic.title}}</p>
-            <p class="subtitle">{{suggested_thematic.name}}</p></div>
-        </div>
-        <div>
-          <img class="image_header" [src]="'https://dev-project-upskill2-grupo3-ii.pantheonsite.io' + suggested_thematic.field_image_header" alt="thematic image">
-        </div>
-      </div>
-    </div>
-  </div>
+  <app-sidebar></app-sidebar>
 </div>
+

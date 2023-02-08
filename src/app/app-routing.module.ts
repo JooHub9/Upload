@@ -1,5 +1,5 @@
-import { NgModule } from '@angular/core';
-import { RouterModule, Routes } from '@angular/router';
+import {NgModule} from '@angular/core';
+import {RouterModule, Routes} from '@angular/router';
 import {PlaylistComponent} from "./pages/playlist/playlist.component";
 import {CategoriesComponent} from "./components/categories/categories.component";
 import {PlaylistsComponent} from "./pages/playlists/playlists.component";
@@ -16,8 +16,9 @@ import {LanguageComponent} from "./components/language/language.component";
 const routes: Routes = [
   {path: '', redirectTo: 'homepage',pathMatch: 'full'},
   {path: 'homepage', component: HomepageComponent },
+  {path: 'homepage/?search=item', component: HomepageComponent},
   {path: 'comments', component: CommentsComponent },
-  {path: 'video/:id_video',  component: VideopageComponent,  },
+  {path: 'video/:title', component: VideopageComponent},
   {path: 'playlists/:nid', component: PlaylistComponent},
   {path: 'playlists', component: PlaylistsComponent},
   {path: 'thematics', component: ThematicsComponent},

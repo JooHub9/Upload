@@ -24,7 +24,9 @@
     "@fortawesome/fontawesome-svg-core": "^6.2.0",
     "@fortawesome/free-regular-svg-icons": "^6.2.0",
     "@fortawesome/free-solid-svg-icons": "^6.2.0",
+    "@popperjs/core": "^2.11.6",
     "angular-ng-autocomplete": "^2.0.12",
+    "ngx-youtube-player": "^12.0.2",
     "rxjs": "~7.5.0",
     "tslib": "^2.3.0",
     "zone.js": "~0.12.0"

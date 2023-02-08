@@ -9,22 +9,22 @@
     <div class="personalinfo">
 
       <div class="divname">
-        <input class="fields" id="name" [placeholder]=nametext type="text" formControlName="name">
+        <input class="fields" id="name" [placeholder]=nametext type="text" formControlName="name" required>
       </div>
 
       <div class="divemail">
-        <input class="fields" id="email" placeholder="Email" type="text" formControlName="email">
+        <input class="fields" id="email" placeholder="Email" type="text" formControlName="email" required>
       </div>
 
     </div>
 
     <div class="divcomment">
-      <input class="fields" id="comment" [placeholder]=messagetext type="text" formControlName="comment">
+      <input class="fields" id="comment" [placeholder]=messagetext type="text" formControlName="comment" required>
     </div>
 
     <div class="divbutton">
       <button class="button" type="submit">{{commenttext}}</button>
     </div>
-
+    <div *ngIf="warning" class="errorMessage"><i>{{errorMessage}}</i></div>
   </form>
 </div>

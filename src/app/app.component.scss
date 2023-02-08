@@ -1,11 +1,50 @@
 
-.wrapper{
+.wrapper {
   display: flex;
   justify-content: space-between;
 
-  .content{
+  .main_menu {
+    display: flex;
+    flex-direction: column;
+  }
+
+  .content {
     height: 100vh;
     overflow: auto;
-    flex:1;
+    flex: 1;
+  }
+
+}
+
+@media (max-width: 768px) {
+
+  .content {
+    //position: relative;
+    //top: 80px;
+    padding-top:100px;
   }
 }
+
+
+// Scrollbar
+
+::-webkit-scrollbar {
+  width: 10px;
+}
+
+::-webkit-scrollbar-track {
+  background: #13131a;
+}
+
+::-webkit-scrollbar-thumb {
+  background: #292932;
+  -webkit-border-radius: 10px;
+  border-radius: 10px;
+}
+
+::-webkit-scrollbar-thumb:hover {
+  background: #B5B5BE;
+}
+
+
+

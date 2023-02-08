@@ -4,7 +4,7 @@
       <div class="text_flag">
         <div class="text">
           <p class="title">{{objvideo.field_video_title}}</p>
-          <p class="tags">{{tags}}</p>
+          <p class="tags" >{{tags}}</p>
         </div>
         <div class="iconcontainer" (click)="appService.toggleFavorite(objvideo.mid)">
           <fa-icon class="iconfav" [icon]="appService.isFavorite(objvideo.mid)? faBookmarkFull : faBookmark"></fa-icon>
@@ -17,8 +17,8 @@
     <div class="divundervideo">
       <div class="left">
         <div class="profilepicture" [ngStyle]="{'background-image':
-  'url(https://dev-project-upskill2-grupo3-ii.pantheonsite.io/'  + objvideo.user_picture + ')'}
-"[routerLink]="'/channelpage/'+objvideo.field_channel_1"></div>
+  'url(https://dev-project-upskill2-grupo3-ii.pantheonsite.io/'  + objvideo.user_picture + ')'}"
+             [routerLink]="'/channelpage/'+objvideo.field_channel_1"></div>
         <div class="textinfo">
           <p class="channel"> {{objvideo.name_1}} </p>
           <p class="date"> {{objvideo.created}} </p>
@@ -43,8 +43,13 @@
       page="video"
     ></app-form>
     <div class="textocomentarios">{{commentstext}}</div>
-    <div *ngFor="let v of listvideoCom">
-      <app-comment *ngIf="parseNum(v.field_count_reports_vc) < 3"
+
+    <div *ngIf="!includesComments"><i>{{nocommentstext}}</i></div>
+
+
+    <div *ngIf="includesComments">
+    <div *ngFor="let v of listvideoCom; let i = index">
+      <app-comment *ngIf="parseNum(v.field_count_reports_vc) < 3 "
                    type="video"
                    [uid]="v.uid"
                    [user_picture]="v.user_picture"
@@ -55,11 +60,12 @@
                    [idComment]="v.cid"
                    [reasons]="v.field_report_reasons_vc"
                    [count]="v.field_count_reports_vc"
+                   [idreason]= i
                    [channel]=false
       ></app-comment>
 
     </div>
-
+    </div>
   </div>
   <div class="sidebar">
     <div *ngFor="let v of listvideos">

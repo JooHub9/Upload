@@ -28,7 +28,6 @@ export class LanguageComponent {
     this.language = this.appService.getLanguage();
     this.language === "en" ? this.language = "pt" : this.language = "en"
 
-
     this.appService.modifyLanguage(this.language)
     console.log("a lingua agora - ", this.language)
 

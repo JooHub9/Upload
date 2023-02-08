@@ -1,6 +1,6 @@
-import {Component, Input} from '@angular/core';
+import {Component, OnInit, ChangeDetectorRef} from '@angular/core';
 import {AppService} from "../../app.service";
-import {ActivatedRoute} from "@angular/router";
+import {ActivatedRoute, Router, NavigationStart} from "@angular/router";
 import {faBookmark as faBookmarkFull, faThumbsUp} from '@fortawesome/free-solid-svg-icons';
 import {faBookmark, faThumbsDown} from '@fortawesome/free-regular-svg-icons';
 
@@ -17,10 +17,19 @@ export class VideopageComponent {
   faThumbsUp = faThumbsUp;
   faThumbsDown = faThumbsDown;
   objvideo = {} as Video;
-  id: string = "";
+
+  urlvideotitle: string = "";
+  includesComments: boolean=true;
+
+  loading: boolean = true;
+
+  id: any;
+  umastring?: any;
+
   tags: string = "";
 
   commentstext: string = "";
+  nocommentstext:string=""
 
   listTerms: Terms[] = [];
 
@@ -38,64 +47,56 @@ export class VideopageComponent {
 
   body: {} = {};
 
-
-  constructor(private route: ActivatedRoute, public appService: AppService) {
-    this.id = route.snapshot.params['id_video'];
-
-    //---- Get Likes / Dislikes ----//
-    setTimeout(()=>{
-
-
-    this.appService.getLikes(this.id).subscribe(l => {
-      this.objlikes = l[0]
-      this.likes = l[0].count
-    })
-
-    this.appService.getDislikes(this.id).subscribe(dl => {
-      this.objdislikes = dl[0]
-      this.dislikes = dl[0].count
-    })
-
-    ,200})
-
+  constructor(private route: ActivatedRoute, public appService: AppService, private router: Router) {
+    try {
+      this.umastring = this.router.getCurrentNavigation()!.extras.state!['idvalue']
+      this.id = this.umastring
+      localStorage.setItem("IDVideo", this.umastring)
+    } catch (e) {
+      this.id = localStorage.getItem("IDVideo")
+    }
   }
 
-
   ngOnInit() {
+    this.refreshInfo()
 
-    this.route.params.subscribe(params => {
-      this.id = params['id_video'];
-
-    setTimeout(()=>{
-      this.refreshInfo(), 500
-    })
-    });
-
-    this.appService.getTerms().subscribe(tm => {
-      this.listTerms = tm;
-
-      this.listTerms.forEach(t=>{
-
-        if(String(t.tid) === "78")
-        {
-          this.commentstext = t.name;
+    this.appService.notifyanotherID.subscribe(res => {
+      if (res.anotherID) {
+        try {
+          this.umastring = this.router.getCurrentNavigation()!.extras.state!['idvalue']
+          this.id = this.umastring
+          localStorage.setItem("IDVideo", this.umastring)
+        } catch (e) {
+          this.id = localStorage.getItem("IDVideo")
         }
-
-
-        })});
+        this.refreshInfo()
+      }
+    })
   }
 
 //______ Main Function _________
 
   refreshInfo() {
 
+    //---- Get Terms ----//
+
+    this.appService.getTerms().subscribe(tm => {
+      this.listTerms = tm;
+      this.listTerms.forEach(t => {
+
+        if (String(t.tid) === "78") {
+          this.commentstext = t.name;
+        }
+        if (String(t.tid) === "90") {
+          this.nocommentstext = t.name;
+        }
+      })
+    });
+
     //---- Get the Video ----//
 
     this.appService.getVideo(this.id).subscribe(v => {
       this.objvideo = v[0];
-      console.log("todos os videos: ", this.objvideo)
-
-
 
       //---- Get the Tags ----//
 
@@ -121,7 +122,6 @@ export class VideopageComponent {
 
       this.appService.getAllVideosChannel(this.objvideo.field_channel_1).subscribe(vd => {
         this.listvideos = vd;
-        console.log("a lista de videos: ", this.listvideos)
       });
 
       //---- Get the Comments ----//
@@ -129,36 +129,35 @@ export class VideopageComponent {
       this.appService.getOneVideoComments(this.id).subscribe(cc => {
         this.listvideoCom = cc;
         this.objvideoCom = this.listvideoCom[0];
+        this.listvideoCom.length===0 ?this.includesComments=false:this.includesComments=true
       });
 
       // -- refresh Comments
 
       this.appService.notifyVideoObservable.subscribe(res => {
         if (res.refreshVideo) {
-
           this.appService.getOneVideoComments(this.id).subscribe(cc => {
             this.listvideoCom = cc;
             this.objvideoCom = this.listvideoCom[0];
+            this.listvideoCom.length===0 ?this.includesComments=false:this.includesComments=true
           });
         }
       })
+
     }); //fim do get video
 
-      /*//---- Get Likes / Dislikes ----//
 
+    //---- Get Likes / Dislikes ----//
 
-      this.appService.getLikes(this.id).subscribe(l => {
-        this.objlikes = l[0]
-        this.likes = l[0].count
-      });
+    this.appService.getLikes(this.id).subscribe(l => {
+      this.objlikes = l[0]
+      this.likes = l[0].count
+    })
 
-      this.appService.getDislikes(this.id).subscribe(dl => {
-        this.objdislikes = dl[0]
-        this.dislikes = dl[0].count
-      });*/
-
-
-
+    this.appService.getDislikes(this.id).subscribe(dl => {
+      this.objdislikes = dl[0]
+      this.dislikes = dl[0].count
+    })
 
     // -- refresh Likes
 
@@ -181,10 +180,7 @@ export class VideopageComponent {
         });
       }
     });
-
-
   } // fim do refreshInfo / Main Function
-
 
 //---- Updating Likes / Dislikes ----//
 
@@ -197,11 +193,8 @@ export class VideopageComponent {
         "flag_id": [{"target_id": "like", "target_type": "flag"}],
         "uid": ["0"]
       }
-    this.appService.postLike(this.body).subscribe()
-
-    setTimeout(() => {
-      this.appService.notifyLikes({refreshLikes: true});
-    }, 200);
+    this.appService.postLike(this.body).subscribe(()=>{
+      this.appService.notifyLikes({refreshLikes: true});})
   }
 
   updateDislikes() {
@@ -212,15 +205,15 @@ export class VideopageComponent {
         "flag_id": [{"target_id": "dislike", "target_type": "flag"}],
         "uid": ["0"]
       }
-    this.appService.postDislike(this.body).subscribe()
-
-    setTimeout(() => {
+    this.appService.postDislike(this.body).subscribe(()=>{
       this.appService.notifyDislikes({refreshDislikes: true});
-    }, 200);
+    })
   }
 
   parseNum(str: string) {
     return Number(str)
   }
+
+
 }
 

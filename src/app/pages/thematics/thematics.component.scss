@@ -6,19 +6,36 @@
 
   .main_title_thematics {
     color: white;
-    padding-top: 50px;
-    padding-bottom: 50px;
+    padding-top: 13px;
     padding-left: 30px;
   }
 
   .out_container_thematics {
-    display: grid;
+    margin: 30px 0;
+    display: flex;
+    flex-wrap: wrap;
+    width: auto;
+    gap: 20px;
+    /*max-width: 970px;*/
+
+    /*display: grid;
     grid-template-columns: auto auto auto;
-    justify-content: left;
+    justify-content: left;*/
 
     .thematics_container {
-      padding: 20px;
+      /*padding: 20px;
+      max-width: 310px;*/
+      background-color: #1C1C24;
+      border-radius: 20px;
       cursor: pointer;
+      overflow: hidden;
+      opacity: 0.8;
+
+      &:hover {
+        //transform: scale(1.1);
+        background: rgba(146, 146, 157, 0.4);
+        //overflow: visible;
+      }
 
       .images_thematics {
         flex-direction: column;
@@ -27,33 +44,33 @@
 
 
         .image_header {
-          margin-left: 15px;
-          width: 350px;
+          /*margin-left: 15px;*/
+          margin: 25px;
+          width: 325px;
           height: 200px;
           border-top-right-radius: 20px;
           border-top-left-radius: 20px;
         }
 
         .profile_photo_thematic {
-          padding-left: 200px;
+          /*padding-left: 200px;*/
 
           .user_picture_thematic {
             width: 75px;
             height: 75px;
             object-fit: cover;
-            border-radius: 50px;
+            border-radius: 50%;
             border: 2px solid white;
-            right: 35px;
-            top: 160px;
+            right: 40px;
+            bottom: -10px;
             position: absolute;
           }
         }
       }
 
       .text_box_thematic {
-        padding-bottom: 50px;
-        padding-top: 25px;
-        padding-left: 30px;
+        padding-bottom: 25px;
+        padding-left: 25px;
 
         .username_thematic {
           color: blue;
@@ -61,7 +78,7 @@
         }
 
         .title_thematic {
-          width: 350px;
+          width: 325px;
           color: white;
           margin: 2px;
           line-height: 1.5;

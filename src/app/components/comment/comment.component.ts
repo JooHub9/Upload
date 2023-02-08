@@ -1,22 +1,27 @@
-import {Component, Input, Renderer2} from '@angular/core';
+import {Component, ElementRef, Input, Renderer2, ViewChild} from '@angular/core';
 import {AppService} from "../../app.service";
 import {faEllipsisVertical, faFlag} from "@fortawesome/free-solid-svg-icons";
 import {FormBuilder, FormControl, FormGroup} from "@angular/forms";
+
 
 @Component({
   selector: 'app-comment',
   templateUrl: './comment.component.html',
   styleUrls: ['./comment.component.scss']
 })
+
+
 export class CommentComponent {
 
   faEllipsisVertical = faEllipsisVertical;
   faFlag = faFlag;
 
-  thankstext:string = "Thank you for reporting";
-  pleasetext:string = "Please choose a reason";
-  otherreasontext:string = "";
-  reporttext:string = "";
+  thankstext: string = "";
+  pleasetext: string = "";
+  otherreasontext: string = "";
+  reporttext: string = "";
+  sendtext: string = "";
+
   listTerms: Terms[] = [];
 
 
@@ -24,6 +29,9 @@ export class CommentComponent {
   warning: boolean = false;
   optionsInvisible: boolean = true;
   reportThanks: boolean = false;
+
+  selectedReason: any  = null;
+
 
   reason: string = "";
 
@@ -39,9 +47,8 @@ export class CommentComponent {
   constructor(public appService: AppService, private formBuilder: FormBuilder, private rd: Renderer2) {
     this.reasonsForm = this.formBuilder.group({
       userReason: "",
-      reasondefault: ""
+      reasondefault: new FormControl('')
     })
-
   }
 
   @Input() uid: string = "";
@@ -54,6 +61,7 @@ export class CommentComponent {
   @Input() channel!: boolean;
   @Input() reasons!: string;
   @Input() count!: string;
+  @Input() idreason!: number;
 
 
   ngOnInit() {
@@ -67,33 +75,60 @@ export class CommentComponent {
       })
 
 
-      this.appService.getTerms().subscribe(tm => {
-        this.listTerms = tm;
+    this.appService.getTerms().subscribe(tm => {
+      this.listTerms = tm;
 
-        this.listTerms.forEach(t=>{
+      this.listTerms.forEach(t => {
 
-          switch(Number(t.tid)) {
-            case 86: {
-              this.thankstext = t.name
-              break;
-            }
-            case 87: {
-              this.pleasetext = t.name
-              break;
-            }
-            case 81: {
-              this.otherreasontext = t.name
-              break;
-            }
-            case 80: {
-              this.reporttext = t.name
-              break;
-            }
+        switch (Number(t.tid)) {
+          case 86: {
+            this.thankstext = t.name
+            break;
+          }
+          case 87: {
+            this.pleasetext = t.name
+            break;
+          }
+          case 81: {
+            this.otherreasontext = t.name
+            break;
+          }
+          case 80: {
+            this.reporttext = t.name
+            break;
+          }
+          case 91: {
+            this.sendtext = t.name
+            break;
+          }
 
-          }})});
+        }
+      })
+    });
 
+    /*this.reasonsForm.get('reasondefault')!.valueChanges.subscribe(selectedReason => {
+      if (selectedReason) {
+        this.reasonsList.forEach(r => {
+          if (r.name !== selectedReason) {
+            selectedReason.c = true;
+          }
+        });
+      }
+    });*/
+  }  //end of ngOnInit
+
+/*___________ Popper _______________*/
+
+
+
+
+  /*---- get info from Form ---- */
+
+
+
+  setReasonDefault(a: any) {
+    this.reason = a
   }
-
 
   get userReason() {
     return this.reasonsForm.get('userReason');
@@ -103,48 +138,39 @@ export class CommentComponent {
     return this.reasonsForm.value.userReason;
   }
 
-  setdefaultreason(f: string) {
-    this.reason = f;
-
-  }
-
-  setWarningFalse()
-  {
-    this.warning=false;
-  }
 
   getReason() {
-      if (this.selected) {
-        this.report();
-        console.log("a razao1: ", this.reason);
-        this.selected = false;
-        this.reason ="";
-      }
-      else {
+    if (this.selected) {
+      this.report();
+      this.selected = false;
+      this.reason = "";
+    } else {
 
-        if ( this.getusertreason()=== "") {
-          this.warning = true;
-          this.reason ="";
-          setTimeout(() => {
-            this.warning=false;
-          }, 1000);
-          console.log("aconteceu aqui: ", this.reason, this.selected);
-        }
-        else
-        {
-        this.reason= this.getusertreason();
+      if (this.getusertreason() === "") {
+        this.warning = true;
+        this.reason = "";
+        setTimeout(() => {
+          this.warning = false;
+        }, 1000);
+        console.log("aconteceu aqui: ", this.reason, this.selected);
+      } else {
+        this.reason = this.getusertreason();
         console.log("a razao2: ", this.reason);
-          this.report();
+        this.report();
         this.selected = false;
-        this.reason ="";
-        this.reasonsForm.value.userReason="";
-        }
+        this.reason = "";
+        this.reasonsForm.value.userReason = "";
       }
     }
-
+  }
 
 
   //_______________________________//
+
+  setWarningFalse() {
+    this.warning = false;
+  }
+
 
   toggleReportText() {
     this.visible = !this.visible;
@@ -153,6 +179,7 @@ export class CommentComponent {
   toggleShowOptions() {
     this.optionsInvisible = !this.optionsInvisible;
   }
+
   toggleReportThanks() {
     this.reportThanks = !this.reportThanks;
   }
@@ -160,28 +187,22 @@ export class CommentComponent {
   report() {
 
     this.countNum = Number(this.count) + 1;
+    this.reasonsArray.push({"value": this.reason});
+    this.appService.Report(this.idComment, this.channel, this.reasonsArray, this.countNum)
 
-
-    console.log("o count: ", this.countNum)
-
-
-console.log("o ARRAY1: ", this.reasonsArray)
-
-
-    this.reasonsArray.push({"value":this.reason});
-    console.log("o ARRAY2: ", this.reasonsArray)
-
-    this.appService.Report(this.idComment, this.channel,this.reasonsArray,this.countNum)
-    console.log("o channel: ", this.channel)
-
-    setTimeout(()=>{
-      this.channel?
-        this.appService.notifyChannels({refreshChannel: true}):this.appService.notifyVideos({refreshVideo: true});
-    }, 1000);
+    /*setTimeout(() => {
+      this.channel ?
+        this.appService.notifyChannels({refreshChannel: true}) : this.appService.notifyVideos({refreshVideo: true});
+    }, 1000);*/
 
     this.toggleReportThanks();
-
   }
 
+
+  onChange(value:any)
+  {
+    this.selected=true;
+    this.selectedReason = value;
+  }
 
 }

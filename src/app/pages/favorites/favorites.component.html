@@ -1,3 +1,4 @@
+<app-loader *ngIf="this.loading" [loading]="this.loading"></app-loader>
 <div class="main_div">
   <div class="title">
   <h2>{{favoritestext}}</h2>
@@ -16,6 +17,7 @@
              [user_picture]="favorite.user_picture"
              [field_duration]="favorite.field_duration"
              [field_channel_1]="favorite.field_channel_1"
+             [autoplay]="favorite.field_media_oembed_video"
              share_type="icons">
   ></app-video>
   </div>

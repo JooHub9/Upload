@@ -2,16 +2,22 @@
   display: flex;
   flex-flow: row;
   height: 100%;
-  margin: 20px;
+  margin: 30px 0;
   justify-content: space-between;
+
+  .title, h2 {
+    margin: 0;
+    padding-bottom: 14px;
+    padding-left: 15px;
+  }
 
   .videos_container {
     display: flex;
     flex-wrap: wrap;
-    align-content: center;
-    gap: 20px;
-    justify-content: center;
-
+    row-gap: 30px;
+    justify-content: space-evenly;
+    //margin-left: 20px;
+    //gap:10px;
   }
 
   .container_more_videos {
@@ -19,6 +25,7 @@
     justify-content: center;
     margin-top: 20px;
     width: auto;
+    padding-bottom: 30px;
 
     .more_videos_border {
       border: 1px solid #B5B5BE;
@@ -42,103 +49,15 @@
   }
 }
 
-.sidebar {
-  height: auto;
-  //width: 350px;
-  width: auto;
-  //margin: 0;
-  padding-left: 10px;
+//Media Queries
 
-
-
-  .suggested_content {
-    width: 290px;
-    max-width: 280px;
-    background-color: #1C1C24;
-    padding: 1px 15px 0 10px;
-
-    .container {
-      border-bottom: 1px solid #292932;
-      width: 100%;
-      margin-bottom: 5px;
-      display: flex;
-      align-items: center;
-      justify-content: space-between;
-      align-content: center;
-
-      .see_all {
-        cursor: pointer;
-      }
-
-      .see_all:hover {
-        color: #1E75FF;
-      }
-
-    }
-
-    .image_header {
-      width: 280px;
-      margin-bottom: 10px;
-      border-radius: 15px;
-
-    }
-
-    .text_container {
-      display: flex;
-      align-items: center;
-      padding: 5px 0;
-
-      .logo {
-        height: 40px;
-        width: 40px;
-        border-radius: 50%;
-        border: 2px solid white;
-      }
-
-      .title {
-        padding-left: 20px;
-        line-height: 1;
-
-        .subtitle {
-          color: #B5B5BE;
-        }
-      }
-    }
-  }
-
-
-  }
-  #channel_content {
-    border-radius: 15px 15px 0 0;
-  }
-
-  #thematic_content {
-    border-radius: 15px 15px;
-    margin-bottom: 20px;
-  }
-
-  .container_t {
-    cursor: pointer;
-  }
-
-  .more {
-    display: flex;
+@media (max-width: 768px) {
+  .main_div {
     justify-content: center;
-    background-color: #292932;
-    width: auto;
-    border-radius: 0 0 15px 15px;
-    cursor: pointer;
-    margin-bottom: 20px;
-  }
 
-  .more:hover {
-    background-color: #B5B5BE;
-    color: #292932;
-  }
-
-/* @Media for Mobile */
-@media (max-width: 480px) {
-  .sidebar{
-    display:none
+    .title{
+      padding-left: 0;
+    }
   }
 }
+

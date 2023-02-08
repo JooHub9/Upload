@@ -1,5 +1,4 @@
-<div class="main_container">
-  <img src="/assets/upload.svg" alt="logo" class="logo" routerLink="homepage">
+<div class="main_container" [ngClass]="{'open' : isMenu}">
   <div class="menu">
     <div class="buttons">
       <div class="home" id="home_button" routerLink="homepage">
@@ -32,11 +31,12 @@
         <fa-icon [icon]="faBookmark"></fa-icon>
         <p>{{favoritestext}}</p>
       </div>
-    </div>
+    </div><div class="titles">
+    <h3>{{tagstext}}</h3>
+  </div>
     <div class="titles">
-      <h3>{{tagstext}}</h3>
-      <div class="tags_flex">
-        <div class="tag" *ngFor="let tag of tags" [queryParams]="{tag: tag.tid}" routerLink="/homepage">
+      <div class="tags_flex" *ngFor="let tag of tags, let i = index">
+        <div class="tag" [queryParams]="{tag: tag.tid}" routerLink="/homepage" *ngIf="i < 10">
           {{tag.name}}
         </div>
       </div>
@@ -48,9 +48,7 @@
       </div>
       <!--<input class="search_bar" placeholder="Type here!">
       <fa-icon class="find" [icon]="faMagnifyinGlass"></fa-icon>-->
-
-       <app-language></app-language>
-
+      <app-language></app-language>
     </div>
   </div>
 </div>

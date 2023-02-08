@@ -19,9 +19,19 @@ export class ThematicArticleComponent implements OnInit {
   external_list: string[] = [];
   links_list: string[] = [];
 
-
   videostext: string = "";
   listTerms: Terms[] = [];
+  morevideostext: string = "";
+
+  loading: boolean = true;
+
+  page = 0;
+  t: Tags[] = [];
+  tag?: number = 0;
+  obj!: Tags;
+  str?: string = "";
+  list: Tags[] = [];
+  filter: string = "";
 
 
   constructor(public route: ActivatedRoute, public AppService: AppService) {
@@ -35,13 +45,15 @@ export class ThematicArticleComponent implements OnInit {
 
       this.external_list = this.thematic.field_external_links.split(",");
       this.links_list = this.thematic.field_external_links_1.split(",");
-      console.log(this.external_list);
-      console.log(this.links_list);
+
     });
 
-    this.AppService.getThematicVideos(this.nid).subscribe((thematic_videos ) => {
-      this.thematic_videos = thematic_videos;
-    });
+    /*videosList(clean: boolean = false): void {
+      this.AppService.getThematicVideos(this.nid).subscribe((thematic_videos) => {
+        this.thematic_videos = thematic_videos;
+      });
+
+    }*/
 
     this.AppService.getTerms().subscribe(tm => {
       this.listTerms = tm;
@@ -52,10 +64,51 @@ export class ThematicArticleComponent implements OnInit {
         {
           this.videostext = t.name
         }
+
+        if(Number(t.tid)===73)
+        {
+          this.morevideostext = t.name
+        }
+
       })});
 
 
+    this.route.queryParams.subscribe(param => {
+      this.tag = param['tag'];
+      this.thematic_videos = [];
+      this.filter = param['search']
 
+      this.AppService.getTags().subscribe(st => {
+        this.t = st
+        this.list = this.t.filter(v => {
+          return v.tid === this.tag
+        });
+        this.obj = this.list[0]
+        this.str = this.obj.name
+      });
+      this.thematic_videosList()
+    });
 
   }
+
+  thematic_videosList(clean: boolean = false): void {
+    this.AppService.getThematicVideos(this.nid, this.page, this.tag, this.filter).subscribe((thematic_videos) => {
+      /*this.thematic_videos = thematic_videos;*/
+      this.loading = true;
+      if (thematic_videos) {
+        this.loading = false
+      }
+      let results = <[]>thematic_videos
+      if (clean)
+        this.thematic_videos = results
+      else
+        this.thematic_videos = [...this.thematic_videos, ...thematic_videos]
+    });
+  }
+
+  moreResults(): void {
+    this.page++
+    this.thematic_videosList()
+  }
+
 }

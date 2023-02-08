@@ -1,0 +1,109 @@
+
+.sidebar {
+  height: auto;
+  //width: 350px;
+  width: 300px;
+  //margin: 0;
+  //padding-left: 10px;
+
+
+  .suggested_content {
+    width: 250px;
+    max-width: 250px;
+    background-color: #1C1C24;
+    padding: 1px 15px 0 10px;
+
+
+    .container {
+      border-bottom: 1px solid #292932;
+      width: 100%;
+      margin-bottom: 5px;
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      align-content: center;
+
+      .see_all {
+        cursor: pointer;
+      }
+
+      .see_all:hover {
+        color: #1E75FF;
+      }
+
+    }
+
+    .header_main {
+      display: flex;
+      justify-content: center;
+
+      .image_header {
+        width: 250px;
+        margin-bottom: 5px;
+        border-radius: 15px;
+
+      }
+    }
+
+    .text_container {
+      display: flex;
+      align-items: center;
+      padding: 5px 0;
+      cursor:pointer;
+
+      .logo {
+        height: 40px;
+        width: 40px;
+        border-radius: 50%;
+        border: 2px solid white;
+      }
+
+      .title {
+        padding-left: 20px;
+        line-height: 1;
+
+        .subtitle {
+          color: #B5B5BE;
+        }
+      }
+    }
+  }
+
+
+}
+
+#channel_content {
+  border-radius: 15px 15px 0 0;
+}
+
+#thematic_content {
+  border-radius: 15px 15px;
+  //margin-bottom: 20px;
+  padding: 10px;
+}
+
+.container_t {
+  cursor: pointer;
+}
+
+.more {
+  display: flex;
+  justify-content: center;
+  background-color: #292932;
+  width: 275px;
+  border-radius: 0 0 15px 15px;
+  cursor: pointer;
+  margin-bottom: 20px;
+}
+
+.more:hover {
+  background-color: #B5B5BE;
+  color: #292932;
+}
+
+/* @Media for Mobile */
+@media (max-width: 768px) {
+  .sidebar {
+    display: none
+  }
+}

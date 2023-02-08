@@ -3,35 +3,35 @@
 }
 
 .main_container_playlist {
-  padding-top: 50px;
+  padding-top: 15px;
   justify-content: space-around;
   display: flex;
   flex-direction: row;
   flex-wrap: wrap;
+  width: 100%;
 
   .playlist_container {
 
     .playlist_title {
-
     }
 
-    .playlist_cover_image {
+    /*.playlist_cover_image {
 
       .cover_photo_playlist {
-
         /*width: 800px;
         height: 275px;
-        object-fit: cover;*/
-        border-radius: 50px;
-        padding-top: 25px;
-        padding-bottom: 25px;
+        object-fit: cover;
+        border-top-left-radius: 20px;
+        border-top-right-radius: 20px;
+
       }
-    }
+    }*/
 
     .text_playlist {
       display: flex;
       align-items: center;
-      padding-bottom: 15px;
+      //padding-bottom: 100px;
+      margin-bottom: 39px;
 
       .playlist_category {
         font-size: 15px;
@@ -43,35 +43,57 @@
       }
     }
 
+    .main_video {
+margin:0;
 
-    .videos_playlist {
+
+    }
+  }
+
+    .playlist_videos_sidebar {
+      width: 402px;
+      //margin: 15px 20px 20px 20px;
       /*display: flex;
-      flex-flow: row;*/
-      height: 100%;
-      margin: 20px;
-      /*padding-left: 25px;
-      padding-top: 50px;
-      justify-content: space-between;*/
+      flex-direction: column;
+      flex-wrap: wrap;*/
+      gap: 20px;
 
-      .videos {
+      /*display: flex;
+      flex-wrap: wrap;
+      align-content: center;
+      gap: 20px;*/
 
+      /*display: grid;
+      grid-template-columns: auto auto auto;*/
+
+      .playlist_cover_image {
+        margin-top: 20px;
+        padding-bottom: 25px;
+
+        .cover_photo_playlist {
+          /*width: 800px;
+          height: 275px;
+          object-fit: cover;*/
+          border-top-left-radius: 20px;
+          border-top-right-radius: 20px;
+
+        }
       }
 
-      .playlist_videos_sidebar {
-        margin: 15px 20px 20px 20px;
-        /*display: flex;
-        flex-direction: column;
-        flex-wrap: wrap;*/
-        gap: 20px;
-
-        /*display: flex;
-        flex-wrap: wrap;
+      .click_videos {
         align-content: center;
-        gap: 20px;*/
+        cursor: pointer;
 
-        /*display: grid;
-        grid-template-columns: auto auto auto;*/
+
+        .no_click {
+          pointer-events: none;
+
+          .hidden_text {
+            visibility: hidden;
+          }
+        }
       }
     }
   }
-}
+
+

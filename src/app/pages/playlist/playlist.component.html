@@ -1,33 +1,54 @@
 <div class="main_container_playlist">
   <div class="playlist_container">
     <h1 class="playlist_title">{{playlist.title}}</h1>
+    <!--<div class="playlist_cover_image">
+      <img class="cover_photo_playlist"
+           [src]="'https://dev-project-upskill2-grupo3-ii.pantheonsite.io/' + playlist.field_cover_image_playlist">
+    </div>-->
+    <div class="text_playlist">
+      <div class="playlist_category">{{playlist.field_category_playlist}} |</div>
+      <div class="playlist_body">{{playlist.body}}</div>
+    </div>
+
+    <youtube-player class="main_video"
+      *ngIf="video_playlist"
+      (ready)="savePlayer($event)"
+      [videoId]="video_playlist"
+      (change)="onStateChange($event)"
+                    [width]="780"
+                    [height]="523"
+    ></youtube-player>
+
+  </div>
+
+  <div class="playlist_videos_sidebar"
+       *ngIf="playlist">
     <div class="playlist_cover_image">
       <img class="cover_photo_playlist"
            [src]="'https://dev-project-upskill2-grupo3-ii.pantheonsite.io/' + playlist.field_cover_image_playlist">
     </div>
-    <div class="text_playlist">
-    <div class="playlist_category">{{playlist.field_category_playlist}} |</div>
-    <div class="playlist_body">{{playlist.body}}</div>
-    </div>
-  </div>
-    <div class="videos_playlist">
-      <h2 class="videos">{{videostext}}</h2>
-      <!--<app-videopage></app-videopage>-->
-      <div class="playlist_videos_sidebar"
-           *ngIf="playlist">
-        <!--<iframe class="playlist_video" title="playlist_video" [src]="video_playlist | safe"
-                allow="controls; fullscreen; picture-in-picture"
-        ></iframe>-->
-        <app-video
-          *ngFor="let pv of playlist_videos"
+    <div >
+
+      <div class="click_videos" *ngFor="let pv of playlist_videos" (click)="getvideoId(pv.field_media_oembed_video)">
+        <div style="pointer-events: none">
+        <app-playlist-videos
           [mid]="pv.mid"
           [thumbnail__target_id]="pv.thumbnail__target_id"
-          [user_picture]="pv.user_picture"
-          [name_1]="pv.name_1"
           [field_duration]="pv.field_duration"
           [field_video_title]="pv.field_video_title"
-          [created]="pv.created">
-        </app-video>
+          [field_video_description]="pv.field_video_description"
+          [created]="pv.created"
+          [autoplay]="pv.field_media_oembed_video">
+        </app-playlist-videos>
+        </div>
+
+        <!--[user_picture]="pv.user_picture"
+          [name]="pv.name_1"-->
+
       </div>
+
     </div>
+  </div>
 </div>
+
+

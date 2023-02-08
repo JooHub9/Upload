@@ -5,10 +5,10 @@
 .pagecontainer {
   margin: 20px;
   min-width: 300px;
-
+  padding-bottom: 180px;
 
   .cover {
-    padding-bottom: 25%;
+    padding-bottom: 20%;
     background-size: cover;
     background-repeat: no-repeat;
     background-position: center center;
@@ -19,9 +19,9 @@
 
     .userpicture {
       position: absolute;
-      width: 15%;
-      padding-bottom:15%;
-      bottom: -30%;
+      width: 10%;
+      padding-bottom: 10%;
+      bottom: -20%;
       right: 7%;
       border-radius: 50%;
       border: 3px solid white;
@@ -60,21 +60,47 @@
     display: flex;
     flex-wrap: wrap;
     width: auto;
-    gap: 20px;
+    row-gap: 30px;
     justify-content: space-evenly;
+
+    .more_videos_text {
+      text-align: center;
+    }
+  }
+
+    .container_more_videos {
+      display: flex;
+      justify-content: center;
+      margin: 20px 0;
+      width: auto;
+
+    .more_videos_border {
+      border: 1px solid #B5B5BE;
+      max-width: 200px;
+      border-radius: 15px;
+      cursor: pointer;
+      padding: 0 10px;
+      color: #B5B5BE;
+
+      &:hover {
+        border: 1px solid white;
+       // background-color: #b8b8b8;
+        color: white;
+      }
+
+    }
 
   }
 
-  .textocomentarios
-  {
+
+  .textocomentarios {
     font-weight: 600;
     font-size: 14pt;
     width: auto;
   }
 
-  .commentscontainer
-  {
-    max-width: 800px;
+  .commentscontainer {
+    max-width: 650px;
 
     .commentcontainer {
       display: flex;
@@ -83,7 +109,7 @@
       width: auto;
 
 
-      }
+    }
 
   }
 

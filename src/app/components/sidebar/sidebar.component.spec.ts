@@ -1,18 +1,18 @@
 import { ComponentFixture, TestBed } from '@angular/core/testing';
 
-import { HeadlineVideoComponent } from './headline-video.component';
+import { SidebarComponent } from './sidebar.component';
 
-describe('HeadlineVideoComponent', () => {
-  let component: HeadlineVideoComponent;
-  let fixture: ComponentFixture<HeadlineVideoComponent>;
+describe('SidebarComponent', () => {
+  let component: SidebarComponent;
+  let fixture: ComponentFixture<SidebarComponent>;
 
   beforeEach(async () => {
     await TestBed.configureTestingModule({
-      declarations: [ HeadlineVideoComponent ]
+      declarations: [ SidebarComponent ]
     })
     .compileComponents();
 
-    fixture = TestBed.createComponent(HeadlineVideoComponent);
+    fixture = TestBed.createComponent(SidebarComponent);
     component = fixture.componentInstance;
     fixture.detectChanges();
   });

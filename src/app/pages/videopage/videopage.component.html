@@ -4,7 +4,7 @@
       <div class="text_flag">
         <div class="text">
           <p class="title">{{objvideo.field_video_title}}</p>
-          <p class="tags" >{{tags}}</p>
+          <p class="tags">{{tags}}</p>
         </div>
         <div class="iconcontainer" (click)="appService.toggleFavorite(objvideo.mid)">
           <fa-icon class="iconfav" [icon]="appService.isFavorite(objvideo.mid)? faBookmarkFull : faBookmark"></fa-icon>
@@ -16,27 +16,34 @@
     </div>
     <div class="divundervideo">
       <div class="left">
-        <div class="profilepicture" [ngStyle]="{'background-image':
-  'url(https://dev-project-upskill2-grupo3-ii.pantheonsite.io/'  + objvideo.user_picture + ')'}"
-             [routerLink]="'/channelpage/'+objvideo.field_channel_1"></div>
+
+        <div class="profilepicture" *ngIf="objvideo.field_channel" [ngStyle]="{'background-image':
+  'url(https://dev-project-upskill2-grupo3-ii.pantheonsite.io/'  + logo + ')'}
+" [routerLink]="urlctitle?'/channel/'+urlctitle : ''"></div>
+
+        <div class="profilepicture" *ngIf="!objvideo.field_channel" [ngStyle]="{'background-image':
+  'url(https://dev-project-upskill2-grupo3-ii.pantheonsite.io/'  + objvideo.user_picture + ')'}
+" [routerLink]="urlctitle?'/channel/'+urlctitle : ''"></div>
+
         <div class="textinfo">
-          <p class="channel"> {{objvideo.name_1}} </p>
+          <p class="channel" *ngIf="objvideo.field_channel"> {{objvideo.field_channel}} </p>
+          <p class="channel" *ngIf="!objvideo.field_channel"> {{objvideo.name_1}} </p>
           <p class="date"> {{objvideo.created}} </p>
         </div>
       </div>
       <div class="right">
-        <div class="likes">
-          <fa-icon class="iconThumbsUp" [icon]="faThumbsUp" (click)="updateLikes()"></fa-icon>
+        <button class="likes" (click)="updateLikes()" [disabled]="toLike">
+          <fa-icon class="iconThumbsUp" [icon]="toLike?faThumbsUpFull:faThumbsUpEmpty"></fa-icon>
           <p class="likenumber">{{likes}}</p>
-        </div>
-        <div class="dislikes">
-          <fa-icon class="iconThumbsDown" [icon]="faThumbsDown" (click)="updateDislikes()"></fa-icon>
+        </button>
+        <button class="dislikes" (click)="updateDislikes()" [disabled]="toDislike">
+          <fa-icon class="iconThumbsDown" [icon]="toDislike? faThumbsDownFull: faThumbsDownEmpty"></fa-icon>
           <p class="dislikesnumber">{{dislikes}}</p>
-        </div>
+        </button>
       </div>
     </div>
     <div class="description">
-      <p class="descriptiontext">{{objvideo.field_video_description}}</p>
+      <p class="descriptiontext">{{objvideo.field_video_description | titlecase }} </p>
     </div>
     <app-form
       [id]="id"
@@ -46,31 +53,31 @@
 
     <div *ngIf="!includesComments"><i>{{nocommentstext}}</i></div>
 
-
     <div *ngIf="includesComments">
-    <div *ngFor="let v of listvideoCom; let i = index">
-      <app-comment *ngIf="parseNum(v.field_count_reports_vc) < 3 "
-                   type="video"
-                   [uid]="v.uid"
-                   [user_picture]="v.user_picture"
-                   [username]="v.field_username_video"
-                   [date]="v.created"
-                   [comment]="v.comment_body"
-                   [email]="v.field_comment_email"
-                   [idComment]="v.cid"
-                   [reasons]="v.field_report_reasons_vc"
-                   [count]="v.field_count_reports_vc"
-                   [idreason]= i
-                   [channel]=false
-      ></app-comment>
+      <div *ngFor="let v of listvideoCom; let i = index">
+        <app-comment *ngIf="parseNum(v.field_count_reports_vc) < 3 "
+                     type="video"
+                     [uid]="v.uid"
+                     [user_picture]="v.user_picture"
+                     [username]="v.field_username_video"
+                     [date]="v.created"
+                     [comment]="v.comment_body"
+                     [email]="v.field_comment_email"
+                     [idComment]="v.cid"
+                     [reasons]="v.field_report_reasons_vc"
+                     [count]="v.field_count_reports_vc"
+                     [idreason]=i
+                     [channel]=false
+        ></app-comment>
 
-    </div>
+      </div>
     </div>
   </div>
-  <div class="sidebar">
-    <div *ngFor="let v of listvideos">
+
+  <div class="sidebar" *ngIf="objvideo.field_channel ">
+    <div *ngFor="let v of listvideos, let i = index">
       <app-video
-        *ngIf="v.field_channel=== objvideo.field_channel && v.mid != objvideo.mid"
+        *ngIf="v.field_channel=== objvideo.field_channel && v.mid != objvideo.mid && i <4"
         [mid]="v.mid"
         [field_channel]="v.field_channel"
         [field_video_title]="v.field_video_title"
@@ -78,10 +85,33 @@
         [thumbnail__target_id]="v.thumbnail__target_id"
         [user_picture]="v.user_picture"
         [field_duration]="v.field_duration"
-        [field_channel_1]="v.nid">
+        [field_channel_1]="v.nid"
+        [field_tags]="v.field_tags"
+        [autoplay]="v.field_media_oembed_video"
+      [view_media]="v.view_media">
       </app-video>
     </div>
   </div>
+
+  <div class="sidebar" *ngIf="!objvideo.field_channel ">
+    <div *ngFor="let v of listvideostags , let i = index">
+      <app-video
+        *ngIf="v.field_tags=== objvideo.field_tags && v.mid != objvideo.mid && i <4"
+        [mid]="v.mid"
+        [field_channel]="v.field_channel"
+        [field_video_title]="v.field_video_title"
+        [created]="v.created"
+        [thumbnail__target_id]="v.thumbnail__target_id"
+        [user_picture]="v.user_picture"
+        [field_duration]="v.field_duration"
+        [field_channel_1]="v.nid"
+        [field_tags]="v.field_tags"
+        [autoplay]="v.field_media_oembed_video"
+        [view_media]="v.view_media">
+      </app-video>
+    </div>
+  </div>
+
 </div>
 
 

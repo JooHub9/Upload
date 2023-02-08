@@ -6,16 +6,18 @@
   padding: 10px 0;
   gap: 5px;
   cursor: pointer;
-  width: 90%;
+  width: 100%;
   border-radius: 5px;
 
-  &:hover { * {font-size: larger;} }
+  &:hover { * {color: white;} }
 
 
   .iconfaGlobe {
     font-size: 16pt;
     color: #92929D;
     margin: 0;
+
+    &:hover {color: white;}
   }
 
   .text {

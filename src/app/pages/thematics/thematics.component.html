@@ -1,23 +1,25 @@
 <div class="main_container_thematics">
   <h1 class="main_title_thematics">{{thematicstext}}</h1>
   <div class="out_container_thematics">
-  <div class="thematics_container"
-  *ngFor="let t of thematics" [routerLink]="['/thematics/', t.nid]">
-    <div class="images_thematics">
-    <div class="image_thematic">
-      <img class="image_header" [src]="'https://dev-project-upskill2-grupo3-ii.pantheonsite.io/' + t.field_image_header">
+    <div class="thematics_container"
+         *ngFor="let t of thematics" [routerLink]="['/thematics/', t.nid]">
+      <div class="images_thematics">
+        <div class="image_thematic">
+          <img class="image_header"
+               [src]="'https://dev-project-upskill2-grupo3-ii.pantheonsite.io/' + t.field_image_header">
+        </div>
+        <div class="profile_photo_thematic">
+          <img class="user_picture_thematic"
+               [src]="'https://dev-project-upskill2-grupo3-ii.pantheonsite.io/' + t.user_picture">
+        </div>
+      </div>
+      <div class="text_box_thematic">
+        <div class="username_thematic">{{t.name}}</div>
+        <div><h2 class="title_thematic">{{t.title}}</h2></div>
+        <div class="tag_thematic">#{{t.field_tag}}</div>
+        <div class="created_thematic">{{t.created}}</div>
+      </div>
     </div>
-    <div class="profile_photo_thematic">
-      <img class="user_picture_thematic" [src]="'https://dev-project-upskill2-grupo3-ii.pantheonsite.io/' + t.user_picture">
-    </div>
-    </div>
-    <div class="text_box_thematic">
-    <div class="username_thematic">{{t.name}}</div>
-      <div><h2 class="title_thematic">{{t.title}}</h2></div>
-    <div class="tag_thematic">#{{t.field_tag}}</div>
-    <div class="created_thematic">{{t.created}}</div>
-    </div>
-  </div>
   </div>
 </div>
 

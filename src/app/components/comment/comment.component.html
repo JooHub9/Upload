@@ -52,16 +52,14 @@
               <label class="reason" [for]="reasondefault.name + idreason">{{ reasondefault.name}}</label>
             </div>
 
-            <input class="inputreason"
+            <textarea class="inputreason"
                    type=textarea
                    [placeholder]=otherreasontext
                    formControlName="userReason"
                    onblur="this.value=''"
-                   (click)="selected=false;selectedReason=''">
+                      (click)="selected=false;selectedReason=''"></textarea>
 
             <button class="iconFlagContainer" type="submit">
-
-              <!--<fa-icon class="iconFlag" [icon]="faFlag" [ngStyle]="{'color': reported? '#B2191B' : ''}"></fa-icon>-->
               <p class="sendtext">{{sendtext}}</p>
 
             </button>

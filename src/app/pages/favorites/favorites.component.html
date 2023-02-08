@@ -1,14 +1,15 @@
 <app-loader *ngIf="this.loading" [loading]="this.loading"></app-loader>
 <div class="main_div">
   <div class="title">
-  <h2>{{favoritestext}}</h2>
+  <p class=>{{favoritestext}}</p>
 </div>
   <div class="no_favs" *ngIf="favorites_list.length===0">
     <fa-icon [icon]="faPoo" ></fa-icon>
   <h1> {{Ooopstext}}</h1>
 </div>
-  <div class="favorites_container">
-  <app-video *ngFor="let favorite of favorites_list"
+  <div class="favorites_container" >
+       <div *ngFor="let favorite of favorites_list" >
+  <app-video
              [mid]="favorite.mid"
              [field_channel]="favorite.field_channel"
              [field_video_title]="favorite.field_video_title"
@@ -18,7 +19,12 @@
              [field_duration]="favorite.field_duration"
              [field_channel_1]="favorite.field_channel_1"
              [autoplay]="favorite.field_media_oembed_video"
+             [field_tags]="favorite.field_tags"
+             [view_media]="favorite.view_media"
+             [view_node]="returnNode(favorite.field_channel_1)"
              share_type="icons">
-  ></app-video>
+  </app-video>
+  </div>
   </div>
 </div>
+

@@ -1,9 +1,11 @@
 <div class="sidebar">
   <div class="suggested_content" id="channel_content">
     <div class="container">
-      <h4>{{suggestedchannelstext}}</h4>
+      <p>{{suggestedchannelstext}}</p>
     </div>
-    <div class="text_container" *ngFor="let channel of channels" [routerLink]="['/channelpage',channel.nid]">
+
+    <div class="text_container" *ngFor="let channel of channels" [routerLink]="['/channel',channel.view_node]">
+
       <div routerLink="channels">
         <img class="logo" [src]="'https://dev-project-upskill2-grupo3-ii.pantheonsite.io' + channel.field_logo" alt="channel logo">
       </div>
@@ -11,14 +13,14 @@
     </div>
   </div>
   <div class="more" [routerLink]="['/channels']">
-    <h5>{{seemoretext}}</h5>
+    <p>{{seemoretext}}</p>
   </div>
   <div class="suggested_content" id="thematic_content">
     <div class="container">
-      <h4>{{suggestedthematicstext}}</h4>
-      <h4 class="see_all" [routerLink]="['/thematics']">{{seealltext}}</h4>
+      <p>{{suggestedthematicstext}}</p>
+      <p class="see_all" [routerLink]="['/thematics']">{{seealltext}}</p>
     </div>
-    <div class="container_t">
+    <div class="container_t" [routerLink]="['/thematics', suggested_thematic.nid]">
       <div class="text_container">
         <div>
           <img class="logo" [src]="'https://dev-project-upskill2-grupo3-ii.pantheonsite.io' + suggested_thematic.field_thumbnail_article" alt="thematic thumbnail">

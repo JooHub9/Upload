@@ -1,53 +1,50 @@
-import {Component, Input, OnInit} from '@angular/core';
+import {Component, OnInit} from '@angular/core';
 import {AppService} from "../../app.service";
 import {ActivatedRoute} from "@angular/router";
 
-
 @Component({
-  selector: 'app-homepage',
-  templateUrl: './homepage.component.html',
-  styleUrls: ['./homepage.component.scss']
+  selector: 'app-tagpage',
+  templateUrl: './tagpage.component.html',
+  styleUrls: ['./tagpage.component.scss']
 })
-export class HomepageComponent {
+export class TagpageComponent {
 
   listTerms: Terms[] = [];
-  recentvideostext: string = "";
+  tagtext: string = "";
   morevideostext: string = "";
-  searchtext: string = "";
 
-  loading: boolean = true;
-
-  videos: Video[] = [];
-  page = 0;
-  channels: Channel[] = [];
-  suggested_thematic = {} as Thematics;
+  t: Tags[] = [];
   tag?: string = "";
+  obj!: Tags;
+  str?: string = "";
+  list: Tags[] = [];
   filter: string = "";
+  videos: Video[] = [];
+  page: number = 0;
   channelsID: string[] = [];
   channelsIDNames: {[key:string]:string}[] = [];
 
+  loading: boolean = true;
 
   constructor(public appService: AppService, public route: ActivatedRoute) {
   }
 
   ngOnInit(): void {
-
-   /* this.appService.getSuggestedChannels().subscribe(channel => {
-      this.channels = channel
-    })
-
-    this.appService.getSuggestedThematic().subscribe(thematic => {
-      this.suggested_thematic = thematic[0];
-
-    })*/
-
     this.route.queryParams.subscribe(param => {
-      //this.tag = param['tag'];
+      this.tag = param['tag'];
       this.videos = [];
-      this.filter = param['search']
-      this.videosList()
-    });
 
+
+      this.appService.getTags().subscribe(st => {
+        this.t = st
+        this.list = this.t.filter(v => {
+          return v.name === this.tag
+        });
+        this.obj = this.list[0]
+        this.str = this.obj.name
+      });
+      this.getVideosbyTag()
+    });
 
     this.appService.getTerms().subscribe(tm => {
       this.listTerms = tm;
@@ -55,34 +52,26 @@ export class HomepageComponent {
       this.listTerms.forEach(t => {
 
         switch (Number(t.tid)) {
-          case 68: {
-            this.recentvideostext = t.name
+          case 66: {
+            this.tagtext = t.name
             break;
           }
           case 73: {
             this.morevideostext = t.name
             break;
           }
-          case 92: {
-            this.searchtext = t.name
-            break;
-          }
         }
       })
     });
-  } //fim oninit
+  }//fim do OnInit
 
-  videosList(clean: boolean = false): void {
-    this.appService.getVideos(this.page, this.tag, this.filter).subscribe((video) => {
+  getVideosbyTag(): void {
+    this.appService.getVideos(this.page, this.tag).subscribe((video) => {
       this.loading = true;
       if (video) {
         this.loading = false
-      }
-      let results = <[]>video
-      if (clean) {
-        this.videos = results
-      } else
         this.videos = [...this.videos, ...video]
+
 
       this.videos.forEach(x => {
         if(x.field_channel_1)
@@ -98,36 +87,27 @@ export class HomepageComponent {
           this.channelsIDNames.push({[x.nid]: x.view_node})
         })
       })
-    }); //fim do getvideos
 
-
+      }// fim do if
+    }); //fim do get videos
   }
 
+/*  moreResults(): void {
+    this.page++
+    this.getVideosbyTag()
+  }*/
 
   returnNode(x:any) : string {
     let node
-
     node = this.channelsIDNames.find(obj => obj.hasOwnProperty(x))
 
     if (node) {
-      console.log(node[x]);
-
       return node[x]
     }
     return ""
   }
 
-  moreResults(): void {
-    this.page++
-    this.videosList()
-  }
 }
-
-
-
-
-
-
 
 
 

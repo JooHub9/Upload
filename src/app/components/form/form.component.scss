@@ -28,13 +28,10 @@
           transition: background-color 600000s 0s, color 600000s 0s;
         }
 
-
         &:focus {
           outline: 0;
           color: #FAFAFB;
         }
-
-
       }
 
       .divname {
@@ -43,8 +40,6 @@
 
       .divemail {
         width: 50%;
-
-
       }
     }
 
@@ -67,12 +62,7 @@
         &:-webkit-autofill:focus {
           transition: background-color 600000s 0s, color 600000s 0s;
         }
-
-
       }
-
-
-
     }
 
     .divbutton {
@@ -90,17 +80,15 @@
         margin-top: 10px;
         cursor: pointer;
       }
-
     }
 
     .errorMessage
     {
-      color: darkred;
+      color: red;
       position: absolute;
       bottom:22px;
     }
   }
-
 
   .changeBG
   {

@@ -38,6 +38,9 @@ import { SidebarComponent } from './components/sidebar/sidebar.component';
 import { LoaderComponent } from './components/loader/loader.component';
 import { SharePopUpComponent } from './components/share-pop-up/share-pop-up.component';
 import { NgxYoutubePlayerModule } from 'ngx-youtube-player';
+import {TagpageComponent} from './pages/tagpage/tagpage.component';
+import {SearchpageComponent} from './pages/searchpage/searchpage.component';
+import { ToastrModule, ToastNoAnimation, ToastNoAnimationModule } from 'ngx-toastr';
 
 @NgModule({
   declarations: [
@@ -69,6 +72,9 @@ import { NgxYoutubePlayerModule } from 'ngx-youtube-player';
     SidebarComponent,
     LoaderComponent,
     SharePopUpComponent,
+    TagpageComponent,
+    SearchpageComponent,
+
   ],
 
   imports: [
@@ -83,6 +89,11 @@ import { NgxYoutubePlayerModule } from 'ngx-youtube-player';
     BrowserAnimationsModule,
     AutocompleteLibModule,
     NgxYoutubePlayerModule.forRoot()
+    ToastNoAnimationModule.forRoot(
+      {timeOut: 2000,
+        positionClass: 'toast-bottom-left',
+        preventDuplicates: true,}
+    ),
   ],
 
   providers: [],

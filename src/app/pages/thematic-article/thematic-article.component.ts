@@ -34,6 +34,9 @@ export class ThematicArticleComponent implements OnInit {
   filter: string = "";
 
 
+  channelsID: string[] = [];
+  channelsIDNames: {[key:string]:string}[] = [];
+
   constructor(public route: ActivatedRoute, public AppService: AppService) {
     this.nid = route.snapshot.params["nid"];
   }
@@ -55,6 +58,28 @@ export class ThematicArticleComponent implements OnInit {
 
     }*/
 
+    this.AppService.getThematicVideos(this.nid).subscribe((thematic_videos ) => {
+      this.thematic_videos = thematic_videos;
+
+
+      this.thematic_videos.forEach(x => {
+        if(x.field_channel_1)
+        {
+          this.channelsID.push(x.field_channel_1)
+        }
+        return this.channelsID
+      }) //fim do videosforeach
+
+      this.AppService.getoneChannel(this.channelsID).subscribe((ch) => {
+
+        ch.forEach(x => {
+          this.channelsIDNames.push({[x.nid]: x.view_node})
+        })
+      })
+
+    });//fim da getThematicVideos
+
+
     this.AppService.getTerms().subscribe(tm => {
       this.listTerms = tm;
 
@@ -72,11 +97,11 @@ export class ThematicArticleComponent implements OnInit {
 
       })});
 
-
     this.route.queryParams.subscribe(param => {
       this.tag = param['tag'];
       this.thematic_videos = [];
       this.filter = param['search']
+
 
       this.AppService.getTags().subscribe(st => {
         this.t = st
@@ -89,6 +114,21 @@ export class ThematicArticleComponent implements OnInit {
       this.thematic_videosList()
     });
 
+}//fim do oninit
+
+  returnNode(x:any) : string {
+    let node
+
+    node = this.channelsIDNames.find(obj => obj.hasOwnProperty(x))
+
+    if (node) {
+      console.log(node[x]);
+
+      return node[x]
+    } else {
+      console.log("NOT A CHANNEL");
+    }
+    return ""
   }
 
   thematic_videosList(clean: boolean = false): void {

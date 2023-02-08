@@ -12,6 +12,13 @@ export class CompactBoxComponent {
   @Input() field_channel_cover!: string;
   @Input() user_picture!: string;
   @Input() name!: string;
+  @Input() view_node!: string;
 
+  urlctitle!:string;
+
+
+  ngOnInit(): void {
+    this.urlctitle = this.view_node?.slice(4)
+  }
 
 }

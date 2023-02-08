@@ -2,10 +2,6 @@ import {Component, OnInit} from '@angular/core';
 import {AppService} from "../../app.service";
 import {Router} from "@angular/router";
 import {faMagnifyingGlass} from "@fortawesome/free-solid-svg-icons";
-import { debounceTime } from 'rxjs/operators';
-import { Subject } from 'rxjs';
-
-
 
 
 @Component({
@@ -15,36 +11,63 @@ import { Subject } from 'rxjs';
 })
 export class SearchBarComponent {
 
-  keyword: string = 'field_video_title'
+  keyword: string = ''
   data!: any[];
   item: string = ""
   faMagnifyinGlass = faMagnifyingGlass
-  searchDebounce = new Subject<string>();
+  waitTime = 500;
+  timeout: any;
+  selectOption: string = "videos"
+  listTerms: Terms[] = [];
+  channels_text:string="";
+  videos_text:string="";
+  placeholder_text:string="";
 
-  constructor(public appService: AppService, private router:Router) {
-    this.searchDebounce.pipe(debounceTime(1000))
-      .subscribe(val => this.searchVideo(val))
+
+  constructor(public appService: AppService, private router: Router) {
   }
 
   ngOnInit(): void {
+    this.searchVideo(this.keyword)
+    this.appService.getTerms().subscribe(tm => {
+      this.listTerms = tm;
+
+      this.listTerms.forEach(t => {
+        switch (Number(t.tid)) {
+          case 62: {
+            this.channels_text = t.name
+            break;
+          }
+          case 77: {
+            this.videos_text = t.name
+            break;
+        }
+          case 94: {
+            this.placeholder_text = t.name
+            break;
+          }
+        }
+      })
+    });
+  } //fim oninit
 
 
-    //esta parte do código mostra a lista dos videos no input
-
-    this.appService.getVideo(this.item).subscribe(v => {
-      this.data = v
-    })
-
+  searchVideo(filter: string) {
+    clearTimeout(this.timeout);
+    this.timeout = setTimeout(() => {
+      this.router.navigate(['/search'], {
+        queryParams: {
+          search: filter,
+          select: this.selectOption,
+        }
+      });
+    }, this.waitTime);
   }
 
- searchVideo(filter: string) {
-    this.router.navigate(['/homepage'], {
-      queryParams: {
-        search : filter
-      }
-    })
+  selectChange(event: any) {
+    this.selectOption = event.target.value;
+   // this.searchVideo(this.selectOption)
   }
-
 
 }
 

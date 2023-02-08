@@ -9,10 +9,8 @@ import {AppService} from "../../app.service";
 export class ChannelsComponent {
 
   channels: Channel[] = [];
-
   listTerms: Terms[] = [];
   channelstext: string = "";
-
   loading: boolean = true;
 
   constructor(public appService: AppService) {}

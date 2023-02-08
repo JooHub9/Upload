@@ -28,6 +28,10 @@ export class PlaylistComponent implements OnInit, NgxYoutubePlayerModule {
   listTerms: Terms[] = [];
 
 
+  channelsID: string[] = [];
+  channelsIDNames: {[key:string]:string}[] = [];
+
+
   constructor(public route: ActivatedRoute, public AppService: AppService) {
     this.nid = route.snapshot.params["nid"];
   }
@@ -51,6 +55,23 @@ export class PlaylistComponent implements OnInit, NgxYoutubePlayerModule {
     });
 
 
+    this.playlist_videos.forEach(x => {
+      if (x.field_channel_1) {
+        this.channelsID.push(x.field_channel_1)
+      }
+      return this.channelsID
+    }) //fim do videosforeach
+
+    this.AppService.getoneChannel(this.channelsID).subscribe((ch) => {
+
+      ch.forEach(x => {
+        this.channelsIDNames.push({[x.nid]: x.view_node})
+      })
+    })
+
+    //fim getPlaylistVideos
+
+
     this.AppService.getTerms().subscribe(tm => {
       this.listTerms = tm;
 
@@ -64,11 +85,22 @@ export class PlaylistComponent implements OnInit, NgxYoutubePlayerModule {
 
   }
 
-
   savePlayer(player: YT.Player) {
-    this.player = player;
-    console.log('player instance', player);
+  this.player = player;
+  console.log('player instance', player);
+
+}
+
+  returnNode(x:any) : string {
+    let node
+
+    node = this.channelsIDNames.find(obj => obj.hasOwnProperty(x))
+
+    if (node) {return node[x]}
+    return ""
   }
+
+
 
   onStateChange(event: YT.PlayerEvent) {
     console.log('player state', event.target.getPlayerState());

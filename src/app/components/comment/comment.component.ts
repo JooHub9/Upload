@@ -140,9 +140,10 @@ export class CommentComponent {
 
 
   getReason() {
-    if (this.selected) {
+    if (this.selectedReason) {
+      this.reason=this.selectedReason
       this.report();
-      this.selected = false;
+      this.selectedReason = "";
       this.reason = "";
     } else {
 
@@ -152,10 +153,8 @@ export class CommentComponent {
         setTimeout(() => {
           this.warning = false;
         }, 1000);
-        console.log("aconteceu aqui: ", this.reason, this.selected);
       } else {
         this.reason = this.getusertreason();
-        console.log("a razao2: ", this.reason);
         this.report();
         this.selected = false;
         this.reason = "";
@@ -185,16 +184,9 @@ export class CommentComponent {
   }
 
   report() {
-
     this.countNum = Number(this.count) + 1;
     this.reasonsArray.push({"value": this.reason});
     this.appService.Report(this.idComment, this.channel, this.reasonsArray, this.countNum)
-
-    /*setTimeout(() => {
-      this.channel ?
-        this.appService.notifyChannels({refreshChannel: true}) : this.appService.notifyVideos({refreshVideo: true});
-    }, 1000);*/
-
     this.toggleReportThanks();
   }
 

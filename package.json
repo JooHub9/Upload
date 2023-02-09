@@ -28,7 +28,6 @@
     "@popperjs/core": "^2.11.6",
     "angular-ng-autocomplete": "^2.0.12",
     "ngx-toastr": "^16.0.2",
-    "ngx-youtube-player": "^12.0.2",
     "rxjs": "~7.5.0",
     "tslib": "^2.3.0",
     "zone.js": "~0.12.0"

@@ -74,10 +74,7 @@ export class HomepageComponent {
 
   videosList(clean: boolean = false): void {
     this.appService.getVideos(this.page, this.tag, this.filter).subscribe((video) => {
-      this.loading = true;
-      if (video) {
-        this.loading = false
-      }
+      this.loading = !video;
       let results = <[]>video
       if (clean) {
         this.videos = results
@@ -110,8 +107,6 @@ export class HomepageComponent {
     node = this.channelsIDNames.find(obj => obj.hasOwnProperty(x))
 
     if (node) {
-      console.log(node[x]);
-
       return node[x]
     }
     return ""

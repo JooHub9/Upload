@@ -75,11 +75,7 @@ export class FavoritesComponent implements OnInit {
     node = this.channelsIDNames.find(obj => obj.hasOwnProperty(x))
 
     if (node) {
-      console.log(node[x]);
-
       return node[x]
-    } else {
-      console.log("NOT A CHANNEL");
     }
     return ""
   }

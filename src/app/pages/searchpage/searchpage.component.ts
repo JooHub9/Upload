@@ -27,10 +27,7 @@ export class SearchpageComponent {
   filter_str: string = "";
 
 
-
-  constructor(public appService: AppService, public route: ActivatedRoute) {
-
-  }
+  constructor(public appService: AppService, public route: ActivatedRoute) {}
 
   ngOnInit(): void {
 
@@ -70,8 +67,7 @@ export class SearchpageComponent {
       });
 
     });
-
-  } //fim OnInit
+  }//fim oninit
 
 
   UpdateContent(clean: boolean = false) {
@@ -101,5 +97,6 @@ export class SearchpageComponent {
       });
     }
   }
+
 }
 

@@ -18,22 +18,9 @@
     .playlist_title {
     }
 
-    /*.playlist_cover_image {
-
-      .cover_photo_playlist {
-        /*width: 800px;
-        height: 275px;
-        object-fit: cover;
-        border-top-left-radius: 20px;
-        border-top-right-radius: 20px;
-
-      }
-    }*/
-
     .text_playlist {
       display: flex;
       align-items: center;
-      //padding-bottom: 100px;
       margin-bottom: 39px;
 
       .playlist_category {
@@ -62,37 +49,22 @@
 
   .playlist_videos_sidebar {
     width: 402px;
-    //margin: 15px 20px 20px 20px;
-    /*display: flex;
-    flex-direction: column;
-    flex-wrap: wrap;*/
     gap: 20px;
-
-    /*display: flex;
-    flex-wrap: wrap;
-    align-content: center;
-    gap: 20px;*/
-
-    /*display: grid;
-    grid-template-columns: auto auto auto;*/
 
     .playlist_cover_image {
       margin-top: 20px;
       padding-bottom: 25px;
 
       .cover_photo_playlist {
-        /*width: 800px;
-        height: 275px;
-        object-fit: cover;*/
         border-top-left-radius: 20px;
         border-top-right-radius: 20px;
-
       }
     }
 
     .click_videos {
       align-content: center;
       cursor: pointer;
+      margin-right: 20px;
 
 
       .no_click {

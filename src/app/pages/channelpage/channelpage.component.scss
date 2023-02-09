@@ -36,7 +36,7 @@
     border-bottom: #232321 0.5px solid;
 
     .title {
-      font-weight: 600;
+      font-weight: 500;
       font-size: 20pt;
     }
 
@@ -55,13 +55,35 @@
   }
 
   .listvideos {
-    margin: 30px 0;
+    /*margin: 30px 0;
     display: flex;
     flex-wrap: wrap;
     width: auto;
     row-gap: 30px;
     gap:20px;
+    justify-content: space-evenly;*/
+
+    display: flex;
+    flex-wrap: wrap;
     justify-content: space-evenly;
+    padding: 15px;
+
+    > div {
+      width: 33.333%;
+      padding: 15px;
+
+      @media (max-width: 2100px) {
+        width: 25%;
+      }
+
+      @media (max-width: 1500px) {
+        width: 50%;
+      }
+      @media(max-width: 650px){
+        width:100%;
+      }
+
+    }
 
     .more_videos_text {
       text-align: center;

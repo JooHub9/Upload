@@ -90,22 +90,6 @@ export class AppService {
     return this.http.get<Thematic[]>(this.BASE_URL + "api/thematics/" + nid);
   }
 
-  /*getThematicVideos(nid: string) {
-    return this.http.get<Video[]>(this.BASE_URL + "api/thematic_article/videos/" + nid);
-  }
-
-  getVideos(page?: number, tag?: number, filter?: string) {
-    let url = this.BASE_URL + "api/videos"
-    if (filter) {
-      url = url + "/search/?name=" + filter
-    } else if (tag) {
-      url = url + "/tag/" + tag
-    } else if (page) {
-      url = url + "/?page=" + page
-    }
-    return this.http.get<Video[]>(url);
-  }*/
-
   getThematicVideos(nid: string, page?: number, tag?: number, filter?: string) {
     let url_2 = this.BASE_URL + "api/thematic_article/videos/" + nid
     if (filter) {
@@ -247,14 +231,6 @@ export class AppService {
   searchChannel(filter:string) {
     return this.http.get<Channel[]>(this.BASE_URL + "api/channels/search/?name=" + filter);
   }
-
-  /*selectOption = new BehaviorSubject<string>('');
-  currentSelectOption = this.selectOption.asObservable();
-
-  changeSelectOption(option: string) {
-    this.selectOption.next(option);
-    console.log("bicho", this.selectOption)
-  }/*
 
   /*_______ Tags _______*/
 

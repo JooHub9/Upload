@@ -8,15 +8,16 @@
   .main_title_thematics {
     color: white;
     padding-top: 13px;
+    font-size: 20pt;
+    font-weight: 500;
   }
 
   .out_container_thematics {
     margin: 30px 0;
     display: flex;
     flex-wrap: wrap;
-    width: auto;
-    gap: 20px;
-
+   width: auto;
+   gap: 20px;
 
     .thematics_container {
       background-color: #1C1C24;
@@ -60,7 +61,7 @@
       .text_box_thematic {
 
         .username_thematic {
-          color: blue;
+          color: #4b66f7;
           font-size: 15px;
           padding-left: 20px;
           padding-top: 10px;
@@ -69,12 +70,11 @@
         .title_thematic {
           width: 325px;
           color: white;
-          margin: 2px;
-          //line-height: 1.5;
           text-overflow: ellipsis;
           overflow: hidden;
           white-space: nowrap;
           padding: 0 20px;
+          font-weight: 500;
         }
 
         .tag_thematic {

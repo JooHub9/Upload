@@ -16,6 +16,7 @@
     margin: 30px 0;
     display: flex;
     flex-wrap: wrap;
+    justify-content: space-evenly;
     width: auto;
     gap: 20px;
 
@@ -37,6 +38,7 @@
 
         .bookmark_play {
 
+
           .bookmark {
             color: white;
             font-size: 50px;
@@ -51,6 +53,7 @@
             top: 95px;
             left: 52px;
             position: absolute;
+
           }
         }
 
@@ -81,7 +84,7 @@
       .text_box {
 
         .username {
-          color: blue;
+          color: #4b66f7;
           font-size: 15px;
           padding-left: 20px;
           padding-top: 10px;
@@ -94,6 +97,7 @@
           overflow: hidden;
           white-space: nowrap;
           padding: 0 20px;
+          font-weight: 500;
         }
 
         .authored_on {

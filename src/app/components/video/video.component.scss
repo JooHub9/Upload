@@ -21,7 +21,7 @@
     .thumbnail {
       border-top-right-radius: 20px;
       border-top-left-radius: 20px;
-      width:100%;
+      width: 100%;
 
     }
 
@@ -85,6 +85,7 @@
     align-items: center;
     height: 105px;
     padding-left: 24px;
+    position: relative;
 
     .field_tags {
       color: #1E75FF;
@@ -102,7 +103,7 @@
     }
 
     .no {
-      color: #1E75FF
+      color: #1E75FF;
     }
 
     .video_name {
@@ -124,9 +125,13 @@
     .icons {
       display: flex;
       flex-direction: row;
-      position: relative;
+      /*position: relative;
       top: 24px;
-      right: 24px;
+      right: 24px;*/
+      position: absolute;
+      bottom: 15px;
+      right: 25px;
+
 
       fa-icon {
         font-size: 20px;

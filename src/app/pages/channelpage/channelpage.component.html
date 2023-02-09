@@ -14,22 +14,29 @@
   </div>
   <div class="textovideos">{{videotext}}</div>
   <app-loader *ngIf="this.loading" [loading]="this.loading"></app-loader>
+
   <div class="listvideos">
-    <app-video
-      *ngFor="let v of listvideos"
-      [mid]="v.mid"
-      [field_channel]="v.name"
-      [field_video_title]="v.field_video_title"
-      [created]="v.created"
-      [thumbnail__target_id]="v.thumbnail__target_id"
-      [user_picture]="v.user_picture"
-      [field_duration]="v.field_duration"
-      [field_channel_1]="v.nid"
-      [field_tags]="v.field_tags"
-      [autoplay] = "v.field_media_oembed_video"
-      [view_media]="v.view_media">
-    </app-video>
+    <div *ngFor="let v of listvideos">
+      <app-video
+        [mid]="v.mid"
+        [field_channel]="v.name"
+        [field_video_title]="v.field_video_title"
+        [created]="v.created"
+        [thumbnail__target_id]="v.thumbnail__target_id"
+        [user_picture]="v.user_picture"
+        [field_duration]="v.field_duration"
+        [field_channel_1]="v.nid"
+        [field_tags]="v.field_tags"
+        [autoplay] = "v.field_media_oembed_video"
+        [view_media]="v.view_media">
+      </app-video>
+    </div>
+
+
+
+
   </div>
+
 
   <div *ngIf="moreSix" class="container_more_videos">
   <div class="more_videos_border" (click)="moreResults()">
@@ -45,6 +52,7 @@
     ></app-form>
     <div *ngIf="!includesComments"><i>{{nocommentstext}}</i></div>
     <div *ngIf="includesComments">
+
     <div class="commentcontainer" *ngFor="let cc of listchannelCom; let i = index">
       <app-comment *ngIf="parseNum(cc.field_count_reports_cc) < 3"
                    [uid]="cc.uid"

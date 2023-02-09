@@ -29,7 +29,6 @@ export class SearchBarComponent {
   }
 
   ngOnInit(): void {
-
     this.appService.getTerms().subscribe(tm => {
       this.listTerms = tm;
 

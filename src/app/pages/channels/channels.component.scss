@@ -6,48 +6,30 @@
   margin: 20px;
 
   .channeltext {
-    font-size: 20px;
-    font-weight: 600;
-    margin: 20px 0;
+    font-size: 20pt;
+    font-weight: 500;
+    margin: 30px 20px;
   }
 
   .channel_container {
     display: flex;
     flex-wrap: wrap;
-    row-gap: 50px;
-    flex-basis: 33%;
     justify-content: space-evenly;
 
-  }
-}
+    > div {
+      padding: 15px;
 
-/*
-
-.loadercontainer {
-  display: flex;
-  justify-content: center;
-  align-items: center;
-  padding-top: 70px;
-  padding-left: 42%;
-  width: fit-content;
-
-
-  .loader {
-    border: 16px solid #4a4a4a;
-    border-top: 16px solid #959596;
-    border-radius: 50%;
-    width: 30px;
-    height: 30px;
-    animation: spin 1s linear infinite;
-  }
-
-  @keyframes spin {
-    0% {
-      transform: rotate(0deg);
+      @media (max-width: 2050px) {
+        width: 25%;
+      }
+      @media (max-width: 1550px) {
+        width: 50%;
+      }
+      @media(max-width: 650px){
+        width:100%;
+      }
     }
-    100% {
-      transform: rotate(360deg);
-    }
+
   }
+
 }
-*/

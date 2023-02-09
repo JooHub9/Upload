@@ -33,7 +33,6 @@ export class ThematicArticleComponent implements OnInit {
   list: Tags[] = [];
   filter: string = "";
 
-
   channelsID: string[] = [];
   channelsIDNames: {[key:string]:string}[] = [];
 
@@ -93,11 +92,7 @@ export class ThematicArticleComponent implements OnInit {
     node = this.channelsIDNames.find(obj => obj.hasOwnProperty(x))
 
     if (node) {
-      console.log(node[x]);
-
       return node[x]
-    } else {
-      console.log("NOT A CHANNEL");
     }
     return ""
   }

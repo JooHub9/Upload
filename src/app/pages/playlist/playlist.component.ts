@@ -46,9 +46,7 @@ export class PlaylistComponent implements OnInit, NgxYoutubePlayerModule {
     this.AppService.getPlaylistVideos(this.nid).subscribe((playlist_videos) => {
       this.playlist_videos = playlist_videos;
       for (let currentIndex = 0; currentIndex < this.playlist_videos.length; currentIndex++) {
-        console.log(this.playlist_videos[currentIndex].field_media_oembed_video);
         this.videos_playlist.push(this.playlist_videos[currentIndex].field_media_oembed_video.slice(32, 43))
-       // this.videos_playlist.push(this.playlist_video_string[1])
       }
       this.video_playlist = this.videos_playlist[0];
     });
@@ -86,15 +84,11 @@ export class PlaylistComponent implements OnInit, NgxYoutubePlayerModule {
 
   savePlayer(player: YT.Player) {
   this.player = player;
-  console.log('player instance', player);
-
 }
 
   returnNode(x:any) : string {
     let node
-
     node = this.channelsIDNames.find(obj => obj.hasOwnProperty(x))
-
     if (node) {return node[x]}
     return ""
   }
@@ -102,7 +96,6 @@ export class PlaylistComponent implements OnInit, NgxYoutubePlayerModule {
 
 
   onStateChange(event: YT.PlayerEvent) {
-    console.log('player state', event.target.getPlayerState());
     if(event.target.getPlayerState()===0)
     {
       this.video_playlist=== this.videos_playlist[this.videos_playlist.length-1]?

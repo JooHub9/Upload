@@ -29,16 +29,17 @@ import {ChannelpageComponent} from './pages/channelpage/channelpage.component';
 import {ChannelsComponent} from './pages/channels/channels.component';
 import {FavoritesComponent} from './pages/favorites/favorites.component';
 import {TagsPipe} from './tags.pipe';
-import {AutocompleteLibModule} from "angular-ng-autocomplete";
-import {SearchBarComponent} from './components/search-bar/search-bar.component';
-import {SanitizePipe} from './sanitize.pipe';
-import {LanguageComponent} from './components/language/language.component';
-import {SidebarComponent} from './components/sidebar/sidebar.component';
-import {LoaderComponent} from './components/loader/loader.component';
-import {SharePopUpComponent} from './components/share-pop-up/share-pop-up.component';
+import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
+import { AutocompleteLibModule} from "angular-ng-autocomplete";
+import { SearchBarComponent } from './components/search-bar/search-bar.component';
+import { SanitizePipe } from './sanitize.pipe';
+import { LanguageComponent } from './components/language/language.component';
+import { SidebarComponent } from './components/sidebar/sidebar.component';
+import { LoaderComponent } from './components/loader/loader.component';
+import { SharePopUpComponent } from './components/share-pop-up/share-pop-up.component';
+import { NgxYoutubePlayerModule } from 'ngx-youtube-player';
 import {TagpageComponent} from './pages/tagpage/tagpage.component';
 import {SearchpageComponent} from './pages/searchpage/searchpage.component';
-import {BrowserAnimationsModule} from '@angular/platform-browser/animations';
 import { ToastrModule, ToastNoAnimation, ToastNoAnimationModule } from 'ngx-toastr';
 
 @NgModule({
@@ -85,17 +86,19 @@ import { ToastrModule, ToastNoAnimation, ToastNoAnimationModule } from 'ngx-toas
     FormsModule,
     FontAwesomeModule,
     ReactiveFormsModule,
+    BrowserAnimationsModule,
     AutocompleteLibModule,
+    NgxYoutubePlayerModule.forRoot(),
     ToastNoAnimationModule.forRoot(
       {timeOut: 2000,
         positionClass: 'toast-bottom-left',
         preventDuplicates: true,}
     ),
-
   ],
 
   providers: [],
   bootstrap: [AppComponent]
 })
+
 export class AppModule {
 }

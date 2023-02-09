@@ -90,8 +90,32 @@ export class AppService {
     return this.http.get<Thematic[]>(this.BASE_URL + "api/thematics/" + nid);
   }
 
-  getThematicVideos(nid: string) {
+  /*getThematicVideos(nid: string) {
     return this.http.get<Video[]>(this.BASE_URL + "api/thematic_article/videos/" + nid);
+  }
+
+  getVideos(page?: number, tag?: number, filter?: string) {
+    let url = this.BASE_URL + "api/videos"
+    if (filter) {
+      url = url + "/search/?name=" + filter
+    } else if (tag) {
+      url = url + "/tag/" + tag
+    } else if (page) {
+      url = url + "/?page=" + page
+    }
+    return this.http.get<Video[]>(url);
+  }*/
+
+  getThematicVideos(nid: string, page?: number, tag?: number, filter?: string) {
+    let url_2 = this.BASE_URL + "api/thematic_article/videos/" + nid
+    if (filter) {
+      url_2 = url_2 + "/search/?name=" + filter
+    } else if (tag) {
+      url_2 = url_2 + "/tag/" + tag
+    } else if (page) {
+      url_2 = url_2 + "/?page=" + page
+    }
+    return this.http.get<Video[]>(url_2);
   }
 
 

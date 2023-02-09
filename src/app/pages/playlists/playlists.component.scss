@@ -4,23 +4,31 @@
 }
 
 .main_container {
-  /*width: auto;
-  height: auto;*/
+  margin: 20px;
 
   .main_title {
     color: white;
-    padding-top: 50px;
-    padding-bottom: 50px;
-    padding-left: 30px;
+    padding-top: 13px;
+    padding-bottom: 25px;
   }
 
   .out_container {
-    display: grid;
-    grid-template-columns: auto auto auto;
-    justify-content: left;
+    margin: 30px 0;
+    display: flex;
+    flex-wrap: wrap;
+    width: auto;
+    gap: 20px;
 
     .playlists_container {
-      padding: 20px;
+      background-color: #1C1C24;
+      border-radius: 20px;
+      cursor: pointer;
+      overflow: hidden;
+      opacity: 0.8;
+
+      &:hover {
+        background: rgba(146, 146, 157, 0.4);
+      }
 
       .images_playlist {
         flex-direction: column;
@@ -28,12 +36,11 @@
         position: relative;
 
         .bookmark_play {
-          cursor:pointer;
 
           .bookmark {
             color: white;
             font-size: 50px;
-            top: 75px;
+            top: 80px;
             left: 40px;
             position: absolute;
           }
@@ -48,11 +55,8 @@
         }
 
         .cover_image {
-          padding-left: 15px;
 
           .cover_photo {
-            width: 350px;
-            height: 225px;
             object-fit: cover;
             border-top-right-radius: 20px;
             border-top-left-radius: 20px;
@@ -60,38 +64,42 @@
         }
 
         .profile_photo {
-          padding-left: 200px;
 
           .user_picture {
             width: 75px;
             height: 75px;
-            border-radius: 50px;
+            object-fit: cover;
+            border-radius: 50%;
             border: 2px solid white;
-            right: 35px;
-            top: 180px;
+            right: 30px;
+            bottom: -25px;
             position: absolute;
           }
         }
       }
 
       .text_box {
-        padding-bottom: 50px;
-        padding-top: 25px;
-        padding-left: 30px;
 
         .username {
           color: blue;
           font-size: 15px;
+          padding-left: 20px;
+          padding-top: 10px;
         }
 
         .playlists_title {
           color: white;
-          margin-top: 5px;
-          margin-bottom: 5px;
+          margin: 2px;
+          text-overflow: ellipsis;
+          overflow: hidden;
+          white-space: nowrap;
+          padding: 0 20px;
         }
 
         .authored_on {
           color: gray;
+          padding-left: 20px;
+          padding-bottom: 10px;
         }
       }
     }

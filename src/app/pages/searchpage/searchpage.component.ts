@@ -81,6 +81,7 @@ export class SearchpageComponent {
           this.videos = vresults;
         } else {
           this.videos = video
+
         }
       });
     } else {

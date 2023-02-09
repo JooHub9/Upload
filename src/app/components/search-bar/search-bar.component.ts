@@ -19,10 +19,10 @@ export class SearchBarComponent {
   timeout: any;
   selectOption: string = "videos"
   listTerms: Terms[] = [];
-  channels_text:string="";
-  videos_text:string="";
-  placeholder_text:string="";
-  name : string = ""
+  channels_text: string = "";
+  videos_text: string = "";
+  placeholder_text: string = "";
+  name: string = ""
 
 
   constructor(public appService: AppService, private router: Router) {
@@ -41,7 +41,7 @@ export class SearchBarComponent {
           case 77: {
             this.videos_text = t.name
             break;
-        }
+          }
           case 94: {
             this.placeholder_text = t.name
             break;
@@ -67,7 +67,7 @@ export class SearchBarComponent {
   selectChange(event: any) {
     this.selectOption = event.target.value;
     this.searchVideo(this.selectOption)
-this.name=""
+    this.name = ""
   }
 
 }

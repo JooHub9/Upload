@@ -18,7 +18,6 @@ import {SearchpageComponent} from "./pages/searchpage/searchpage.component";
 const routes: Routes = [
   {path: '', redirectTo: 'homepage',pathMatch: 'full'},
   {path: 'homepage', component: HomepageComponent },
-  {path: 'homepage/?search=item', component: HomepageComponent},
   {path: 'comments', component: CommentsComponent },
   {path: 'video/:title', component: VideopageComponent},
   {path: 'playlists/:nid', component: PlaylistComponent},

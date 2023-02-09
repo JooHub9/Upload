@@ -10,7 +10,7 @@ import {faPoo} from "@fortawesome/free-solid-svg-icons"
 })
 
 export class FavoritesComponent implements OnInit {
-  favorites_list: Video[] = []
+  favorites_list!: Video[]
   faPoo = faPoo
 
   listTerms: Terms[] = [];

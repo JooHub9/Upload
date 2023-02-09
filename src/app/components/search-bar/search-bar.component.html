@@ -5,7 +5,7 @@
   </select>
 </div>
 <div>
-<input class="search_bar" placeholder="{{placeholder_text}}" ngModel (ngModelChange)="searchVideo($event)">
+<input class="search_bar"  placeholder="{{placeholder_text}}" [(ngModel)]="name" (ngModelChange)="searchVideo($event)">
       <fa-icon class="find" [icon]="faMagnifyinGlass "></fa-icon>
 </div>
 

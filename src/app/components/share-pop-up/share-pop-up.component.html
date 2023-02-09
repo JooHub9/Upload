@@ -6,7 +6,7 @@
     <p class="share_title"> {{share_text}}</p>
     <div class="icons">
       <div class="icon">
-        <a href="https://www.facebook.com/sharer.php?u={{field_media_oembed_video}}"
+        <a href="https://www.facebook.com/sharer.php?u={{url+this.urlvtitle}}"
            onclick="window.open(this.href, 'Share on Facebook', 'menubar=no,toolbar=no,resizable=yes,scrollbars=no,height=300,width=600');return false;"
            target="_blank" title="Facebook!">
           <fa-icon class=faicon [icon]="faFacebook"></fa-icon>
@@ -14,7 +14,7 @@
         <p class="title">Facebook</p>
       </div>
       <div class="icon">
-        <a href="https://twitter.com/share?url=URLENCODED_URL&via=TWITTER_HANDLE&text=TEXT"
+        <a href="https://twitter.com/share?url={{url+this.urlvtitle}}&via=TWITTER_HANDLE&text=TEXT"
            onclick="window.open(this.href, 'Share on Twitter', 'menubar=no,toolbar=no,resizable=yes,scrollbars=yes,height=300,width=600');return false;"
            target="_blank" title="Twitter!">
           <fa-icon class=faicon [icon]="faTwitter"></fa-icon>
@@ -22,7 +22,7 @@
         <p class="title">Twitter</p>
       </div>
       <div class="icon">
-        <a href="https://www.linkedin.com/sharing/share-offsite/?url={field_media_oembed_video}"
+        <a href="https://www.linkedin.com/sharing/share-offsite/?url={{url+this.urlvtitle}}"
            onclick="window.open(this.href, 'Share on Linkedin', 'menubar=no,toolbar=no,resizable=yes,scrollbars=yes,height=300,width=600');return false;"
            target="_blank" title="Linkedin!">
           <fa-icon class=faicon [icon]="faLinkedin"></fa-icon>

@@ -353,5 +353,14 @@ export class AppService {
     }
   }
 
+  /*---Menu---*/
+  public notifyToggle = new BehaviorSubject<any>('');
+  notifyToggleObservable = this.notifyToggle.asObservable();
+
+  public notifyChange(data: any) {
+    if (data) {
+      this.notifyToggle.next(data);
+    }
+  }
 }
 

@@ -1,7 +1,11 @@
 <app-loader *ngIf="this.loading" [loading]="this.loading"></app-loader>
-<div class="main_div">
+<div class="main_div" *ngIf="!this.loading">
   <div class="recent_videos">
-    <div class="title"><p>{{searchtext}} {{this.filter}}</p></div>
+    <div class="title"><p>{{searchtext}} | {{filter_str}}</p></div>
+    <div class="not_found" *ngIf="videos.length===0  || channels.length === 0">
+      <h1>{{results_text}}</h1>
+      <fa-icon [icon]="faFaceFrown"></fa-icon>
+    </div>
     <div class=containers>
       <div *ngFor="let video of videos">
         <app-video
@@ -19,15 +23,15 @@
           share_type="icons">
         </app-video>
       </div>
-  <div *ngFor="let channel of channels">
-    <app-compact-box
-      [nid]="channel.nid"
-      [name]="channel.name"
-      [title]="channel.title"
-      [user_picture]="channel.field_logo"
-      [field_channel_cover]="channel.field_channel_cover">
-    </app-compact-box>
-  </div>
+      <div *ngFor="let channel of channels">
+        <app-compact-box
+          [nid]="channel.nid"
+          [name]="channel.name"
+          [title]="channel.title"
+          [user_picture]="channel.field_logo"
+          [field_channel_cover]="channel.field_channel_cover">
+        </app-compact-box>
+      </div>
     </div>
   </div>
   <app-sidebar></app-sidebar>

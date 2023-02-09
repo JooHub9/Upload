@@ -29,6 +29,7 @@
     .thumbnail {
       border-top-right-radius: 20px;
       border-top-left-radius: 20px;
+      width:100%;
     }
 
     .play {
@@ -119,6 +120,10 @@
       font-size: 18px;
       font-weight: 500;
       line-height: 27px;
+      text-overflow: ellipsis;
+      overflow: hidden;
+      white-space: nowrap;
+      width: 250px;
     }
 
     .created {

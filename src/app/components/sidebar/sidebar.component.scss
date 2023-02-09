@@ -72,6 +72,14 @@
         letter-spacing: 0.2px;
         font-weight: 400;
 
+        .titlethematic
+        {
+          text-overflow: ellipsis;
+          overflow: hidden;
+          white-space: nowrap;
+          width: 170px;
+        }
+
         .subtitle {
           color: #B5B5BE;
         }

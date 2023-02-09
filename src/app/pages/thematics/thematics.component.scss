@@ -3,22 +3,32 @@
 }
 
 .main_container_thematics {
+  margin: 20px;
 
   .main_title_thematics {
     color: white;
-    padding-top: 50px;
-    padding-bottom: 50px;
-    padding-left: 30px;
+    padding-top: 13px;
+    font-size: 20pt;
+    font-weight: 500;
   }
 
   .out_container_thematics {
-    display: grid;
-    grid-template-columns: auto auto auto;
-    justify-content: left;
+    margin: 30px 0;
+    display: flex;
+    flex-wrap: wrap;
+   width: auto;
+   gap: 20px;
 
     .thematics_container {
-      padding: 20px;
+      background-color: #1C1C24;
+      border-radius: 20px;
       cursor: pointer;
+      overflow: hidden;
+      opacity: 0.8;
+
+      &:hover {
+        background: rgba(146, 146, 157, 0.4);
+      }
 
       .images_thematics {
         flex-direction: column;
@@ -27,52 +37,57 @@
 
 
         .image_header {
-          margin-left: 15px;
-          width: 350px;
+          width: 325px;
           height: 200px;
           border-top-right-radius: 20px;
           border-top-left-radius: 20px;
         }
 
         .profile_photo_thematic {
-          padding-left: 200px;
 
           .user_picture_thematic {
             width: 75px;
             height: 75px;
             object-fit: cover;
-            border-radius: 50px;
+            border-radius: 50%;
             border: 2px solid white;
-            right: 35px;
-            top: 160px;
+            right: 30px;
+            bottom: -25px;
             position: absolute;
           }
         }
       }
 
       .text_box_thematic {
-        padding-bottom: 50px;
-        padding-top: 25px;
-        padding-left: 30px;
 
         .username_thematic {
-          color: blue;
+          color: #4b66f7;
           font-size: 15px;
+          padding-left: 20px;
+          padding-top: 10px;
         }
 
         .title_thematic {
+          width: 325px;
           color: white;
-          margin: 2px;
+          text-overflow: ellipsis;
+          overflow: hidden;
+          white-space: nowrap;
+          padding: 0 20px;
+          font-weight: 500;
         }
 
         .tag_thematic {
           color: white;
           margin-bottom: 5px;
           margin-top: 7px;
+          padding-left: 20px;
         }
 
         .created_thematic {
           color: gray;
+          padding-left: 20px;
+          padding-bottom: 10px;
         }
       }
     }

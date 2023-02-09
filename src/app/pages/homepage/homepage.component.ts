@@ -39,14 +39,14 @@ export class HomepageComponent {
     this.appService.getSuggestedThematic().subscribe(thematic => {
       this.suggested_thematic = thematic[0];
 
-    })*/
+    })
 
     this.route.queryParams.subscribe(param => {
       //this.tag = param['tag'];
       this.videos = [];
-      this.filter = param['search']
+      this.filter = param['search']*/
       this.videosList()
-    });
+    //});
 
 
     this.appService.getTerms().subscribe(tm => {

@@ -27,16 +27,11 @@ export class SidebarComponent {
 
     this.appService.getSuggestedChannels().subscribe(channel => {
       this.channelsraw = channel
-
       this.channels= this.channelsraw.map(x=>({...x, view_node : x.view_node.slice(4)}));
-
-      console.log("this.channels - ", this.channels)
-
     })
 
     this.appService.getSuggestedThematic().subscribe(thematic => {
       this.suggested_thematic = thematic[0];
-
     })
 
     this.appService.getTerms().subscribe(tm => {

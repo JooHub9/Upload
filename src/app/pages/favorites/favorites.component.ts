@@ -10,7 +10,7 @@ import {faPoo} from "@fortawesome/free-solid-svg-icons"
 })
 
 export class FavoritesComponent implements OnInit {
-  favorites_list: Video[] = []
+  favorites_list!: Video[]
   faPoo = faPoo
 
   listTerms: Terms[] = [];
@@ -75,11 +75,7 @@ export class FavoritesComponent implements OnInit {
     node = this.channelsIDNames.find(obj => obj.hasOwnProperty(x))
 
     if (node) {
-      console.log(node[x]);
-
       return node[x]
-    } else {
-      console.log("NOT A CHANNEL");
     }
     return ""
   }

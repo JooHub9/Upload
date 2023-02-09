@@ -1,5 +1,6 @@
-import { Component } from '@angular/core';
+import {Component, Input} from '@angular/core';
 import {faBars, faX} from "@fortawesome/free-solid-svg-icons"
+import {AppService} from "../../app.service";
 
 
 @Component({
@@ -11,13 +12,23 @@ import {faBars, faX} from "@fortawesome/free-solid-svg-icons"
 
 export class NavbarComponent {
 
-  faBars=faBars
-  faX=faX
+  faBars = faBars
+  faX = faX
 
-  isOpen=false;
+  isOpen = false;
 
-  toggleMenu():void{
+  toggleMenu(): void {
     this.isOpen = !this.isOpen
   }
 
+  constructor(public appService: AppService) {
+  }
+
+  ngOnInit(): void {
+    this.appService.notifyToggleObservable.subscribe(r => {
+      if (r.refreshMenu) {
+        this.isOpen = false;
+      }
+    })
+  }
 }

@@ -19,11 +19,11 @@
 
         <div class="profilepicture" *ngIf="objvideo.field_channel" [ngStyle]="{'background-image':
   'url(https://dev-project-upskill2-grupo3-ii.pantheonsite.io/'  + logo + ')'}
-"[routerLink]="urlctitle?'/channel/'+urlctitle : ''"></div>
+" [routerLink]="urlctitle?'/channel/'+urlctitle : ''"></div>
 
         <div class="profilepicture" *ngIf="!objvideo.field_channel" [ngStyle]="{'background-image':
   'url(https://dev-project-upskill2-grupo3-ii.pantheonsite.io/'  + objvideo.user_picture + ')'}
-"[routerLink]="urlctitle?'/channel/'+urlctitle : ''"></div>
+" [routerLink]="urlctitle?'/channel/'+urlctitle : ''"></div>
 
         <div class="textinfo">
           <p class="channel" *ngIf="objvideo.field_channel"> {{objvideo.field_channel}} </p>

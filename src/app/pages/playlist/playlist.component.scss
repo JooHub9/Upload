@@ -3,31 +3,25 @@
 }
 
 .main_container_playlist {
-  padding-left: 15px;
+  padding-top: 15px;
+  justify-content: space-around;
+  display: flex;
+  flex-direction: row;
+  flex-wrap: wrap;
+  width: 100%;
 
   .playlist_container {
 
+    flex:1;
+    padding: 5px 20px;
+
     .playlist_title {
-      padding-top: 50px;
-    }
-
-    .playlist_cover_image {
-      justify-content: center;
-
-      .cover_photo_playlist {
-        width: 500px;
-        height: 200px;
-        object-fit: cover;
-        border-radius: 50px;
-        padding-top: 25px;
-        padding-bottom: 25px;
-      }
     }
 
     .text_playlist {
       display: flex;
-      padding-bottom: 15px;
       align-items: center;
+      margin-bottom: 39px;
 
       .playlist_category {
         font-size: 15px;
@@ -39,25 +33,49 @@
       }
     }
 
-    .videos {
-      padding-top: 35px;
+    .main_video {
+      margin: 0;
+
+
+      ::ng-deep {
+        iframe {
+          width: 100%;
+          height: auto;
+          aspect-ratio: 16 / 9;
+        }
+      }
+    }
+  }
+
+  .playlist_videos_sidebar {
+    width: 402px;
+    gap: 20px;
+
+    .playlist_cover_image {
+      margin-top: 20px;
+      padding-bottom: 25px;
+
+      .cover_photo_playlist {
+        border-top-left-radius: 20px;
+        border-top-right-radius: 20px;
+      }
     }
 
-    .videos_playlist {
-      display: flex;
-      flex-flow: row;
-      height: 100%;
-      margin: 20px;
-      /*justify-content: space-between;*/
+    .click_videos {
+      align-content: center;
+      cursor: pointer;
+      margin-right: 20px;
 
-      .playlist_videos {
-        display: flex;
-        flex-wrap: wrap;
-        align-content: center;
-        gap: 20px;
-        /*display: grid;
-        grid-template-columns: auto auto auto;*/
+
+      .no_click {
+        pointer-events: none;
+
+        .hidden_text {
+          visibility: hidden;
+        }
       }
     }
   }
 }
+
+

@@ -1,4 +1,4 @@
-import {Component, OnInit, Input} from '@angular/core';
+import {Component, Input} from '@angular/core';
 import {
   faHome,
   faBarsStaggered,
@@ -23,8 +23,6 @@ export class MenuComponent {
   faPlay = faPlay;
   faBookmark = faBookmark;
 
-
-
   /*Variables*/
   tags: Tags[] = [];
   listTerms: Terms[] = [];
@@ -36,9 +34,10 @@ export class MenuComponent {
   searchvideotext: string = "";
 
 
-  @Input() isMenu! : boolean;
+  @Input() isMenu!: boolean;
 
-  constructor(public appService: AppService) {}
+  constructor(public appService: AppService) {
+  }
 
   ngOnInit(): void {
     this.appService.getTags().subscribe((tag) => {
@@ -49,9 +48,9 @@ export class MenuComponent {
     this.appService.getTerms().subscribe(tm => {
       this.listTerms = tm;
 
-      this.listTerms.forEach(t=>{
+      this.listTerms.forEach(t => {
 
-        switch(Number(t.tid)) {
+        switch (Number(t.tid)) {
           case 62: {
             this.channelstext = t.name
             break;
@@ -74,8 +73,13 @@ export class MenuComponent {
             break;
           }
 
-        }})});
+        }
+      })
+    });
+  }
 
-
+  closeMenu(){
+    this.isMenu = false;
+    this.appService.notifyChange({refreshMenu: true});
   }
 }

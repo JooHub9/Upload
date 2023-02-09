@@ -15,52 +15,56 @@
       font-weight: 500;
     }
   }
+    .not_found {
+      display: flex;
+      justify-content: center;
+      align-items: center;
 
-  .containers {
-    display: flex;
-    flex-wrap: wrap;
-    justify-content: space-evenly;
-    //margin-left: 20px;
-    //gap:10px;
-    padding: 15px;
 
-    > div {
-      width: 33.333%;
+      fa-icon {
+        font-size: 40px;
+        padding-left: 10px;
+        align-items: baseline;
+      }
+    }
+
+    .containers {
+      display: flex;
+      flex-wrap: wrap;
+      justify-content: space-evenly;
       padding: 15px;
 
-      /*@media (max-width: 1500px) {
-        width: 50%;
-      }
-      @media(max-width: 550px){
-        width:100%;
-      }*/
+      > div {
+        width: 33.333%;
+        padding: 15px;
 
-      @media (max-width: 1500px) {
-        width: 50%;
-      }
-      @media(max-width: 1190px){
-        width:100%;
-      }
-      @media(max-width: 920px){
-        width:50%;
-      }
-      @media(max-width: 650px){
-        width:100%;
-      }
+        @media (max-width: 1500px) {
+          width: 50%;
+        }
+        @media(max-width: 1190px) {
+          width: 100%;
+        }
+        @media(max-width: 920px) {
+          width: 50%;
+        }
+        @media(max-width: 650px) {
+          width: 100%;
+        }
 
-
+      }
     }
-  }
+
 }
 
-//Media Queries
+  //Media Queries
 
-@media (max-width: 768px) {
-  .main_div {
-    justify-content: center;
+  @media (max-width: 768px) {
+    .main_div {
+      justify-content: center;
 
-    .title {
-      padding-left: 0;
+      .title {
+        padding-left: 0;
+      }
     }
   }
-}
+

@@ -22,6 +22,7 @@ export class SearchBarComponent {
   channels_text:string="";
   videos_text:string="";
   placeholder_text:string="";
+  name : string = ""
 
 
   constructor(public appService: AppService, private router: Router) {
@@ -65,7 +66,8 @@ export class SearchBarComponent {
 
   selectChange(event: any) {
     this.selectOption = event.target.value;
-   // this.searchVideo(this.selectOption)
+    this.searchVideo(this.selectOption)
+this.name=""
   }
 
 }

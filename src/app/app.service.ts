@@ -90,8 +90,16 @@ export class AppService {
     return this.http.get<Thematic[]>(this.BASE_URL + "api/thematics/" + nid);
   }
 
-  getThematicVideos(nid: string) {
-    return this.http.get<Video[]>(this.BASE_URL + "api/thematic_article/videos/" + nid);
+  getThematicVideos(nid: string, page?: number, tag?: number, filter?: string) {
+    let url_2 = this.BASE_URL + "api/thematic_article/videos/" + nid
+    if (filter) {
+      url_2 = url_2 + "/search/?name=" + filter
+    } else if (tag) {
+      url_2 = url_2 + "/tag/" + tag
+    } else if (page) {
+      url_2 = url_2 + "/?page=" + page
+    }
+    return this.http.get<Video[]>(url_2);
   }
 
 
@@ -224,14 +232,6 @@ export class AppService {
     return this.http.get<Channel[]>(this.BASE_URL + "api/channels/search/?name=" + filter);
   }
 
-  /*selectOption = new BehaviorSubject<string>('');
-  currentSelectOption = this.selectOption.asObservable();
-
-  changeSelectOption(option: string) {
-    this.selectOption.next(option);
-    console.log("bicho", this.selectOption)
-  }/*
-
   /*_______ Tags _______*/
 
   getTags() {
@@ -353,5 +353,14 @@ export class AppService {
     }
   }
 
+  /*---Menu---*/
+  public notifyToggle = new BehaviorSubject<any>('');
+  notifyToggleObservable = this.notifyToggle.asObservable();
+
+  public notifyChange(data: any) {
+    if (data) {
+      this.notifyToggle.next(data);
+    }
+  }
 }
 

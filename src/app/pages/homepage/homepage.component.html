@@ -2,9 +2,7 @@
 
 <div class="main_div">
   <div class="recent_videos">
-
-    <div *ngIf="!this.filter" class="title"><p>{{recentvideostext}}</p></div>
-    <div *ngIf="this.filter" class="title"><p>{{searchtext}} {{this.filter}}</p></div>
+    <div  class="title"><p>{{recentvideostext}}</p></div>
     <div class=videos_container>
       <div *ngFor="let video of videos">
       <app-video
@@ -24,7 +22,7 @@
       </app-video>
       </div>
     </div>
-    <div  *ngIf="!this.filter" class="container_more_videos">
+    <div class="container_more_videos">
       <div class="more_videos_border" (click)="moreResults()">
         <p class="more_videos_text">{{morevideostext}}</p>
       </div>

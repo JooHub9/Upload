@@ -1,32 +1,32 @@
 <div class="main_container" [ngClass]="{'open' : isMenu}">
   <div class="menu">
     <div class="buttons">
-      <div class="home" id="home_button" routerLink="homepage">
-        <div class="active_div" routerLinkActive="active">
+      <div class="home" id="home_button" routerLink="homepage" (click)="closeMenu()">
+        <div class="active_div" routerLinkActive= "active">
           <fa-icon [icon]="faHome"></fa-icon>
           <p>Home</p>
         </div>
       </div>
-      <div class="channels" id="channels_button" routerLink="channels">
+      <div class="channels" id="channels_button" routerLink="channels"(click)="closeMenu()">
         <div class="active_div" routerLinkActive="active">
           <fa-icon [icon]="faBarsStaggered"></fa-icon>
           <p>{{channelstext}}</p>
         </div>
       </div>
-      <div class="thematics" id="thematics_button" routerLink="thematics">
+      <div class="thematics" id="thematics_button" routerLink="thematics"(click)="closeMenu()">
         <div class="active_div" routerLinkActive="active">
           <fa-icon [icon]="faClapperboard"></fa-icon>
           <p>{{thematicstext}}</p>
         </div>
       </div>
-      <div class="playlists" id="playlists_button" routerLink="playlists">
+      <div class="playlists" id="playlists_button" routerLink="playlists"(click)="closeMenu()">
         <div class="active_div" routerLinkActive="active">
           <fa-icon [icon]="faPlay"></fa-icon>
           <p>Playlists</p>
         </div>
       </div>
     </div>
-    <div class="favourites" id="favourites_button" routerLink="favorites">
+    <div class="favourites" id="favourites_button" routerLink="favorites" (click)="closeMenu()">
       <div class="active_div" routerLinkActive="active">
         <fa-icon [icon]="faBookmark"></fa-icon>
         <p>{{favoritestext}}</p>
@@ -36,7 +36,7 @@
   </div>
     <div class="titles">
       <div class="tags_flex" *ngFor="let tag of tags, let i = index">
-        <div class="tag" *ngIf="i < 10" [queryParams]="{tag: tag.name}" [routerLink]="['/tag/', tag.name]" >
+        <div class="tag" *ngIf="i < 10" [queryParams]="{tag: tag.name}" [routerLink]="['/tag/', tag.name]" (click)="closeMenu()">
           {{tag.name}}
         </div>
       </div>

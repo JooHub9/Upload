@@ -71,24 +71,29 @@ interface Playlist {
   name: string;
   created: string;
   field_cover_image_playlist: string;
+  field_cover_playlists: string;
   nid: number;
   field_video_playlist: string [];
 }
 
-/*interface Playlist_Videos {
-  mid: string;
-  field_video_title: string;
-  thumbnail__target_id: string;
-  field_duration: string;
-  field_media_oembed_video: string;
-  created: string;
-  user_picture: string;
-  name: string;
-  type: string;
-}*/
 
 
 /*___________ Thematics ___________*/
+
+
+interface Thematics {
+  nid: string;
+  title: string;
+  field_image_header: string;
+  field_tag: string;
+  created: string;
+  field_teaser: string;
+  field_thumbnail_article: string;
+  body: string;
+  field_external_links: string;
+  field_external_links_1: string;
+  name: string;
+}
 
 interface Thematic {
   nid: string;
@@ -105,6 +110,7 @@ interface Thematic {
   name: string;
   view_media: string;
 }
+
 
 /*____________ Channel ____________*/
 
@@ -137,20 +143,6 @@ interface ChannelVideos {
   field_tags: string;
 }
 
-/*____________ Thematics ____________*/
-
-interface Thematics {
-  nid: string;
-  title: string;
-  field_image_header: string;
-  field_tag: string;
-  created: string;
-  field_teaser: string;
-  field_thumbnail_article: string;
-  body: string;
-  field_external_links: string;
-  name: string;
-}
 
 /*____________ Likes / Dislikes ____________*/
 
@@ -172,5 +164,5 @@ interface Reason {
 interface Terms {
   name: string;
   tid: number;
-
 }
+

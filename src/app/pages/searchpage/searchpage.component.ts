@@ -83,10 +83,9 @@ export class SearchpageComponent {
         let vresults = <[]>video;
         if (clean) {
           this.videos = vresults;
-          console.log(this.videos, "um")
         } else {
           this.videos = video
-          console.log(this.videos, "dois")
+
         }
       });
     } else {

@@ -74,7 +74,6 @@ import { ToastrModule, ToastNoAnimation, ToastNoAnimationModule } from 'ngx-toas
     SharePopUpComponent,
     TagpageComponent,
     SearchpageComponent,
-
   ],
 
   imports: [

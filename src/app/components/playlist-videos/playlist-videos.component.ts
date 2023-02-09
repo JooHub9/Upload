@@ -17,6 +17,10 @@ export class PlaylistVideosComponent implements OnInit {
   @Input() name?: string;
   @Input() autoplay?: string;
   @Input() type?: string;
+  @Input() field_tags?: string;
+  @Input() view_node?: string;
+  @Input() view_media?: string;
+
 
   constructor(public appService: AppService) {
   }

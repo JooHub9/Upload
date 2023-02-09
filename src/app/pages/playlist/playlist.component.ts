@@ -2,7 +2,6 @@ import {Component, OnInit, AfterViewInit} from '@angular/core';
 import {ActivatedRoute} from "@angular/router";
 import {AppService} from "../../app.service";
 import {NgxYoutubePlayerModule} from 'ngx-youtube-player';
-import {end} from "@popperjs/core";
 
 
 @Component({
@@ -47,9 +46,9 @@ export class PlaylistComponent implements OnInit, NgxYoutubePlayerModule {
     this.AppService.getPlaylistVideos(this.nid).subscribe((playlist_videos) => {
       this.playlist_videos = playlist_videos;
       for (let currentIndex = 0; currentIndex < this.playlist_videos.length; currentIndex++) {
-        this.playlist_video_string = this.playlist_videos[currentIndex].field_media_oembed_video
-          .split("v=")
-        this.videos_playlist.push(this.playlist_video_string[1])
+        console.log(this.playlist_videos[currentIndex].field_media_oembed_video);
+        this.videos_playlist.push(this.playlist_videos[currentIndex].field_media_oembed_video.slice(32, 43))
+       // this.videos_playlist.push(this.playlist_video_string[1])
       }
       this.video_playlist = this.videos_playlist[0];
     });

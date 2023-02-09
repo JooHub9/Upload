@@ -51,35 +51,6 @@ export class ThematicArticleComponent implements OnInit {
 
     });
 
-    /*videosList(clean: boolean = false): void {
-      this.AppService.getThematicVideos(this.nid).subscribe((thematic_videos) => {
-        this.thematic_videos = thematic_videos;
-      });
-
-    }*/
-
-    this.AppService.getThematicVideos(this.nid).subscribe((thematic_videos ) => {
-      this.thematic_videos = thematic_videos;
-
-
-      this.thematic_videos.forEach(x => {
-        if(x.field_channel_1)
-        {
-          this.channelsID.push(x.field_channel_1)
-        }
-        return this.channelsID
-      }) //fim do videosforeach
-
-      this.AppService.getoneChannel(this.channelsID).subscribe((ch) => {
-
-        ch.forEach(x => {
-          this.channelsIDNames.push({[x.nid]: x.view_node})
-        })
-      })
-
-    });//fim da getThematicVideos
-
-
     this.AppService.getTerms().subscribe(tm => {
       this.listTerms = tm;
 
@@ -140,11 +111,29 @@ export class ThematicArticleComponent implements OnInit {
       }
       let results = <[]>thematic_videos
       if (clean)
-        this.thematic_videos = results
+      {this.thematic_videos = results}
       else
-        this.thematic_videos = [...this.thematic_videos, ...thematic_videos]
-    });
-  }
+      {this.thematic_videos = [...this.thematic_videos, ...thematic_videos]}
+
+        this.thematic_videos.forEach(x => {
+          if(x.field_channel_1)
+          {
+            this.channelsID.push(x.field_channel_1)
+          }
+          return this.channelsID
+        }) //fim do videosforeach
+
+        this.AppService.getoneChannel(this.channelsID).subscribe((ch) => {
+
+          ch.forEach(x => {
+            this.channelsIDNames.push({[x.nid]: x.view_node})
+          })
+        })
+
+      });//fim da getThematicVideos
+
+    }
+
 
   moreResults(): void {
     this.page++

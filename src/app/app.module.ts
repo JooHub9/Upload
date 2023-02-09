@@ -88,7 +88,7 @@ import { ToastrModule, ToastNoAnimation, ToastNoAnimationModule } from 'ngx-toas
     ReactiveFormsModule,
     BrowserAnimationsModule,
     AutocompleteLibModule,
-    NgxYoutubePlayerModule.forRoot()
+    NgxYoutubePlayerModule.forRoot(),
     ToastNoAnimationModule.forRoot(
       {timeOut: 2000,
         positionClass: 'toast-bottom-left',

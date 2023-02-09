@@ -15,10 +15,7 @@
 
     .images_thematic {
       flex-direction: row;
-      /*align-items: flex-end;*/
       position: relative;
-
-      /*.thematic_image_header {*/
 
       .image_header_thematic {
         width: 100%;
@@ -26,13 +23,10 @@
         object-fit: cover;
         border-top-right-radius: 20px;
         border-top-left-radius: 20px;
-        /*padding-top: 25px;*/
         padding-bottom: 25px;
 
       }
 
-
-      /*.thumbnail_thematic {*/
 
       .thematic_thumbnail {
         width: 135px;
@@ -94,9 +88,7 @@
         color: #1E75FF;
 
         &:hover {
-          //transform: scale(1.1);
           background: rgba(146, 146, 157, 0.4);
-          //overflow: visible;
         }
       }
     }
@@ -113,9 +105,6 @@
       flex-wrap: wrap;
       width: auto;
       gap: 20px;
-      //max-width: 970px;
-      /*display: grid;
-      grid-template-columns: auto auto auto;*/
     }
 
     .container_more_videos {

@@ -28,7 +28,6 @@ export class SearchBarComponent {
   }
 
   ngOnInit(): void {
-    this.searchVideo(this.keyword)
     this.appService.getTerms().subscribe(tm => {
       this.listTerms = tm;
 

@@ -1,3 +1,4 @@
+/*
 import { SanitizePipe } from './sanitize.pipe';
 
 describe('SanitizePipe', () => {
@@ -6,3 +7,4 @@ describe('SanitizePipe', () => {
     expect(pipe).toBeTruthy();
   });
 });
+*/

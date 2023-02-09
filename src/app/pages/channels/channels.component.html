@@ -1,8 +1,8 @@
 <div class="main_container" *ngIf="!loading">
   <div class="channeltext">{{channelstext}}</div>
   <div class=channel_container>
+    <div *ngFor="let c of channels">
     <app-compact-box
-      *ngFor="let c of channels"
       [nid]="c.nid"
       [name]="c.name"
       [title]="c.title"
@@ -10,6 +10,7 @@
       [field_channel_cover]="c.field_channel_cover"
       [view_node]="c.view_node">
     </app-compact-box>
+    </div>
   </div>
 </div>
 

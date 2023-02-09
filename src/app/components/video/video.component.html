@@ -21,7 +21,7 @@
     <div class="info">
       <p *ngIf="thematics" class="field_tags">{{field_tags | tags}}</p>
       <p *ngIf="field_channel" class="channel" [routerLink]="['/channel/',urlctitle]">{{field_channel}}</p>
-      <p *ngIf="field_channel===''" class="channel no">Ceci ne pas un channel</p>
+      <p *ngIf="field_channel===''" class="channel no">{{field_tags | tags}}</p>
       <h3 class="video_name" [routerLink]="['/video/',urlvtitle]">{{field_video_title}}</h3>
       <p class="created">{{created}}</p>
     </div>

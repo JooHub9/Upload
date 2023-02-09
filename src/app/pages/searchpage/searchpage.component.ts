@@ -31,7 +31,7 @@ export class SearchpageComponent {
       this.UpdateContent()
     });
 
-  }
+  }//fim oninit
 
 
   UpdateContent() {
@@ -59,6 +59,6 @@ export class SearchpageComponent {
         }
       })
     });
-  } //fim oninit
+  }//fim do update
 }
 

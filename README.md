@@ -1,4 +1,4 @@
-# Angular
+# Angular - Final Group Project - a web/mobile platform similar to youtube, backend: drupal - you can see live here: https://project-upskill2-grupo3.netlify.app/homepage
 
 This project was generated with [Angular CLI](https://github.com/angular/angular-cli) version 15.0.4.
 
